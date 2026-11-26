@@ -1,8 +1,9 @@
 {
-  "created_at": "2026-11-26T09:09:15",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - User and server reviews:** Fixed the app asking where a server's reviews live: a server that answers its /health with \"not found\" (the community server does) was counted as broken, so a server of your own could be mixed up with it. Only an answer that names its own app is trusted now\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.10/patches-1.0.10.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.10",
+  "created_at": "2026-11-26T06:49:05",
+  "description": "### \u2728 New Features\n\n* **Discord - User and server reviews:** The patch bundle is signed now, so an install can tell a bundle this source built from one someone else swapped in. Morphe Manager trusts the key the first signed bundle carries, so this release starts that trust\n\n### \ud83d\udd27 Improvements\n\n* **Discord - User and server reviews:** The key behind the signature is published with the bundle, which is what lets Manager hold every later release to the same one\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.11/patches-1.0.11.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.11",
   "signature_download_url": "",
-  "version": "1.0.10"
+  "version": "1.0.11",
+  "public_key": "sy/1df6laT60R26P5kJCHPvvHIhSKfgP9sSRSROMrKU="
 }

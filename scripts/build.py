@@ -930,6 +930,12 @@ def build():
             add(path.name, path.read_bytes())
     run("java", "-Xmx256m", "-cp", f"{bundle}:{TOOLS / 'morphe.jar'}:{TOOLS / 'gson.jar'}",
         "util.PatchListGeneratorKt", bundle, cwd=ROOT / "patches")
+    # Morphe Manager pins the key of the first signed bundle a source installs, so signing is opt-in: it happens
+    # when the key is present (JAPATCH_SIGNING_KEY, or ~/.japatch-signing-key), and the public half is published in
+    # patches-bundle.json for that same reason. Signing writes the zip comment, so it goes before the checksum.
+    public_key = sign_bundle(bundle, libs)
+    if public_key:
+        (libs / (bundle.name + ".pub")).write_text(public_key + "\n")
     checksum = libs / "SHA256SUMS"
     checksum.write_text(f"{digest(bundle)}  {bundle.name}\n")
     print(f"Bundle: {bundle.relative_to(ROOT)}", flush=True)
@@ -997,6 +1003,48 @@ def check_metadata(metadata):
         raise SystemExit("patches-bundle.json: description must be the release's sections from scripts/release_info.py")
 
 
+def signing_key():
+    """The Base64 Ed25519 private key to sign with, or None to publish an unsigned bundle."""
+    raw = os.environ.get("JAPATCH_SIGNING_KEY", "").strip()
+    if raw:
+        return raw
+    key_file = Path.home() / ".japatch-signing-key"
+    if key_file.exists():
+        return key_file.read_text().strip()
+    return None
+
+
+def manifest_key():
+    """The public half of the signing key, or "" when this build is unsigned."""
+    key = signing_key()
+    if not key:
+        return ""
+    script = ROOT / "scripts" / "sign_bundle.py"
+    result = subprocess.run([sys.executable, str(script), "--key", key, "--public"],
+                            capture_output=True, text=True)
+    if result.returncode != 0:
+        return ""
+    for line in result.stdout.splitlines():
+        if line.startswith("public key"):
+            return line.split(":", 1)[1].strip()
+    return ""
+
+
+def sign_bundle(bundle, libs):
+    key = signing_key()
+    if not key:
+        print("Bundle left unsigned (no signing key: set JAPATCH_SIGNING_KEY to sign)", flush=True)
+        return ""
+    script = ROOT / "scripts" / "sign_bundle.py"
+    result = subprocess.run([sys.executable, str(script), "--key", key, str(bundle)],
+                            capture_output=True, text=True)
+    if result.returncode != 0:
+        raise SystemExit("signing failed: " + (result.stderr or result.stdout))
+    public_key = (libs / (bundle.name + ".pub")).read_text().strip()
+    print(f"Signed bundle: {public_key}", flush=True)
+    return public_key
+
+
 def release_metadata():
     # An offset such as "+00:00" makes Morphe reject the whole remote source.
     created_at = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
@@ -1014,6 +1062,9 @@ def release_metadata():
         "signature_download_url": "",
         "version": VERSION,
     }
+    public_key = manifest_key()
+    if public_key:
+        metadata["public_key"] = public_key
     check_metadata(metadata)
     (ROOT / "patches-bundle.json").write_text(json.dumps(metadata, indent=2) + "\n")
 

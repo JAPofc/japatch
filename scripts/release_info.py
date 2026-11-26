@@ -23,6 +23,16 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.11] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - User and server reviews:** The patch bundle is signed now, so an install can tell a bundle this source built from one someone else swapped in. Morphe Manager trusts the key the first signed bundle carries, so this release starts that trust
+
+### 🔧 Improvements
+
+* **Discord - User and server reviews:** The key behind the signature is published with the bundle, which is what lets Manager hold every later release to the same one
+
 ## [1.0.10] (2026-11-26)
 
 ### 🐛 Bug Fixes
