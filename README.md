@@ -26,6 +26,7 @@ Offline by default. No tracking, no telemetry, no remote config.
 - [Overview](#overview)
 - [Compatibility](#compatibility)
 - [Install](#install)
+- [Update to a newer JaPatch](#update-to-a-newer-japatch)
 - [Features](#features)
 - [Privacy options](#privacy-options)
 - [Custom branding](#custom-branding)
@@ -72,6 +73,36 @@ under **Sources → + → Local**.
 > The patched app is signed with your own key, so you may need to uninstall the official Discord first —
 > which deletes its local data. [Custom branding](#custom-branding) installs JaPatch alongside Discord
 > instead. Keep the same signing key between builds so updates install over the top.
+
+## Update to a newer JaPatch
+
+**No uninstalling.** Patch the same original Discord 351.11 APKM again with the newer bundle and install
+it **over** the copy already on the phone:
+
+1. Morphe Manager → **Sources** → refresh **JaPatch** (newer releases show an *Update* badge on Discord's
+   card). A local `.mpp` from [Releases](https://github.com/JAPofc/japatch/releases) works the same way.
+2. Patch the same APKM, then tap **Install** and confirm the update dialog. If Android asks "*Update app?*"
+   instead of complaining about a conflict, the signing key already matches.
+3. Open Discord once, then **close it completely** (recents → swipe away, or *Force stop*) so the runtime
+   boots with the new file, and reopen it.
+
+Android only installs over your copy when the new build carries the **same signing key**, so export it
+from Morphe Manager (**Settings → System → Import & export → Signing key**) and keep `Morphe.keystore`
+somewhere private — especially before a phone reset or a move to another device.
+
+You only need to uninstall when Android refuses with a **signature / app-conflict** error. That means
+the installed copy was signed with a different key (for example: patched on another phone, from Morphe
+Desktop instead of Manager, or after resetting Manager's key). Uninstalling deletes Discord's local data,
+so back up what matters first:
+
+- **JaPatch settings:** *Settings → JaPatch → Backup and restore → Back up.* The file never includes the
+  ReviewDB sign-in or saved accounts.
+- **Your account:** your Discord password, or a backup-code. A patched app that is removed and installed
+  again starts signed out.
+
+Two things stay your responsibility across updates: keep the same **package name** (leave *Custom
+branding* off to keep `com.discord`, or keep the same name if you renamed it), and don't let the version
+code go back if Morphe offers to change it.
 
 ## Features
 
@@ -226,6 +257,7 @@ Useful checks:
 python3 scripts/release_info.py --check         # release notes are in Morphe's section format
 node scripts/i18n_strings.cjs                   # every English string the runtime shows
 node tests/badge_engine.cjs                     # badge rotation engine
+sh tests/runtime/run.sh                         # Reviews server rules + hold-menu guard (also runs in CI)
 ```
 
 Developer-only device tests need the original APKM and are described in
