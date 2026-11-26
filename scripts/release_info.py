@@ -23,6 +23,12 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.2] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - User and server reviews:** Fixed the server field drawing in a shape Discord's action sheet doesn't expect, which could leave the sheet blank on some builds
+
 ## [1.0.1] (2026-11-26)
 
 ### ✨ New Features

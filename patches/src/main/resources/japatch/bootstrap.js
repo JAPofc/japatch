@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.1";
+    const revision = "1.0.2";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -9174,9 +9174,11 @@
         function ReviewServerModal() {
             const [draft,setDraft]=React.useState(settings.reviewServer || "");
             const apply=() => { const next=String(draft || "").trim(); settings.reviewServer=next; save(); close(); reviewCache.clear(); reviewAuthState="idle"; notify("reviewDB"); };
-            return el(ui.ActionSheet || RN.View,{key,contentContainerStyle:{padding:16,gap:12},
+            // Same shape as ReadAllSheet and the Reviews sheet: an ActionSheet with a title header and a Close button.
+            return el(ui.ActionSheet || RN.View,{key,
                 header:ui.Header ? el(ui.Header,{title:tr("ReviewDB server"),trailing:ui.Close ? el(ui.Close,{onPress:close}) : undefined}) : undefined},
-                el(RN.Text,{key:"hint",style:{fontSize:14,opacity:0.8,marginTop:12}},
+                el(RN.View,{key:"body",style:{padding:16,gap:12}},
+                el(RN.Text,{key:"hint",style:{fontSize:14,opacity:0.8}},
                     tr("Example: https://your-server.example/api/reviewdb. Empty turns Reviews off.")),
                 el(RN.View,{key:"field",style:{marginTop:8}},
                     ui.TextInput ? el(ui.TextInput,{value:draft,onChange:setDraft,placeholder:"https://…/api/reviewdb",autoCapitalize:"none",autoCorrect:false,keyboardType:"url"}) :
@@ -9185,7 +9187,7 @@
                     el(RN.Pressable,{onPress:close,accessibilityRole:"button",style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center"}},
                         el(RN.Text,{style:{fontWeight:"600"}},tr("Cancel"))),
                     el(RN.Pressable,{onPress:apply,accessibilityRole:"button",style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center",backgroundColor:"#5865f2"}},
-                        el(RN.Text,{style:{color:"#ffffff",fontWeight:"600"}},tr("Save")))));
+                        el(RN.Text,{style:{color:"#ffffff",fontWeight:"600"}},tr("Save"))))));
         }
         try { ui.pushModal({key,modal:{key,modal:ReviewServerModal,animation:"slide-up",shouldPersistUnderModals:false,closable:true}}); } catch (_) {}
     }
