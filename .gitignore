@@ -139,3 +139,7 @@ local.properties
 __pycache__/
 *.pyc
 /work-build.log
+
+# Signing key: never commit the private half (CI reads it from the JAPATCH_SIGNING_KEY secret).
+.japatch-signing-key
+*.mpp.pub
