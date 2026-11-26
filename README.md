@@ -6,7 +6,8 @@
 
 [![Discord](https://img.shields.io/badge/Discord-351.11%20Stable-5865F2?logo=discord&logoColor=white)](#compatibility)
 [![License](https://img.shields.io/badge/license-GPL--3.0-green)](LICENSE)
-[![Build](https://img.shields.io/badge/build-python3%20scripts%2Fbuild.py-2F81F7)](#building-from-source)
+[![Build](https://github.com/JAPofc/japatch/actions/workflows/build.yml/badge.svg)](https://github.com/JAPofc/japatch/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/JAPofc/japatch?label=release)](https://github.com/JAPofc/japatch/releases)
 [![Languages](https://img.shields.io/badge/languages-29-8957E5)](#languages)
 
 [**Add to Morphe**](https://morphe.software/add-source?github=JAPofc/japatch&name=JaPatch) ·
