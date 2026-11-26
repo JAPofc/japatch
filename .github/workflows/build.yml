@@ -44,6 +44,9 @@ jobs:
           fi
           work/tools/hermesc --version
 
+      - name: Runtime checks (settings and menus, without a phone)
+        run: sh tests/runtime/run.sh
+
       - name: Build and test .mpp bundle
         run: python3 scripts/build.py
 
