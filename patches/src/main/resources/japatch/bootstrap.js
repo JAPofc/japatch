@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.5";
+    const revision = "1.0.6";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -652,8 +652,13 @@
             if (settings[key] === clean && status.storage !== "loading" && status.storage !== "waiting") return true;
             settings[key] = clean; dirty.add(key); save(); notify(key); later(messageHighlightRedraw, 0); return true;
         }
-        if (settings[key] === !!value && status.storage !== "loading" && status.storage !== "waiting") return true;
-        value = !!value;
+        // Only switches hold booleans. A text or choice setting (a format, an order, a list of ids) has to keep
+        // what it was given: coercing it here turned every choice into `true`, which is why picking a format or
+        // moving a name up in the order never showed up (1.0.5).
+        const holdsText = typeof settings[key] === "string";
+        if (holdsText) value = value == null ? "" : String(value);
+        else value = !!value;
+        if (settings[key] === value && status.storage !== "loading" && status.storage !== "waiting") return true;
         if (key === "reviewDB" && !value) { reviewAuthAttempt++; reviewCache.clear(); }
         if (key === "voice" && !value) activeJobs.forEach(job => {
             job.cancelled = true;
@@ -1182,7 +1187,7 @@
     const featureFor = key => {
         const cached = featureTable[key];
         if (cached !== undefined) return cached;
-        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : key;
+        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : /^chatExport[A-Z]/.test(key) ? "chatExport" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : key;
     };
     // Section titles are read whenever Discord draws the list, so they follow the language too. "JaPatch" is a name.
     function section(label, keys) {
@@ -9185,16 +9190,21 @@
         if (!ui.ActionSheet || typeof ui.showSheet !== "function") { openReviewServerPrompt(ui); return; }
         const key = "JaPatchReviewServer";
         const close = () => hideReviewSheet(ui, key);
-        const apply = draft => {
+        const apply = (draft, hostClose) => {
             const next = String(draft || "").trim();
             settings.reviewServer = next; save(); close();
+            if (typeof hostClose === "function") try { hostClose(); } catch (_) {}
             reviewCache.clear(); reviewAuthState = "idle"; notify("reviewDB");
             reviewToast(ui, next ? tr("Reviews now uses {host}", {host: reviewHost(next)}) : tr("Reviews is off"), japatchIcon(7144, "CircleCheckIcon"));
         };
-        function ReviewServerSheet() {
+        // Discord's sheet host passes its own onClose to the content it is given; using it is what makes the
+        // top-to-bottom swipe and the header's X actually close this sheet (reported on the device: the form
+        // stayed put, only the swipe worked on other sheets that pass it).
+        function ReviewServerSheet(props) {
             const [draft, setDraft] = React.useState(settings.reviewServer || "");
+            const done = () => { close(); if (props && typeof props.onClose === "function") try { props.onClose(); } catch (_) {} };
             return el(ui.ActionSheet, {header: ui.Header && ui.Close ?
-                    el(ui.Header, {title: tr("ReviewDB server"), trailing: el(ui.Close, {onPress: close})}) : undefined},
+                    el(ui.Header, {title: tr("ReviewDB server"), trailing: el(ui.Close, {onPress: done})}) : undefined},
                 el(RN.View, {key: "body", style: {padding:16, gap:12}},
                     el(RN.Text, {key: "hint", style: {fontSize:14, opacity:0.8}},
                         tr("Example: https://your-server.example/api/reviewdb. Empty turns Reviews off.")),
@@ -9202,9 +9212,9 @@
                         ui.TextInput ? el(ui.TextInput, {value:draft, onChange:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none"}) :
                             el(RN.TextInput, {value:draft, onChangeText:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none", autoCorrect:false, keyboardType:"url", style:{fontSize:16, padding:12}})),
                     el(RN.View, {key: "actions", style: {flexDirection:"row", justifyContent:"flex-end", gap:8, marginTop:4}},
-                        el(RN.Pressable, {onPress:close, accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center"}},
+                        el(RN.Pressable, {onPress:done, accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center"}},
                             el(RN.Text, {style:{fontWeight:"600"}}, tr("Cancel"))),
-                        el(RN.Pressable, {onPress:() => apply(draft), accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center", backgroundColor:"#5865f2"}},
+                        el(RN.Pressable, {onPress:() => apply(draft, props && props.onClose), accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center", backgroundColor:"#5865f2"}},
                             el(RN.Text, {style:{color:"#ffffff", fontWeight:"600"}}, tr("Save"))))));
         }
         try { ui.showSheet({key, content: el(ReviewServerSheet), stackingBehavior: "stack"}); } catch (_) { openReviewServerPrompt(ui); }
@@ -14862,11 +14872,14 @@
         if (!ui.TableRow) return;
         const key = "japatch-text-replace";
         const close = () => { try { ui.popModal(key); } catch (_) {} };
-        function RulesModal() {
+        // props.onClose is the sheet host's own close: without calling it the X and the swipe-down did nothing
+        // and the form stayed on screen (reported on the device, 1.0.5).
+        function RulesModal(props) {
             const [draft, setDraft] = React.useState(settings.textReplaceRules || "");
-            const apply = () => { settings.textReplaceRules = String(draft || "").slice(0, 8000); save(); close(); notify("textReplace"); };
+            const done = () => { close(); if (props && typeof props.onClose === "function") try { props.onClose(); } catch (_) {} };
+            const apply = () => { settings.textReplaceRules = String(draft || "").slice(0, 8000); save(); notify("textReplace"); done(); };
             return el(ui.ActionSheet || RN.View, {key,
-                header: ui.Header ? el(ui.Header, {title: tr("Replace text"), trailing: ui.Close ? el(ui.Close, {onPress: close}) : undefined}) : undefined},
+                header: ui.Header ? el(ui.Header, {title: tr("Replace text"), trailing: ui.Close ? el(ui.Close, {onPress: done}) : undefined}) : undefined},
                 el(RN.View, {key: "body", style: {padding: 16, gap: 12}},
                     el(RN.Text, {key: "hint", style: {fontSize: 14, opacity: 0.8}},
                         tr("One rule per line: from => to. Example: brb => be right back")),
@@ -14874,7 +14887,7 @@
                         ui.TextInput ? el(ui.TextInput, {value: draft, onChange: setDraft, multiline: true, placeholder: "brb => be right back"}) :
                             el(RN.TextInput, {value: draft, onChangeText: setDraft, multiline: true, placeholder: "brb => be right back", style: {fontSize: 16, padding: 12, minHeight: 120}})),
                     el(RN.View, {key: "actions", style: {flexDirection: "row", justifyContent: "flex-end", gap: 8}},
-                        el(RN.Pressable, {onPress: close, accessibilityRole: "button", style: {paddingHorizontal: 16, height: 40, borderRadius: 20, justifyContent: "center"}},
+                        el(RN.Pressable, {onPress: done, accessibilityRole: "button", style: {paddingHorizontal: 16, height: 40, borderRadius: 20, justifyContent: "center"}},
                             el(RN.Text, {style: {fontWeight: "600"}}, tr("Cancel"))),
                         el(RN.Pressable, {onPress: apply, accessibilityRole: "button", style: {paddingHorizontal: 16, height: 40, borderRadius: 20, justifyContent: "center", backgroundColor: "#5865f2"}},
                             el(RN.Text, {style: {color: "#ffffff", fontWeight: "600"}}, tr("Save"))))));
@@ -15636,6 +15649,11 @@
     const TRANSLATE_TAG = /<a\s+i\s*=\s*"?(\d+)"?\s*\/>|<g\s+i\s*=\s*"?(\d+)"?\s*>|<\/g\s*>/g;
     const TRANSLATE_TAG_ANY = /<a\s+i\s*=\s*"?\d+"?\s*\/>|<g\s+i\s*=\s*"?\d+"?\s*>|<\/g\s*>/g;
     const TRANSLATE_HAS_LETTER = new RegExp(TRANSLATE_LETTER.source);
+    function translatePlain(node) {
+        if (!node) return "";
+        if (typeof node.content === "string") return node.content;
+        return Array.isArray(node.content) ? node.content.map(translatePlain).join("") : "";
+    }
     function translateNodes(translated, layout) {
         const used = new Set(), root = [], stack = [{children:root, index:-1}];
         const text = value => {
@@ -15664,7 +15682,19 @@
             }
         }
         text(unescapeTranslate(translated.slice(last)));
-        if (stack.length !== 1 || used.size !== layout.nodes.length) return null;
+        // Unbalanced formatting is a broken answer: refuse it.
+        if (stack.length !== 1) return null;
+        // A tag Google dropped or merged (it happens with a mention next to punctuation) used to throw the whole
+        // translation away, so the message looked untranslated for no visible reason. Put the missing pieces back,
+        // in order, at the end instead: the words are still worth showing and nothing is silently lost.
+        if (used.size !== layout.nodes.length) {
+            for (let index = 0; index < layout.nodes.length; index++) {
+                if (used.has(index)) continue;
+                const node = layout.nodes[index];
+                if (TRANSLATE_GROUPS.has(node.type) && Array.isArray(node.content)) root.push({type:"text", content:" " + translatePlain(node)});
+                else root.push(node);
+            }
+        }
         return root;
     }
     function translateKey(target, text) { return target + "\u0000" + text; }
@@ -15981,7 +16011,15 @@
                 // The row isn't redrawn, so a message you asked for from the hold menu says so now instead of never.
                 if (verdict === "same") { entry.state = "same"; entry.layout = null; ids.forEach(translateNothing); return; }
                 // Nothing readable, or a translation that lost, doubled or moved a mention or emoji out of its formatting, is never shown.
-                if (verdict !== "done" || !translateNodes(result.text, entry.layout)) { entry.state = "failed"; entry.layout = null; ids.forEach(id => translate.asked.delete(id)); return; }
+                // A translation that keeps every mention, emoji and link is shown; the stricter id-by-id check is only
+                // used to reject one that moved them, because it also refused good answers on some builds (the
+                // "translate did nothing" report). Either way the reason is kept, so the page can say why.
+                if (verdict !== "done" || !translateNodes(result.text, entry.layout)) {
+                    entry.state = "failed"; entry.layout = null; ids.forEach(id => translate.asked.delete(id));
+                    // Why it was dropped, so the feature's page can say it instead of looking switched off.
+                    translate.lastProblem = verdict === "done" ? "layout" : String(verdict || "rejected");
+                    return;
+                }
                 entry.translated = result.text; entry.language = result.language; entry.state = "done"; entry.layout = null; translate.translated++;
                 // Only rows that change are redrawn: one in your language looks the same as before.
                 ids.forEach(id => redraw.add(id));

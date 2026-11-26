@@ -23,6 +23,23 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.6] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - Export chats:** Fixed picking a format never changing it: every setting was coerced to true or false on the way in, so the format stayed JSON and the tick never moved
+* **Discord - Show names your way:** Fixed tapping a name in the order doing nothing, for the same reason; the choice setting now keeps its text
+* **Discord - Show names your way and Export chats:** Fixed the format and the name order being refused outright: their settings resolved to themselves instead of to the feature that owns them
+* **Discord - Replace text when sending:** Fixed the rules box not closing: Save, Cancel and the X now dismiss the sheet, and the swipe no longer leaves it half open
+* **Discord - User and server reviews:** Fixed the server box not closing for the same reason
+* **Discord - Translate messages:** Fixed a translation Google returned being thrown away when it dropped or merged one mention or emoji, which made the message look untranslated; the missing piece is put back at the end instead
+* **Discord:** Fixed every setting having its value turned into true when written, which is how the above went unnoticed
+
+### 🔧 Improvements
+
+* **Discord:** A setting written by a page is now tested to keep what it was given: text, numbers and choices, not just switches
+* **Discord:** A sheet's own close button is what dismisses it, the same way Discord's own sheets behave
+
 ## [1.0.5] (2026-11-26)
 
 ### ✨ New Features
