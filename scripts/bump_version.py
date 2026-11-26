@@ -2,7 +2,7 @@
 """Move the version, everywhere it is written, in one step.
 
     python3 scripts/bump_version.py 1.0.4          # from 1.0.3 to 1.0.4
-    python3 scripts/bump_version.py --check        # fail if the four places disagree
+    python3 scripts/bump_version.py --check        # fail if the places disagree
     python3 scripts/bump_version.py --current      # print the version everything agrees on
 
 Four places carry the version, and a release is wrong when any of them disagrees:
@@ -12,8 +12,8 @@ Four places carry the version, and a release is wrong when any of them disagrees
     patches-list.json                                 "version": ""   (build.py writes it)
     patches-bundle.json                               "version": ""   (build.py writes it)
 
-The last two are generated, so --bump rewrites them too when they exist, then prints the
-release notes for the new version so they are never forgotten.
+The last two are generated, so --bump rewrites them too when they exist (including the
+download address in patches-bundle.json, which is what Morphe Manager actually installs).
 """
 import json
 import re
@@ -77,6 +77,12 @@ def check():
     print(f"version {versions['bootstrap.js revision']} everywhere ({len(versions)} places)")
 
 
+def release_summary(version):
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from release_info import notes
+    return notes(version)
+
+
 def release_notes(version):
     """The notes build.py insists on; written first, so --bump can't leave a version without them."""
     sys.path.insert(0, str(ROOT / "scripts"))
@@ -116,6 +122,13 @@ def bump(version):
             continue
         data = json.loads(path.read_text())
         data["version"] = version
+        if path == BUNDLE:
+            # The manifest Morphe Manager fetches: bumping only "version" left the download address and the
+            # notes on the previous release, so Manager showed the new number and installed the old bundle.
+            data["download_url"] = f"https://github.com/JAPofc/japatch/releases/download/v{version}/patches-{version}.mpp"
+            data["page_url"] = f"https://github.com/JAPofc/japatch/releases/tag/v{version}"
+            if release_notes(version):
+                data["description"] = release_summary(version)
         path.write_text(json.dumps(data, indent=2) + "\n")
 
     check()

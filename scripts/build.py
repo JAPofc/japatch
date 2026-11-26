@@ -933,6 +933,11 @@ def build():
     checksum = libs / "SHA256SUMS"
     checksum.write_text(f"{digest(bundle)}  {bundle.name}\n")
     print(f"Bundle: {bundle.relative_to(ROOT)}", flush=True)
+    # The manifest Morphe Manager reads over the network. Writing it here is what keeps the download address
+    # on the same version as the bundle: before, only --metadata-only refreshed it, so a release could ship
+    # with 1.0.4 in the version field and a v1.0.3 download_url underneath.
+    release_metadata()
+    print("Manifest: patches-bundle.json (this version's download_url)", flush=True)
 
 
 def check_languages():
@@ -980,8 +985,13 @@ def check_metadata(metadata):
     # Morphe Manager parses created_at as a kotlinx LocalDateTime: no UTC offset or "Z".
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,9})?)?", metadata["created_at"]):
         raise SystemExit("patches-bundle.json: created_at must be a LocalDateTime without a UTC offset")
-    if not metadata["download_url"].startswith("https://github.com/JAPofc/japatch/releases/download/"):
-        raise SystemExit("patches-bundle.json: unexpected download_url")
+    expected_url = f"https://github.com/JAPofc/japatch/releases/download/{RELEASE_TAG}/{ASSET_NAME}"
+    if metadata["download_url"] != expected_url:
+        raise SystemExit(
+            f"patches-bundle.json: download_url points at {metadata['download_url']}, "
+            f"but {VERSION} is published as {expected_url}")
+    if metadata["version"] != VERSION:
+        raise SystemExit(f"patches-bundle.json: version {metadata['version']} but the build is {VERSION}")
     # The fallback release notes must split into Morphe's sections.
     if not re.search(r"^### \S", metadata["description"], re.M) or not re.search(r"^\* \*\*Discord", metadata["description"], re.M):
         raise SystemExit("patches-bundle.json: description must be the release's sections from scripts/release_info.py")

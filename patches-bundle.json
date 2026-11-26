@@ -1,8 +1,8 @@
 {
-  "created_at": "2026-11-26T06:49:05",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - Fast delete channels and View raw data:** Fixed holding a channel or DM in the channel list closing Discord with \"undefined is not a function\"; the hold menu is now left exactly as Discord drew it unless one of those rows is on\n* **Discord - Fast delete channels:** Fixed a hold menu that couldn't take the extra row replacing the whole sheet with nothing\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.3/patches-1.0.3.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.3",
+  "created_at": "2026-11-26T09:09:15",
+  "description": "### \u2728 New Features\n\n* **Discord - Export chats:** Hold a chat or thread and pick Export chat as JSON to save the messages Discord has loaded, as a file you choose; nothing is uploaded\n* **Discord - Replace text when sending:** Rewrite what you type before it goes out, one rule per line (\"brb => be right back\"), with a live preview on the page\n\n### \ud83d\udc1b Bug Fixes\n\n* **Discord - Fast delete channels:** Fixed holding a channel or DM closing Discord with \"undefined is not a function\" or \"Rendered more hooks than during the previous render\"; the protection added in 1.0.3 was itself calling the wrong function\n* **Discord:** Fixed the hold menu being rebuilt while Fast delete was on, which is what made the crash appear and vanish between launches\n\n### \ud83d\udd27 Improvements\n\n* **Discord - Leaving group DMs:** The feature now has its own page, with an option to skip the \"Leave group\" question entirely; servers still ask\n* **Discord:** README rewritten around JaPatch's own behaviour, plus a Privacy page listing every destination data can reach and how to check it yourself\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.4/patches-1.0.4.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.4",
   "signature_download_url": "",
   "version": "1.0.4"
 }
