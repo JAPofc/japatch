@@ -1,22 +1,39 @@
 <div align="center">
 
+<img src="docs/icon.png" width="120" alt="JaPatch">
+
 # JaPatch
 
-**A feature and privacy patch set for Discord on Android, built for [Morphe](https://morphe.software).**
+**The Discord on your phone, without the parts you didn't ask for.**
+
+A feature and privacy patch set for Discord on Android, built for [Morphe](https://morphe.software).
+No root, no second app, no Xposed, no remote code — just Discord, patched at install time.
 
 [![Discord](https://img.shields.io/badge/Discord-351.11%20Stable-5865F2?logo=discord&logoColor=white)](#compatibility)
 [![License](https://img.shields.io/badge/license-GPL--3.0-green)](LICENSE)
 [![Build](https://github.com/JAPofc/japatch/actions/workflows/build.yml/badge.svg)](https://github.com/JAPofc/japatch/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/JAPofc/japatch?label=release)](https://github.com/JAPofc/japatch/releases)
 [![Languages](https://img.shields.io/badge/languages-29-8957E5)](#languages)
+[![Features](https://img.shields.io/badge/features-76-3BA55D)](#features)
 
 [**Add to Morphe**](https://morphe.software/add-source?github=JAPofc/japatch&name=JaPatch) ·
 [Releases](https://github.com/JAPofc/japatch/releases) ·
 [Privacy](PRIVACY.md) ·
+[Features](#features) ·
 [Report a bug](https://github.com/JAPofc/japatch/issues/new/choose) ·
 [Discussions](https://github.com/JAPofc/japatch/discussions)
 
-Offline by default. No tracking, no telemetry, no remote config.
+<table>
+<tr>
+<td align="center"><b>76</b><br/>features</td>
+<td align="center"><b>29</b><br/>languages</td>
+<td align="center"><b>0</b><br/>calls home</td>
+<td align="center"><b>5</b><br/>trackers off</td>
+<td align="center"><b>1</b><br/>file to update</td>
+</tr>
+</table>
+
+*Offline by default. No tracking, no telemetry, no remote config.*
 
 </div>
 
@@ -25,19 +42,13 @@ Offline by default. No tracking, no telemetry, no remote config.
 ## Table of contents
 
 - [What JaPatch is, and what it isn't](#what-japatch-is-and-what-it-isnt)
-- [Compatibility](#compatibility)
-- [Install](#install)
-- [Update to a newer JaPatch](#update-to-a-newer-japatch)
+- [Install](#install) · [Update](#update-to-a-newer-japatch) · [Uninstall](#uninstalling)
 - [Features](#features)
-- [Privacy options](#privacy-options)
-- [Privacy](PRIVACY.md)
-- [Custom branding](#custom-branding)
-- [Languages](#languages)
-- [Building from source](#building-from-source)
-- [Project layout](#project-layout)
-- [Contributing](#contributing)
-- [Credits and prior art](#credits-and-prior-art)
-- [License](#license)
+- [Privacy options](#privacy-options) · [Privacy page](PRIVACY.md)
+- [Custom branding](#custom-branding) · [Languages](#languages)
+- [Troubleshooting](#troubleshooting)
+- [Building from source](#building-from-source) · [Project layout](#project-layout) · [Contributing](#contributing)
+- [Credits and prior art](#credits-and-prior-art) · [License](#license)
 
 ## What JaPatch is, and what it isn't
 
@@ -125,6 +136,34 @@ so back up what matters first:
 Two things stay your responsibility across updates: keep the same **package name** (leave *Custom
 branding* off to keep `com.discord`, or keep the same name if you renamed it), and don't let the version
 code go back if Morphe offers to change it.
+
+## Troubleshooting
+
+Start here before opening an issue; most reports are one of these.
+
+| What you see | What it is | What to do |
+| --- | --- | --- |
+| Morphe still shows the **previous version** after a new release | Morphe cached the source's manifest, or the manifest still pointed at the old release (fixed in 1.0.4) | Remove the source, add it again with **Add to Morphe**, then refresh. Check **Settings → JaPatch → About** shows the version you expect |
+| **"App not installed"** / signature conflict when updating | The installed copy was signed with a different key than this build (patched on another phone, or Manager's key was reset) | Export the key first (**Settings → System → Import & export → Signing key**), then uninstall once and install again |
+| Discord opens, but **no JaPatch in Settings** | The **JaPatch settings** patch wasn't selected | Re-patch with the default selection, or tick it in Morphe's patch list |
+| A feature is on but **nothing changed** | Most features apply on the next Discord start | Close Discord completely (recents → swipe away) and reopen it |
+| **"Discord has crashed"** screen inside JaPatch | A hook threw; JaPatch catches it and shows what happened instead of taking the app down | Tap **Copy**, open an issue with it; turn the feature off in the meantime |
+| Holding a channel or DM closes Discord | Fixed in 1.0.3 and 1.0.4; you are on an older build | Update |
+| Updates install, but **settings reset** | Settings are stored in Discord's private data, which uninstalling wipes | Back up first: **Settings → JaPatch → Backup and restore** |
+| Very slow first start after patching | The bundle is precompiled (HBC98) on first boot of the patched app | Let it finish once; later starts are normal speed |
+
+Still stuck? [Open an issue](https://github.com/JAPofc/japatch/issues/new/choose) with your JaPatch version,
+Discord version, phone, and the log from **Settings → JaPatch → About → Debug logs**.
+
+## Uninstalling
+
+Uninstalling the patched app removes Discord's local data too, including JaPatch's settings and your message
+log. Nothing is left behind: JaPatch keeps no account, no server and no key of its own.
+
+1. **Back up first**: **Settings → JaPatch → Backup and restore → Export**. Keep the file somewhere else.
+2. Uninstall the patched app like any other app.
+3. Want vanilla Discord back? Install it from the Play Store. Your chats live on Discord's servers, so they
+   come back after signing in; your JaPatch settings don't.
 
 ## Features
 
@@ -240,7 +279,7 @@ code go back if Morphe offers to change it.
 | Feature | What it does |
 | --- | --- |
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
-| JaPatch settings | Adds JaPatch to Discord's settings, where you turn each feature on or off, in your language. Needed by every feature |
+| JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 29 languages, backup and restore, debug logs and a crash screen |
 
 **76 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
@@ -275,6 +314,58 @@ Every string is hand-reviewed. There is no machine translation in the bundle and
 translations. To add or fix a language, see [`patches/src/main/resources/japatch/i18n/`](patches/src/main/resources/japatch/i18n/)
 and `scripts/i18n_review.py`.
 
+## FAQ
+
+<details>
+<summary><b>Is this a modified Discord client?</b></summary>
+
+No. It patches Discord's own app on your phone, at install time, with Morphe. There is no extra app running
+alongside it and no injection at runtime.
+</details>
+
+<details>
+<summary><b>Can I get banned?</b></summary>
+
+Anything that changes how your account behaves to Discord is a risk, and JaPatch is honest about which
+features those are: **Platform spoof**, **Complete Quests automatically** and **Complete badges
+automatically** are marked in the app and are **off** by default. Everything else runs on your device only.
+</details>
+
+<details>
+<summary><b>Does it work on the Discord from the Play Store?</b></summary>
+
+You patch the pinned APKM (351.11), then install the result. Once it is installed, the Play Store version is
+replaced: Play may offer to "update" it, which would remove the patches. Turn off auto-update for Discord.
+</details>
+
+<details>
+<summary><b>Will my settings survive an update?</b></summary>
+
+Yes, as long as you install **over** the existing app with the same signing key. That is the normal path;
+see [Update to a newer JaPatch](#update-to-a-newer-japatch).
+</details>
+
+<details>
+<summary><b>Does it phone home?</b></summary>
+
+No. The bundle has no analytics, no account and no server. The only outbound requests are the ones a feature
+you switched on needs, each listed in [Privacy](PRIVACY.md) with its destination.
+</details>
+
+<details>
+<summary><b>Why is Reviews empty?</b></summary>
+
+Because it starts empty by design. Reviews only talk to a ReviewDB server **you** type in under
+**Reviews → Server**; until then the rows aren't drawn at all.
+</details>
+
+<details>
+<summary><b>How do I get a feature added?</b></summary>
+
+Open a [feature request](https://github.com/JAPofc/japatch/issues/new/choose). Features that ship keep the
+same rules as the rest: off by default, every string translated, and a test where one makes sense.
+</details>
+
 ## Building from source
 
 Requirements: Python 3.11+, a JDK (21 recommended), Node.js 22+, and ~1 GB of free RAM while building.
@@ -290,11 +381,18 @@ JavaScript runtime to HBC98, validates the 29 language files, then writes the `.
 Useful checks:
 
 ```bash
-python3 scripts/release_info.py --check         # release notes are in Morphe's section format
-node scripts/i18n_strings.cjs                   # every English string the runtime shows
-node tests/badge_engine.cjs                     # badge rotation engine
-sh tests/runtime/run.sh                         # Reviews server rules + hold-menu guard (also runs in CI)
+sh tests/runtime/run.sh              # hooks, menus, text replace, chat export (runs in CI)
+python3 scripts/i18n_check.py        # every tr() text exists in all 29 languages (runs in CI)
+python3 scripts/readme_features.py --check   # this README's feature table matches the build (CI)
+python3 scripts/release_info.py --check      # release notes are in Morphe's section format
+python3 scripts/bump_version.py --check      # the version agrees in all six places
+python3 scripts/build.py --check-metadata    # patches-bundle.json is what Morphe expects
+node tests/badge_engine.cjs                  # badge rotation engine
 ```
+
+`scripts/build.py --metadata-only` rewrites `patches-bundle.json` alone: the manifest Morphe Manager fetches,
+which must carry **this** version's download address and notes. A plain build does it too, so the manifest
+can't fall behind the bundle it describes.
 
 Developer-only device tests need the original APKM and are described in
 [`tests/`](tests/) and [`scripts/hbc/`](scripts/hbc/).

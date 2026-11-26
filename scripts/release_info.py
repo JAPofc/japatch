@@ -23,52 +23,19 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
-## [1.0.4] (2026-11-26)
-
-### ✨ New Features
-
-* **Discord - Export chats:** Hold a chat or thread and pick Export chat as JSON to save the messages Discord has loaded, as a file you choose; nothing is uploaded
-* **Discord - Replace text when sending:** Rewrite what you type before it goes out, one rule per line ("brb => be right back"), with a live preview on the page
-
-### 🐛 Bug Fixes
-
-* **Discord - Fast delete channels:** Fixed holding a channel or DM closing Discord with "undefined is not a function" or "Rendered more hooks than during the previous render"; the protection added in 1.0.3 was itself calling the wrong function
-* **Discord:** Fixed the hold menu being rebuilt while Fast delete was on, which is what made the crash appear and vanish between launches
-
-### 🔧 Improvements
-
-* **Discord - Leaving group DMs:** The feature now has its own page, with an option to skip the "Leave group" question entirely; servers still ask
-* **Discord:** README rewritten around JaPatch's own behaviour, plus a Privacy page listing every destination data can reach and how to check it yourself
-
-## [1.0.3] (2026-11-26)
-
-### 🐛 Bug Fixes
-
-* **Discord - Fast delete channels and View raw data:** Fixed holding a channel or DM in the channel list closing Discord with "undefined is not a function"; the hold menu is now left exactly as Discord drew it unless one of those rows is on
-* **Discord - Fast delete channels:** Fixed a hold menu that couldn't take the extra row replacing the whole sheet with nothing
-
-## [1.0.2] (2026-11-26)
-
-### 🐛 Bug Fixes
-
-* **Discord - User and server reviews:** Fixed the server field drawing in a shape Discord's action sheet doesn't expect, which could leave the sheet blank on some builds
-
-## [1.0.1] (2026-11-26)
-
-### ✨ New Features
-
-* **Discord - User and server reviews:** Pick the ReviewDB server yourself under Reviews, Server; it starts empty, and with no server there Reviews stays off and nothing leaves your phone
-
-### 🔧 Improvements
-
-* **Discord - User and server reviews:** Reviews never calls a server you didn't type in yourself, including the sign-in exchange and the admins list
-
 ## [1.0.0] (2026-11-26)
 
 ### ✨ New Features
 
+* **Discord:** First release: 70 features in one settings page inside Discord, with search, per-feature pages, 29 languages, backup and restore, debug logs and a crash screen
+* **Discord - Messages:** Keep deleted messages, bulk delete, hide blocked and ignored rows, message highlights, translate, double-tap to reply, full-quality images, download voice messages, keep media playing, Do Not Disturb banners, jump to first message and favourite any image or video
+* **Discord - Sending:** Nitro stickers and emojis as links, Tenor GIFs, working link previews, audio as voice messages, long messages in parts, file sizes in the picker, anonymous file names, tap-to-open mentions, a taller message bar, reply without pinging and compress big files
+* **Discord - People:** Pastel name colors, device indicators, owner and mod tags, alerts when you're removed, timeout duration, account switcher with up to 50 accounts, listen along, HypeSquad, custom idle time and mutual group DMs
+* **Discord - Servers:** Read all, hidden channels, server info, server edits that stay on your device, cloning emojis and stickers, clean channel names, previews without joining and pausing invites
+* **Discord - Appearance:** Your phone's font and emojis, Remove anything, Material You colors, icon packs, Revenge and Vendetta themes, Nitro themes and app icons unlocked for this device, full-screen chat in landscape and a JaPatch button on the profile bar
+* **Discord - Quests and advanced:** Quests and badges completed automatically, experiments unlocked, clear Bluetooth audio in calls, voice channel options and fake deafen
+* **Discord:** Privacy patches on by default: analytics, crash reporting, telemetry, touch logging, advertising IDs and install attribution all switched off
 * **Discord - Keep Bluetooth audio clear in calls:** Add `Use the headset microphone`, so a headset whose microphone is needed goes back to call quality instead of staying silent
-* **Discord:** Every feature in one settings page with search, per-feature options, 29 languages, backup and restore, debug logs and a crash screen
 
 ### 🐛 Bug Fixes
 
@@ -87,6 +54,46 @@ RELEASES = r"""
 
 * **Discord:** Icon packs and custom themes install from a link, with every pack picture falling back to Discord's own icon when it can't load
 * **Discord:** Settings are kept per account, so switching accounts keeps every switch where you left it
+
+## [1.0.1] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - User and server reviews:** Pick the ReviewDB server yourself under Reviews, Server; it starts empty, and with no server there Reviews stays off and nothing leaves your phone
+
+### 🔧 Improvements
+
+* **Discord - User and server reviews:** Reviews never calls a server you didn't type in yourself, including the sign-in exchange and the admins list
+
+## [1.0.2] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - User and server reviews:** Fixed the server field drawing in a shape Discord's action sheet doesn't expect, which could leave the sheet blank on some builds
+
+## [1.0.3] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - Fast delete channels and View raw data:** Fixed holding a channel or DM in the channel list closing Discord with "undefined is not a function"; the hold menu is now left exactly as Discord drew it unless one of those rows is on
+* **Discord - Fast delete channels:** Fixed a hold menu that couldn't take the extra row replacing the whole sheet with nothing
+
+## [1.0.4] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - Export chats:** Hold a chat or thread and pick Export chat as JSON to save the messages Discord has loaded, as a file you choose; nothing is uploaded
+* **Discord - Replace text when sending:** Rewrite what you type before it goes out, one rule per line ("brb => be right back"), with a live preview on the page
+
+### 🐛 Bug Fixes
+
+* **Discord - Fast delete channels:** Fixed holding a channel or DM closing Discord with "undefined is not a function" or "Rendered more hooks than during the previous render"; the protection added in 1.0.3 was itself calling the wrong function
+* **Discord:** Fixed the hold menu being rebuilt while Fast delete was on, which is what made the crash appear and vanish between launches
+
+### 🔧 Improvements
+
+* **Discord - Leaving group DMs:** The feature now has its own page, with an option to skip the "Leave group" question entirely; servers still ask
+* **Discord:** README rewritten around JaPatch's own behaviour, plus a Privacy page listing every destination data can reach and how to check it yourself
 """
 
 
