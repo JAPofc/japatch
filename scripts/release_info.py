@@ -23,6 +23,18 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.7] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - Replace text when sending:** Fixed Save, Cancel and the X doing nothing in the rules box. It is opened as a sheet but was closed as a modal, so only the swipe got rid of it
+* **Discord - Show names your way:** Fixed the names under "Also show" that were not ticked refusing to be tapped at all. A row's own tick state was hiding the switch that decides whether rows can be tapped
+* **Discord - Show names your way:** Fixed a name that was unticked staying unticked: once the last one was removed the list could not be filled again
+
+### 🔧 Improvements
+
+* **Discord - Show names your way:** The page now says that Nickname and Server nickname are the same name on Discord, so the two rows are no longer expected to differ
+
 ## [1.0.6] (2026-11-26)
 
 ### 🐛 Bug Fixes

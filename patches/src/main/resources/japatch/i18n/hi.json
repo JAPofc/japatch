@@ -1964,6 +1964,7 @@
     "{text} text, {voice} voice": "{text} टेक्स्ट, {voice} वॉइस",
     "{time} ago": "{time} पहले",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 और कैटेगरी नामों के आसपास की लाइनें।",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 और झंडे, नाम में कहीं भी हों।"
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 और झंडे, नाम में कहीं भी हों।",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord में उपनाम केवल सर्वर के अंदर होता है, इसलिए Nickname और Server nickname एक ही नाम हैं। ज़्यादातर लोग सिर्फ़ @username और Display name में फ़र्क देखते हैं।"
   }
 }

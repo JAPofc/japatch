@@ -2024,6 +2024,7 @@
     "{text} text, {voice} voice": "{text} tekstnih, {voice} glasovnih",
     "{time} ago": "prije {time}",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 i crte oko naziva kategorija.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 i zastave, gdje god bili u nazivu."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 i zastave, gdje god bili u nazivu.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Na Discordu nadimak postoji samo unutar servera, pa su Nickname i Server nickname isto ime. Većina ljudi vidi razliku samo između @username i Display name."
   }
 }

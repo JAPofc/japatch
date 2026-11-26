@@ -2024,6 +2024,7 @@
     "{text} text, {voice} voice": "{text} textových, {voice} hlasových",
     "{time} ago": "před {time}",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 a svislice kolem názvů kategorií.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 a vlajky, ať jsou v názvu kdekoli."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 a vlajky, ať jsou v názvu kdekoli.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "V Discordu přezdívka existuje jen na serveru, takže Nickname a Server nickname je stejné jméno. Většina lidí vidí rozdíl jen mezi @username a Display name."
   }
 }

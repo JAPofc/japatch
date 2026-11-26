@@ -2024,6 +2024,7 @@
     "{text} text, {voice} voice": "{text} tekstiniai, {voice} balso",
     "{time} ago": "prieš {time}",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 ir brūkšniai aplink kategorijų pavadinimus.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 ir vėliavos, kad ir kur jos būtų pavadinime."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 ir vėliavos, kad ir kur jos būtų pavadinime.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord slapyvardis egzistuoja tik serveryje, todėl Nickname ir Server nickname yra tas pats vardas. Dauguma žmonių skiriasi tik @username ir Display name."
   }
 }

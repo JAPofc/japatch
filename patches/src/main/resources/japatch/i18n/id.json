@@ -1786,6 +1786,7 @@
     "{text} text, {voice} voice": "{text} teks, {voice} suara",
     "{time} ago": "{time} yang lalu",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 dan garis di sekitar nama kategori.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 dan bendera, di mana pun letaknya dalam nama."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 dan bendera, di mana pun letaknya dalam nama.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Di Discord, nickname hanya ada di dalam server, jadi Nickname dan Server nickname adalah nama yang sama. Kebanyakan orang hanya melihat beda antara @username dan Display name."
   }
 }

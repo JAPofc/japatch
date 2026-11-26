@@ -2028,6 +2028,7 @@
     "{text} text, {voice} voice": "{text} tekstowych, {voice} głosowych",
     "{time} ago": "{time} temu",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 i kreski wokół nazw kategorii.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 i flagi, gdziekolwiek są w nazwie."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 i flagi, gdziekolwiek są w nazwie.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "W Discordzie pseudonim istnieje tylko na serwerze, więc Nickname i Server nickname to ta sama nazwa. Większość ludzi widzi różnicę tylko między @username i Display name."
   }
 }

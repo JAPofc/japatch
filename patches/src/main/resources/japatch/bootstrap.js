@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.6";
+    const revision = "1.0.7";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -655,6 +655,7 @@
         // Only switches hold booleans. A text or choice setting (a format, an order, a list of ids) has to keep
         // what it was given: coercing it here turned every choice into `true`, which is why picking a format or
         // moving a name up in the order never showed up (1.0.5).
+        // A switch holds a boolean and nothing else, so only a switch is coerced. Anything else keeps its text.
         const holdsText = typeof settings[key] === "string";
         if (holdsText) value = value == null ? "" : String(value);
         else value = !!value;
@@ -14791,13 +14792,17 @@
                     onPress:() => setSetting("showMeYourNameOrder", [kind].concat(order.filter(other => other !== kind)).join(","))}))),
             el(Group, {key:"extra", title:tr("Also show")},
                 // Not a switch row: these write one comma-separated setting, so a tap adds or removes one name.
+                // This used to shadow the page's `on` with the row's own state, so every row that was not ticked
+                // started out untappable, and once the last name was removed nothing could be turned back on
+                // (reported on the device, 1.0.6).
                 ["username", "display", "nickname"].map(kind => {
-                    const on = extra.includes(kind);
-                    return el(ui.TableRow, {key:kind, label:(on ? "\u2713 " : "") + tr(label[kind]), icon:rowIcon(5187, "TextIcon"),
+                    const picked = extra.includes(kind);
+                    return el(ui.TableRow, {key:kind, label:(picked ? "\u2713 " : "") + tr(label[kind]), icon:rowIcon(5187, "TextIcon"),
                         disabled:!on, onPress:() => setSetting("showMeYourNameExtra",
-                            (on ? extra.filter(other => other !== kind) : extra.concat([kind])).join(","))});
+                            (picked ? extra.filter(other => other !== kind) : extra.concat([kind])).join(","))});
                 })),
-            footnote("note", "Anything after the name is drawn as plain text, in the same place Discord draws names.")];
+            footnote("note", "Anything after the name is drawn as plain text, in the same place Discord draws names."),
+            footnote("note2", "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.")];
         return settingsBody(ui, groups);
     }
     // Text replace (#191, TextReplace by Equicord's authors): rules like "brb => be right back", applied to what you
@@ -14870,8 +14875,15 @@
     function openTextRules() {
         const ui = reviewUI();
         if (!ui.TableRow) return;
-        const key = "japatch-text-replace";
-        const close = () => { try { ui.popModal(key); } catch (_) {} };
+        const key = "japatch-text-replace", sheetKey = "JaPatchTextRules";
+        // It is shown with ui.showSheet, so it is closed through the sheet host, and by the sheet's own key.
+        // Calling popModal here did nothing (there is no modal under that key), which is why Save, Cancel and the
+        // X left the box on screen and only the swipe closed it (device, 1.0.6). The popModal stays for the
+        // fallback path below, which really does push a modal.
+        const close = () => {
+            try { if (ui.sheets && typeof ui.sheets.hideActionSheet === "function") ui.sheets.hideActionSheet(sheetKey); } catch (_) {}
+            try { ui.popModal(key); } catch (_) {}
+        };
         // props.onClose is the sheet host's own close: without calling it the X and the swipe-down did nothing
         // and the form stayed on screen (reported on the device, 1.0.5).
         function RulesModal(props) {

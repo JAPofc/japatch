@@ -1786,6 +1786,7 @@
     "{text} text, {voice} voice": "{text} 个文字，{voice} 个语音",
     "{time} ago": "{time}前",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 以及类别名称两侧的竖线。",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 和旗帜，无论在名称的哪个位置。"
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 和旗帜，无论在名称的哪个位置。",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "在 Discord 中昵称只存在于服务器内，所以 Nickname 和 Server nickname 是同一个名字。大多数人只能看出 @username 和 Display name 的区别。"
   }
 }

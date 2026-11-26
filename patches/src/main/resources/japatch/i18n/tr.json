@@ -1946,6 +1946,7 @@
     "{text} text, {voice} voice": "{text} yazı, {voice} ses",
     "{time} ago": "{time} önce",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 ve kategori adlarının etrafındaki çizgiler.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 ve bayraklar, adın neresinde olursa olsun."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 ve bayraklar, adın neresinde olursa olsun.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord'da takma ad yalnızca bir sunucu içinde vardır, bu yüzden Nickname ve Server nickname aynı addır. Çoğu kişi yalnızca @username ile Display name arasında fark görür."
   }
 }

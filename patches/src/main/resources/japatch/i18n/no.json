@@ -1946,6 +1946,7 @@
     "{text} text, {voice} voice": "{text} tekst, {voice} tale",
     "{time} ago": "for {time} siden",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 og strekene rundt kategorinavn.",
-    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 og flagg, uansett hvor de står i navnet."
+    "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 og flagg, uansett hvor de står i navnet.",
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "På Discord finnes et kallenavn bare på en server, så Nickname og Server nickname er samme navn. De fleste ser bare forskjell på @username og Display name."
   }
 }
