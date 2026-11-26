@@ -1,4 +1,4 @@
-name: Build JaPatch Patches
+name: Build JaPatch
 
 on:
   push:
