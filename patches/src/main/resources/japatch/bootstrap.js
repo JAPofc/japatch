@@ -55,7 +55,7 @@
     if (features.listenAlong) targetModules[14082] = 1;
     if (features.clickableMentions) selectModules([1392, 2068, 2119, 12337]);
     if (features.expandBar) selectModules([584, 1392, 2068, 2119, 12337, 12338, 12887, 12818]);
-    if (features.silentLeave) selectModules([2068, 7290]);
+    if (features.silentLeave) selectModules([2068, 7290, 5400]);
     if (features.silentEdit || features.silentDelete) selectModules([584, 1392, 5532, 7445]);
     if (features.localEdit) selectModules([584, 1392, 5532, 8013, 9978]);
     if (features.customIdle) selectModules([1087]);
@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.3";
+    const revision = "1.0.4";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -98,7 +98,7 @@
         accountSwitcher:false, accountSwitcherYouBar:true, accountSwitcherShare:false, accountSwitcherNotify:true, appIcons:false, nitroThemes:false, customThemes:false, customThemesBackground:true, materialYou:false, materialYouColor:"wallpaper", materialYouTint:"balanced",
         iconPacks:false, iconPacksTheme:true,
         messageHighlight:false, messageHighlightThickness:2, messageHighlightBrightness:50, messageHighlightPingColor:"default", serverInfo:false, serverInfoFriends:true, serverEdit:false,
-        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
+        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
         hypeSquad:false, customIdle:false, customIdleMinutes:10, pauseInvites:false, fastDeleteChannels:false, fastDeleteChannelsConfirm:true, fastDeleteChannelsMenu:true, mutualGroupDMs:false, platformSpoof:false, platformSpoofDevice:"desktop" };
     // The settings every feature starts from, for Reset to defaults on the Backup page.
     let DEFAULT_SETTINGS = null;
@@ -116,7 +116,7 @@
             accountSwitcher: false, accountSwitcherYouBar: true, accountSwitcherShare: false, accountSwitcherNotify: true, appIcons: false, nitroThemes: false, customThemes: false, customThemesBackground: true, materialYou: false, materialYouColor: "wallpaper", materialYouTint: "balanced",
             iconPacks: false, iconPacksTheme: true,
             messageHighlight: false, messageHighlightThickness: 2, messageHighlightBrightness: 50, messageHighlightPingColor: "default", serverInfo: false, serverInfoFriends: true, serverEdit: false,
-            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
+            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
         }));
     }
@@ -1217,7 +1217,7 @@
         hiddenChannels:[8495, "LockIcon"], systemFont:[16730, "LettersIcon"], systemEmoji:[13827, "ChatSmileIcon"],
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
-        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"],
+        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"],
         hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"]};
     const japatchIcons = new Map();
     function japatchIcon(id, name, fallback) {
@@ -1268,6 +1268,7 @@
         clickableMentions:["ClickableMentions", "Mentions", "Profile", "Message bar"],
         expandBar:["Expand", "Collapse", "Message bar", "Composer", "Text box", "Text field", "Tall", "Bigger", "Resize", "Long message", "Arrows"],
         silentLeave:["SilentLeave", "Silent leave", "Group DM", "Leave group"],
+        textReplace:["TextReplace", "Text replace", "Replace", "Find and replace", "Snippet"],
         silentEdit:["Silent edit", "Edited", "(edited)", "Edit message", "No edit mark"],
         silentDelete:["Silent delete", "Anti log", "Message logger", "Delete without logs"],
         localEdit:["Local edit", "Edit locally", "Fake message", "Edit other people's messages"],
@@ -1783,7 +1784,10 @@
         withOptions("people", "customIdle", "JAPATCH_CUSTOMIDLE", "Custom idle time", "Choose when Discord sets you to Idle, or never.", "Idle time", CustomIdleSettings);
         withOptions("people", "platformSpoof", "JAPATCH_PLATFORMSPOOF", "Platform spoof", "Show as desktop, web or console instead of mobile. Discord doesn't allow this.", "Platform spoof", PlatformSpoofSettings);
         toggle("people", "mutualGroupDMs", "Mutual group DMs", "Profiles show the group DMs you share with that person.");
-        toggle("people", "silentLeave", "Leave group DMs silently", "Leave group DMs without the \"left the group\" message.");
+        withOptions("people", "silentLeave", "JAPATCH_SILENTLEAVE", "Leave group DMs silently", "Leave group DMs without the \"left the group\" message, and choose whether Discord asks first.",
+            "Leaving group DMs", SilentLeaveSettings);
+        withOptions("messages", "chatExport", "JAPATCH_CHATEXPORT", "Export chats", "Save a chat's loaded messages as a JSON file. Nothing leaves your phone unless you save it.", "Export chats", ChatExportSettings);
+        withOptions("messages", "textReplace", "JAPATCH_TEXTREPLACE", "Replace text when sending", "Rewrite what you type before it is sent, one rule per line.", "Text replace", TextReplaceSettings);
         withOptions("messages", "silentEdit", "JAPATCH_SILENTEDIT", "Edit without the (edited) mark", "Only works when your message is the latest in the chat. Others see a new message, not an edit.", "Silent edit", SilentEditSettings);
         toggle("messages", "silentDelete", "Delete without a trace", "Blanks your message before deleting it, so message loggers have nothing to keep.");
         withOptions("messages", "localEdit", "JAPATCH_LOCALEDIT", "Edit messages locally", "Change how any message reads on this phone. Only you see it.", "Edit locally", LocalEditSettings);
@@ -14459,6 +14463,185 @@
         const user = currentUser();
         return content.length <= (user && user.premiumType === 2 ? 4000 : 2000);
     }
+    // Chat export (#197, JSON first): a channel's or DM's messages, as Discord already has them on this phone, saved
+    // to a file you pick. No network is involved and nothing is uploaded. Discord only keeps the pages it has loaded,
+    // so the file says how far back it goes instead of pretending to be the whole conversation. The notes say the same
+    // thing the export contains, and the author's own messages are never exported with the token.
+    const EXPORT_MAX = 10000, EXPORT_FILE = 32 * 1024 * 1024;
+    function exportMessages(channelId) {
+        const store = msgStore || inspectedExport(5532, "default");
+        let list = null;
+        try { list = store && typeof store.getMessages === "function" ? store.getMessages(channelId) : null; } catch (_) { list = null; }
+        if (!list) return [];
+        const out = [];
+        const each = typeof list.toArray === "function" ? list.toArray() : typeof list.toJS === "function" ? list.toJS() : null;
+        if (Array.isArray(each)) {
+            for (const message of each) { out.push(exportMessage(message)); if (out.length >= EXPORT_MAX) break; }
+        } else if (typeof list.each === "function") {
+            list.each(message => { if (out.length < EXPORT_MAX) out.push(exportMessage(message)); });
+        }
+        return out;
+    }
+    function exportMessage(message) {
+        if (!message) return null;
+        const author = message.author || {};
+        const attachments = Array.isArray(message.attachments) ? message.attachments.map(file => ({
+            name: file && file.filename, url: file && file.url, size: file && file.size, type: file && file.contentType})) : [];
+        return {
+            id: String(message.id || ""),
+            at: new Date(Number(message.timestamp && message.timestamp.valueOf ? message.timestamp.valueOf() : message.timestamp) || 0).toISOString(),
+            edited_at: message.editedTimestamp ? new Date(Number(message.editedTimestamp.valueOf ? message.editedTimestamp.valueOf() : message.editedTimestamp)).toISOString() : null,
+            author: {id: String(author.id || ""), name: author.globalName || author.global_name || author.username || ""},
+            content: typeof message.content === "string" ? message.content : "",
+            attachments,
+            reply_to: message.messageReference && message.messageReference.message_id ? String(message.messageReference.message_id) : null,
+        };
+    }
+    function exportJson(channel, messages) {
+        return JSON.stringify({
+            app: "JaPatch", format: 1, exported_at: new Date().toISOString(),
+            channel: {id: String(channel.id || ""), name: channel.name || null, type: channel.type},
+            note: "Messages Discord had loaded on this phone. Older messages that were never fetched are not included.",
+            count: messages.length, messages,
+        }, null, 2);
+    }
+    function exportChannel(channelId) {
+        const channel = channelStore && typeof channelStore.getChannel === "function" ? channelStore.getChannel(channelId) : null;
+        if (!channel) { reviewToast(reviewUI(), "Open the chat first, then export it.", japatchIcon(7838, "WarningIcon")); return; }
+        const messages = exportMessages(channelId);
+        if (!messages.length) { reviewToast(reviewUI(), "There is nothing loaded to export yet.", japatchIcon(7838, "WarningIcon")); return; }
+        const text = exportJson(channel, messages);
+        if (text.length > EXPORT_FILE) { reviewToast(reviewUI(), "That chat is too big to export in one file.", japatchIcon(7838, "WarningIcon")); return; }
+        const saveDocuments = inspectedExport(11600, "saveDocuments"), dir = cacheDir();
+        if (!files || typeof saveDocuments !== "function" || !dir) { reviewToast(reviewUI(), "Couldn't save the file.", japatchIcon(6573, "CircleXIcon")); return; }
+        const safe = String(channel.name || channel.id || "chat").replace(/[^A-Za-z0-9._-]+/g, "-").slice(0, 40);
+        const name = "japatch-" + safe + "-" + backupDate(Date.now()) + ".json";
+        Promise.resolve().then(() => files.writeFile("cache", name, text, "utf8"))
+            .then(() => saveDocuments({sourceUris: ["file://" + dir + "/" + name], fileName: name, mimeType: "application/json"}))
+            .then(result => {
+                const first = Array.isArray(result) ? result[0] : result;
+                if (first && first.error) throw new Error(String(first.error));
+                reviewToast(reviewUI(), tr("Exported {n} messages", {n:messages.length}), japatchIcon(7144, "CircleCheckIcon"));
+            }, error => { if (!pickerCancelled(error)) reviewToast(reviewUI(), "Couldn't save the file.", japatchIcon(6573, "CircleXIcon")); });
+    }
+    // The row goes in the channel's hold menu, next to View raw data, and only while the feature is on.
+    function exportChannelHook(sheetKey, isThread) {
+        return sheetInnerHook(function (tree, props) {
+            if (!props || !React) return tree;
+            const channel = props.channel || props.thread;
+            const id = String(props.channelId || channel && channel.id || "");
+            // Threads have their own hold menu, so the channel list leaves them out and the thread sheet adds them.
+            const thread = !!channel && (channel.type === 10 || channel.type === 11 || channel.type === 12);
+            if (!rawId(id) || thread !== !!isThread) return tree;
+            return sheetAddRow(tree, props, "japatch-export-chat", tr("Export chat as JSON"), japatchIcon(5143, "DownloadIcon"),
+                () => exportChannel(id), sheetKey(id));
+        }, () => features.chatExport && enabled("chatExport"));
+    }
+    const exportChannelMenu = exportChannelHook(id => "ChannelLongPress-" + id, false);
+    const exportThreadMenu = exportChannelHook(() => "ThreadLongPressActionSheet", true);
+    function ChatExportSettings() {
+        useSettings("chatExport");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("chatExport"), Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow;
+        const Icon = japatchIcon(5143, "DownloadIcon");
+        const groups = [
+            !on ? offCard("status", Icon, "chatExport") : null,
+            statusCard("info", "Holding a chat in the channel list gives Export chat as JSON. Nothing leaves your phone unless you save the file somewhere.", {title:tr("Exports what Discord has loaded"), IconComponent:Icon}),
+            footnote("note", "Old messages Discord never loaded on this phone can't be in the file. Scroll up in the chat first to load more.")];
+        return settingsBody(ui, groups);
+    }
+    // Text replace (#191, TextReplace by Equicord's authors): rules like "brb => be right back", applied to what you
+    // send. Only outgoing text is touched: messages you read stay as they are. Rules are one per line in the setting,
+    // "from => to"; whole words only when the left side starts and ends with a letter or digit, so "brb" doesn't rewrite
+    // "brb2" and "a.b" only matches itself. An empty right side deletes the word, the way a logger-proofing rule would.
+    const REPLACE_RULES_MAX = 100, REPLACE_TEXT_MAX = 4000;
+    function replaceRules() {
+        const raw = typeof settings.textReplaceRules === "string" ? settings.textReplaceRules : "";
+        if (!raw) return [];
+        return raw.split("\n").slice(0, REPLACE_RULES_MAX).map(line => {
+            const at = line.indexOf("=>");
+            if (at < 0) return null;
+            const from = line.slice(0, at).trim(), to = line.slice(at + 2).trim();
+            return from ? {from, to} : null;
+        }).filter(Boolean);
+    }
+    function applyReplace(text, rules) {
+        if (typeof text !== "string" || !text || !rules || !rules.length) return text;
+        let out = text;
+        for (const rule of rules) {
+            const word = /^[\p{L}\p{N}]/u.test(rule.from) && /[\p{L}\p{N}]$/u.test(rule.from);
+            const escaped = rule.from.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+            try { out = out.replace(new RegExp(word ? "\\b" + escaped + "\\b" : escaped, "gu"), () => rule.to); } catch (_) {}
+            if (!out) break;
+        }
+        return out;
+    }
+    function textReplace(orig, self, args) {
+        if (!enabled("textReplace")) return orig.apply(self, args);
+        const rules = replaceRules();
+        if (!rules.length) return orig.apply(self, args);
+        const source = args[1];
+        const content = typeof source === "string" ? source : source && typeof source.content === "string" ? source.content : null;
+        if (content == null || content.length > REPLACE_TEXT_MAX) return orig.apply(self, args);
+        const replaced = applyReplace(content, rules);
+        if (replaced === content || !replaced) return orig.apply(self, args);
+        const next = Array.from(args);
+        next[1] = typeof source === "string" ? replaced : Object.assign({}, source, {content: replaced});
+        return orig.apply(self, next);
+    }
+    // A small live preview of a rule as it is typed, so a wrong pattern is visible before a message goes out.
+    function TextReplacePreview(props) {
+        if (!React || !RN) return null;
+        const rules = replaceRules();
+        const sample = props && props.sample || "brb, gtg in 5";
+        if (!rules.length) return null;
+        const out = applyReplace(sample, rules);
+        return el(RN.View, {key: "preview", style: {backgroundColor: "#2b2d31", borderRadius: 12, padding: 12, gap: 6}},
+            el(RN.Text, {key: "title", style: {color: "#b5bac1", fontSize: 12}}, tr("Preview")),
+            el(RN.Text, {key: "from", style: {color: "#dbdee1", fontSize: 14}}, sample),
+            el(RN.Text, {key: "to", style: {color: "#ffffff", fontSize: 14, fontWeight: "600"}}, out || tr("(nothing left)")));
+    }
+    function TextReplaceSettings() {
+        useSettings("textReplace");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("textReplace"), Group = ui.TableRowGroup || RN.View;
+        const Icon = japatchIcon(12158, "MagicWandIcon");
+        const groups = [
+            !on ? offCard("status", Icon, "textReplace") : null,
+            el(Group, {key: "rules", title: tr("Rules")},
+                el(ui.TableRow, {key: "rules", label: tr("Replace text when sending"), icon: rowIcon(12158, "MagicWandIcon"), arrow: true,
+                    subLabel: replaceRules().length ? pl(replaceRules().length, "{n} rule", "{n} rules") : tr("No rules yet"),
+                    onPress: () => openTextRules()})),
+            el(TextReplacePreview, {key: "preview"}),
+            footnote("note", "One rule per line: from => to. Only what you send is changed; what other people write stays as it is.")];
+        return settingsBody(ui, groups);
+    }
+    function openTextRules() {
+        const ui = reviewUI();
+        if (!ui.TableRow) return;
+        const key = "japatch-text-replace";
+        const close = () => { try { ui.popModal(key); } catch (_) {} };
+        function RulesModal() {
+            const [draft, setDraft] = React.useState(settings.textReplaceRules || "");
+            const apply = () => { settings.textReplaceRules = String(draft || "").slice(0, 8000); save(); close(); notify("textReplace"); };
+            return el(ui.ActionSheet || RN.View, {key,
+                header: ui.Header ? el(ui.Header, {title: tr("Replace text"), trailing: ui.Close ? el(ui.Close, {onPress: close}) : undefined}) : undefined},
+                el(RN.View, {key: "body", style: {padding: 16, gap: 12}},
+                    el(RN.Text, {key: "hint", style: {fontSize: 14, opacity: 0.8}},
+                        tr("One rule per line: from => to. Example: brb => be right back")),
+                    el(RN.View, {key: "field"},
+                        ui.TextInput ? el(ui.TextInput, {value: draft, onChange: setDraft, multiline: true, placeholder: "brb => be right back"}) :
+                            el(RN.TextInput, {value: draft, onChangeText: setDraft, multiline: true, placeholder: "brb => be right back", style: {fontSize: 16, padding: 12, minHeight: 120}})),
+                    el(RN.View, {key: "actions", style: {flexDirection: "row", justifyContent: "flex-end", gap: 8}},
+                        el(RN.Pressable, {onPress: close, accessibilityRole: "button", style: {paddingHorizontal: 16, height: 40, borderRadius: 20, justifyContent: "center"}},
+                            el(RN.Text, {style: {fontWeight: "600"}}, tr("Cancel"))),
+                        el(RN.Pressable, {onPress: apply, accessibilityRole: "button", style: {paddingHorizontal: 16, height: 40, borderRadius: 20, justifyContent: "center", backgroundColor: "#5865f2"}},
+                            el(RN.Text, {style: {color: "#ffffff", fontWeight: "600"}}, tr("Save"))))));
+        }
+        try { ui.pushModal({key, modal: {key, modal: RulesModal, animation: "slide-up", shouldPersistUnderModals: false, closable: true}}); } catch (_) {}
+    }
     // MessageActionCreators (7445) sendMessage(channelId, message) and editMessage(channelId, messageId, {content}).
     function fixEmbedsSend(orig, self, args) {
         const message = args[1];
@@ -20430,6 +20613,43 @@
     // 7290) takes (channelId, navigate, silent) and sends DELETE /channels/<id>?silent=true when silent is set, the way its
     // "leave without telling anyone" path for a blocked member does. JaPatch sets it for group DMs (type 3) only; a plain DM
     // close has no message to hide. Every way of leaving goes through it: the channel menu, the chat header and /leave.
+    // #139: "Leave group" asks first, every single time, and one misplaced touch loses the group for good. With the
+    // option on, that alert is skipped for group DMs only; leaving a server still asks. Discord asks through
+    // alerts.show (5400), so the wrapper looks at what is about to be shown, not at which caller asked.
+    const LEAVE_GROUP_KEYS = ["Y6oQ6g", "sLwS9U", "u4a0S6", "rNv2Xz", "c1Q3Uf"];
+    function leaveGroupAlert(popup) {
+        if (!popup || typeof popup.onConfirm !== "function") return false;
+        const texts = [popup.title, popup.body].filter(text => typeof text === "string");
+        if (locale && locale.intl && locale.t) {
+            const localized = LEAVE_GROUP_KEYS.map(key => { const token = locale.t[key]; return token && locale.intl.string(token); })
+                .filter(label => typeof label === "string" && label.length > 3);
+            if (texts.some(text => localized.includes(text))) return true;
+        }
+        // English is the fallback for a build whose language keys moved.
+        return texts.some(text => /leave/i.test(text) && /group/i.test(text));
+    }
+    function skipLeaveGroup(orig, self, args) {
+        const popup = args && args[0];
+        if (!enabled("silentLeave") || !settings.silentLeaveSkipPrompt) return orig.apply(self, args);
+        try {
+            if (!leaveGroupAlert(popup)) return orig.apply(self, args);
+            popup.onConfirm();
+            return undefined;
+        } catch (_) { return orig.apply(self, args); }
+    }
+    function SilentLeaveSettings() {
+        useSettings("silentLeave");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("silentLeave"), Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow;
+        const Icon = japatchIcon(11384, "DoorExitIcon");
+        const groups = [
+            !on ? offCard("status", Icon, "silentLeave") : null,
+            el(Group, {key: "ask", title: tr("Asking first")},
+                switchRow(Switch, "silentLeaveSkipPrompt", "Skip the \"Leave group\" question", "Leaving a group DM happens as soon as you tap it. There is no undo.", rowIcon(7838, "WarningIcon"))),
+            footnote("note", "Leaving a server still asks. This only covers group DMs.")];
+        return settingsBody(ui, groups);
+    }
     function silentLeaveClose(orig, self, args) {
         if (!enabled("silentLeave") || !args.length) return orig.apply(self, args);
         let channel = null;
@@ -21005,14 +21225,20 @@
     // #172: holding a channel or category closed the app with "Cannot read property 'color' of undefined". The row is
     // cloned from a neighbouring row's style, and a menu that hadn't drawn finished rows (a gap in its template) or that
     // fails while adding this row now simply goes without it, instead of taking Discord down.
+    // Called two ways: as a whole hook body (orig, self, args) and as the row helper sheetInnerHook wants
+    // (tree, props). The second shape reached this as orig.apply(...) on an element, so every hold menu with Fast
+    // delete on threw "orig.apply is not a function" (#211) — the guard meant to protect that menu caused the crash.
     function sheetSafe(fn) {
-        return function (orig, self, args) {
-            const tree = orig.apply(self, args);
-            if (!React || !tree) return tree;
-            try { return fn(tree, args && args[0]) || tree; } catch (error) {
-                if (settings.debugLog) try { dlog("W", "hooks", "a channel menu row was skipped: " + dlogText(error)); } catch (_) {}
-                return tree;
+        function skip(error) {
+            if (settings.debugLog) try { dlog("W", "hooks", "a channel menu row was skipped: " + dlogText(error)); } catch (_) {}
+        }
+        return function (first, second, third) {
+            if (typeof first === "function") {
+                const tree = first.apply(second, third);
+                if (!React || !tree) return tree;
+                try { return fn(tree, third && third[0]) || tree; } catch (error) { skip(error); return tree; }
             }
+            try { return fn(first, second) || first; } catch (error) { skip(error); return first; }
         };
     }
     const fastDeleteInner = sheetInnerHook(sheetSafe(function (tree, props) {
@@ -23141,8 +23367,12 @@
             case 12849: return features.noTyping ? replaceValue(exports, "default", hookExport(hookExport(exports.default, "startTyping", typing), "stopTyping", typing)) : exports;
             case 10596:
                 if (features.fastDeleteChannels) exports = hookComponent(exports, fastDeleteSheet);
+                if (features.chatExport) exports = hookComponent(exports, exportChannelMenu);
                 return features.viewRaw ? hookComponent(exports, viewRawChannelMenu) : exports;
-            case 17245: return features.viewRaw ? hookComponent(exports, viewRawThreadMenu) : exports;
+            case 17245: {
+                if (features.chatExport) exports = hookComponent(exports, exportThreadMenu);
+                return features.viewRaw ? hookComponent(exports, viewRawThreadMenu) : exports;
+            }
             case 10780: return features.viewRaw ? hookComponent(exports, viewRawPostMenu) : exports;
             case 14015: return features.viewRaw ? hookComponent(exports, viewRawProfileMenu) : exports;
             case 7158: return features.viewRaw ? hookComponent(exports, viewRawRolesCard) : exports;
@@ -23150,7 +23380,13 @@
             case 1128: if (features.quickDelete || features.noConfirmPin || features.fastDeleteChannels) locale = exports; return exports;
             case 14082: return features.listenAlong ? hookComponent(exports, listenAlongButton, "PlayOnSpotifyButton") : exports;
             case 9990: return features.quietReplies ? hookExport(hookExport(exports, "createPendingReply", quietReplyCreate), "createShallowPendingReply", quietReplyCreate) : exports;
-            case 5400: return features.quickDelete || features.noConfirmPin || features.fastDeleteChannels ? replaceValue(exports, "default", hookExport(exports.default, "show", quickConfirm)) : exports;
+            case 5400: {
+                const needed = features.quickDelete || features.noConfirmPin || features.fastDeleteChannels || features.silentLeave;
+                if (!needed || !exports || !exports.default) return exports;
+                const show = features.quickDelete || features.noConfirmPin || features.fastDeleteChannels ? hookExport(exports.default, "show", quickConfirm) : exports.default;
+                // Chained after quickConfirm: a leave-group alert is not a delete or a pin, and the two never both match.
+                return features.silentLeave ? replaceValue(exports, "default", hookExport(show, "show", skipLeaveGroup)) : replaceValue(exports, "default", show);
+            }
             case 5534: if (features.noDelete) { messageRecords = exports; restoreDeleted(); } return exports;
             case 14755: return features.fakeDeafen && exports && exports.default ? fakeDeafAttach(exports) : exports;
             case 18341: return features.fakeDeafen ? hookComponent(exports, fakeDeafSwitch, "DeafenSwitch") : exports;
@@ -23270,6 +23506,7 @@
                 if (features.silentDelete) actions = hookExport(actions, "deleteMessage", silentDelete);
                 // Split Large Messages wraps FreeNitro's hook (added below), so every part still gets its emoji links.
                 const splitLater = features.splitMessages;
+                if (features.textReplace) actions = hookExport(actions, "sendMessage", textReplace);
                 if (features.hiddenChannels) actions = hookExport(actions, "fetchMessages", hiddenFetch);
                 if (features.freeNitro) {
                     actions = hookExport(actions, "sendMessage", sendMessage);

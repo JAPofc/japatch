@@ -105,11 +105,43 @@ check("a row that can't be added never yields undefined", () => {
     ok(rendered && rendered.type === "View", "render must return something");
 });
 
+check("#211: sheetSafe used as a row helper does not call orig.apply on an element", () => {
+    const api = load({fastDeleteChannels: true}, {fastDeleteChannels: true});
+    // Exactly how fastDeleteInner is built: sheetSafe(<row helper>, ...) passed to sheetInnerHook.
+    const rowsFor = api.sheetSafe((tree, props) => tree);
+    const hook = api.sheetInnerHook(rowsFor, () => true);
+    const out = hook(() => treeWith(), {}, [{channel: {id: "1"}}]);
+    ok(out && out.type, "the menu must come back, not throw");
+    // And the row helper on its own behaves as a row helper.
+    const tree = treeWith();
+    ok(rowsFor(tree, {channel: {id: "1"}}) === tree, "the same tree comes back");
+});
+
 check("sheetSafe still swallows a throwing row", () => {
     const api = load({viewRaw: true}, {viewRaw: true});
     const safe = api.sheetSafe(() => { throw new Error("boom"); });
     const out = safe(() => treeWith(), {}, [{channel: {id: "1"}}]);
     ok(out && out.type === FunctionSheet, "the original tree is returned");
+});
+
+check("#139: a leave-group alert is recognised and skipped, a delete alert is not", () => {
+    const api = load({}, {});
+    // The real pair of functions, sliced out of bootstrap.js.
+    const fs = require("fs");
+    const SOURCE = fs.readFileSync(path.join(__dirname, "..", "..", "patches/src/main/resources/japatch/bootstrap.js"), "utf8");
+    const start = SOURCE.indexOf("    const LEAVE_GROUP_KEYS");
+    const end = SOURCE.indexOf("    function silentLeaveClose(", start);
+    ok(start > 0 && end > start, "the leave-group block is in bootstrap.js");
+    const context = {settings: {silentLeaveSkipPrompt: true, debugLog: false}, enabled: key => key === "silentLeave",
+        locale: null, Error, RegExp, console};
+    vm.createContext(context);
+    vm.runInContext(SOURCE.slice(start, end) + "\nthis.api = {leaveGroupAlert, skipLeaveGroup};", context);
+    const leave = {title: "Leave group", body: "Are you sure you want to leave this group?", onConfirm: () => { leave.confirmed = true; }, confirmed: false};
+    ok(context.api.leaveGroupAlert(leave) === true, "the question is recognised");
+    context.api.skipLeaveGroup(function () { throw new Error("should not be shown"); }, null, [leave]);
+    ok(leave.confirmed === true, "confirm runs straight away");
+    const del = {title: "Delete message", body: "Are you sure?", onConfirm: () => { del.confirmed = true; }, confirmed: false};
+    ok(context.api.leaveGroupAlert(del) === false, "a delete alert is not a leave alert");
 });
 
 if (failures) { console.log(failures + " failing"); process.exit(1); }

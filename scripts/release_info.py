@@ -23,6 +23,23 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.4] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - Export chats:** Hold a chat or thread and pick Export chat as JSON to save the messages Discord has loaded, as a file you choose; nothing is uploaded
+* **Discord - Replace text when sending:** Rewrite what you type before it goes out, one rule per line ("brb => be right back"), with a live preview on the page
+
+### 🐛 Bug Fixes
+
+* **Discord - Fast delete channels:** Fixed holding a channel or DM closing Discord with "undefined is not a function" or "Rendered more hooks than during the previous render"; the protection added in 1.0.3 was itself calling the wrong function
+* **Discord:** Fixed the hold menu being rebuilt while Fast delete was on, which is what made the crash appear and vanish between launches
+
+### 🔧 Improvements
+
+* **Discord - Leaving group DMs:** The feature now has its own page, with an option to skip the "Leave group" question entirely; servers still ask
+* **Discord:** README rewritten around JaPatch's own behaviour, plus a Privacy page listing every destination data can reach and how to check it yourself
+
 ## [1.0.3] (2026-11-26)
 
 ### 🐛 Bug Fixes

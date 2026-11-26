@@ -50,6 +50,12 @@ jobs:
       - name: Build and test .mpp bundle
         run: python3 scripts/build.py
 
+      - name: Docs match the build (README feature table)
+        run: python3 scripts/readme_features.py --check
+
+      - name: Every translation key is present in all 29 languages
+        run: python3 scripts/i18n_check.py
+
       - name: Precompile JaPatch runtime to HBC98 (bootstrap.hbc)
         run: |
           sed 's|/\*__FEATURES__\*/|globalThis.__japatchFeatures|g' patches/build/bootstrap.js > patches/build/bootstrap.precompile.js
@@ -76,5 +82,6 @@ jobs:
           python3 scripts/release_info.py "$VERSION" > /tmp/notes.md
           gh release create "$GITHUB_REF_NAME" \
             "patches/build/libs/patches-${VERSION}.mpp" \
+            "patches/build/libs/SHA256SUMS" \
             --title "$VERSION" \
             --notes-file /tmp/notes.md
