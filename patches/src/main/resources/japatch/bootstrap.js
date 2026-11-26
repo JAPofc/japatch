@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.2";
+    const revision = "1.0.3";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -20692,20 +20692,29 @@
     // Channel, thread and post menus are a thin component (channelId, onClose) that renders the real sheet one level down, so
     // the rows only exist in that inner component's output. rowsFor(tree, props) adds rows to a tree that has them; when the
     // tree is just the inner element, it is swapped for a twin that renders the original and then adds the rows.
-    function sheetInnerHook(rowsFor) {
+    function sheetInnerHook(rowsFor, active) {
         const types = new WeakMap();
         return function sheetInner(orig, self, args) {
             const tree = orig.apply(self, args);
             if (!React || !tree || typeof tree !== "object") return tree;
+            // Nobody adds a row while the option is off, so the sheet is left exactly as Discord drew it. Swapping its
+            // component anyway took the element's ref away from Discord's own code, which called a method on nothing
+            // ("undefined is not a function") the moment the menu opened (#210) — with every option off, too.
+            if (active && !active()) return tree;
+            // Only a tree that came back different is a change; a row helper that returned nothing (a menu shape it
+            // didn't expect) used to replace the whole sheet with undefined.
             const direct = rowsFor(tree, args[0]);
-            if (direct !== tree) return direct;
+            if (direct && direct !== tree) return direct;
             const type = tree.type, props = tree.props;
             if (typeof type !== "function" || !props || !(props.channel || props.thread || props.channelId)) return tree;
+            // A class component is handed to Discord as an instance through ref; a wrapper function can't stand in for
+            // that, so those sheets use Discord's own component and get no extra row.
+            if (type.prototype && type.prototype.isReactComponent) return tree;
             let twin = types.get(type);
             if (!twin) {
                 twin = function SheetInner(innerProps) {
                     const out = type.apply(this, arguments);
-                    try { return rowsFor(out, innerProps); } catch (_) { return out; }
+                    try { return rowsFor(out, innerProps) || out; } catch (_) { return out; }
                 };
                 if (type.displayName || type.name) twin.displayName = type.displayName || type.name;
                 types.set(type, twin);
@@ -20722,6 +20731,9 @@
             if (!rows.length || nodeProps.children.some(child => child && child.key === key)) return nodeProps;
             added = true;
             const template = rows[rows.length - 1], icon = template.props.icon;
+            // A row has to look like Discord's own rows: an icon slot, a label and a handler. Without them the menu
+            // keeps what it had rather than growing a broken row.
+            if (!template || typeof template.type !== "function" || !icon) return nodeProps;
             const row = React.cloneElement(template, {key, label, arrow:false, variant:variant, disabled:false,
                 icon:icon && icon.props && "IconComponent" in icon.props ? React.cloneElement(icon, {IconComponent}) : icon,
                 onPress:function () {
@@ -21011,7 +21023,7 @@
         if (!fastDeleteAllowed(channel)) return tree;
         return sheetAddRow(tree, props, "japatch-delete-channel", tr("Delete channel"), japatchIcon(5148, "TrashIcon"), () => fastDeleteChannel(channel),
             "ChannelLongPress-" + channelId, "destructive");
-    }));
+    }), () => features.fastDeleteChannels && enabled("fastDeleteChannels") && settings.fastDeleteChannelsMenu);
     function fastDeleteSheet(orig, self, args) { return fastDeleteInner(orig, self, args); }
     function fastDeleteChannel(channel) {
         if (!channel || !channel.id) return;
@@ -21208,7 +21220,7 @@
             const id = String(props.channelId || channel && channel.id || "");
             if (!rawId(id)) return tree;
             return sheetAddRow(tree, props, "japatch-view-raw", tr("View raw data"), japatchIcon(12003, "FileIcon"), () => openViewRaw({kind:"channel", id}), sheetKey(id));
-        });
+        }, () => features.viewRaw && enabled("viewRaw") && settings.viewRawChannels);
     }
     const viewRawChannelMenu = viewRawChannelHook(id => "ChannelLongPress-" + id);
     const viewRawThreadMenu = viewRawChannelHook(() => "ThreadLongPressActionSheet");

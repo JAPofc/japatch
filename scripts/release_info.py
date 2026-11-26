@@ -23,6 +23,13 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.3] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - Fast delete channels and View raw data:** Fixed holding a channel or DM in the channel list closing Discord with "undefined is not a function"; the hold menu is now left exactly as Discord drew it unless one of those rows is on
+* **Discord - Fast delete channels:** Fixed a hold menu that couldn't take the extra row replacing the whole sheet with nothing
+
 ## [1.0.2] (2026-11-26)
 
 ### 🐛 Bug Fixes

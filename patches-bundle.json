@@ -1,8 +1,8 @@
 {
-  "created_at": "2026-11-26T06:34:11",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - User and server reviews:** Fixed the server field drawing in a shape Discord's action sheet doesn't expect, which could leave the sheet blank on some builds\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.2/patches-1.0.2.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.2",
+  "created_at": "2026-11-26T06:49:05",
+  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - Fast delete channels and View raw data:** Fixed holding a channel or DM in the channel list closing Discord with \"undefined is not a function\"; the hold menu is now left exactly as Discord drew it unless one of those rows is on\n* **Discord - Fast delete channels:** Fixed a hold menu that couldn't take the extra row replacing the whole sheet with nothing\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.3/patches-1.0.3.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.3",
   "signature_download_url": "",
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
