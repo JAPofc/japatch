@@ -2,7 +2,7 @@
 """The release notes for one version, in the section format Morphe Manager draws as cards.
 
     python3 scripts/release_info.py --check     # validates every entry below, fails on anything Morphe can't split up
-    python3 scripts/release_info.py 1.0.0       # the GitHub release body for 1.0.0
+    python3 scripts/release_info.py 1.0.1       # the GitHub release body for 1.0.1
 
 Morphe Manager turns each "### " heading into a card (New, Fixes, Improvements, Performance) and each
 "* **Scope:** text" bullet into a row. Keep that shape: a plain sentence shows as one grey block.
@@ -23,6 +23,16 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.1] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - User and server reviews:** Pick the ReviewDB server yourself under Reviews, Server; it starts empty, and with no server there Reviews stays off and nothing leaves your phone
+
+### 🔧 Improvements
+
+* **Discord - User and server reviews:** Reviews never calls a server you didn't type in yourself, including the sign-in exchange and the admins list
+
 ## [1.0.0] (2026-11-26)
 
 ### ✨ New Features

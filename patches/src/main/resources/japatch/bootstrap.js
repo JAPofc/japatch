@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.0";
+    const revision = "1.0.1";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -88,7 +88,7 @@
     // their own defaults, so turning a feature on does what it says straight away.
     const settings = { debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
         noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
-        jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, readAll:false, readAllMode:"guilds",
+        jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, reviewServer:"", readAll:false, readAllMode:"guilds",
         quests:false, questsVideo:true, questsPlay:true, questsActivity:true, questsEnroll:true,
         badges:false, badgesGameTime:true, badgesUniqueGames:true, badgesCycleMinutes:15, badgesGamesAtOnce:2, systemFont:false, systemFontSource:"phone",
         systemEmoji:false, systemEmojiSource:"phone", gestures:false, gestureOwn:"edit", gestureTripleDelete:true,
@@ -106,7 +106,7 @@
         return DEFAULT_SETTINGS || (DEFAULT_SETTINGS = Object.freeze({
             debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
             noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
-            jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, readAll: false, readAllMode: "guilds",
+            jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, reviewServer: "", readAll: false, readAllMode: "guilds",
             quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true,
             badges: false, badgesGameTime: true, badgesUniqueGames: true, badgesCycleMinutes: 15, badgesGamesAtOnce: 2, systemFont: false, systemFontSource: "phone",
             systemEmoji: false, systemEmojiSource: "phone", gestures: false, gestureOwn: "edit", gestureTripleDelete: true,
@@ -337,6 +337,8 @@
     const featureTable = Object.create(null);
     const enabled = key => {
         if (!settings[key]) return false;
+        // Reviews has no server of its own by default, so the switch alone can't turn it on.
+        if (key === "reviewDB" && !reviewBase()) return false;
         const feature = featureTable[key] || featureFor(key);
         // An option only counts while its main switch is on too. Only FreeNitro checked that, so
         // "Removing link previews" kept skipping the question after QuickDelete itself was turned off.
@@ -1250,7 +1252,7 @@
     // names of the options on its page, in the language JaPatch is shown in and in English, ignoring case and accents.
     const FEATURE_KEYWORDS = {hideAnything:["Removal mode", "Message menu", "Quick reactions", "Voice message button", "Video call button", "Message requests", "Add Friends button", "New message button", "Quests banner", "Attach menu", "Polls", "Photos"], systemFont:["Import a font", "Font file"], systemEmoji:["Import an emoji font", "Emoji font"], noDelete:["Show edit history", "Keep after restarting", "Color", "Brightness", "Keep up to", "No limit", "Message log", "What to log", "Dismiss message", "Remove edit history"], translate:["Show the original language", "Show the original text", "Another language", "How you ask", "Top bar", "Message menu", "Don't translate"],
         freeNitro:["Emojis", "Stickers", "Short links"], pastelize:["Replace role colors", "Color message text"],
-        platformIndicators:["In DMs", "In lists", "On profiles", "Hide the phone badge"], reviewDB:["Show the be-respectful note"],
+        platformIndicators:["In DMs", "In lists", "On profiles", "Hide the phone badge"], reviewDB:["Server", "Show the be-respectful note"],
         userNotif:["Change status", "Start typing", "Send a message", "Phone notifications", "Activity log", "What to log"], accountSwitcher:["Button on the profile bar", "Add account", "Create a new account", "Export accounts", "Import accounts", "Notifications from every account", "Same theme on every account"],
         hiddenChannels:["Show its details"], serverEdit:["Edit locally", "Name", "Icon", "Server icon", "Choose from your phone", "Use a link"], serverInfo:["Look up friends in the server", "Boosts", "Owner", "Server ID"], customThemes:["Show theme background image", "Browse Revenge themes"],
         messageHighlight:["Brightness", "Left bar width"], iconPacks:["Rosiecord", "Plumpy", "Iconsax", "Material", "MD3", "Solar", "Deco", "Themes+", "Follow theme's icon pack"],
@@ -1785,7 +1787,7 @@
         withOptions("messages", "silentEdit", "JAPATCH_SILENTEDIT", "Edit without the (edited) mark", "Only works when your message is the latest in the chat. Others see a new message, not an edit.", "Silent edit", SilentEditSettings);
         toggle("messages", "silentDelete", "Delete without a trace", "Blanks your message before deleting it, so message loggers have nothing to keep.");
         withOptions("messages", "localEdit", "JAPATCH_LOCALEDIT", "Edit messages locally", "Change how any message reads on this phone. Only you see it.", "Edit locally", LocalEditSettings);
-        withOptions("people", "reviewDB", "JAPATCH_REVIEWDB", "User and server reviews", "Read and write ReviewDB reviews on profiles and servers.", "Reviews", ReviewSettings);
+        withOptions("people", "reviewDB", "JAPATCH_REVIEWDB", "User and server reviews", "Read and write ReviewDB reviews on profiles and servers, through a ReviewDB server you choose.", "Reviews", ReviewSettings);
         withOptions("people", "userNotif", "JAPATCH_USERNOTIF", "User activity notifications", "Get notified when chosen people change status, type or message.", "Activity notifications", UserNotifSettings);
         // The two logs open from their feature's page, one level below it, like Discord's own nested settings.
         if (features.noDelete) { route("JAPATCH_NODELETE_LOG", "Message log", [], "JAPATCH_NODELETE", iconFor("noDelete")); next.JAPATCH_NODELETE_LOG.screen.getComponent = () => MessageLogPage; logScreens.messages = next.JAPATCH_NODELETE_LOG.screen; }
@@ -4597,7 +4599,26 @@
     }
     let reviewToken = "", reviewAccount = null, reviewAuthAttempt = 0, reviewAuthState = "idle", reviewAuthError = "";
     const reviewCache = new Map(), platformWrappers = new WeakMap();
-    const REVIEW_API = "https://manti.vendicated.dev/api/reviewdb";
+    // THE REVIEWDB SERVER. Empty by default: until a server is set, Reviews stays off and no profile ID, review or
+    // sign-in leaves the device. Set it to any ReviewDB-compatible server (Reviews -> Server, or the "reviewServer"
+    // setting). The community server this feature came from is https://manti.vendicated.dev/api/reviewdb; type it on
+    // that row to use it again. It is never picked on its own.
+    const REVIEW_API_DEFAULT = "";
+    // A server an owner runs needs its own Discord application (its own client ID), because the code comes back to
+    // that application's redirect URI. "clientId@https://host/api/reviewdb" sets both; a bare URL keeps the community
+    // app's ID, which only works against the community server.
+    const REVIEW_CLIENT_DEFAULT = "915703782174752809";
+    function reviewClientId() {
+        const raw = typeof settings.reviewServer === "string" ? settings.reviewServer.trim() : "";
+        const at = raw.indexOf("@");
+        return at > 0 ? raw.slice(0, at).trim() : REVIEW_CLIENT_DEFAULT;
+    }
+    function reviewBase() {
+        const raw = typeof settings.reviewServer === "string" ? settings.reviewServer.trim() : "";
+        const at = raw.indexOf("@"), base = (at > 0 ? raw.slice(at + 1).trim() : raw) || REVIEW_API_DEFAULT;
+        if (!base) return "";
+        return base.replace(/\/+$/, "");
+    }
     // One cache per tone (saturation, lightness), keyed by the seed: building "0.75:0.6:<id>" on every lookup cost
     // 5.9x more than the lookup itself on Hermes (number-to-string).
     const pastelCache = new Map();
@@ -9008,7 +9029,7 @@
         // credentials, change the host, request another client mod or leak a token.
         const location = typeof result === "string" ? result : result && result.location;
         if (typeof location !== "string" || location.length > 8192) throw new Error("Invalid authorization redirect");
-        const match = /^https:\/\/manti\.vendicated\.dev\/api\/reviewdb\/auth\?([^#]*)$/.exec(location);
+        const base = reviewBase(), match = base ? new RegExp("^" + base.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") + "/auth\\?([^#]*)$").exec(location) : null;
         if (!match) throw new Error("Invalid authorization redirect");
         const values = {};
         match[1].split("&").forEach(part => {
@@ -9021,7 +9042,8 @@
         if (values.error === "access_denied") return null;
         if (values.error) throw new Error("Discord did not authorize ReviewDB");
         if (!values.code || values.code.length > 2048 || /[\s\u0000-\u001f]/.test(values.code)) throw new Error("Invalid authorization redirect");
-        return REVIEW_API+"/auth?code="+encodeURIComponent(values.code)+"&returnType=json&clientMod=vendetta";
+        if (!base) throw new Error("No ReviewDB server is set");
+        return base+"/auth?code="+encodeURIComponent(values.code)+"&returnType=json&clientMod=vendetta";
     }
     async function reviewJson(url,options,timeoutMessage) {
         const controller = typeof global.AbortController === "function" ? new global.AbortController() : null;
@@ -9048,7 +9070,9 @@
         // JSON bodies (which proxies and error reporters are more likely to log).
         const token = method && method !== "GET" ? reviewAuth() : "";
         const headers = {accept:"application/json","content-type":"application/json",...(token ? {authorization:token} : {})};
-        return reviewJson(REVIEW_API+path,{method:method || "GET",headers,...(body ? {body:JSON.stringify(body)} : {})});
+        const base = reviewBase();
+        if (!base) return Promise.reject(new Error("No ReviewDB server is set"));
+        return reviewJson(base+path,{method:method || "GET",headers,...(body ? {body:JSON.stringify(body)} : {})});
     }
     function clearReviewAuth() {
         // Every Discord logout lands here: only rewrite preferences when a sign-in was saved.
@@ -9140,6 +9164,31 @@
         if (reviewStyleHook) try { styles=reviewStyleHook(); } catch (_) {}
         return styles || {card:{borderRadius:16,padding:8},row:{},divider:{backgroundColor:"#ffffff0f"},text:{},muted:{color:"#949ba4"},placeholder:{}};
     }
+    // Editing the server address. Discord's own prompt has no text field, so this opens a small modal built from the
+    // same primitives every other JaPatch screen uses.
+    function openReviewServer() {
+        const ui=reviewUI();
+        if (!ui.TableRow) return;
+        const key="japatch-review-server";
+        const close=() => { try { ui.popModal(key); } catch (_) {} };
+        function ReviewServerModal() {
+            const [draft,setDraft]=React.useState(settings.reviewServer || "");
+            const apply=() => { const next=String(draft || "").trim(); settings.reviewServer=next; save(); close(); reviewCache.clear(); reviewAuthState="idle"; notify("reviewDB"); };
+            return el(ui.ActionSheet || RN.View,{key,contentContainerStyle:{padding:16,gap:12},
+                header:ui.Header ? el(ui.Header,{title:tr("ReviewDB server"),trailing:ui.Close ? el(ui.Close,{onPress:close}) : undefined}) : undefined},
+                el(RN.Text,{key:"hint",style:{fontSize:14,opacity:0.8,marginTop:12}},
+                    tr("Example: https://your-server.example/api/reviewdb. Empty turns Reviews off.")),
+                el(RN.View,{key:"field",style:{marginTop:8}},
+                    ui.TextInput ? el(ui.TextInput,{value:draft,onChange:setDraft,placeholder:"https://…/api/reviewdb",autoCapitalize:"none",autoCorrect:false,keyboardType:"url"}) :
+                        el(RN.TextInput,{value:draft,onChangeText:setDraft,placeholder:"https://…/api/reviewdb",autoCapitalize:"none",autoCorrect:false,keyboardType:"url",style:{fontSize:16,padding:12}})),
+                el(RN.View,{key:"actions",style:{flexDirection:"row",justifyContent:"flex-end",gap:8,marginTop:4}},
+                    el(RN.Pressable,{onPress:close,accessibilityRole:"button",style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center"}},
+                        el(RN.Text,{style:{fontWeight:"600"}},tr("Cancel"))),
+                    el(RN.Pressable,{onPress:apply,accessibilityRole:"button",style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center",backgroundColor:"#5865f2"}},
+                        el(RN.Text,{style:{color:"#ffffff",fontWeight:"600"}},tr("Save")))));
+        }
+        try { ui.pushModal({key,modal:{key,modal:ReviewServerModal,animation:"slide-up",shouldPersistUnderModals:false,closable:true}}); } catch (_) {}
+    }
     function ReviewSettings() {
         useReviews();
         const ui=reviewUI();
@@ -9159,9 +9208,12 @@
                     subLabel:tr("ReviewDB stays in Discord's Authorized Apps until you remove it there.")}) :
                 el(ui.TableRow,{key:"login",label:tr(pending ? "Signing in…" : "Sign in to ReviewDB"),icon:rowIcon(6917,"KeyIcon"),
                     arrow:true,disabled:!on || pending,onPress:authenticateReviews,subLabel:reviewAuthError || tr("Needed to post, delete or report reviews. Never uses your Discord token.")})),
+            el(Group,{key:"server",title:tr("Server")},
+                el(ui.TableRow,{key:"server",label:tr("ReviewDB server"),icon:rowIcon(8062,"GlobeEarthIcon"),arrow:true,
+                    subLabel:reviewBase() || tr("None set, Reviews is off"),onPress:openReviewServer}),
+                footnote("serverNote",tr("Reviews sends that profile's or server's ID to this address and nothing else. Leave it empty to keep Reviews off. A server of your own needs its own Discord app: clientId@https://your-server/api/reviewdb."))),
             el(Group,{key:"settings",title:tr("Display")},
-                switchRow(Switch,"reviewWarning","Show the be-respectful note","ReviewDB's reminder to be kind, shown above reviews.",rowIcon(10733,"ShieldIcon"))),
-            footnote("note","Reviews come from manti.vendicated.dev. Opening reviews sends that profile's or server's ID to ReviewDB.")];
+                switchRow(Switch,"reviewWarning","Show the be-respectful note","ReviewDB's reminder to be kind, shown above reviews.",rowIcon(10733,"ShieldIcon")))];
         return settingsBody(ui,groups);
     }
     // A live chat preview: Alex's edited message with earlier versions faded and crossed out above it, and Sam's kept
@@ -9462,7 +9514,7 @@
             reviewToast(ui,tr("Couldn't sign in: {problem}",{problem:reviewAuthError}),japatchIcon(6573,"CircleXIcon"));
         }
         ui.pushModal({key,modal:{key,modal:ui.OAuth,animation:"slide-up",shouldPersistUnderModals:false,closable:true,props:{
-            clientId:"915703782174752809",redirectUri:REVIEW_API+"/auth",scopes:["identify"],responseType:"code",permissions:BigInt(0),cancelCompletesFlow:false,
+            clientId:reviewClientId(),redirectUri:reviewBase()+"/auth",scopes:["identify"],responseType:"code",permissions:BigInt(0),cancelCompletesFlow:false,
             // Traced in 347.12, 349.9 and 350.8 (useOAuth2AuthorizeForm, fn50476): after Authorize the form calls
             // dismissOAuthModal FIRST, waits 100 ms, and only THEN calls callback({location}).
             // Dismissal is never a cancellation; treating it as one discarded every sign-in.
@@ -9511,9 +9563,10 @@
     let reviewAdminsLoaded=false;
     const reviewAdmins=new Set();
     function loadReviewAdmins() {
-        if (reviewAdminsLoaded || typeof global.fetch!=="function") return;
+        const base = reviewBase();
+        if (reviewAdminsLoaded || !base || typeof global.fetch!=="function") return;
         reviewAdminsLoaded=true;
-        reviewJson("https://manti.vendicated.dev/admins",{method:"GET"}).then(list => {
+        reviewJson(base+"/admins",{method:"GET"}).then(list => {
             if (Array.isArray(list)) list.forEach(id => { if (typeof id==="string") reviewAdmins.add(id); });
         },() => {reviewAdminsLoaded=false;});
     }

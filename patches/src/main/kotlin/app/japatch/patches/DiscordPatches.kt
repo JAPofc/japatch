@@ -658,7 +658,7 @@ val pastelize = bytecodePatch(
 val platformIndicators = bundledPlugin("platformIndicators", "Show device indicators", "Desktop, mobile, web, console or VR icons next to names, colored by status.")
 
 @Suppress("unused")
-val reviewDB = bundledPlugin("reviewDB", "User and server reviews", "Read and write reviews on profiles and servers, from the community ReviewDB service (manti.vendicated.dev).")
+val reviewDB = bundledPlugin("reviewDB", "User and server reviews", "Read and write reviews on profiles and servers, through a ReviewDB server you choose.")
 
 @Suppress("unused")
 val readAll = bundledPlugin("readAll", "Read all button", "A button under Direct Messages that marks servers, DMs or both as read.")
