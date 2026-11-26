@@ -1948,6 +1948,9 @@
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 και οι γραμμές γύρω από τα ονόματα κατηγοριών.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 και σημαίες, όπου κι αν βρίσκονται στο όνομα.",
     "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Στο Discord το παρατσούκλι υπάρχει μόνο μέσα σε διακομιστή, οπότε τα Nickname και Server nickname είναι το ίδιο όνομα. Οι περισσότεροι βλέπουν διαφορά μόνο ανάμεσα σε @username και Display name.",
-    "A plus adds a name under the one that wins; an X takes it away.": "Το συν προσθέτει όνομα κάτω από αυτό που κερδίζει· το X το αφαιρεί."
+    "A plus adds a name under the one that wins; an X takes it away.": "Το συν προσθέτει όνομα κάτω από αυτό που κερδίζει· το X το αφαιρεί.",
+    "Sign-in app": "Εφαρμογή σύνδεσης",
+    "{id} (JaPatch's own)": "{id} (του JaPatch)",
+    "{id} (this server's own)": "{id} (αυτού του διακομιστή)"
   }
 }

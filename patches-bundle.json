@@ -1,8 +1,8 @@
 {
   "created_at": "2026-11-26T09:09:15",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - Show names your way:** Fixed the name never changing in chat. The feature hooked the name Discord draws on a profile card, which the message list does not use, so the chat kept showing Discord's own choice; the chat row is rewritten now\n* **Discord - Show names your way:** Fixed the other names never appearing: they were glued into brackets after the name, where they were easy to miss. They now sit on their own small line under the name\n\n### \ud83d\udd27 Improvements\n\n* **Discord - Show names your way:** Each name under \"Also show\" now shows what a tap will do: a plus adds it, an X takes it away\n* **Discord - Show names your way:** Changing the order or the extra names redraws the chat you have open instead of waiting for it to reload\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.8/patches-1.0.8.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.8",
+  "description": "### \u2728 New Features\n\n* **Discord - User and server reviews:** Reviews can now run on a server of your own. Type its address on Reviews > ReviewDB server and the app asks the server which Discord application it signs in with, so the address alone is enough; the app being used is shown right under it\n* **Discord - User and server reviews:** The address accepts a server that answers under /api/reviewdb as well as at its root, which is the shape ReviewDB's own addresses have\n\n### \ud83d\udd27 Improvements\n\n* **Discord - User and server reviews:** The page now says which Discord app a sign-in will use, so a server that belongs to someone else is never mistaken for the community server\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.9/patches-1.0.9.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.9",
   "signature_download_url": "",
-  "version": "1.0.8"
+  "version": "1.0.9"
 }

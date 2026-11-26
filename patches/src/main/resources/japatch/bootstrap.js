@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.8";
+    const revision = "1.0.9";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -4621,10 +4621,29 @@
     // that application's redirect URI. "clientId@https://host/api/reviewdb" sets both; a bare URL keeps the community
     // app's ID, which only works against the community server.
     const REVIEW_CLIENT_DEFAULT = "915703782174752809";
+    // A server of someone else's runs its own Discord application, so the address has to say which one. Typing
+    // "clientId@https://…" by hand is easy to get wrong, so the server is asked once (/health answers with its
+    // own id) and that is used until the address changes. Without an answer the built-in app's id is sent, which
+    // is only right for the community server.
+    const reviewIdentity = {base: "", clientId: "", asked: false};
     function reviewClientId() {
         const raw = typeof settings.reviewServer === "string" ? settings.reviewServer.trim() : "";
         const at = raw.indexOf("@");
-        return at > 0 ? raw.slice(0, at).trim() : REVIEW_CLIENT_DEFAULT;
+        if (at > 0) return raw.slice(0, at).trim();
+        const base = reviewBase();
+        if (reviewIdentity.base === base && reviewIdentity.clientId) return reviewIdentity.clientId;
+        askReviewIdentity(base);
+        return REVIEW_CLIENT_DEFAULT;
+    }
+    function askReviewIdentity(base) {
+        if (!base || typeof global.fetch !== "function" || reviewIdentity.asked && reviewIdentity.base === base) return;
+        reviewIdentity.asked = true; reviewIdentity.base = base; reviewIdentity.clientId = "";
+        reviewJson(base + "/health", {method: "GET"}).then(info => {
+            const id = info && typeof info.clientId === "string" ? info.clientId.trim() : "";
+            if (!/^\d{17,20}$/.test(id) || reviewBase() !== base) return;
+            reviewIdentity.clientId = id;
+            notify("reviewDB");
+        }, () => {});
     }
     function reviewBase() {
         const raw = typeof settings.reviewServer === "string" ? settings.reviewServer.trim() : "";
@@ -9266,6 +9285,8 @@
             el(Group,{key:"server",title:tr("Server")},
                 el(ui.TableRow,{key:"server",label:tr("ReviewDB server"),icon:rowIcon(8062,"GlobeEarthIcon"),arrow:true,
                     subLabel:reviewBase() || tr("None set, Reviews is off"),onPress:openReviewServer}),
+                !reviewBase() ? null : el(ui.TableRow,{key:"client",label:tr("Sign-in app"),icon:rowIcon(6917,"KeyIcon"),disabled:true,
+                    subLabel:reviewClientId() === REVIEW_CLIENT_DEFAULT ? tr("{id} (JaPatch's own)",{id:REVIEW_CLIENT_DEFAULT}) : tr("{id} (this server's own)",{id:reviewClientId()})}),
                 footnote("serverNote",tr("Reviews sends that profile's or server's ID to this address and nothing else. Leave it empty to keep Reviews off. A server of your own needs its own Discord app: clientId@https://your-server/api/reviewdb."))),
             el(Group,{key:"settings",title:tr("Display")},
                 switchRow(Switch,"reviewWarning","Show the be-respectful note","ReviewDB's reminder to be kind, shown above reviews.",rowIcon(10733,"ShieldIcon")))];

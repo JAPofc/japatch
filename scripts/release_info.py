@@ -23,6 +23,17 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.9] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - User and server reviews:** Reviews can now run on a server of your own. Type its address on Reviews > ReviewDB server and the app asks the server which Discord application it signs in with, so the address alone is enough; the app being used is shown right under it
+* **Discord - User and server reviews:** The address accepts a server that answers under /api/reviewdb as well as at its root, which is the shape ReviewDB's own addresses have
+
+### 🔧 Improvements
+
+* **Discord - User and server reviews:** The page now says which Discord app a sign-in will use, so a server that belongs to someone else is never mistaken for the community server
+
 ## [1.0.8] (2026-11-26)
 
 ### 🐛 Bug Fixes

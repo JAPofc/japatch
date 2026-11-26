@@ -2030,6 +2030,9 @@
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 i kreski wokół nazw kategorii.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 i flagi, gdziekolwiek są w nazwie.",
     "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "W Discordzie pseudonim istnieje tylko na serwerze, więc Nickname i Server nickname to ta sama nazwa. Większość ludzi widzi różnicę tylko między @username i Display name.",
-    "A plus adds a name under the one that wins; an X takes it away.": "Plus dodaje nazwę pod tą, która wygrywa; X ją usuwa."
+    "A plus adds a name under the one that wins; an X takes it away.": "Plus dodaje nazwę pod tą, która wygrywa; X ją usuwa.",
+    "Sign-in app": "Aplikacja do logowania",
+    "{id} (JaPatch's own)": "{id} (własna JaPatch)",
+    "{id} (this server's own)": "{id} (własna tego serwera)"
   }
 }
