@@ -35,7 +35,7 @@ function makeContext() {
         RISKY_FEATURES: {}, featureTable: {},
         save() {}, notify() {}, later() {}, dlog() {}, clearDeleted() {}, persistDeleted() {},
         restoreDeleted() {}, questsSettingChanged() {}, badgesSettingChanged() {},
-        gestureCancel() {}, turnOnAsking() {}, nativeVoice: () => Promise.resolve(),
+        gestureCancel() {}, turnOnAsking() {}, nativeVoice: () => Promise.resolve(), showNameChanged() {},
         debugLog: {early: false}, dlogText: value => String(value),
     };
     context.owns = (object, key) => Object.prototype.hasOwnProperty.call(object, key);

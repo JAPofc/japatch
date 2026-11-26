@@ -1947,6 +1947,7 @@
     "{time} ago": "vor {time}",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 und die Striche um Kategorienamen.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 und Flaggen, egal wo sie im Namen stehen.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Auf Discord gibt es einen Spitznamen nur innerhalb eines Servers, deshalb sind Nickname und Server nickname derselbe Name. Die meisten sehen nur einen Unterschied zwischen @username und Display name."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Auf Discord gibt es einen Spitznamen nur innerhalb eines Servers, deshalb sind Nickname und Server nickname derselbe Name. Die meisten sehen nur einen Unterschied zwischen @username und Display name.",
+    "A plus adds a name under the one that wins; an X takes it away.": "Ein Plus fügt einen Namen unter dem hinzu, der gewinnt; ein X nimmt ihn weg."
   }
 }

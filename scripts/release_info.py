@@ -23,6 +23,18 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.8] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - Show names your way:** Fixed the name never changing in chat. The feature hooked the name Discord draws on a profile card, which the message list does not use, so the chat kept showing Discord's own choice; the chat row is rewritten now
+* **Discord - Show names your way:** Fixed the other names never appearing: they were glued into brackets after the name, where they were easy to miss. They now sit on their own small line under the name
+
+### 🔧 Improvements
+
+* **Discord - Show names your way:** Each name under "Also show" now shows what a tap will do: a plus adds it, an X takes it away
+* **Discord - Show names your way:** Changing the order or the extra names redraws the chat you have open instead of waiting for it to reload
+
 ## [1.0.7] (2026-11-26)
 
 ### 🐛 Bug Fixes

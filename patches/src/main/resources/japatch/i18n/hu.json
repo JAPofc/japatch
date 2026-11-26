@@ -1965,6 +1965,7 @@
     "{time} ago": "{time} ezelőtt",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 és a kategórianevek körüli vonalak.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 és zászlók, bárhol is vannak a névben.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "A Discordon a becenév csak szerveren belül létezik, ezért a Nickname és a Server nickname ugyanaz a név. A legtöbben csak az @username és a Display name között látnak különbséget."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "A Discordon a becenév csak szerveren belül létezik, ezért a Nickname és a Server nickname ugyanaz a név. A legtöbben csak az @username és a Display name között látnak különbséget.",
+    "A plus adds a name under the one that wins; an X takes it away.": "A plusz a győztes név alá tesz nevet; az X elveszi."
   }
 }

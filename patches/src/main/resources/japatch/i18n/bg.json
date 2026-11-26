@@ -1947,6 +1947,7 @@
     "{time} ago": "преди {time}",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 и чертите около имената на категориите.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 и знамена, където и да са в името.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "В Discord прякорът съществува само в сървър, затова Nickname и Server nickname са едно и също име. Повечето хора виждат разлика само между @username и Display name."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "В Discord прякорът съществува само в сървър, затова Nickname и Server nickname са едно и също име. Повечето хора виждат разлика само между @username и Display name.",
+    "A plus adds a name under the one that wins; an X takes it away.": "Плюс добавя име под името, което печели; X го премахва."
   }
 }

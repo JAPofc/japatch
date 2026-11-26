@@ -1787,6 +1787,7 @@
     "{time} ago": "{time}前",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」や、カテゴリー名を囲む縦線。",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉や国旗。名前のどこにあっても取り除きます。",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord ではニックネームはサーバー内にしか存在しないため、Nickname と Server nickname は同じ名前です。ふつうは @username と Display name の違いだけが見えます。"
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord ではニックネームはサーバー内にしか存在しないため、Nickname と Server nickname は同じ名前です。ふつうは @username と Display name の違いだけが見えます。",
+    "A plus adds a name under the one that wins; an X takes it away.": "プラスは勝った名前の下に名前を追加し、X はそれを外します。"
   }
 }

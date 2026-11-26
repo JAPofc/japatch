@@ -1965,6 +1965,7 @@
     "{time} ago": "{time} sitten",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 ja kategorioiden nimiä ympäröivät viivat.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 ja liput, missä kohtaa nimeä tahansa.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discordissa lempinimi on vain palvelimella, joten Nickname ja Server nickname ovat sama nimi. Useimmat näkevät eron vain nimien @username ja Display name välillä."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discordissa lempinimi on vain palvelimella, joten Nickname ja Server nickname ovat sama nimi. Useimmat näkevät eron vain nimien @username ja Display name välillä.",
+    "A plus adds a name under the one that wins; an X takes it away.": "Plus lisää nimen voittavan nimen alle; X poistaa sen."
   }
 }

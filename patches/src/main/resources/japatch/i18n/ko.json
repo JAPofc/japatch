@@ -1787,6 +1787,7 @@
     "{time} ago": "{time} 전",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 및 카테고리 이름 양옆의 세로선.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 및 국기. 이름 어디에 있든 없앱니다.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord에서 별명은 서버 안에서만 존재하므로 Nickname과 Server nickname은 같은 이름입니다. 대부분은 @username과 Display name의 차이만 보게 됩니다."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord에서 별명은 서버 안에서만 존재하므로 Nickname과 Server nickname은 같은 이름입니다. 대부분은 @username과 Display name의 차이만 보게 됩니다.",
+    "A plus adds a name under the one that wins; an X takes it away.": "플러스는 선택된 이름 아래에 이름을 더하고, X는 그것을 뺍니다."
   }
 }

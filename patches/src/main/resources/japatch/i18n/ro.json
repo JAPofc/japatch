@@ -2025,6 +2025,7 @@
     "{time} ago": "acum {time}",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 și barele din jurul numelor de categorii.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 și steaguri, oriunde ar fi în nume.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Pe Discord o poreclă există doar în interiorul unui server, așa că Nickname și Server nickname sunt același nume. Majoritatea oamenilor văd o diferență doar între @username și Display name."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Pe Discord o poreclă există doar în interiorul unui server, așa că Nickname și Server nickname sunt același nume. Majoritatea oamenilor văd o diferență doar între @username și Display name.",
+    "A plus adds a name under the one that wins; an X takes it away.": "Un plus adaugă un nume sub cel care câștigă; un X îl scoate."
   }
 }

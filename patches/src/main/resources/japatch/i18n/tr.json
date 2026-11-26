@@ -1947,6 +1947,7 @@
     "{time} ago": "{time} önce",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 ve kategori adlarının etrafındaki çizgiler.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 ve bayraklar, adın neresinde olursa olsun.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord'da takma ad yalnızca bir sunucu içinde vardır, bu yüzden Nickname ve Server nickname aynı addır. Çoğu kişi yalnızca @username ile Display name arasında fark görür."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Discord'da takma ad yalnızca bir sunucu içinde vardır, bu yüzden Nickname ve Server nickname aynı addır. Çoğu kişi yalnızca @username ile Display name arasında fark görür.",
+    "A plus adds a name under the one that wins; an X takes it away.": "Artı, kazanan adın altına bir ad ekler; X onu kaldırır."
   }
 }

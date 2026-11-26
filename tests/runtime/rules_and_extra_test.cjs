@@ -71,5 +71,15 @@ check("setSetting keeps a comma list as text", () => {
     ok(/if \(holdsText\) value = value == null \? "" : String\(value\);/.test(body), "text is not kept as text");
 });
 
+// ------------------------------------------------ the row says what a tap will do (device: "give it an X or an item")
+check("a ticked name shows an X and an unticked name shows a plus", () => {
+    const start = SOURCE.indexOf('el(Group, {key:"extra", title:tr("Also show")}');
+    const stop = SOURCE.indexOf('"Anything after the name is drawn', start);
+    const body = SOURCE.slice(start, stop > start ? stop : SOURCE.length);
+    ok(/icon: picked \? rowIcon\(6573, "CircleXIcon"\) : rowIcon\(10621, "PlusLargeIcon"\)/.test(body),
+        "the icon does not follow the tick state");
+    ok(/footnote\("note3",/.test(body) && /A plus adds a name/.test(body), "the plus/X line is not explained on the page");
+});
+
 if (failed) { console.log(failed + " failing"); process.exit(1); }
 console.log("all passed");

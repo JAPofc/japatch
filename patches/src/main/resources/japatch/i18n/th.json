@@ -1787,6 +1787,7 @@
     "{time} ago": "{time}ที่ผ่านมา",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 และเส้นรอบชื่อหมวดหมู่",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 และธง ไม่ว่าจะอยู่ตรงไหนในชื่อ",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "ใน Discord ชื่อเล่นมีเฉพาะในเซิร์ฟเวอร์เท่านั้น Nickname กับ Server nickname จึงเป็นชื่อเดียวกัน คนส่วนใหญ่เห็นความต่างแค่ระหว่าง @username กับ Display name"
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "ใน Discord ชื่อเล่นมีเฉพาะในเซิร์ฟเวอร์เท่านั้น Nickname กับ Server nickname จึงเป็นชื่อเดียวกัน คนส่วนใหญ่เห็นความต่างแค่ระหว่าง @username กับ Display name",
+    "A plus adds a name under the one that wins; an X takes it away.": "เครื่องหมายบวกเพิ่มชื่อใต้ชื่อที่ชนะ ส่วน X เอาออก"
   }
 }

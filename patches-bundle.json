@@ -1,8 +1,8 @@
 {
   "created_at": "2026-11-26T09:09:15",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - Replace text when sending:** Fixed Save, Cancel and the X doing nothing in the rules box. It is opened as a sheet but was closed as a modal, so only the swipe got rid of it\n* **Discord - Show names your way:** Fixed the names under \"Also show\" that were not ticked refusing to be tapped at all. A row's own tick state was hiding the switch that decides whether rows can be tapped\n* **Discord - Show names your way:** Fixed a name that was unticked staying unticked: once the last one was removed the list could not be filled again\n\n### \ud83d\udd27 Improvements\n\n* **Discord - Show names your way:** The page now says that Nickname and Server nickname are the same name on Discord, so the two rows are no longer expected to differ\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.7/patches-1.0.7.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.7",
+  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - Show names your way:** Fixed the name never changing in chat. The feature hooked the name Discord draws on a profile card, which the message list does not use, so the chat kept showing Discord's own choice; the chat row is rewritten now\n* **Discord - Show names your way:** Fixed the other names never appearing: they were glued into brackets after the name, where they were easy to miss. They now sit on their own small line under the name\n\n### \ud83d\udd27 Improvements\n\n* **Discord - Show names your way:** Each name under \"Also show\" now shows what a tap will do: a plus adds it, an X takes it away\n* **Discord - Show names your way:** Changing the order or the extra names redraws the chat you have open instead of waiting for it to reload\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.8/patches-1.0.8.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.8",
   "signature_download_url": "",
-  "version": "1.0.7"
+  "version": "1.0.8"
 }

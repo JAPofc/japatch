@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.7";
+    const revision = "1.0.8";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -708,6 +708,7 @@
         if (features.messageHighlight && key === "messageHighlight") later(messageHighlightRedraw, 0);
         if (features.hideBlocked && featureFor(key) === "hideBlocked") hideBlockedChanged();
         if (features.staffTag && featureFor(key) === "staffTag") later(staffTagChanged, 0);
+        if (features.showMeYourName && featureFor(key) === "showMeYourName") later(showNameChanged, 0);
         if (features.bulkDelete && key === "bulkDelete" && !value) bulkDeleteCancel();
         if (features.bulkDelete && (key === "bulkDeleteIncludeCached" || key === "noDelete") && bulkDelete.active) { bulkDeletePruneKept(); bulkDeleteRedrawAll(); }
         if (features.experiments && key === "experiments") { if (value) experimentsEnable(); else if (experiments.unlocked && !backup.restoring) later(experimentsAskReopen, 0); }
@@ -8736,6 +8737,7 @@
         if (features.timeoutDuration && enabled("timeoutDuration")) message = timeoutTagMessage(message, row.message);
         if (features.voiceDownload && enabled("voiceDownload")) message = voiceDownloadMessage(message, row.message);
         if (features.staffTag && enabled("staffTag")) message = staffTagMessage(message, row.message);
+        if (features.showMeYourName && enabled("showMeYourName")) message = showMeYourNameMessage(message);
         let next = message === result.message ? result : Object.assign({},result,{message});
         if (!translateOn && !features.translate && !(noDeleteOn && (edits.size || deleted.size)) && !highlightOn && !features.messageHighlight && !bulkOn) return next;
         const source = row.message || message;
@@ -14755,24 +14757,74 @@
         const unique = extra.filter((text, i) => extra.indexOf(text) === i);
         return unique.length ? " (" + unique.join(" · ") + ")" : "";
     }
-    // Discord's DisplayName draws the text itself, so the props carry where the name comes from instead of a
-    // string. Rewriting props is what makes the replacement land in place, on phones, with no hover.
-    function showMeYourName(props) {
-        if (!props || !settings.showMeYourName) return props;
-        const picked = pickedName(props);
-        if (!picked) return props;
-        const text = picked.text + nameSuffix(props, picked.text);
-        // Different builds read different prop names; set every one that is present, so the rewrite is not undone.
-        const next = Object.assign({}, props);
-        for (const key of ["name", "displayName", "text", "children"]) if (typeof props[key] === "string") next[key] = text;
-        if (next.name === props.name && next.displayName === props.displayName && next.text === props.text) next.children = text;
-        return next;
+    // Where the chat row keeps the name it draws. Discord's own DisplayName (10858) belongs to the profile card:
+    // hooking it changed nothing in chat (device, 1.0.7), so the row's author is rewritten instead. Every field a
+    // build is seen to read is set, and the original name is left in place when a field is missing.
+    const NAME_FIELDS = ["username", "globalName", "global_name", "nick", "nickname"];
+    function shownNameFor(message) {
+        if (!message || !message.authorId) return null;
+        const parts = {};
+        const author = message.author;
+        if (author && typeof author === "object") {
+            parts.username = author.username || "";
+            parts.display = author.globalName || author.global_name || author.displayName || "";
+            parts.nickname = author.nick || author.nickname || "";
+        }
+        // The member record is where a server nickname lives; getMember is optional and never assumed.
+        try {
+            const members = showName.members || (showName.members = inspectedExport(2128, "default"));
+            const guildId = message.guildId || message.guild_id;
+            if (guildId && members && typeof members.getMember === "function") {
+                const member = members.getMember(guildId, message.authorId);
+                const nick = member && (member.nick || member.nickname);
+                if (nick) { parts.nickname = nick; if (!parts.username && member.user) parts.username = member.user.username || ""; if (!parts.display && member.user) parts.display = member.user.globalName || member.user.global_name || ""; }
+            }
+        } catch (_) {}
+        const order = nameOrder();
+        let chosen = null;
+        for (const kind of order) if (parts[kind]) { chosen = {text: parts[kind], kind}; break; }
+        if (!chosen) return null;
+        const extras = [];
+        for (const kind of String(settings.showMeYourNameExtra || "").split(",").map(part => part.trim()).filter(Boolean)) {
+            const text = parts[kind];
+            if (text && text !== chosen.text && extras.indexOf(text) < 0) extras.push(text);
+        }
+        return {text: chosen.text, extras};
     }
-    // The rewritten name has to survive a re-render, so it rides on the DisplayName hook that is already there.
-    function showMeYourNameHook(orig, self, args) {
-        if (React) useSettings("showMeYourName");
-        const props = args[0];
-        return orig.apply(self, [showMeYourName(props)].concat(Array.prototype.slice.call(args, 1)));
+    // The extra names go on their own small line under the name, which is far clearer on a phone than brackets
+    // glued to the name (device, 1.0.7: nothing showed up at all).
+    function shownNameSubtitle(name) {
+        if (!name || !name.extras.length || !RN) return null;
+        return el(RN.Text, {key: "japatch-extra-name", style: {fontSize: 11, opacity: 0.65}, numberOfLines: 1},
+            name.extras.join(" \u00b7 "));
+    }
+    function showMeYourNameMessage(message) {
+        if (!message || message.webhookId || !enabled("showMeYourName")) return message;
+        // The author's own fields are part of the key: when someone renames, the row is asked again instead of
+        // being handed the name it had before.
+        const a0 = message.author || {};
+        const key = String(message.channel_id || message.channelId || "") + ":" + String(message.id || "") + ":" +
+            String(a0.username || "") + ":" + String(a0.globalName || a0.global_name || "") + ":" + String(a0.nick || a0.nickname || "");
+        let hit = showName.cache.get(key);
+        if (hit === undefined) {
+            hit = shownNameFor(message);
+            if (showName.cache.size > 3000) showName.cache.clear();
+            showName.cache.set(key, hit);
+        }
+        if (!hit) return message;
+        const author = message.author;
+        if (!author || typeof author !== "object") return message;
+        let same = true;
+        for (const field of NAME_FIELDS) if (author[field] !== undefined && author[field] !== hit.text) same = false;
+        if (same && !hit.extras.length) return message;
+        // A copy keeps the row's own record (and its prototype) intact; only the author is swapped. Every field
+        // is written on the copy at once, so a record whose fields are read-only or getter-backed cannot end up
+        // half renamed.
+        const fields = NAME_FIELDS.filter(field => author[field] !== undefined);
+        const descriptors = Object.getOwnPropertyDescriptors(author);
+        for (const field of fields) descriptors[field] = {value: hit.text, enumerable: true, configurable: true, writable: true};
+        const nextAuthor = Object.create(Object.getPrototypeOf(author), descriptors);
+        return copyWith(message, "author", nextAuthor);
     }
     function ShowMeYourNameSettings() {
         useSettings("showMeYourName");
@@ -14797,10 +14849,14 @@
                 // (reported on the device, 1.0.6).
                 ["username", "display", "nickname"].map(kind => {
                     const picked = extra.includes(kind);
-                    return el(ui.TableRow, {key:kind, label:(picked ? "\u2713 " : "") + tr(label[kind]), icon:rowIcon(5187, "TextIcon"),
+                    // The icon says what the tap will do: a plus adds the name, an X takes it away. Tapping the row
+                    // is the whole gesture, so the X is not a second button that could be missed.
+                    return el(ui.TableRow, {key:kind, label:(picked ? "\u2713 " : "") + tr(label[kind]),
+                        icon: picked ? rowIcon(6573, "CircleXIcon") : rowIcon(10621, "PlusLargeIcon"),
                         disabled:!on, onPress:() => setSetting("showMeYourNameExtra",
                             (picked ? extra.filter(other => other !== kind) : extra.concat([kind])).join(","))});
                 })),
+            !on ? null : footnote("note3", "A plus adds a name under the one that wins; an X takes it away."),
             footnote("note", "Anything after the name is drawn as plain text, in the same place Discord draws names."),
             footnote("note2", "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.")];
         return settingsBody(ui, groups);
@@ -19552,6 +19608,7 @@
     const STAFF_TAG_KINDS = ["owner", "admin", "manager", "mod"];
     const STAFF_TAG_COLORS = {owner:"#d9951a", admin:"#e5393d", manager:"#5865f2", mod:"#1e9a52"};
     const staffTag = {guilds:null, members:null, roles:null, cache:new Map(), masks:null};
+    const showName = {members:null, cache:new Map()};
     function staffTagLabel(kind) {
         return kind === "owner" ? tr("Owner") : kind === "admin" ? tr("Admin") : kind === "manager" ? tr("Manager") : tr("Mod");
     }
@@ -19609,6 +19666,20 @@
         return copy;
     }
     // Switched on or off, or an option changed: redraw the chat that's open, the way Message highlights does.
+    // Switching it on or off, or changing the order or the extra names, redraws the open chat.
+    function showNameChanged() {
+        showName.cache.clear();
+        const selected = inspectedExport(2119, "default"), store = msgStore || (msgStore = inspectedExport(5532, "default"));
+        const channelId = selected && typeof selected.getChannelId === "function" ? selected.getChannelId() : null;
+        if (!channelId || !store || typeof store.getMessages !== "function") return;
+        const ids = [];
+        try {
+            const messages = store.getMessages(channelId);
+            const arr = messages && Array.isArray(messages._array) ? messages._array : null;
+            if (arr) for (let i = 0; i < arr.length; i++) { if (arr[i] && arr[i].id) ids.push(String(arr[i].id)); }
+        } catch (_) {}
+        bulkDeleteRedrawIds(channelId, ids);
+    }
     function staffTagChanged() {
         staffTag.cache.clear();
         const selected = inspectedExport(2119, "default"), store = msgStore || (msgStore = inspectedExport(5532, "default"));
@@ -23569,8 +23640,8 @@
             case 5211: if (features.platformIndicators) sessionsStore = exports.default; return exports;
             case 10858:
                 displayNameType = exports.DisplayName;
-                // Both features ride on the same names: platform badges wrap them, Show names your way rewrites them.
-                if (features.showMeYourName) exports = hookExport(exports, "DisplayName", showMeYourNameHook);
+                // Show names your way does not ride here: DisplayName draws the profile card, not the message list,
+                // so it is rewritten in the chat row instead (showMeYourNameMessage).
                 if (!features.platformIndicators) return exports;
                 exports = hookExport(exports, "DisplayName", platformName);
                 return hookComponent(exports, (orig, self, args) => wrapProfileTree(orig.apply(self, args), displayNameType, platformName, platformWrappers));

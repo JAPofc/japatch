@@ -1787,6 +1787,7 @@
     "{time} ago": "{time} trước",
     "┃, ・, ✦, 「」 and the bars around category names.": "┃, ・, ✦, 「」 và các vạch quanh tên danh mục.",
     "🎫, 🛠️, 🎉 and flags, wherever they are in the name.": "🎫, 🛠️, 🎉 và cờ, dù nằm ở đâu trong tên.",
-    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Trên Discord, biệt danh chỉ tồn tại trong một máy chủ, nên Nickname và Server nickname là cùng một tên. Hầu hết mọi người chỉ thấy khác nhau giữa @username và Display name."
+    "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.": "Trên Discord, biệt danh chỉ tồn tại trong một máy chủ, nên Nickname và Server nickname là cùng một tên. Hầu hết mọi người chỉ thấy khác nhau giữa @username và Display name.",
+    "A plus adds a name under the one that wins; an X takes it away.": "Dấu cộng thêm tên bên dưới tên thắng; dấu X bỏ tên đó đi."
   }
 }

@@ -10,9 +10,12 @@ const end = SOURCE.indexOf("    function ShowMeYourNameSettings");
 if (start < 0 || end < start) throw new Error("the Show names your way block is missing from bootstrap.js");
 
 const settings = {showMeYourName: true, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username"};
-const context = {settings, React: null, enabled: () => true, console};
+const inspected = {2128: null};
+const context = {settings, React: null, enabled: key => !!settings[key], console, inspectedExport: id => inspected[id] || null,
+    copyWith: (object, key, value) => { const copy = Object.create(Object.getPrototypeOf(object), Object.getOwnPropertyDescriptors(object)); copy[key] = value; return copy; }};
 vm.createContext(context);
-vm.runInContext(SOURCE.slice(start, end) + "\nthis.api = {nameOrder, nameParts, pickedName, nameSuffix, showMeYourName};", context);
+vm.runInContext("this.showName = {members:null, cache:new Map()};", context);
+vm.runInContext(SOURCE.slice(start, end) + "\nthis.api = {nameOrder, nameParts, pickedName, nameSuffix, shownNameFor, showMeYourNameMessage};", context);
 const api = context.api;
 
 let failures = 0;
@@ -62,18 +65,35 @@ check("with nothing else to show there are no brackets", () => {
     settings.showMeYourNameExtra = "username";
 });
 
-check("the name is rewritten in place, on the props Discord draws", () => {
-    const props = {user: person.user, member: person.member, name: "Ani", displayName: "Ani"};
-    const next = api.showMeYourName(props);
-    eq(next.name, "Ani (ana)", "name");
-    eq(next.displayName, "Ani (ana)", "displayName");
-    eq(props.name, "Ani", "the original props are not mutated");
+// The message row is what the phone draws, so that is where the name has to change. DisplayName (10858) only
+// reaches the profile card, which is why hooking it changed nothing in chat (device, 1.0.7).
+function message(author, extra) {
+    return Object.assign({id: "9", channel_id: "5", authorId: author.id || "1", author}, extra || {});
+}
+
+check("the chat row shows the name the order picks", () => {
+    const row = message({id: "1", username: "ana", globalName: "Ana", nick: "Ani"});
+    const next = api.showMeYourNameMessage(row);
+    eq(next.author.username, "Ani", "nickname wins");
+    eq(row.author.username, "ana", "the stored record is not mutated");
+});
+
+check("the other names are handed over for the small line under it", () => {
+    const row = message({id: "1", username: "ana", globalName: "Ana", nick: "Ani"});
+    const shown = api.shownNameFor(row);
+    eq(shown.text, "Ani", "shown");
+    eq(shown.extras.join(","), "ana", "extras");
+});
+
+check("a webhook keeps its own name", () => {
+    const row = message({id: "1", username: "hook", globalName: "Hook"}, {webhookId: "77"});
+    eq(api.showMeYourNameMessage(row), row, "untouched");
 });
 
 check("turned off, nothing is touched", () => {
     settings.showMeYourName = false;
-    const props = {user: person.user, member: person.member, name: "Ani"};
-    eq(api.showMeYourName(props), props, "same object");
+    const row = message({id: "1", username: "ana", globalName: "Ana", nick: "Ani"});
+    eq(api.showMeYourNameMessage(row), row, "same object");
     settings.showMeYourName = true;
 });
 
