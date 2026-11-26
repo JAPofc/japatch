@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.11";
+    const revision = "1.0.12";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -9124,6 +9124,24 @@
         reviewAuthAttempt++;reviewToken="";reviewAccount=null;reviewAuthState="idle";reviewAuthError="";
         reviewCache.clear();if (saved) save();notify("reviewDB");
     }
+    // The sign-in belongs to the address it was made against: a token handed to another server is that server's to
+    // read. Saving a different address, or clearing it, signs out here first so the page cannot say "Signed in as X"
+    // for a server nobody signed in to (reported on the device: an address that does not answer still showed a name).
+    function reviewServerChanged(next) {
+        const before = reviewBase();
+        settings.reviewServer = String(next == null ? "" : String(next));
+        const changed = reviewBase() !== before;
+        // Only a different address is a different server. Saving the same one (with or without a trailing slash) must
+        // keep the sign-in: it was made against exactly that address.
+        if (changed) {
+            reviewToken = ""; reviewAccount = null; reviewAuthError = "";
+            reviewIdentity.base = ""; reviewIdentity.clientId = ""; reviewIdentity.asked = false;
+            reviewCache.clear();
+        }
+        reviewAuthState = "idle"; reviewAuthAttempt++;
+        save(); notify("reviewDB");
+        return changed;
+    }
     // One UserStore listener for every review view, and it only wakes them when the signed-in
     // account actually changes. Before, each open view re-rendered every review view on any user update.
     let reviewWatchers=0, reviewWatchStore=null, reviewWatchId;
@@ -9220,9 +9238,8 @@
         const close = () => hideReviewSheet(ui, key);
         const apply = (draft, hostClose) => {
             const next = String(draft || "").trim();
-            settings.reviewServer = next; save(); close();
+            reviewServerChanged(next); close();
             if (typeof hostClose === "function") try { hostClose(); } catch (_) {}
-            reviewCache.clear(); reviewAuthState = "idle"; notify("reviewDB");
             reviewToast(ui, next ? tr("Reviews now uses {host}", {host: reviewHost(next)}) : tr("Reviews is off"), japatchIcon(7144, "CircleCheckIcon"));
         };
         // Discord's sheet host passes its own onClose to the content it is given; using it is what makes the
@@ -9252,8 +9269,7 @@
         const alerts = ui.alerts, current = settings.reviewServer || "";
         if (!alerts || typeof alerts.show !== "function") return;
         const apply = value => {
-            const next = String(value || "").trim();
-            settings.reviewServer = next; save(); reviewCache.clear(); reviewAuthState = "idle"; notify("reviewDB");
+            reviewServerChanged(String(value || "").trim());
         };
         // Discord's prompt has no text field on this build, so it offers the two useful choices instead of a broken box.
         alerts.show({title: tr("ReviewDB server"), body: current ? current : tr("None set. Enter the address of a ReviewDB server to turn Reviews on."),

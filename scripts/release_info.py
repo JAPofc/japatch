@@ -23,6 +23,17 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.12] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - User and server reviews:** Fixed the page still saying "Signed in as" after the server address was changed. The sign-in belonged to the old server, so it showed a name for an address never signed in to; changing the address now signs out of the old one first
+* **Discord - User and server reviews:** Fixed a sign-in made on one server being carried over to the next. A token is only good for the server that issued it, and the next address typed could have been anyone's
+
+### 🔧 Improvements
+
+* **Discord - User and server reviews:** The sign-in app row no longer keeps the previous server's app after the address changes, so it asks the new server which app it belongs to
+
 ## [1.0.11] (2026-11-26)
 
 ### ✨ New Features
