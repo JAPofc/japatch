@@ -101,5 +101,67 @@ check("nothing in the export needs the network", () => {
     eq(/fetch\(|XMLHttpRequest/.test(text), false, "no request code in the output");
 });
 
+// --- phase 2: text, HTML and ZIP ---
+const phase2Start = SOURCE.indexOf("    // The other two shapes");
+const phase2End = SOURCE.indexOf("    // The row goes in the channel's hold menu");
+if (phase2Start < 0 || phase2End < phase2Start) throw new Error("the export formats block is missing from bootstrap.js");
+vm.runInContext(SOURCE.slice(phase2Start, phase2End) + "\nthis.shapes = {exportText, exportHtml, exportZip, zipStore, exportEscape, exportColor, exportTime};", context);
+const shapes = context.shapes;
+const channel = {id: "10", name: "umum", type: 0};
+const loaded = context.api.exportMessages("10");
+
+check("the text file reads like a transcript, day by day", () => {
+    const text = shapes.exportText(channel, loaded);
+    eq(/#umum/.test(text), true, "channel heading");
+    eq(/3 messages/.test(text), true, "count");
+    eq(/--- 2024-05-01 ---/.test(text), true, "day heading");
+    eq(/Ana: first/.test(text), true, "first line by the display name");
+    eq(/\[file\] cat\.png/.test(text), true, "attachment listed");
+    eq(/\(edited\)/.test(text), true, "edited marker");
+});
+
+check("the HTML page is self-contained and escapes what people typed", () => {
+    const html = shapes.exportHtml(channel, loaded);
+    eq(/^<!doctype html>/.test(html), true, "doctype");
+    eq(/<title>#umum<\/title>/.test(html), true, "title");
+    // Links to attachments are fine; the page must not pull anything in by itself (no external css/js/font).
+    eq(/<link|<script|@import|<img/.test(html), false, "nothing loaded from the network");
+    eq(/<script/.test(html), false, "no scripts");
+    eq(shapes.exportEscape('<b>&"'), "&lt;b&gt;&amp;&quot;", "escaping");
+});
+
+check("a name with an emoji and a newline does not break the HTML", () => {
+    const nasty = [{id: "9", at: "2024-05-01T10:00:00.000Z", edited_at: null, author: {id: "9", name: "<script>alert(1)</script>"},
+        content: "line one\nline two & <b>", attachments: [], reply_to: null}];
+    const html = shapes.exportHtml(channel, nasty);
+    eq(/<script>alert/.test(html), false, "no injected script");
+    eq(/line one<br>line two &amp; &lt;b&gt;/.test(html), true, "newlines become breaks, tags escaped");
+});
+
+check("avatar colours are stable per id and always from the palette", () => {
+    eq(shapes.exportColor("9"), shapes.exportColor("9"), "stable");
+    eq(/^#[0-9a-f]{6}$/.test(shapes.exportColor("123")), true, "hex");
+});
+
+// The ZIP has to be a real ZIP: a hand-written one is easy to get subtly wrong, so check the bytes and the
+// structures a reader walks (local headers, central directory, end record).
+check("the ZIP has the three files, and its structure adds up", () => {
+    const zip = shapes.exportZip(channel, loaded);
+    eq(zip.size, zip.data.length, "declared size matches the bytes");
+    const bytes = zip.data;
+    eq(bytes[0] === 0x50 && bytes[1] === 0x4b && bytes[2] === 0x03 && bytes[3] === 0x04, true, "local header signature");
+    const text = Buffer.from(bytes).toString("latin1");
+    eq(text.includes("chat.html"), true, "chat.html name");
+    eq(text.includes("messages.txt"), true, "messages.txt name");
+    eq(text.includes("messages.json"), true, "messages.json name");
+    const end = bytes.slice(-22);
+    eq(end[0] === 0x50 && end[1] === 0x4b && end[2] === 0x05 && end[3] === 0x06, true, "end of central directory");
+    eq(end[10] | end[11] << 8, 3, "three entries");
+});
+
+check("the menu row says which format it will save", () => {
+    eq(/Export chat as \{format\}/.test(SOURCE), true, "the row is translated with the format's name");
+});
+
 if (failures) { console.log(failures + " failing"); process.exit(1); }
 console.log("all passed");

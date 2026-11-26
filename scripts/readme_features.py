@@ -29,7 +29,7 @@ GROUPS = [
     ("Sending", ["Send Nitro", "Bring back Tenor", "Fix link previews", "Send audio", "Send long", "Hide typing",
                  "Show file sizes", "Anonymous file names", "Tap mentions", "Expand the message bar", "Compress big",
                  "Reply without pinging", "Always trust links"]),
-    ("People", ["Pastel", "Show device", "Show owner", "Alert when", "Fix unknown", "Copy profile", "Leave group",
+    ("People", ["Pastel", "Show device", "Show owner", "Alert when", "Fix unknown", "Copy profile", "Leave group", "Show names your way",
                 "Show timeout", "User and server reviews", "User activity", "Account switcher", "Listen along",
                 "HypeSquad", "Custom idle", "Mutual group", "Platform spoof"]),
     ("Servers", ["Read all", "Show hidden", "Server info", "Edit servers", "Clone emojis", "Clean channel",

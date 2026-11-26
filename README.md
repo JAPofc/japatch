@@ -181,7 +181,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Download voice messages | A Download button under each voice message saves it to your phone. Based on VoiceDownload by puv |
 | Edit messages on this phone | Hold any message and change how it reads to you. Only you see the change |
 | Edit without "(edited)" | Edit a message without the "(edited)" tag |
-| Export chats | Hold a chat or thread in the channel list to save the messages Discord has loaded on this phone as a JSON file |
+| Export chats | Hold a chat or thread in the channel list to save the messages Discord has loaded on this phone: JSON, a page that looks like Discord and opens offline, plain text, or all three in one ZIP |
 | Favourite any image or video | Star any image or video to keep it in your GIF favourites |
 | Hide blocked or ignored messages | Removes the "blocked messages" and "ignored messages" rows from chat, and can hide replies to them too. From Rain |
 | Jump to first message | A button to go straight to the start of a chat, channel or thread |
@@ -229,6 +229,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Pastel name colors | Names without a role color get a soft pastel one |
 | Platform spoof | Show as desktop, web or console instead of mobile. Discord doesn't allow this and it could put your account at risk. Use at your own risk |
 | Show device indicators | Desktop, mobile, web, console or VR icons next to names, colored by status |
+| Show names your way | Discord has up to four names for someone: @username, display name, nickname and server nickname |
 | Show owner and mod tags | Shows an Owner, Admin, Manager or Mod tag next to people's names in chat. Based on StaffTag by mwittrien |
 | Show timeout duration | A tag next to timed-out people says how long until they can talk again. Based on ShowTimeoutDuration by Ven |
 | User activity notifications | Shows a notice when chosen friends or users change status, start typing or send a message. Based on UserNotif by cywrx and coder.gg |
@@ -281,7 +282,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
 | JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 29 languages, backup and restore, debug logs and a crash screen |
 
-**76 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
+**77 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
 <!-- features:end -->
 

@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.4";
+    const revision = "1.0.5";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -98,7 +98,7 @@
         accountSwitcher:false, accountSwitcherYouBar:true, accountSwitcherShare:false, accountSwitcherNotify:true, appIcons:false, nitroThemes:false, customThemes:false, customThemesBackground:true, materialYou:false, materialYouColor:"wallpaper", materialYouTint:"balanced",
         iconPacks:false, iconPacksTheme:true,
         messageHighlight:false, messageHighlightThickness:2, messageHighlightBrightness:50, messageHighlightPingColor:"default", serverInfo:false, serverInfoFriends:true, serverEdit:false,
-        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
+        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
         hypeSquad:false, customIdle:false, customIdleMinutes:10, pauseInvites:false, fastDeleteChannels:false, fastDeleteChannelsConfirm:true, fastDeleteChannelsMenu:true, mutualGroupDMs:false, platformSpoof:false, platformSpoofDevice:"desktop" };
     // The settings every feature starts from, for Reset to defaults on the Backup page.
     let DEFAULT_SETTINGS = null;
@@ -116,7 +116,7 @@
             accountSwitcher: false, accountSwitcherYouBar: true, accountSwitcherShare: false, accountSwitcherNotify: true, appIcons: false, nitroThemes: false, customThemes: false, customThemesBackground: true, materialYou: false, materialYouColor: "wallpaper", materialYouTint: "balanced",
             iconPacks: false, iconPacksTheme: true,
             messageHighlight: false, messageHighlightThickness: 2, messageHighlightBrightness: 50, messageHighlightPingColor: "default", serverInfo: false, serverInfoFriends: true, serverEdit: false,
-            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
+            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
         }));
     }
@@ -1182,7 +1182,7 @@
     const featureFor = key => {
         const cached = featureTable[key];
         if (cached !== undefined) return cached;
-        return featureTable[key] = key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : key;
+        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : key;
     };
     // Section titles are read whenever Discord draws the list, so they follow the language too. "JaPatch" is a name.
     function section(label, keys) {
@@ -1217,7 +1217,7 @@
         hiddenChannels:[8495, "LockIcon"], systemFont:[16730, "LettersIcon"], systemEmoji:[13827, "ChatSmileIcon"],
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
-        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"],
+        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"],
         hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"]};
     const japatchIcons = new Map();
     function japatchIcon(id, name, fallback) {
@@ -1786,6 +1786,8 @@
         toggle("people", "mutualGroupDMs", "Mutual group DMs", "Profiles show the group DMs you share with that person.");
         withOptions("people", "silentLeave", "JAPATCH_SILENTLEAVE", "Leave group DMs silently", "Leave group DMs without the \"left the group\" message, and choose whether Discord asks first.",
             "Leaving group DMs", SilentLeaveSettings);
+        withOptions("people", "showMeYourName", "JAPATCH_SHOWMEYOURNAME", "Show names your way",
+            "Pick which of someone's four names is shown, and what follows it in brackets.", "Show names your way", ShowMeYourNameSettings);
         withOptions("messages", "chatExport", "JAPATCH_CHATEXPORT", "Export chats", "Save a chat's loaded messages as a JSON file. Nothing leaves your phone unless you save it.", "Export chats", ChatExportSettings);
         withOptions("messages", "textReplace", "JAPATCH_TEXTREPLACE", "Replace text when sending", "Rewrite what you type before it is sent, one rule per line.", "Text replace", TextReplaceSettings);
         withOptions("messages", "silentEdit", "JAPATCH_SILENTEDIT", "Edit without the (edited) mark", "Only works when your message is the latest in the chat. Others see a new message, not an edit.", "Silent edit", SilentEditSettings);
@@ -7362,10 +7364,15 @@
     // words as its row on the Features list, with its icon in the brand color.
     function offCard(key,IconComponent,feature) {
         const FormSwitch=feature && features[feature] ? inspectedExport(7173,"FormSwitch") : null;
+        // The card must follow the switch that turns the feature on, or the knob stays where it was while the
+        // page below it fills in (the "switch didn't go blue" report). Same source of truth as the row switch.
+        const on=feature ? !!settings[feature] : false;
         const row=feature && featureSearch.rows.find(entry => entry.key===feature);
         const title=row ? tr(row.title) : tr("Turned off");
         return JaPatchStatusCard({key,title,IconComponent,accent:true,body:row && row.hint ? tr(row.hint) : tr(FormSwitch ? "Turn it on here to start." : "Switch it on in Features to start."),
-            trailing:FormSwitch ? el(FormSwitch,{key:"switch:"+riskCancels,value:false,accessibilityLabel:title,onValueChange:value => { if (!value) return; if (RISKY_FEATURES[feature]) { turnOnAsking(feature,true); return; } animateLayout(); setSetting(feature,true); }}) : null});
+            trailing:FormSwitch ? el(FormSwitch,{key:"offCard:"+feature+":"+(on ? "on" : "off"),value:on,accessibilityLabel:title,
+                onValueChange:value => { if (!feature) return; if (!value) { animateLayout(); setSetting(feature,false); return; }
+                    if (RISKY_FEATURES[feature]) { turnOnAsking(feature,true); return; } animateLayout(); setSetting(feature,true); }}) : null});
     }
     // A small chat surface for page previews, in the theme's chat colors (same tokens as the Message highlights one).
     const CHAT_PREVIEW_DARK = {chat:{borderRadius:16, overflow:"hidden", backgroundColor:"#1a1a1e", borderWidth:1, borderColor:"#ffffff14", paddingVertical:8},
@@ -9172,30 +9179,59 @@
     // same primitives every other JaPatch screen uses.
     function openReviewServer() {
         const ui=reviewUI();
-        if (!ui.TableRow) return;
-        const key="japatch-review-server";
-        const close=() => { try { ui.popModal(key); } catch (_) {} };
-        function ReviewServerModal() {
-            const [draft,setDraft]=React.useState(settings.reviewServer || "");
-            const apply=() => { const next=String(draft || "").trim(); settings.reviewServer=next; save(); close(); reviewCache.clear(); reviewAuthState="idle"; notify("reviewDB"); };
-            // Same shape as ReadAllSheet and the Reviews sheet: an ActionSheet with a title header and a Close button.
-            return el(ui.ActionSheet || RN.View,{key,
-                header:ui.Header ? el(ui.Header,{title:tr("ReviewDB server"),trailing:ui.Close ? el(ui.Close,{onPress:close}) : undefined}) : undefined},
-                el(RN.View,{key:"body",style:{padding:16,gap:12}},
-                el(RN.Text,{key:"hint",style:{fontSize:14,opacity:0.8}},
-                    tr("Example: https://your-server.example/api/reviewdb. Empty turns Reviews off.")),
-                el(RN.View,{key:"field",style:{marginTop:8}},
-                    ui.TextInput ? el(ui.TextInput,{value:draft,onChange:setDraft,placeholder:"https://…/api/reviewdb",autoCapitalize:"none",autoCorrect:false,keyboardType:"url"}) :
-                        el(RN.TextInput,{value:draft,onChangeText:setDraft,placeholder:"https://…/api/reviewdb",autoCapitalize:"none",autoCorrect:false,keyboardType:"url",style:{fontSize:16,padding:12}})),
-                el(RN.View,{key:"actions",style:{flexDirection:"row",justifyContent:"flex-end",gap:8,marginTop:4}},
-                    el(RN.Pressable,{onPress:close,accessibilityRole:"button",style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center"}},
-                        el(RN.Text,{style:{fontWeight:"600"}},tr("Cancel"))),
-                    el(RN.Pressable,{onPress:apply,accessibilityRole:"button",style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center",backgroundColor:"#5865f2"}},
-                        el(RN.Text,{style:{color:"#ffffff",fontWeight:"600"}},tr("Save"))))));
+        // A sheet, not a modal. pushModal hands Discord a component it mounts in its own modal host, and drawing
+        // Discord's ActionSheet/header inside that host crashed with "Cannot read property 'transitionState' of null"
+        // (1.0.4). showSheet is the same host the Reviews list and Read all already use, and it is not a modal.
+        if (!ui.ActionSheet || typeof ui.showSheet !== "function") { openReviewServerPrompt(ui); return; }
+        const key = "JaPatchReviewServer";
+        const close = () => hideReviewSheet(ui, key);
+        const apply = draft => {
+            const next = String(draft || "").trim();
+            settings.reviewServer = next; save(); close();
+            reviewCache.clear(); reviewAuthState = "idle"; notify("reviewDB");
+            reviewToast(ui, next ? tr("Reviews now uses {host}", {host: reviewHost(next)}) : tr("Reviews is off"), japatchIcon(7144, "CircleCheckIcon"));
+        };
+        function ReviewServerSheet() {
+            const [draft, setDraft] = React.useState(settings.reviewServer || "");
+            return el(ui.ActionSheet, {header: ui.Header && ui.Close ?
+                    el(ui.Header, {title: tr("ReviewDB server"), trailing: el(ui.Close, {onPress: close})}) : undefined},
+                el(RN.View, {key: "body", style: {padding:16, gap:12}},
+                    el(RN.Text, {key: "hint", style: {fontSize:14, opacity:0.8}},
+                        tr("Example: https://your-server.example/api/reviewdb. Empty turns Reviews off.")),
+                    el(RN.View, {key: "field", style: {marginTop:8}},
+                        ui.TextInput ? el(ui.TextInput, {value:draft, onChange:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none"}) :
+                            el(RN.TextInput, {value:draft, onChangeText:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none", autoCorrect:false, keyboardType:"url", style:{fontSize:16, padding:12}})),
+                    el(RN.View, {key: "actions", style: {flexDirection:"row", justifyContent:"flex-end", gap:8, marginTop:4}},
+                        el(RN.Pressable, {onPress:close, accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center"}},
+                            el(RN.Text, {style:{fontWeight:"600"}}, tr("Cancel"))),
+                        el(RN.Pressable, {onPress:() => apply(draft), accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center", backgroundColor:"#5865f2"}},
+                            el(RN.Text, {style:{color:"#ffffff", fontWeight:"600"}}, tr("Save"))))));
         }
-        try { ui.pushModal({key,modal:{key,modal:ReviewServerModal,animation:"slide-up",shouldPersistUnderModals:false,closable:true}}); } catch (_) {}
+        try { ui.showSheet({key, content: el(ReviewServerSheet), stackingBehavior: "stack"}); } catch (_) { openReviewServerPrompt(ui); }
+    }
+    // Without a sheet host (or if it refused), ask with Discord's own dialog: always available, never a crash.
+    function openReviewServerPrompt(ui) {
+        const alerts = ui.alerts, current = settings.reviewServer || "";
+        if (!alerts || typeof alerts.show !== "function") return;
+        const apply = value => {
+            const next = String(value || "").trim();
+            settings.reviewServer = next; save(); reviewCache.clear(); reviewAuthState = "idle"; notify("reviewDB");
+        };
+        // Discord's prompt has no text field on this build, so it offers the two useful choices instead of a broken box.
+        alerts.show({title: tr("ReviewDB server"), body: current ? current : tr("None set. Enter the address of a ReviewDB server to turn Reviews on."),
+            confirmText: current ? tr("Turn Reviews off") : tr("Close"), cancelText: current ? tr("Cancel") : undefined,
+            onConfirm: current ? () => apply("") : undefined});
+    }
+    // "your-server.example", for the toast after saving.
+    function reviewHost(address) {
+        const match = /^[a-z]+:\/\/([^/?#]+)/i.exec(String(address || "").trim());
+        return match ? match[1] : String(address || "").trim();
     }
     function ReviewSettings() {
+        // The page draws a switch (Show the be-respectful note) and cards that depend on settings, so it has to
+        // redraw when any setting changes. useReviews only subscribes to reviewDB, which is why turning the row
+        // switch on left the knob where it was (reported on the device: the list switch went blue, this one didn't).
+        useSettings();
         useReviews();
         const ui=reviewUI();
         if (!React || !RN || !ui.TableRow) return null;
@@ -14505,24 +14541,141 @@
             count: messages.length, messages,
         }, null, 2);
     }
+    const EXPORT_FORMATS = {
+        json: {label:"JSON", extension:"json", mime:"application/json"},
+        html: {label:"HTML", extension:"html", mime:"text/html"},
+        txt: {label:"Text", extension:"txt", mime:"text/plain"},
+        zip: {label:"ZIP", extension:"zip", mime:"application/zip"},
+    };
+    function exportContent(format, channel, messages) {
+        if (format === "html") return exportHtml(channel, messages);
+        if (format === "txt") return exportText(channel, messages);
+        if (format === "zip") return exportZip(channel, messages);
+        return exportJson(channel, messages);
+    }
+    // The format is a setting, so Export chat keeps its one row and saves the shape you picked on its page.
     function exportChannel(channelId) {
         const channel = channelStore && typeof channelStore.getChannel === "function" ? channelStore.getChannel(channelId) : null;
         if (!channel) { reviewToast(reviewUI(), "Open the chat first, then export it.", japatchIcon(7838, "WarningIcon")); return; }
         const messages = exportMessages(channelId);
         if (!messages.length) { reviewToast(reviewUI(), "There is nothing loaded to export yet.", japatchIcon(7838, "WarningIcon")); return; }
-        const text = exportJson(channel, messages);
-        if (text.length > EXPORT_FILE) { reviewToast(reviewUI(), "That chat is too big to export in one file.", japatchIcon(7838, "WarningIcon")); return; }
+        const format = EXPORT_FORMATS[settings.chatExportFormat] ? settings.chatExportFormat : "json";
+        const shape = EXPORT_FORMATS[format];
+        const safe = String(channel.name || channel.id || "chat").replace(/[^A-Za-z0-9._-]+/g, "-").slice(0, 40);
+        const name = "japatch-" + safe + "-" + backupDate(Date.now()) + "." + shape.extension;
+        // The size check runs on what is about to be written, in the shape it will be written.
+        const content = exportContent(format, channel, messages);
+        const bytes = shape.mime === "application/zip" ? content.data : content;
+        const length = shape.mime === "application/zip" ? content.size : bytes.length;
+        if (length > EXPORT_FILE) { reviewToast(reviewUI(), "That chat is too big to export in one file.", japatchIcon(7838, "WarningIcon")); return; }
         const saveDocuments = inspectedExport(11600, "saveDocuments"), dir = cacheDir();
         if (!files || typeof saveDocuments !== "function" || !dir) { reviewToast(reviewUI(), "Couldn't save the file.", japatchIcon(6573, "CircleXIcon")); return; }
-        const safe = String(channel.name || channel.id || "chat").replace(/[^A-Za-z0-9._-]+/g, "-").slice(0, 40);
-        const name = "japatch-" + safe + "-" + backupDate(Date.now()) + ".json";
-        Promise.resolve().then(() => files.writeFile("cache", name, text, "utf8"))
-            .then(() => saveDocuments({sourceUris: ["file://" + dir + "/" + name], fileName: name, mimeType: "application/json"}))
+        const written = shape.mime === "application/zip" ? files.writeFile("cache", name, new Uint8Array(bytes)) : files.writeFile("cache", name, bytes, "utf8");
+        Promise.resolve().then(written)
+            .then(() => saveDocuments({sourceUris: ["file://" + dir + "/" + name], fileName: name, mimeType: shape.mime}))
             .then(result => {
                 const first = Array.isArray(result) ? result[0] : result;
                 if (first && first.error) throw new Error(String(first.error));
                 reviewToast(reviewUI(), tr("Exported {n} messages", {n:messages.length}), japatchIcon(7144, "CircleCheckIcon"));
             }, error => { if (!pickerCancelled(error)) reviewToast(reviewUI(), "Couldn't save the file.", japatchIcon(6573, "CircleXIcon")); });
+    }
+    // Pick the shape, right on the page: one row per format, the current one ticked.
+    function exportFormatRow(ui, format, on) {
+        const shape = EXPORT_FORMATS[format], current = (EXPORT_FORMATS[settings.chatExportFormat] ? settings.chatExportFormat : "json") === format;
+        return el(ui.TableRow, {key:format, label:(current ? "\u2713 " : "") + shape.label,
+            subLabel:tr(format === "json" ? "Everything, in a file a script can read." : format === "html" ? "A page that looks like Discord, offline." :
+                format === "txt" ? "Plain text, in any editor." : "All three, in one archive."),
+            icon:rowIcon(5143, "DownloadIcon"), disabled:!on, onPress:() => setSetting("chatExportFormat", format)});
+    }
+    // The other two shapes: a text file anyone can read, and an HTML page that looks like Discord with no internet.
+    function exportText(channel, messages) {
+        const lines = ["# " + (channel.name ? "#" + channel.name : "Direct messages") + " (" + channel.id + ")",
+            "" + messages.length + " messages, exported " + new Date().toISOString(), ""];
+        let lastDay = "", lastName = "";
+        for (const message of messages) {
+            const day = message.at.slice(0, 10), time = message.at.slice(11, 16);
+            if (day !== lastDay) { lines.push("", "--- " + day + " ---", ""); lastDay = day; lastName = ""; }
+            const name = message.author.name || message.author.id, repeat = name === lastName;
+            lines.push((repeat ? " ".repeat(name.length + 2) : name + ": ") + message.content.replace(/\n/g, "\n" + " ".repeat(name.length + 2)));
+            if (!repeat) lastName = name;
+            for (const file of message.attachments) lines.push(" ".repeat(name.length + 2) + "[file] " + (file.name || "attachment") + (file.url ? " " + file.url : ""));
+            if (message.edited_at) lines.push(" ".repeat(name.length + 2) + "(edited)");
+        }
+        return lines.join("\n");
+    }
+    function exportEscape(text) {
+        return String(text == null ? "" : text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    }
+    // Discord's own chat colours, so the page reads like the app it came from: dark by default, light if the
+    // browser asks for it.
+    function exportHtml(channel, messages) {
+        const title = exportEscape(channel.name ? "#" + channel.name : "Direct messages");
+        const rows = messages.map(message => {
+            const author = exportEscape(message.author.name || message.author.id), time = exportEscape(exportTime(message.at));
+            const body = exportEscape(message.content).replace(/\n/g, "<br>");
+            const files = message.attachments.map(file => '<div class="file"><a href="' + exportEscape(file.url) + '">' + exportEscape(file.name || "attachment") + "</a></div>").join("");
+            const reply = message.reply_to ? '<div class="reply">replying to a message</div>' : "";
+            const edited = message.edited_at ? ' <span class="edited">(edited)</span>' : "";
+            return '<div class="msg" id="m' + exportEscape(message.id) + '"><div class="avatar" style="background:' + exportColor(message.author.id) + '">' +
+                author.slice(0, 1).toUpperCase() + '</div><div class="body"><div class="head"><span class="name">' + author + '</span><span class="time">' +
+                time + "</span></div>" + reply + '<div class="text">' + body + edited + "</div>" + files + "</div></div>";
+        }).join("\n");
+        return "<!doctype html>\n<html lang=\"en\"><head><meta charset=\"utf-8\">" +
+            "<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">" +
+            "<title>" + title + "</title><style>" +
+            ":root{--bg:#313338;--bg2:#2b2d31;--text:#dbdee1;--strong:#f2f3f5;--muted:#949ba4;--link:#00a8fc;--line:#3f4147}" +
+            "@media (prefers-color-scheme: light){:root{--bg:#ffffff;--bg2:#f2f3f5;--text:#2e3338;--strong:#060607;--muted:#5c5e66;--line:#e3e5e8}}" +
+            "*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.375 system-ui,-apple-system,'Segoe UI',Roboto,sans-serif}" +
+            "header{position:sticky;top:0;background:var(--bg2);border-bottom:1px solid var(--line);padding:12px 16px;font-weight:600;color:var(--strong)}" +
+            "header small{display:block;font-weight:400;color:var(--muted);font-size:12px;margin-top:2px}" +
+            "main{padding:16px 12px 48px}.msg{display:flex;gap:12px;padding:4px 4px}.msg:hover{background:rgba(0,0,0,.04)}" +
+            ".avatar{width:40px;height:40px;border-radius:50%;flex:0 0 40px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}" +
+            ".body{min-width:0;flex:1}.head{display:flex;gap:8px;align-items:baseline}.name{color:var(--strong);font-weight:600}" +
+            ".time{color:var(--muted);font-size:12px}.text{white-space:pre-wrap;overflow-wrap:anywhere}.edited{color:var(--muted);font-size:12px}" +
+            ".reply{color:var(--muted);font-size:12px;margin-bottom:2px}.file a{color:var(--link)}" +
+            "footer{color:var(--muted);font-size:12px;padding:24px 16px;border-top:1px solid var(--line)}" +
+            "</style></head><body><header>" + title + "<small>" + messages.length + " messages, exported " + exportEscape(new Date().toISOString().slice(0, 16).replace("T", " ")) +
+            "</small></header><main>\n" + rows + "\n</main><footer>Exported with JaPatch. Offline copy: older messages Discord never loaded are not here." +
+            "</footer></body></html>";
+    }
+    // A name's avatar colour, the way Discord picks one: stable per user id, from its own palette.
+    function exportColor(id) {
+        const palette = ["#5865f2", "#3ba55c", "#faa61a", "#ed4245", "#eb459e", "#9b59b6", "#1abc9c", "#e67e22"];
+        let hash = 0;
+        for (const ch of String(id || "")) hash = (hash * 31 + ch.charCodeAt(0)) >>> 0;
+        return palette[hash % palette.length];
+    }
+    function exportTime(iso) {
+        const d = new Date(iso), pad = n => (n < 10 ? "0" : "") + n;
+        return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()) + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
+    }
+    // A ZIP, written by hand: no library, no native module. Stored (not deflated), which every unzipper reads.
+    function zipStore(files) {
+        const CRC_TABLE = (() => { const table = []; for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xedb88320 ^ (c >>> 1) : c >>> 1; table[n] = c >>> 0; } return table; })();
+        const crc32 = bytes => { let c = 0xffffffff; for (let i = 0; i < bytes.length; i++) c = CRC_TABLE[(c ^ bytes[i]) & 0xff] ^ (c >>> 8); return (c ^ 0xffffffff) >>> 0; };
+        const utf8 = text => { const out = []; for (const ch of text) { let code = ch.codePointAt(0); if (code < 0x80) out.push(code); else if (code < 0x800) out.push(0xc0 | code >> 6, 0x80 | code & 63); else if (code < 0x10000) out.push(0xe0 | code >> 12, 0x80 | code >> 6 & 63, 0x80 | code & 63); else out.push(0xf0 | code >> 18, 0x80 | code >> 12 & 63, 0x80 | code >> 6 & 63, 0x80 | code & 63); } return out; };
+        const u16 = n => [n & 255, n >> 8 & 255], u32 = n => [n & 255, n >> 8 & 255, n >> 16 & 255, n >>> 24 & 255];
+        const parts = [], central = [], time = new Date();
+        const dosTime = (time.getHours() << 11) | (time.getMinutes() << 5) | (time.getSeconds() >> 1);
+        const dosDate = ((time.getFullYear() - 1980) << 9) | (time.getMonth() + 1 << 5) | time.getDate();
+        let offset = 0;
+        for (const file of files) {
+            const name = utf8(file.name), data = utf8(file.text), crc = crc32(data);
+            const local = [].concat(u32(0x04034b50), u16(20), u16(0x0800), u16(0), u16(dosTime), u16(dosDate), u32(crc), u32(data.length), u32(data.length), u16(name.length), u16(0), name, data);
+            parts.push(local);
+            central.push([].concat(u32(0x02014b50), u16(20), u16(20), u16(0x0800), u16(0), u16(dosTime), u16(dosDate), u32(crc), u32(data.length), u32(data.length), u16(name.length), u16(0), u16(0), u16(0), u16(0), u32(0), u32(offset), name));
+            offset += local.length;
+        }
+        const directory = central.reduce((all, entry) => all.concat(entry), []);
+        const end = [].concat(u32(0x06054b50), u16(0), u16(0), u16(files.length), u16(files.length), u32(directory.length), u32(offset), u16(0));
+        return {size: offset + directory.length + end.length, data: [].concat(parts.reduce((all, part) => all.concat(part), []), directory, end)};
+    }
+    function exportZip(channel, messages) {
+        return zipStore([
+            {name: "chat.html", text: exportHtml(channel, messages)},
+            {name: "messages.txt", text: exportText(channel, messages)},
+            {name: "messages.json", text: exportJson(channel, messages)},
+        ]);
     }
     // The row goes in the channel's hold menu, next to View raw data, and only while the feature is on.
     function exportChannelHook(sheetKey, isThread) {
@@ -14533,7 +14686,7 @@
             // Threads have their own hold menu, so the channel list leaves them out and the thread sheet adds them.
             const thread = !!channel && (channel.type === 10 || channel.type === 11 || channel.type === 12);
             if (!rawId(id) || thread !== !!isThread) return tree;
-            return sheetAddRow(tree, props, "japatch-export-chat", tr("Export chat as JSON"), japatchIcon(5143, "DownloadIcon"),
+            return sheetAddRow(tree, props, "japatch-export-chat", tr("Export chat as {format}", {format:(EXPORT_FORMATS[settings.chatExportFormat] || EXPORT_FORMATS.json).label}), japatchIcon(5143, "DownloadIcon"),
                 () => exportChannel(id), sheetKey(id));
         }, () => features.chatExport && enabled("chatExport"));
     }
@@ -14547,8 +14700,94 @@
         const Icon = japatchIcon(5143, "DownloadIcon");
         const groups = [
             !on ? offCard("status", Icon, "chatExport") : null,
-            statusCard("info", "Holding a chat in the channel list gives Export chat as JSON. Nothing leaves your phone unless you save the file somewhere.", {title:tr("Exports what Discord has loaded"), IconComponent:Icon}),
+            statusCard("info", "Holding a chat in the channel list gives Export chat. Nothing leaves your phone unless you save the file somewhere.", {title:tr("Exports what Discord has loaded"), IconComponent:Icon}),
+            el(Group, {key:"format", title:tr("Format")}, ["json", "html", "txt", "zip"].map(format => exportFormatRow(ui, format, on))),
             footnote("note", "Old messages Discord never loaded on this phone can't be in the file. Scroll up in the chat first to load more.")];
+        return settingsBody(ui, groups);
+    }
+    // Show your name your way (#191, ShowMeYourName by the Equicord authors). Phones have no hover, so the name
+    // is replaced in place rather than shown on top: pick which of the four names a person has wins, and what
+    // goes in brackets after it. Only text is rewritten, so nothing else about the row moves.
+    const NAME_KINDS = ["username", "display", "nickname", "serverNickname"];
+    function nameOrder() {
+        const raw = String(settings.showMeYourNameOrder || "").split(",").map(part => part.trim()).filter(Boolean);
+        const order = raw.filter((part, i) => NAME_KINDS.includes(part) && raw.indexOf(part) === i);
+        return order.length ? order.concat(NAME_KINDS.filter(kind => !order.includes(kind))) : NAME_KINDS.slice();
+    }
+    // Every name kind this build can see for someone: the @username, the display name, and the server nickname
+    // when the name is drawn inside a server.
+    function nameParts(props) {
+        const user = props && (props.user || props.userObject) || {};
+        const guild = props && (props.guild || props.guildObject);
+        const member = props && (props.member || props.guildMember);
+        const nickname = (member && (member.nick || member.nickname)) || (guild && user.id && guild.nicknames && guild.nicknames[user.id]) || "";
+        return {
+            username: user.username || "",
+            display: user.globalName || user.global_name || user.displayName || "",
+            nickname: nickname || "",
+            serverNickname: nickname || "",
+        };
+    }
+    function pickedName(props) {
+        const parts = nameParts(props);
+        for (const kind of nameOrder()) if (parts[kind]) return {text: parts[kind], kind};
+        return null;
+    }
+    // What goes in brackets after the name: whatever's picked, if it's a different name than the one shown.
+    function nameSuffix(props, shown) {
+        const parts = nameParts(props), extra = [];
+        for (const kind of String(settings.showMeYourNameExtra || "").split(",").map(part => part.trim()).filter(Boolean)) {
+            if (!NAME_KINDS.includes(kind) || kind === "serverNickname") continue;
+            const text = parts[kind];
+            if (text && text !== shown) extra.push(text);
+        }
+        const unique = extra.filter((text, i) => extra.indexOf(text) === i);
+        return unique.length ? " (" + unique.join(" · ") + ")" : "";
+    }
+    // Discord's DisplayName draws the text itself, so the props carry where the name comes from instead of a
+    // string. Rewriting props is what makes the replacement land in place, on phones, with no hover.
+    function showMeYourName(props) {
+        if (!props || !settings.showMeYourName) return props;
+        const picked = pickedName(props);
+        if (!picked) return props;
+        const text = picked.text + nameSuffix(props, picked.text);
+        // Different builds read different prop names; set every one that is present, so the rewrite is not undone.
+        const next = Object.assign({}, props);
+        for (const key of ["name", "displayName", "text", "children"]) if (typeof props[key] === "string") next[key] = text;
+        if (next.name === props.name && next.displayName === props.displayName && next.text === props.text) next.children = text;
+        return next;
+    }
+    // The rewritten name has to survive a re-render, so it rides on the DisplayName hook that is already there.
+    function showMeYourNameHook(orig, self, args) {
+        if (React) useSettings("showMeYourName");
+        const props = args[0];
+        return orig.apply(self, [showMeYourName(props)].concat(Array.prototype.slice.call(args, 1)));
+    }
+    function ShowMeYourNameSettings() {
+        useSettings("showMeYourName");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("showMeYourName"), Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow;
+        const Icon = japatchIcon(15994, "LaptopPhoneIcon");
+        const order = nameOrder(), extra = String(settings.showMeYourNameExtra || "").split(",").map(p => p.trim()).filter(Boolean);
+        const label = {username:"@username", display:"Display name", nickname:"Nickname", serverNickname:"Server nickname"};
+        const groups = [
+            !on ? offCard("status", Icon, "showMeYourName") : null,
+            statusCard("info", "Discord has up to four names for someone. The first one they have is the one shown; the others can follow in brackets.", {title:tr("Which name wins"), IconComponent:Icon}),
+            el(Group, {key:"order", title:tr("Order"), footer:tr("Tap a name to move it up. The top one wins.")},
+                order.map((kind, index) => el(ui.TableRow, {key:kind, label:tr(label[kind]) + (index === 0 ? " \u00b7 " + tr("shown") : ""),
+                    icon:rowIcon(index === 0 ? 7101 : 10796, index === 0 ? "CheckmarkSmallIcon" : "ArrowLargeUpIcon"),
+                    disabled:!on || index === 0,
+                    onPress:() => setSetting("showMeYourNameOrder", [kind].concat(order.filter(other => other !== kind)).join(","))}))),
+            el(Group, {key:"extra", title:tr("Also show")},
+                // Not a switch row: these write one comma-separated setting, so a tap adds or removes one name.
+                ["username", "display", "nickname"].map(kind => {
+                    const on = extra.includes(kind);
+                    return el(ui.TableRow, {key:kind, label:(on ? "\u2713 " : "") + tr(label[kind]), icon:rowIcon(5187, "TextIcon"),
+                        disabled:!on, onPress:() => setSetting("showMeYourNameExtra",
+                            (on ? extra.filter(other => other !== kind) : extra.concat([kind])).join(","))});
+                })),
+            footnote("note", "Anything after the name is drawn as plain text, in the same place Discord draws names.")];
         return settingsBody(ui, groups);
     }
     // Text replace (#191, TextReplace by Equicord's authors): rules like "brb => be right back", applied to what you
@@ -14640,6 +14879,9 @@
                         el(RN.Pressable, {onPress: apply, accessibilityRole: "button", style: {paddingHorizontal: 16, height: 40, borderRadius: 20, justifyContent: "center", backgroundColor: "#5865f2"}},
                             el(RN.Text, {style: {color: "#ffffff", fontWeight: "600"}}, tr("Save"))))));
         }
+        // The same sheet host the rest of JaPatch uses: a modal host draws Discord's ActionSheet differently and
+        // crashed on the Server editor (1.0.4), so the rules box does not go through one either.
+        if (ui.ActionSheet && typeof ui.showSheet === "function") try { ui.showSheet({key: "JaPatchTextRules", content: el(RulesModal), stackingBehavior: "stack"}); return; } catch (_) {}
         try { ui.pushModal({key, modal: {key, modal: RulesModal, animation: "slide-up", shouldPersistUnderModals: false, closable: true}}); } catch (_) {}
     }
     // MessageActionCreators (7445) sendMessage(channelId, message) and editMessage(channelId, messageId, {content}).
@@ -23276,8 +23518,10 @@
             case 5207: if (features.platformIndicators || features.userNotif) { presenceStore = exports.default; if (features.userNotif) userNotifSeedStatuses(); } return exports;
             case 5211: if (features.platformIndicators) sessionsStore = exports.default; return exports;
             case 10858:
-                if (!features.platformIndicators) return exports;
                 displayNameType = exports.DisplayName;
+                // Both features ride on the same names: platform badges wrap them, Show names your way rewrites them.
+                if (features.showMeYourName) exports = hookExport(exports, "DisplayName", showMeYourNameHook);
+                if (!features.platformIndicators) return exports;
                 exports = hookExport(exports, "DisplayName", platformName);
                 return hookComponent(exports, (orig, self, args) => wrapProfileTree(orig.apply(self, args), displayNameType, platformName, platformWrappers));
             case 13788: return features.platformIndicators ? hookComponent(exports, platformHeader) : exports;

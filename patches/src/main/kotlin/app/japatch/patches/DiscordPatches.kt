@@ -76,7 +76,7 @@ private val runtimeAssets = rawResourcePatch {
             "{picker:$pickerSelected,voice:$voiceSelected,copyBios:$copyBiosSelected," +
                 "favouriteAnything:$favouriteAnythingSelected,freeNitro:$freeNitroSelected," +
                 listOf("noTyping", "quickDelete", "noDelete", "jumpToTop", "hiddenChannels", "pastelize", "platformIndicators", "reviewDB", "readAll", "quests", "badges", "systemFont",
-                    "systemEmoji", "gestures", "validUser", "youBarSettings", "splitMessages", "translate", "userNotif", "accountSwitcher", "appIcons", "nitroThemes", "customThemes", "materialYou", "iconPacks", "messageHighlight", "serverInfo", "serverEdit", "fixEmbeds", "tenorGifs", "hideBlocked", "bulkDelete", "experiments", "cleanChannels", "noHandsfree", "voiceOptions", "anonFiles", "staffTag", "removedAlerts", "fullImages", "hideAnything", "alwaysTrust", "noConfirmPin", "clickableMentions", "expandBar", "quietReplies", "silentLeave", "chatExport", "textReplace", "guildLurk", "compressUploads", "timeoutDuration", "dndBanners", "landscapeFull", "voiceDownload", "cloneExpressions", "listenAlong", "silentEdit", "silentDelete", "localEdit", "hypeSquad", "customIdle", "mutualGroupDMs", "fastDeleteChannels", "pauseInvites", "platformSpoof", "backgroundMedia", "viewRaw", "fakeDeafen")
+                    "systemEmoji", "gestures", "validUser", "youBarSettings", "splitMessages", "translate", "userNotif", "accountSwitcher", "appIcons", "nitroThemes", "customThemes", "materialYou", "iconPacks", "messageHighlight", "serverInfo", "serverEdit", "fixEmbeds", "tenorGifs", "hideBlocked", "bulkDelete", "experiments", "cleanChannels", "noHandsfree", "voiceOptions", "anonFiles", "staffTag", "removedAlerts", "fullImages", "hideAnything", "alwaysTrust", "noConfirmPin", "clickableMentions", "expandBar", "quietReplies", "silentLeave", "chatExport", "showMeYourName", "textReplace", "guildLurk", "compressUploads", "timeoutDuration", "dndBanners", "landscapeFull", "voiceDownload", "cloneExpressions", "listenAlong", "silentEdit", "silentDelete", "localEdit", "hypeSquad", "customIdle", "mutualGroupDMs", "fastDeleteChannels", "pauseInvites", "platformSpoof", "backgroundMedia", "viewRaw", "fakeDeafen")
                     .joinToString(",") { "$it:${it in additionalSelections}" } + "}"
         )
         asset.writeText(selected)
@@ -342,8 +342,12 @@ val silentLeave = bundledPlugin("silentLeave", "Leave group DMs silently",
     "Leave group DMs without the \"left the group\" message. Based on SilentLeave by coder.gg.")
 
 @Suppress("unused")
+val showMeYourName = bundledPlugin("showMeYourName", "Show names your way",
+    "Discord has up to four names for someone: @username, display name, nickname and server nickname. Pick which one is shown and what follows it in brackets. The name is replaced where it is drawn, so it works on a phone.")
+
+@Suppress("unused")
 val chatExport = bundledPlugin("chatExport", "Export chats",
-    "Hold a chat or thread in the channel list to save the messages Discord has loaded on this phone as a JSON file. Nothing is uploaded, and messages Discord never loaded can't be in the file.")
+    "Hold a chat or thread in the channel list to save the messages Discord has loaded on this phone: JSON, a page that looks like Discord and opens offline, plain text, or all three in one ZIP. Nothing is uploaded, and messages Discord never loaded can't be in the file.")
 
 @Suppress("unused")
 val textReplace = bundledPlugin("textReplace", "Replace text when sending",

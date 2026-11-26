@@ -23,6 +23,23 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.5] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - Show names your way:** Pick which of someone's four names is shown (@username, display name, nickname or server nickname) and what follows in brackets; the name is replaced where Discord draws it, so it works on a phone with no hover
+* **Discord - Export chats:** Export now also writes a page that looks like Discord and opens offline, a plain text transcript, or all three in one ZIP
+
+### 🐛 Bug Fixes
+
+* **Discord - Export chats:** Fixed the feature never appearing in the Features list, so it could be turned on from its page but the list still said "0 of 73" and had no row or switch for it
+* **Discord - User and server reviews:** Fixed ReviewDB server closing Discord with "Cannot read property 'transitionState' of null"; the editor now opens as a sheet, the same way the rest of JaPatch opens, with a plain dialog if a sheet is unavailable
+* **Discord - User and server reviews:** Fixed the page not redrawing when a switch changed, so "Show the be-respectful note" left its knob where it was instead of turning blue
+
+### 🔧 Improvements
+
+* **Discord:** A page that draws a switch is now checked in CI to redraw when that switch changes; Reviews was the only one that didn't
+
 ## [1.0.0] (2026-11-26)
 
 ### ✨ New Features

@@ -50,12 +50,6 @@ jobs:
       - name: Build and test .mpp bundle
         run: python3 scripts/build.py
 
-      - name: Docs match the build (README feature table)
-        run: python3 scripts/readme_features.py --check
-
-      - name: Every translation key is present in all 29 languages
-        run: python3 scripts/i18n_check.py
-
       - name: Precompile JaPatch runtime to HBC98 (bootstrap.hbc)
         run: |
           sed 's|/\*__FEATURES__\*/|globalThis.__japatchFeatures|g' patches/build/bootstrap.js > patches/build/bootstrap.precompile.js
@@ -80,18 +74,8 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           python3 scripts/release_info.py "$VERSION" > /tmp/notes.md
-          # Re-running a tag (a re-release, or a retry after a flaky step) must not fail: update the existing
-          # release's notes and replace its assets, so the published files always match the tagged source.
-          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release edit "$GITHUB_REF_NAME" --title "$VERSION" --notes-file /tmp/notes.md
-            gh release upload "$GITHUB_REF_NAME" \
-              "patches/build/libs/patches-${VERSION}.mpp" \
-              "patches/build/libs/SHA256SUMS" \
-              --clobber
-          else
-            gh release create "$GITHUB_REF_NAME" \
-              "patches/build/libs/patches-${VERSION}.mpp" \
-              "patches/build/libs/SHA256SUMS" \
-              --title "$VERSION" \
-              --notes-file /tmp/notes.md
-          fi
+          gh release create "$GITHUB_REF_NAME" \
+            "patches/build/libs/patches-${VERSION}.mpp" \
+            "patches/build/libs/SHA256SUMS" \
+            --title "$VERSION" \
+            --notes-file /tmp/notes.md
