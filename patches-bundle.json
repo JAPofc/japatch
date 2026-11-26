@@ -1,8 +1,8 @@
 {
   "created_at": "2026-11-26T09:09:15",
-  "description": "### \u2728 New Features\n\n* **Discord - User and server reviews:** Reviews can now run on a server of your own. Type its address on Reviews > ReviewDB server and the app asks the server which Discord application it signs in with, so the address alone is enough; the app being used is shown right under it\n* **Discord - User and server reviews:** The address accepts a server that answers under /api/reviewdb as well as at its root, which is the shape ReviewDB's own addresses have\n\n### \ud83d\udd27 Improvements\n\n* **Discord - User and server reviews:** The page now says which Discord app a sign-in will use, so a server that belongs to someone else is never mistaken for the community server\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.9/patches-1.0.9.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.9",
+  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - User and server reviews:** Fixed the app asking where a server's reviews live: a server that answers its /health with \"not found\" (the community server does) was counted as broken, so a server of your own could be mixed up with it. Only an answer that names its own app is trusted now\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.10/patches-1.0.10.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.10",
   "signature_download_url": "",
-  "version": "1.0.9"
+  "version": "1.0.10"
 }

@@ -23,6 +23,12 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.10] (2026-11-26)
+
+### 🐛 Bug Fixes
+
+* **Discord - User and server reviews:** Fixed the app asking where a server's reviews live: a server that answers its /health with "not found" (the community server does) was counted as broken, so a server of your own could be mixed up with it. Only an answer that names its own app is trusted now
+
 ## [1.0.9] (2026-11-26)
 
 ### ✨ New Features
