@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.15";
+    const revision = "1.0.16";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -132,6 +132,10 @@
     // hiddenFeatures setting (comma-separated keys), so it's saved and backed up like any other choice.
     const featureList = {edit:false, open:false};
     const status = { picker: false, attachment: false, request: false, menu: false, conversion: false, audioError: "", storage: "waiting" };
+    // A saved "don't keep this" list (#143): people, servers and channels whose deleted messages are not kept. Ids
+    // only, so it lives here with the other small sets rather than beside the feature that reads it.
+    const NO_DELETE_SKIP_MAX = 200;
+    const noDeleteSkip = new Set();
     const listeners = new Set();
     const dirty = new Set();
     const sizeCache = new Map();
@@ -355,6 +359,9 @@
         const extra = {};
         if (features.reviewDB && reviewToken && reviewAccount) extra.reviewAuth = {account:reviewAccount, token:reviewToken};
         if (features.userNotif && userNotif.ids.size) extra.userNotifIds = Array.from(userNotif.ids);
+        // A "don't keep these" list is a preference, not private data: it holds ids and nothing about what was said,
+        // so it belongs in a backup the same way the feature switches do.
+        if (features.noDelete && noDeleteSkip.size) extra.noDeleteSkip = noDeleteSkipData();
         if (features.removedAlerts && settings.removedAlerts) { const seen = removedSeenData(); if (seen) extra.removedSeen = seen; }
         if (features.badges) {
             const played = {};
@@ -766,6 +773,10 @@
                     loaded.userNotifIds.slice(0, USER_NOTIF_MAX_IDS).forEach(id => { if (typeof id === "string" && /^\d{17,20}$/.test(id)) userNotif.ids.add(id); });
                 }
                 if (features.removedAlerts) removedLoad(loaded.removedSeen);
+                if (features.noDelete && Array.isArray(loaded.noDeleteSkip)) {
+                    noDeleteSkip.clear();
+                    loaded.noDeleteSkip.slice(0, NO_DELETE_SKIP_MAX).forEach(id => { if (typeof id === "string" && /^\d{17,20}$/.test(id)) noDeleteSkip.add(id); });
+                }
                 if (features.serverEdit && !serverEdit.dirty) serverEditLoad(serverEditClean(loaded.serverEdits, false));
                 if (features.localEdit) localEditLoad(loaded.localEdits);
                 if (features.badges) {
@@ -1637,6 +1648,9 @@
     // Cancelling remounts the switch (riskCancels is in its key), so a native switch that already slid on slides back.
     let riskCancels = 0;
     function turnOnAsking(key, value) {
+        // Off, then on, is how a halted Quest feature is allowed to try again: the halt exists so nothing is
+        // retried behind the user's back after Discord said the session may not do this.
+        if (key === "quests") { if (!value) quest.halted = null; else if (quest.halted) questClearHalt(); }
         if (!value || !RISKY_FEATURES[key] || settings[key]) { setSetting(key, value); return; }
         const cancel = () => { riskCancels++; notify(key); };
         const title = tr("Are you sure?"), body = RISKY_FEATURES[key](), yes = tr("Turn on"), ui = reviewUI();
@@ -4105,12 +4119,32 @@
         if (log.state === "ready" && log.timer !== undefined) logWrite(log);
         log.account = null; log.entries = []; log.state = "idle"; log.revision++;
     }
+    // A saved "don't keep this" list (#143). Ids only: a person, a server or a channel, all the same 17-20 digits, so
+    // one list is enough and the check is a set lookup per message rather than three.
+    function noDeleteSkipData() { return noDeleteSkip.size ? Array.from(noDeleteSkip) : null; }
+    function noDeleteSkipAdd(value) {
+        const text = String(value == null ? "" : value).trim();
+        const id = /^\d{17,20}$/.test(text) ? text : (/(\d{17,20})/.exec(text) || [])[1];
+        if (!id) return false;
+        noDeleteSkip.add(id); save(); return true;
+    }
+    function noDeleteSkipHas(message, channelId) {
+        if (!noDeleteSkip.size) return false;
+        const author = message && message.author;
+        if (author && author.id && noDeleteSkip.has(String(author.id))) return true;
+        const guild = message && (message.guild_id || message.guildId);
+        if (guild && noDeleteSkip.has(String(guild))) return true;
+        const channel = channelId || (message && (message.channel_id || message.channelId));
+        return !!(channel && noDeleteSkip.has(String(channel)));
+    }
     function logMessage(kind, message, channelId, content, before) {
         if (!message || !(kind === "d" ? settings.noDeleteLogDeleted : settings.noDeleteLogEdits)) return;
         const author = message.author, me = currentUser();
         if (!author || !author.id) return;
         if (!settings.noDeleteLogOwn && me && author.id === me.id) return;
         if (!settings.noDeleteLogBots && author.bot) return;
+        // The list wins over everything above: a muted person stays unkept even with Your own messages on.
+        if (noDeleteSkipHas(message, channelId)) return;
         const entry = logPlace({k:kind, t:Date.now(), m:String(message.id), u:logUser(author), x:logClip(content)}, channelId, message.guild_id || message.guildId);
         if (kind === "e") entry.b = logClip(before);
         const sent = message.timestamp, at = typeof sent === "string" ? Date.parse(sent) : sent && typeof sent.valueOf === "function" ? Number(sent.valueOf()) : NaN;
@@ -4575,6 +4609,49 @@
         if (!absolute) try { absolute = new Date(ms).toLocaleString(); } catch (_) {}
         return {relative, absolute};
     }
+    // Who can see this channel, worked out from the channel's own permission overwrites the way Discord does it: an
+    // @everyone bit decides for the server, a role bit decides for that role, and a member bit decides for that person.
+    // Only the View Channel bit (1 << 10) matters here. Anything Discord did not send is left unsaid rather than guessed.
+    const HIDDEN_VIEW = 1024;
+    function hiddenOverwrite(row) {
+        // A deny always wins over an allow in Discord, so both are read as numbers and tested separately. Discord sends
+        // them as strings of a decimal number in this build; BigInt is not available in every runtime it runs on.
+        const allow = Number(row && (row.allow != null ? row.allow : row.allow_), 10);
+        const deny = Number(row && (row.deny != null ? row.deny : row.deny_), 10);
+        const on = value => Number.isFinite(value) && Math.floor(value / HIDDEN_VIEW) % 2 === 1;
+        return {allow:on(allow), deny:on(deny)};
+    }
+    // The guild a channel belongs to, for its role names. Read lazily and never kept: a locked channel's dialog is
+    // opened by a tap, not while Discord is drawing a list.
+    function hiddenGuildOf(channel) {
+        const id = channel && (channel.guild_id || channel.guildId);
+        if (!id) return null;
+        const store = inspectedExport(2090, "default") || inspectedExport(2090, "GuildStore");
+        const get = store && (store.getGuild || store.getGuildById);
+        try { return typeof get === "function" ? get.call(store, String(id)) : null; } catch (_) { return null; }
+    }
+    function hiddenId(row) { return String((row && (row.id != null ? row.id : row.role_id != null ? row.role_id : row.user_id)) || ""); }
+    // The small list a person actually reads: "Everyone", role names, and the count of people with their own override.
+    function hiddenAudience(channel, guild) {
+        const rows = Array.isArray(channel && channel.permissionOverwrites) ? channel.permissionOverwrites : null;
+        if (!rows) return null;
+        const roles = new Map();
+        if (guild && Array.isArray(guild.roles)) for (const role of guild.roles) if (role && role.id != null) roles.set(String(role.id), role);
+        const out = {everyone:null, allow:[], deny:[], members:{allow:0, deny:0}, known:rows.length > 0};
+        for (const row of rows) {
+            const id = hiddenId(row), kind = Number(row && row.type);
+            const bits = hiddenOverwrite(row);
+            // type 0 is a role, 1 is a member, in both the old and the new shape.
+            const isMember = kind === 1 || (row && row.user_id != null) || (row && typeof row.type === "string" && row.type.toLowerCase() === "member");
+            if (isMember) { if (bits.allow) out.members.allow++; else if (bits.deny) out.members.deny++; continue; }
+            if (guild && guild.id != null && id === String(guild.id)) { out.everyone = bits.deny ? "deny" : bits.allow ? "allow" : null; continue; }
+            const name = roles.has(id) && roles.get(id).name ? String(roles.get(id).name) : "";
+            const entry = {id, name, allow:bits.allow, deny:bits.deny};
+            // Anything that is neither allow nor deny changes nothing and says nothing.
+            if (entry.allow) out.allow.push(entry); else if (entry.deny) out.deny.push(entry);
+        }
+        return out;
+    }
     function hiddenDetails(channel) {
         const pin = channel.lastPinTimestamp || channel.last_pin_timestamp;
         const last = channel.lastMessageId || channel.last_message_id;
@@ -4584,11 +4661,31 @@
             [tr("Last pin"), pin ? hiddenStamp(pin, tr("No pins yet")) : {relative:tr("No pins yet"), absolute:null}]
         ];
     }
+    // One line a person can act on: who the overwrites say may look. "Everyone" first, because it decides for the whole
+    // server; the named roles after it, because those are the exceptions. Never a number invented from nothing.
+    function hiddenAudienceText(audience) {
+        if (!audience || !audience.known) return "";
+        const parts = [];
+        if (audience.everyone === "allow") parts.push(tr("@everyone can see it here"));
+        else if (audience.everyone === "deny") parts.push(tr("@everyone cannot see it here"));
+        if (audience.allow.length) parts.push(tr("Allowed: {list}", {list:audience.allow.slice(0, 4).map(r => r.name || "a role").join(", ") +
+            (audience.allow.length > 4 ? " +" + (audience.allow.length - 4) : "")}));
+        if (audience.deny.length) parts.push(tr("Hidden from {list}", {list:audience.deny.slice(0, 4).map(r => r.name || "a role").join(", ") +
+            (audience.deny.length > 4 ? " +" + (audience.deny.length - 4) : "")}));
+        if (audience.members.allow) parts.push(pl(audience.members.allow, "{n} person allowed by name", "{n} people allowed by name"));
+        if (audience.members.deny) parts.push(pl(audience.members.deny, "{n} person excluded by name", "{n} people excluded by name"));
+        return parts.join(" · ");
+    }
     function HiddenDetails(props) {
         // Rendered inside Discord's own AlertModal (HBC98 module 5305) as extraContent:
         // native Text tokens follow the active theme; no hardcoded colors or backdrop.
         const Text = props.Text;
-        return el(RN.View, {style:{gap:14}}, props.rows.map(([label, stamp]) =>
+        const audience = hiddenAudienceText(props.audience);
+        return el(RN.View, {style:{gap:14}},
+            audience ? el(RN.View, {key:"audience", style:{gap:2}},
+                el(Text, {variant:"text-xs/semibold", color:"text-muted"}, tr("Who can see it").toUpperCase()),
+                el(Text, {variant:"text-md/medium", color:"text-default", selectable:true}, audience)) : null,
+            props.rows.map(([label, stamp]) =>
             el(RN.View, {key:label, style:{gap:2}},
                 el(Text, {variant:"text-xs/semibold", color:"text-muted"}, label.toUpperCase()),
                 el(Text, {variant:"text-md/medium", color:"text-default", selectable:true}, stamp.relative),
@@ -4608,6 +4705,9 @@
         const settle = () => { if (hiddenPrompts.get(channel.id) === prompt) hiddenPrompts.delete(channel.id); };
         const confirm = () => { settle(); if (typeof onViewAnyway === "function") onViewAnyway(); };
         const rows = hiddenDetails(channel);
+        // Who can see it, from the overwrites Discord already sent for this channel.
+        let audience = null;
+        try { audience = hiddenAudience(channel, hiddenGuildOf(channel)); } catch (_) {}
         const title = tr(channel.type === 2 || channel.type === 13 ? "Locked voice channel" : "Locked channel");
         const body = tr("You can't open this channel, but Discord already sent these details.");
         // Discord's native alert (the "Delete Message" dialog): blurred backdrop,
@@ -4618,7 +4718,7 @@
         const Text = inspectedExport(5187, "Text");
         if (React && alerts && typeof alerts.show === "function" && Text) {
             try {
-                alerts.show({title, body, children:el(HiddenDetails, {rows, Text}),
+                alerts.show({title, body, children:el(HiddenDetails, {rows, audience, Text}),
                     confirmText:tr("View Anyway"), cancelText:tr("Cancel"), onConfirm:confirm, onCancel:settle});
                 return;
             } catch (_) { /* fall through to the platform alert */ }
@@ -5374,7 +5474,7 @@
     // Heartbeats in a row that Discord answers without counting any more time before Quest Completer gives up for now.
     const QUEST_STALLED_BEATS = 5;
     const quest = {store:null, dispatcher:null, generation:0, running:null, enrolling:false, skip:new Map(), enrollBlockedUntil:0,
-        scanTimer:undefined, refetchTimer:undefined, user:null, completed:0, last:"", error:"", desktop:null, executables:new Map(),
+        scanTimer:undefined, refetchTimer:undefined, user:null, completed:0, last:"", error:"", desktop:null, executables:new Map(), halted:null,
         videoAt:new Map()};
     function questSleep(ms) { return new Promise(resolve => { later(resolve, ms); }); }
     function questStore() {
@@ -5392,6 +5492,8 @@
     // Store updates arrive in bursts (fetch, enroll, progress). One scan per burst is enough.
     function questsChanged() { if (enabled("quests")) questsSchedule(1500); }
     function questsSchedule(ms) {
+        // A halted feature (Discord answered 401/403) stays halted until someone turns it off and on again.
+        if (quest.halted) return;
         if (quest.scanTimer !== undefined || typeof global.setTimeout !== "function") return;
         quest.scanTimer = global.setTimeout(questsScan, ms);
     }
@@ -5563,6 +5665,23 @@
         const convert = inspectedExport(7664, "questUserStatusFromServer");
         try { return body && typeof convert === "function" ? convert(body) : null; } catch (_) { return null; }
     }
+    // A 401 or 403 from a Quest call is not "this Quest was refused": it is Discord saying this session is no longer
+    // allowed to act. Retrying the same request is what turns one refusal into a revoked session (#164, #188: people
+    // logged out after leaving Complete Quests on). It stops the whole feature instead, and says so once.
+    function questSessionLost(error) {
+        const status = error && Number(error.status);
+        return status === 401 || status === 403;
+    }
+    function questStopForSession(error) {
+        quest.halted = {status:Number(error && error.status) || 401, at:Date.now()};
+        quest.running = null; quest.enrolling = false;
+        if (global.clearTimeout) { if (quest.scanTimer !== undefined) global.clearTimeout(quest.scanTimer); if (quest.refetchTimer !== undefined) global.clearTimeout(quest.refetchTimer); }
+        quest.scanTimer = undefined; quest.refetchTimer = undefined;
+        try { dlog("W", "quests", "stopped: Discord answered " + quest.halted.status + " to a Quest call"); } catch (_) {}
+        notify("quests");
+    }
+    // Turning the feature off and on again is the only thing that clears it: it is a decision, not a timer.
+    function questClearHalt() { if (quest.halted) { quest.halted = null; notify("quests"); } }
     function questRetryAfter(error) {
         const body = error && error.body, value = body && (body.retry_after != null ? body.retry_after : body.retryAfter);
         const seconds = Number(value != null ? value : error && error.retryAfter);
@@ -5692,6 +5811,8 @@
             if (!status || !questDispatch({type:"QUESTS_ENROLL_SUCCESS", enrolledQuestUserStatus:status})) questsFetch(true);
         }, error => {
             if (generation !== quest.generation) return;
+            // Nothing is retried once Discord has said the session is not allowed: see questSessionLost.
+            if (questSessionLost(error)) { questStopForSession(error); return; }
             const wait = questRetryAfter(error);
             if (wait) quest.enrollBlockedUntil = Date.now() + wait;
             // Only a real answer from Discord (refused, captcha) leaves the Quest alone for hours. No connection
@@ -5721,6 +5842,11 @@
             questStatus("Completed {name}.", false, {name:entry.name});
         }, error => {
             if (entry.generation !== quest.generation) return;
+            if (questSessionLost(error)) {
+                questStatus("Stopped: Discord answered {status} to a Quest request. Turn Complete Quests off and on to try again.", true, {status:Number(error.status)});
+                questStopForSession(error);
+                return;
+            }
             const wait = questRetryAfter(error);
             quest.skip.set(entry.id, Date.now() + Math.max(wait, QUEST_RETRY_MS));
             questStatus("Couldn't finish {name}: {problem}", true, {name:entry.name, problem:String(error && error.message || error)});
@@ -6003,6 +6129,10 @@
         if (!enabled("quests")) return "Turned off. Switch it on in Features to start.";
         // The card's title already says what's happening, so the first line adds to it instead of repeating it.
         const lines = [];
+        if (quest.halted) {
+            lines.push(tr("Stopped: Discord answered {status} to a Quest request, so nothing more is sent. Turn Complete Quests off and on to try again.", {status:quest.halted.status}));
+            return lines.join("\n");
+        }
         if (quest.running) {
             const share = questShare(), left = share != null ? Math.ceil((quest.running.task.target - quest.running.progress) / 60) : 0;
             lines.push(tr("Now: {name}.", {name:quest.running.name}) + (share != null && left > 0 ? " " + pl(left, "About {n} minute left.", "About {n} minutes left.") : ""));
@@ -6020,6 +6150,7 @@
     }
     function questTypesOn() { return !!(settings.questsVideo || settings.questsPlay || settings.questsActivity); }
     function questStatusTitle() {
+        if (quest.halted) return tr("Stopped by Discord");
         if (quest.error) return tr("Something went wrong");
         if (quest.running) return tr("Completing a Quest");
         if (!questTypesOn()) return tr("Nothing to complete");
@@ -6034,8 +6165,8 @@
         const Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow, on = enabled("quests");
         const toggle = (key, label, subLabel, icon) => switchRow(Switch, key, label, subLabel, icon);
         const groups = [
-            on ? statusCard("status", questStatusText(), {title:questStatusTitle(), IconComponent:japatchIcon(quest.error ? 13123 : quest.running ? 11180 : 13929,
-                quest.error ? "ChatWarningIcon" : quest.running ? "TimerIcon" : "QuestsIcon"),
+            on ? statusCard("status", questStatusText(), {title:questStatusTitle(), IconComponent:japatchIcon(quest.halted || quest.error ? 13123 : quest.running ? 11180 : 13929,
+                quest.halted || quest.error ? "ChatWarningIcon" : quest.running ? "TimerIcon" : "QuestsIcon"),
                 footer:questShare() != null ? el(JaPatchProgress, {key:"progress:" + quest.running.id, value:questShare()}) : null}) : offCard("status", japatchIcon(13929, "QuestsIcon"), "quests"),
             el(Group, {key:"types", title:tr("Quests to complete")},
                 toggle("questsVideo", "Video Quests", "Reported as watched at normal speed, without playing the video.", rowIcon(11187, "VideoIcon")),
@@ -9449,6 +9580,31 @@
                         el(RN.Text,{style:[s.muted,{flexShrink:1}]},tr("This message was deleted")+" \u2022 ",el(RN.Text,{style:s.link},tr("Dismiss message")))))))],
             {header:previewHeader(k,{title:"general"}),footer:previewInput(k,s,{placeholder:tr("Message {channel}",{channel:"#general"})})}));
     }
+    // "Don't keep these" (#143): one box, and anything with an id in it works — a profile, a server or a channel link
+    // all contain the same 17-20 digits, so a pasted link needs no explaining.
+    function NoDeleteSkipRow(props) {
+        useSettings("noDelete");
+        const ui = props.ui, [draft, setDraft] = React.useState(""), [problem, setProblem] = React.useState("");
+        const [version, setVersion] = React.useState(0);
+        const ids = Array.from(noDeleteSkip);
+        const add = () => {
+            if (noDeleteSkip.size >= NO_DELETE_SKIP_MAX) { setProblem(tr("That is as many as this list holds.")); return; }
+            if (!noDeleteSkipAdd(draft)) { setProblem(tr("Paste a profile, server or channel link, or its ID.")); return; }
+            setDraft(""); setProblem(""); setVersion(version + 1);
+        };
+        const remove = id => { noDeleteSkip.delete(id); save(); setVersion(version + 1); };
+        return el(RN.View, {key:"skip", style:{gap:8}},
+            inputWithButton(ui, "skip:" + version, {value:draft, placeholder:tr("Profile, server or channel link"), autoCapitalize:"none", autoCorrect:false,
+                onChange:value => { setDraft(String(value || "")); if (problem) setProblem(""); }, onSubmitEditing:add, returnKeyType:"done", maxLength:200},
+                value => setDraft(String(value || "")), "Add", add, false),
+            problem ? el(RN.Text, {key:"problem", style:{fontSize:13, color:"#f23f43"}}, problem) : null,
+            ids.length ? el(RN.Text, {key:"count", style:{fontSize:13, opacity:0.7}},
+                tr("{n} not kept. Tap one to remove it.", {n:ids.length})) : null,
+            ids.length ? el(RN.View, {key:"ids", style:{flexDirection:"row", flexWrap:"wrap", gap:6}},
+                ids.slice(0, 20).map(id => el(RN.Pressable, {key:id, onPress:() => remove(id), accessibilityRole:"button",
+                    style:{paddingHorizontal:10, height:28, borderRadius:14, justifyContent:"center", backgroundColor:"#f23f431f"}},
+                    el(RN.Text, {style:{fontSize:12, color:"#f57376"}}, id)))) : null);
+    }
     // Keep up to: three sizes and No limit (0), plus any other number.
     const NODELETE_LIMITS = [500, 1000, 5000, 0];
     function NoDeleteSettings() {
@@ -9476,6 +9632,8 @@
             el(Group,{key:"log",title:tr("Log")},
                 logOpenRow(ui,nav,"open",tr("Message log"),logs.messages,rowIcon(5150,"ClockIcon"),on),
                 logChoicesRow(ui,"choices","noDelete",choices,on)),
+            el(Group,{key:"skip",title:tr("Don't keep these")},
+                el(NoDeleteSkipRow,{key:"row",ui})),
             el(Group,{key:"options",title:tr("In chat")},
                 toggle("noDeleteEdits","Show edit history","What a message said before it was edited, faded and crossed out above it. Up to 10 versions each.",rowIcon(10023,"PencilIcon")),
                 toggle("noDeleteSave","Keep after restarting","Deleted and edited messages survive closing Discord. Saved only on this phone, for this account.",rowIcon(5143,"DownloadIcon"))),

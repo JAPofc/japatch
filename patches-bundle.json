@@ -1,9 +1,9 @@
 {
   "created_at": "2026-11-26T06:49:05",
-  "description": "### \u2728 New Features\n\n* **Discord - Settings:** The About page now checks which release is newest and says so, with one tap to open it. It asks GitHub once when the page opens, never at launch and never on a timer, and it sends nothing about you; there is a **Check for updates** switch right under it for anyone who would rather it did not ask at all\n\n### \ud83d\udc1b Bug Fixes\n\n* **Discord - User and server reviews:** Fixed the server address being saved exactly as typed, however wrong: a missing `https://`, a typo in it, a trailing note or a stray `@` became the address, and Reviews then stayed empty with nothing to act on. Saving now refuses it and says what to change, in a line under the field\n* **Discord - User and server reviews:** Fixed plain `http://` being accepted for a server on the internet. Sign-in cannot come back to a plain address and a sign-in token over it can be read on the way, so it is now allowed for a server on your own network only\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.15/patches-1.0.15.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.15",
+  "description": "### \u2728 New Features\n\n* **Discord - Keep deleted messages:** A **Don't keep these** list: paste a profile, server or channel link (or the ID on its own) and deleted messages from there are never kept. Before this, the only filters were \"your own\" and \"bots\"; muting one noisy channel meant turning the whole feature off\n* **Discord - Show hidden channels:** A locked channel's details now say who can see it, worked out from the permission overwrites Discord already sent: whether `@everyone` is excluded, which roles are allowed or hidden by name, and how many people have their own exception. Nothing is guessed when Discord sent no overwrites\n\n### \ud83d\udc1b Bug Fixes\n\n* **Discord - Quest completer:** Fixed the feature retrying for hours after Discord answered 401 or 403 to a Quest request. That answer means the session is no longer allowed to act, and asking again is what turns one refusal into a revoked sign-in (#164, #188: logged out after leaving Complete Quests on). It now stops completely, says so on the Quests page, and stays stopped until Complete Quests is turned off and on again\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.16/patches-1.0.16.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.16",
   "signature_download_url": "",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "public_key": "sy/1df6laT60R26P5kJCHPvvHIhSKfgP9sSRSROMrKU="
 }

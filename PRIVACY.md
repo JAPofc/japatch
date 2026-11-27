@@ -65,7 +65,8 @@ Four of these deserve a sentence:
 JaPatch writes two things, both in the app's own private storage (`/data/data/<package>/files`):
 
 - `japatch-patches.json` — your feature switches, your rules, themes, icon-pack links, server edits,
-  and (if you signed in) the ReviewDB token. Nothing else.
+  your **Don't keep these** list (Discord ids only, never message text), and (if you signed in) the
+  ReviewDB token. Nothing else.
 - its debug log, only while *Debug logging* is on.
 
 Uninstalling the patched app deletes both. **Backup and restore** writes a file where you choose, and

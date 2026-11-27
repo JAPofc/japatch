@@ -23,6 +23,17 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.16] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Keep deleted messages:** A **Don't keep these** list: paste a profile, server or channel link (or the ID on its own) and deleted messages from there are never kept. Before this, the only filters were "your own" and "bots"; muting one noisy channel meant turning the whole feature off
+* **Discord - Show hidden channels:** A locked channel's details now say who can see it, worked out from the permission overwrites Discord already sent: whether `@everyone` is excluded, which roles are allowed or hidden by name, and how many people have their own exception. Nothing is guessed when Discord sent no overwrites
+
+### 🐛 Bug Fixes
+
+* **Discord - Quest completer:** Fixed the feature retrying for hours after Discord answered 401 or 403 to a Quest request. That answer means the session is no longer allowed to act, and asking again is what turns one refusal into a revoked sign-in (#164, #188: logged out after leaving Complete Quests on). It now stops completely, says so on the Quests page, and stays stopped until Complete Quests is turned off and on again
+
 ## [1.0.15] (2026-11-27)
 
 ### ✨ New Features
