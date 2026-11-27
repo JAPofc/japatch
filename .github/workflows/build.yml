@@ -95,7 +95,9 @@ jobs:
           # rewritten, as it was when the ReviewDB server left the repository) used to fail the whole build here,
           # on a step that has nothing to do with whether the bundle is good.
           if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
-            gh release edit "$GITHUB_REF_NAME" --title "$VERSION" --notes-file /tmp/notes.md
+            # --draft=false matters: a release that is still a draft has working files that nothing can download,
+            # and it looks fine in the API. Creating it for real is what makes the address public.
+            gh release edit "$GITHUB_REF_NAME" --title "$VERSION" --notes-file /tmp/notes.md --draft=false
             gh release upload "$GITHUB_REF_NAME" \
               "patches/build/libs/patches-${VERSION}.mpp" \
               "patches/build/libs/SHA256SUMS" \
