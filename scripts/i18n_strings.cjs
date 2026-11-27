@@ -204,6 +204,9 @@ for (let i = 0; i < tokens.length - 1; i++) {
 
 // Components that take their texts as object props and pass them through tr() inside:
 // highlightColorPicker({title}) and el(PresetOrCustom, {title, hint}).
+// A list of [title, body] pairs rendered as rows (help pages) is the same shape as a const table: nothing inside
+// a tr() call, and invisible to the tokenizer above.
+const TEXT_PAIRS = ['HELP_LINES'];
 const PROP_TEXTS = {highlightColorPicker:['title'], PresetOrCustom:['title', 'hint']};
 function propStrings(objTokens, keys) {
     if (!objTokens || objTokens[0]?.value !== '{') return;
@@ -272,6 +275,24 @@ for (const table of ['PLATFORM_LABELS', 'PLATFORM_STATUS']) {
             found.add(value);
         }
         call.lastIndex = match.index + 1;
+    }
+}
+// Help pages write their text as a list of [title, body] pairs. Every string in one of those tables is text a reader
+// sees, so each is read here; the shape is two strings in an array, which is what a pair always is.
+for (const table of TEXT_PAIRS) {
+    const start = source.indexOf("const " + table + " = [");
+    if (start < 0) continue;
+    const end = source.indexOf("\n    ];", start);
+    if (end < 0) continue;
+    const block = source.slice(start, end);
+    const pair = /\[\s*"((?:[^"\\]|\\.)*)"\s*,\s*"((?:[^"\\]|\\.)*)"/g;
+    let one;
+    while ((one = pair.exec(block))) {
+        for (const raw of [one[1], one[2]]) {
+            let value;
+            try { value = JSON.parse('"' + raw + '"'); } catch (_) { continue; }
+            if (/[A-Za-z]/.test(value)) found.add(value);
+        }
     }
 }
 const hidden = /const HIDDEN_CHANNEL = "([^"]+)", HIDDEN_CATEGORY = "([^"]+)"/.exec(source);

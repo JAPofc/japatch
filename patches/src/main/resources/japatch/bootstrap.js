@@ -66,6 +66,7 @@
     if (features.guildLurk) targetModules[13422] = 1;
     if (features.quietReplies) selectModules([1392, 5532, 9990]);
     if (features.viewRaw) selectModules([9978, 10596, 17245, 10780, 17433, 14015, 7158, 7167]);
+    if (features.bookmarks) selectModules([9978, 1164, 5479]);
     if (features.compressUploads) selectModules([8023, 8046, 10006]);
     if (features.timeoutDuration) selectModules([2119, 2128, 8013]);
     if (features.dndBanners) selectModules([6015, 13511, 13523]);
@@ -99,7 +100,7 @@
         accountSwitcher:false, accountSwitcherYouBar:true, accountSwitcherShare:false, accountSwitcherNotify:true, appIcons:false, nitroThemes:false, customThemes:false, customThemesBackground:true, materialYou:false, materialYouColor:"wallpaper", materialYouTint:"balanced",
         iconPacks:false, iconPacksTheme:true, updateCheck:true,
         messageHighlight:false, messageHighlightThickness:2, messageHighlightBrightness:50, messageHighlightPingColor:"default", serverInfo:false, serverInfoFriends:true, serverEdit:false,
-        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
+        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, bookmarks:false, saveImages:false, serverClock:false, serverClockZone:"auto", localNick:false, localNickGuild:"", localNickUser:"", localServerNicks:{}, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
         hypeSquad:false, customIdle:false, customIdleMinutes:10, pauseInvites:false, fastDeleteChannels:false, fastDeleteChannelsConfirm:true, fastDeleteChannelsMenu:true, mutualGroupDMs:false, platformSpoof:false, platformSpoofDevice:"desktop" };
     // The settings every feature starts from, for Reset to defaults on the Backup page.
     let DEFAULT_SETTINGS = null;
@@ -117,7 +118,7 @@
             accountSwitcher: false, accountSwitcherYouBar: true, accountSwitcherShare: false, accountSwitcherNotify: true, appIcons: false, nitroThemes: false, customThemes: false, customThemesBackground: true, materialYou: false, materialYouColor: "wallpaper", materialYouTint: "balanced",
             iconPacks: false, iconPacksTheme: true, updateCheck: true,
             messageHighlight: false, messageHighlightThickness: 2, messageHighlightBrightness: 50, messageHighlightPingColor: "default", serverInfo: false, serverInfoFriends: true, serverEdit: false,
-            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
+            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, bookmarks: false, saveImages: false, serverClock: false, serverClockZone: "auto", localNick: false, localNickGuild: "", localNickUser: "", localServerNicks: {}, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
         }));
     }
@@ -481,6 +482,8 @@
         if (key === "backgroundMediaSkip") return [5, 10, 15, 30].includes(value) ? value : undefined;
         if (key === "hiddenFeatures") return hiddenFeaturesText(value);
         if (key === "hideAnythingSpots") return hideSpotsText(value);
+        if (key === "serverClockZone") return typeof value === "string" && (value === "auto" || /^[A-Za-z][A-Za-z0-9_+\-]*(\/[A-Za-z0-9_+\-]+)*$/.test(value)) ? value : undefined;
+        if (key === LOCAL_NICKS_KEY) return localNickClean(value);
         if (key === "materialYouColor") return myIsColor(value) ? value.toLowerCase() : undefined;
         if (key === "materialYouTint") return MY_TINTS.includes(value) ? value : undefined;
         return typeof value === "number" && !Number.isFinite(value) ? undefined : value;
@@ -1243,7 +1246,7 @@
         hiddenChannels:[8495, "LockIcon"], systemFont:[16730, "LettersIcon"], systemEmoji:[13827, "ChatSmileIcon"],
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
-        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"],
+        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], localNick:[15994, "LaptopPhoneIcon"],
         hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"],
         streamBadge:[18964, "ScreenIcon"]};
     const japatchIcons = new Map();
@@ -1366,7 +1369,7 @@
         voiceOptions:["Soundboard", "Goodbye sound", "Call volume", "Chime volume", "Mute everyone", "Speaker", "Earpiece", "Bluetooth", "Wired headset", "Headphones", "Output", "Join chime", "Leave chime", "Voice channels", "Notification", "Mute"],
         fakeDeafen:["Deafen", "Fake deafen", "Headphones", "Calls", "Voice channels", "Microphone"],
         bulkDelete:["Select Messages", "Select all", "Delete", "Clear kept deleted messages", "Include kept deleted messages", "Ask before deleting"],
-        badges:["Game time", "Unique games", "Switch games every", "Games at once", "Add hours now", "Advanced", "Hours Played", "Unique Games Played", "Years Active", "Personalization"]};
+        badges:["Game time", "Unique games", "Switch games every", "Games at once", "Add hours now", "Advanced", "Hours Played", "Unique Games Played", "Years Active", "Personalization"], bookmarks:["Bookmark","Save","Keep","Later","Read later"], saveImages:["Avatar","Banner","Profile picture","Save","Download"], serverClock:["Time","Clock","Timezone","Header","Server time"], localNick:["Nickname","Name","Server","Person","On this phone"]};
     function searchFold(text) {
         let out = String(text || "").toLowerCase();
         // Hermes has normalize only with Intl; without it, accents simply have to match.
@@ -1745,6 +1748,11 @@
                 screen: { route: key, getComponent: () => page } };
         }
         // About: the version and how many features are on, whether settings are saved, and where to get help.
+        // Help, one row above the version: the questions that are not a patch away from being fixed.
+        next.JAPATCH_HELP = { type: "route", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(12003, "FileIcon", icon),
+            useTitle: () => { useLanguage(); return tr("Why something does not work"); },
+            useDescription: () => tr("The things a patch cannot fix, and what to do instead."),
+            screen: { route: "JAPATCH_HELP", getComponent: () => WhyNotWorkingSettings } };
         next.JAPATCH_VERSION = { type: "static", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(9365, "TagIcon", icon),
             useTitle: () => "JaPatch Patches " + revision, useDescription: function () { useSettings(); return featureSummary(); } };
         // The version row itself, which is also the update check. One tap when there is something newer opens it.
@@ -1904,6 +1912,9 @@
         withOptions("messages", "silentEdit", "JAPATCH_SILENTEDIT", "Edit without the (edited) mark", "Only works when your message is the latest in the chat. Others see a new message, not an edit.", "Silent edit", SilentEditSettings);
         toggle("messages", "silentDelete", "Delete without a trace", "Blanks your message before deleting it, so message loggers have nothing to keep.");
         withOptions("messages", "localEdit", "JAPATCH_LOCALEDIT", "Edit messages locally", "Change how any message reads on this phone. Only you see it.", "Edit locally", LocalEditSettings);
+        // Saved on this phone, in this account's own folder. Nothing about a bookmark is sent anywhere, and the row
+        // says so instead of leaving people to wonder whether Discord now knows about their saved messages.
+        withOptions("messages", "bookmarks", "JAPATCH_BOOKMARKS", "Bookmark messages", "Keep a message on this phone and find it again from Settings. Nothing is sent to Discord.", "Bookmarks", BookmarkSettings);
         withOptions("people", "reviewDB", "JAPATCH_REVIEWDB", "User and server reviews", "Read and write ReviewDB reviews on profiles and servers, through a ReviewDB server you choose.", "Reviews", ReviewSettings);
         withOptions("people", "userNotif", "JAPATCH_USERNOTIF", "User activity notifications", "Get notified when chosen people change status, type or message.", "Activity notifications", UserNotifSettings);
         // The two logs open from their feature's page, one level below it, like Discord's own nested settings.
@@ -1916,6 +1927,9 @@
         withOptions("advanced", "viewRaw", "JAPATCH_VIEWRAW", "View raw data", "Hold a message, channel, server, person or role to see its raw data and copy it.", "View raw data", ViewRawSettings);
         withOptions("servers", "serverInfo", "JAPATCH_SERVERINFO", "Server info", "Hold a server's icon to see its details, boosts and friends there.", "Server info", ServerInfoSettings);
         withOptions("servers", "serverEdit", "JAPATCH_SERVEREDIT", "Edit servers locally", "Give any server your own name and icon. Only you see them.", "Edit servers", ServerEditSettings);
+        withOptions("people", "saveImages", "JAPATCH_SAVEIMAGES", "Save profile pictures and banners", "Hold a profile to save its picture or banner through Android's own Save to screen.", "Save pictures", SaveImageSettings);
+        withOptions("servers", "serverClock", "JAPATCH_SERVERCLOCK", "Show the time next to the server name", "A clock in the chat header, set to the time you pick for your servers.", "Server time", ServerClockSettings);
+        withOptions("servers", "localNick", "JAPATCH_LOCALNICK", "Nicknames for this phone", "Give people in a server a name only you see. Hold a message and pick Nickname to open this page.", "Nicknames", LocalNickSettings);
         withOptions("servers", "cleanChannels", "JAPATCH_CLEANCHANNELS", "Clean channel names", "Removes emoji and symbols from channel names, and can show spaces instead of dashes.", "Clean names", CleanChannelsSettings);
         toggle("servers", "pauseInvites", "Pause invites", "Hold a server's icon to pause or resume its invites. Needs Manage Server.");
         withOptions("servers", "fastDeleteChannels", "JAPATCH_FASTDELETECHANNELS", "Fast delete channels", "Delete channels without the confirmation, or from the channel menu. There is no undo.", "Fast delete", FastDeleteChannelsSettings);
@@ -2648,6 +2662,29 @@
                         text(row.label, "text-sm/semibold", "text-strong", {color:"#f2f3f5", fontSize:14, fontWeight:"600"}),
                         text(row.value, "text-sm/medium", "text-muted", {color:"#b5bac1", fontSize:14}))))),
             footnote("note", "Nothing here leaves the phone. No token is shown, only whether one is held for each saved account.")];
+        return settingsBody(ui, groups);
+    }
+    // "Why does this not work on my phone": the three answers that come back over and over, in one page, in the app.
+    // Each line names the thing that cannot be fixed by a patch rather than blaming the phone or leaving the reader to
+    // guess — a passkey needs Discord's own signature, a microphone choice is a switch, and an upload can stall on the
+    // network before any patch of ours is involved.
+    const HELP_LINES = [
+        ["Passkeys and security keys", "They only work in Discord signed by Discord. Google checks the app's signature against Discord's own, and a patched build can never match it. Use an authenticator app, SMS or a backup code instead; the error screen says so when this comes up."],
+        ["Noise suppression", "Discord's noise suppression runs in Discord's own native audio code, which no patch here changes or replaces. If it disappears in a voice channel, or its switch will not move, that is Discord's own voice engine on that phone and version. Turning Bluetooth calls off and on again changes where the sound goes, not that engine."],
+        ["An upload that never finishes", "A file can stall on Discord's upload server or on the connection itself. The app now says when an upload stopped moving and at what size, instead of leaving the message stuck on Sending forever. If it stops with every feature off, it is the network or Discord, not a patch."],
+        ["A pack's icon is blank", "An icon pack can be missing a picture. That icon falls back to Discord's own instead of drawing a blank square, once per icon."],
+        ["My account was flagged", "Two features ask Discord to accept things it does not offer: Complete badges, which reports games you are not playing, and Platform spoof. Both say so before you turn them on. Nothing else here sends anything to Discord."]
+    ];
+    function WhyNotWorkingSettings() {
+        useSettings();
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const Group = ui.TableRowGroup || RN.View;
+        const groups = [el(Group, {key:"why", title:tr("Why something here does not work")},
+            HELP_LINES.map(([title, body], i) => el(ui.TableRow, {key:"why" + i, label:tr(title), subLabel:tr(body),
+                icon:rowIcon(i === 0 ? 10563 : i === 1 ? 13214 : i === 2 ? 11636 : i === 3 ? 11449 : 9873,
+                    i === 0 ? "CrownIcon" : i === 1 ? "HeadphonesIcon" : i === 2 ? "FileUpIcon" : i === 3 ? "ImageSparkleIcon" : "FlagIcon")}))),
+            footnote("closing", "If none of these is it, the log under About has what the app saw, and it is the first thing to read.")];
         return settingsBody(ui, groups);
     }
     function AboutSettings() {
@@ -4281,7 +4318,7 @@
         if (log.state === "ready" && log.timer !== undefined) logWrite(log);
         log.account = null; log.entries = []; log.state = "idle"; log.revision++;
     }
-    // A saved "don't keep this" list (#143). Ids only: a person, a server or a channel, all the same 17-20 digits, so
+    // A saved "don't keep this" list. Ids only: a person, a server or a channel, all the same 17-20 digits, so
     // one list is enough and the check is a set lookup per message rather than three.
     function noDeleteSkipData() { return noDeleteSkip.size ? Array.from(noDeleteSkip) : null; }
     function noDeleteSkipAdd(value) {
@@ -9547,6 +9584,7 @@
         if (features.timeoutDuration && enabled("timeoutDuration")) message = timeoutTagMessage(message, row.message);
         if (features.voiceDownload && enabled("voiceDownload")) message = voiceDownloadMessage(message, row.message);
         if (features.staffTag && enabled("staffTag")) message = staffTagMessage(message, row.message);
+        if (features.localNick && enabled("localNick")) message = localNickMessage(message);
         if (features.showMeYourName && enabled("showMeYourName")) message = showMeYourNameMessage(message);
         let next = message === result.message ? result : Object.assign({},result,{message});
         if (!translateOn && !features.translate && !(noDeleteOn && (edits.size || deleted.size)) && !highlightOn && !features.messageHighlight && !bulkOn) return next;
@@ -15984,7 +16022,7 @@
         return orig.apply(self, next);
     }
 
-    // Voice channel options (#103). One Flux listener (the dispatcher, module 584) serves the first two parts, and each part
+    // Voice channel options. One Flux listener (the dispatcher, module 584) serves the first two parts, and each part
     // acts on the next tick because Flux can't start a dispatch from inside a listener.
     // Volume when joining: VOICE_CHANNEL_SELECT carries the new channelId, null on leaving. Only a join from no channel
     // counts, so switching channels doesn't undo a volume changed in the call. It sets Discord's output volume
@@ -16429,7 +16467,7 @@
     // Per target language, worked out once: the letters it doesn't use, and every other language's everyday words that
     // aren't its own. translateLooksForeign runs for rows and on every message change in a chat, so it no longer builds a
     // RegExp and walks ~550 listed words for each message.
-    // Don't translate (#124): languages you read, saved as sorted codes ("de,es"). Their messages are still sent once, since
+    // Don't translate: languages you read, saved as sorted codes ("de,es"). Their messages are still sent once, since
     // only Google can tell a message's language, but they're shown as written unless you translate one from its menu. The
     // translation stays saved, so taking a language off the list shows its messages translated again with no new request.
     function translateSkipText(raw) {
@@ -16833,7 +16871,7 @@
         // Only "same" means it's already in your language; a translation that broke a mention or emoji just isn't shown.
         if (entry.state !== "done") { if (entry.state === "same") translateNothing(id); else translate.asked.delete(id); return message; }
         translate.asked.delete(id);
-        // Don't translate (#124): a language you read stays as written, unless you translated this one from its menu.
+        // Don't translate: a language you read stays as written, unless you translated this one from its menu.
         // So does a word Google may have guessed wrong (translateUnsure).
         if (choice !== true && (translateSkipped(entry.language) || translateUnsure(entry))) return message;
         if (layout.view === undefined || layout.viewOf !== entry || layout.viewVersion !== translate.version) {
@@ -17138,7 +17176,7 @@
     // redraw the row and read the forwarded message again. Forwards used to be redrawn by sending back a copy of the
     // forwarded message, but that copy was already in Discord's drawn shape, and MESSAGE_UPDATE treats message_snapshots as
     // raw API data: their embeds came out without color, title, description, fields, images or thumbnails, and Discord
-    // saved them that way on the phone. Translating any message redraws every one shown, so every forward was hit (#142).
+    // saved them that way on the phone. Translating any message redraws every one shown, so every forward was hit.
     function translateRedraw(ids) {
         if (!translate.dispatcher) return;
         const entries = [];
@@ -17479,7 +17517,7 @@
                 "Only messages on screen are sent to Google Translate, once each, without your Discord account. Hold a message to show its original, or translate your own.")];
         return settingsBody(ui, groups);
     }
-    // Don't translate (#124): the languages you read, each a row with its own remove button, and Add a language, which
+    // Don't translate: the languages you read, each a row with its own remove button, and Add a language, which
     // opens a searchable checklist to tick several at once. The list stays in alphabetical order while you tick, so
     // nothing jumps under your finger. The language you translate into isn't offered: it's never translated anyway.
     function TranslateSkipPicker(props) {
@@ -18557,7 +18595,7 @@
     // The server list (Guilds) and DMs (MainTabs) sit under a second ThemeContextProvider (4934) that memoizes its own
     // value on its props and the parent's theme, flags and so on, never on the parent's key. On a cold start they mount
     // before the saved theme is read, so that memo kept the key from before it and createStyles kept serving Discord's
-    // colors there (#110). Re-keyed the same way, they recolor with the rest of Discord.
+    // colors there. Re-keyed the same way, they recolor with the rest of Discord.
     // Same fast paths (Hermes HBC98: 30.3 -> 12.0 us per 100 renders, 2.5x).
     function nestedThemeContextProvider(orig, self, args) {
         return themeContextRekey(orig.apply(self, args));
@@ -19741,7 +19779,7 @@
     }
     // A pack picture that 404s (a file the pack's own list names but no longer ships, or a pack repo that was moved)
     // used to reach Image and throw FileNotFoundException out of React's render, and the app closed with "Discord has
-    // crashed" (#194, #203). It falls back to Discord's own icon instead, at most once per icon.
+    // crashed". It falls back to Discord's own icon instead, at most once per icon.
     const ICONPACK_DEAD = new Set();
     function iconPacksDead(entry) { return !!(entry && entry.source && ICONPACK_DEAD.has(entry.source.uri)); }
     function iconPacksFailure(uri) {
@@ -20762,7 +20800,7 @@
         ];
         return settingsBody(ui, groups);
     }
-    // Removed connection alerts (#108, based on RemovedConnectionAlerts by iyu46): a banner when a friend removes you or a
+    // Removed connection alerts (based on RemovedConnectionAlerts by iyu46): a banner when a friend removes you or a
     // server drops you. Discord says nothing when it happens, so JaPatch keeps the list of friends and servers it saw, tells a
     // real removal (RELATIONSHIP_REMOVE, GUILD_DELETE) from one you did yourself (the action creators mark the id for 30 s),
     // and on every new connection looks for anything that went missing while Discord was closed or offline.
@@ -21083,7 +21121,7 @@
             footnote("note", "JaPatch compares your friends and servers with what it saw last time. Anything you remove or leave on this phone never alerts you, and servers you're only previewing don't count.")];
         return settingsBody(ui, groups);
     }
-    // Load full-quality images (#108, based on Uncompressed Discord Images by Knewest). The BetterDiscord plugin swaps each
+    // Load full-quality images (based on Uncompressed Discord Images by Knewest). The BetterDiscord plugin swaps each
     // thumbnail for the uploaded file by editing the page; Android has no page to edit. Here the app builds every picture's address
     // in ImageUtils.getMobileOptimizedSrc (1498): for an upload it takes the proxy address and adds Discord's resize parameters
     // (width, height, format=webp). For pictures people uploaded, JaPatch answers with the address of the original file instead.
@@ -21178,7 +21216,7 @@
         return enabled("alwaysTrust") && settings.alwaysTrustFiles ? null : orig.apply(self, args);
     }
     alwaysTrustFile.call1 = (orig, self, name) => enabled("alwaysTrust") && settings.alwaysTrustFiles ? null : orig.call(self, name);
-    // Reply without pinging (#128): every way Discord starts a reply (Reply in a message's menu, swipe to reply, Double-tap to
+    // Reply without pinging: every way Discord starts a reply (Reply in a message's menu, swipe to reply, Double-tap to
     // reply, the notification center and ICYMI) goes through PendingReplyActionCreators (9990), and PendingReplyStore (7633)
     // turns the ping on whenever shouldMention isn't false. So the reply simply starts with shouldMention:false where you
     // asked for it. Discord's own @ ON/OFF toggle on the reply bar still flips it for that one reply, and a reply that
@@ -21273,7 +21311,7 @@
             footnote("note", "Tap @ on the reply bar to ping someone for just one reply.")];
         return settingsBody(ui, groups);
     }
-    // Compress big files (#136): a photo, video or sound over Discord's file size limit is made smaller to fit as you send it,
+    // Compress big files: a photo, video or sound over Discord's file size limit is made smaller to fit as you send it,
     // instead of being refused. The limit is Discord's own for this chat and account (UploadTargets 8057 getMaxFileSize, which
     // already counts Nitro and boosts), so a file that fits, and anyone whose limit is bigger, is never touched.
     //  - Gate: CloudUploader (9999) turns a file away before it is prepared, from getPreCompressionFileSize (10006). For a kind that
@@ -21342,7 +21380,7 @@
         return imageName.test(name) ? "image" : videoName.test(name) ? "video" : audioName.test(name) ? "audio" : null;
     }
     // The upload limit to plan against: Discord's own target first, then the file type's own limit, then the account's
-    // (Nitro, a boosted server), and only then Discord's smallest, so a file that already fits is never shrunk (#174).
+    // (Nitro, a boosted server), and only then Discord's smallest, so a file that already fits is never shrunk.
     function compressLimit(item, channelId) {
         try {
             const get = inspectedExport(8057, "getUploadTarget"), target = typeof get === "function" ? get(item && item.target) : null;
@@ -21364,6 +21402,59 @@
     function selectedChannelId() {
         const selected = inspectedExport(2119, "default");
         try { return selected && typeof selected.getChannelId === "function" ? selected.getChannelId() : undefined; } catch (_) { return undefined; }
+    }
+    // ------------------------------------------------------------------------------------------------------------
+    // Nothing used to say when an attachment stopped moving. "Sending…" could sit there for as long as Discord's
+    // own network code felt like it, with nothing to look at and nothing to say, and every report of it could only
+    // be "it hangs". This watches the upload Discord already runs and speaks up when it stops moving.
+    //
+    // It never cancels, retries or changes an upload. The start and the end are the hooks this file already
+    // installs on CloudUpload; the byte count is read from the upload object when Discord keeps one, and a file
+    // whose size is not readable there is never called stuck — only one that has stopped growing, or that has
+    // been preparing far too long, is reported.
+    const uploadWatch = {upload:null, filename:"", startedAt:0, movedAt:0, bytes:0, read:false, reported:false};
+    const UPLOAD_STALL_MS = 60000, UPLOAD_LONG_MS = 240000;
+    function uploadWatchBytes(upload) {
+        if (!upload || typeof upload !== "object") return null;
+        // currentSize is the field this file already writes on a prepared upload; size is what the picker reported.
+        const values = [upload.currentSize, upload.size, upload.postCompressionSize];
+        for (let i = 0; i < values.length; i++) if (Number.isFinite(values[i]) && values[i] > 0) return values[i];
+        return null;
+    }
+    function uploadWatchBegin(upload) {
+        if (!upload || typeof upload !== "object") return;
+        const filename = typeof upload.filename === "string" ? upload.filename : upload.item && typeof upload.item.filename === "string" ? upload.item.filename : "";
+        uploadWatch.upload = upload; uploadWatch.filename = filename;
+        uploadWatch.startedAt = Date.now(); uploadWatch.movedAt = uploadWatch.startedAt;
+        uploadWatch.bytes = uploadWatchBytes(upload) || 0;
+        uploadWatch.read = uploadWatch.bytes > 0; uploadWatch.reported = false;
+        uploadWatchStart();
+    }
+    function uploadWatchEnd(upload) {
+        if (uploadWatch.upload && upload && uploadWatch.upload !== upload) return;
+        uploadWatch.upload = null; uploadWatch.startedAt = 0; uploadWatch.reported = false;
+    }
+    function uploadWatchStart() {
+        if (uploadWatchTimer || typeof global.setInterval !== "function") return;
+        uploadWatchTimer = global.setInterval(uploadWatchTick, 5000);
+    }
+    let uploadWatchTimer = null;
+    function uploadWatchTick() {
+        const upload = uploadWatch.upload;
+        if (!upload || uploadWatch.reported || !uploadWatch.startedAt) return;
+        const now = Date.now(), grew = uploadWatchBytes(upload);
+        if (grew && grew > uploadWatch.bytes) { uploadWatch.bytes = grew; uploadWatch.read = true; uploadWatch.movedAt = now; return; }
+        const still = now - uploadWatch.movedAt, waited = Math.round((now - uploadWatch.startedAt) / 1000);
+        // A readable size that stopped growing is a stall. An unreadable one is only "taking very long", and it says
+        // exactly that instead of guessing which it is.
+        if (!(uploadWatch.read ? still >= UPLOAD_STALL_MS : still >= UPLOAD_LONG_MS)) return;
+        uploadWatch.reported = true;
+        const parts = [];
+        if (uploadWatch.filename) parts.push(tr("File: {name}", {name:uploadWatch.filename}));
+        if (uploadWatch.read) parts.push(tr("It stopped at {size} and has not moved since.", {size:formatSize(uploadWatch.bytes)}));
+        else parts.push(tr("Discord has not reported any progress for {n} s.", {n:waited}));
+        parts.push(tr("Nothing was cancelled. Discord's own Cancel button under the file stops it, and sending it again from there is the first thing to try."));
+        showProblem(uploadWatch.read ? "The upload stopped" : "The upload is taking very long", parts.join(" "));
     }
     // The gate: what can be made smaller is let through to be prepared; the rest is refused exactly as Discord always did.
     function compressPreSize(orig, self, args) {
@@ -21464,6 +21555,13 @@
     function compressVideo(orig, upload, args, job, limit) {
         const aim = limit * COMPRESS_FILL.video;
         const go = () => compressSizeOf(compressUri(upload)).then(first => {
+            // ----------------------------------------------------------------------------------------------
+            // Compress only what is actually over the limit. The gate in compressPreSize asks the channel for
+            // its limit before the upload has one; that answer can be smaller than the limit the upload ends up
+            // with (a server the account has boosts on), which made a video that fits get re-encoded anyway.
+            // Preparation is Discord's own transcode, so a file that fits is left entirely alone.
+            if (!(first > limit)) return Promise.resolve(orig.apply(upload, args));
+            // ----------------------------------------------------------------------------------------------
             if (first > limit) compressToast(tr("Making it smaller to fit\u2026"));
             const encode = shrink => {
                 compressVideoState.shrink = shrink; compressVideoState.capped = false;
@@ -21519,6 +21617,18 @@
         if (cancelInflight && !job.cancelled) { job.cancelled = true; nativeCompress("cancel", job.id).catch(() => {}); }
         if (job.native && !job.released) { job.released = true; nativeCompress("release", job.id).catch(() => {}); }
     }
+    function instrumentUploadWatch(CloudUpload) {
+        if (typeof CloudUpload !== "function" || !CloudUpload.prototype || uploadWatchInstrumented.has(CloudUpload.prototype)) return;
+        const prototype = CloudUpload.prototype;
+        uploadWatchInstrumented.add(prototype);
+        const stop = key => {
+            const method = prototype[key];
+            if (typeof method !== "function") return;
+            prototype[key] = function () { try { uploadWatchEnd(this); } catch (_) {} return method.apply(this, arguments); };
+        };
+        stop("handleComplete"); stop("handleError"); stop("delete"); stop("_cancel"); stop("cancel");
+    }
+    const uploadWatchInstrumented = new WeakSet();
     function instrumentCompressUpload(CloudUpload) {
         if (!features.compressUploads || typeof CloudUpload !== "function" || !CloudUpload.prototype || compressInstrumented.has(CloudUpload.prototype)) return;
         const prototype = CloudUpload.prototype, orig = prototype.reactNativeCompressAndExtractData;
@@ -21591,7 +21701,7 @@
             footnote("note", "Files under the limit are never touched. Nitro and boosted servers raise the limit, so they need less or no compression.")];
         return settingsBody(ui, groups);
     }
-    // Show timeout duration (#125, after ShowTimeoutDuration): Discord marks a timed-out person with a small clock that
+    // Show timeout duration (after ShowTimeoutDuration): Discord marks a timed-out person with a small clock that
     // says nothing about how long. Their member record (GuildMemberStore 2128) keeps communicationDisabledUntil, so their
     // messages get the same native tag Discord draws for BOT and JaPatch draws for staff: "Timed out · 2h 14m", with the
     // exact end time for screen readers. Rows aren't drawn again on their own, so while a tag shows, the open chat is
@@ -21605,7 +21715,7 @@
         return Number.isFinite(until) && until > Date.now() ? until : 0;
     }
     // 45m, 3h 20m, 2d 5h: the two biggest units, rounded up so it never says 0m while the timeout is still on. The last
-    // minute counts down in seconds: in minutes a 1 minute timeout said 1m the whole time (#145).
+    // minute counts down in seconds: in minutes a 1 minute timeout said 1m the whole time.
     function timeoutLeft(ms) {
         if (ms <= 60000) return tr("{n} s", {n:Math.max(1, Math.ceil(ms / 1000))});
         const minutes = Math.max(1, Math.ceil(ms / 60000)), days = Math.floor(minutes / 1440), hours = Math.floor(minutes % 1440 / 60), mins = minutes % 60;
@@ -21672,7 +21782,7 @@
         [timeoutTag.shown.get(channelId), voiceDownload.shown.get(channelId)].forEach(set => { if (set) set.forEach(id => ids.add(id)); });
         if (ids.size) bulkDeleteRedrawIds(channelId, Array.from(ids));
     }
-    // Banners in Do Not Disturb (#125): Discord keeps its in-app banners (the message that slides down at the top) away
+    // Banners in Do Not Disturb: Discord keeps its in-app banners (the message that slides down at the top) away
     // while you're on Do Not Disturb, in one place: NotificationTextUtils.shouldNotify (13511) asks SelfPresenceStore
     // (6015) for your status and stops at DND. While it decides, your status reads as online, so the banner shows the way
     // it does for anyone else, with every other rule kept (muted chats, blocked people, Focus mode, the chat you have
@@ -21695,7 +21805,7 @@
     // one-argument call skips the arguments object and apply (Hermes HBC98: 44.9 -> 24.4 us per 100 calls, 1.84x).
     function dndBannerSound(orig, self, args) { return enabled("dndBanners") && dndIsOn() ? undefined : orig.apply(self, args); }
     dndBannerSound.call1 = (orig, self, message) => enabled("dndBanners") && dndIsOn() ? undefined : orig.call(self, message);
-    // Full-screen chat in landscape (#125): Discord puts chat beside the server and channel lists whenever the window is
+    // Full-screen chat in landscape: Discord puts chat beside the server and channel lists whenever the window is
     // 600dp wide or more (useChatLayout 5075, from useWindowSizeClassifier), so turning a phone sideways squeezes the chat
     // into what's left. On a phone held sideways (its shorter side under 600dp) JaPatch reports the phone layout instead:
     // the chat takes the whole width, and the lists slide in from the left edge, like the member list from the right.
@@ -21727,7 +21837,7 @@
         try { if (React) useSettings("landscapeFull"); } catch (_) {}
         return landscapeChatLayout.call0(orig, self);
     };
-    // Download voice messages (#125, after VoiceDownload): a voice message gets a Download button of its own, right under its
+    // Download voice messages (after VoiceDownload): a voice message gets a Download button of its own, right under its
     // waveform: the native call-to-action button Discord's message view already draws (Message.ctaButton, the one under
     // age-verification DMs), so it looks and feels like the rest of the chat and needs no hold menu. Its tap reaches
     // MessagesHandlers.handleTapCtaButton with the callback JaPatch gave it. The file is saved by Discord's own downloader
@@ -21801,7 +21911,7 @@
         Promise.resolve().then(() => media.downloadMediaAssetWithContentType(file.url, 0, file.content_type || file.contentType || "audio/ogg"))
             .then(() => done(true), () => done(false));
     }
-    // Clone emojis and stickers (#125, after ExpressionCloner): tapping a custom emoji or a server sticker in chat opens
+    // Clone emojis and stickers (after ExpressionCloner): tapping a custom emoji or a server sticker in chat opens
     // Discord's own sheet for it (MessageEmojiActionSheet 9839, StickerDetailActionSheet 10078); JaPatch adds one button at
     // its bottom, "Add to a server". It opens a sheet listing only the servers where you can add expressions
     // (CREATE_GUILD_EXPRESSIONS or MANAGE_GUILD_EXPRESSIONS), each with how many free slots it has, and a name you can
@@ -21937,7 +22047,7 @@
         return added || inner ? next : cloneIntoInner(tree, item);
     }
     // MessageEmojiActionSheet doesn't draw the sheet itself: it returns MessageCustomEmojiActionSheet (or the standard
-    // one), a component of its own, so the sheet wasn't in its tree and custom emojis never got the button (#145; the
+    // one), a component of its own, so the sheet wasn't in its tree and custom emojis never got the button (; the
     // sticker sheet draws its own, which is why stickers had it). That inner component is swapped for one that draws it
     // and then adds the button to what it drew. One stable wrapper per component, so React keeps its state.
     const cloneInnerTypes = new WeakMap();
@@ -22003,7 +22113,7 @@
     // 7290) takes (channelId, navigate, silent) and sends DELETE /channels/<id>?silent=true when silent is set, the way its
     // "leave without telling anyone" path for a blocked member does. JaPatch sets it for group DMs (type 3) only; a plain DM
     // close has no message to hide. Every way of leaving goes through it: the channel menu, the chat header and /leave.
-    // #139: "Leave group" asks first, every single time, and one misplaced touch loses the group for good. With the
+    // "Leave group" asks first, every single time, and one misplaced touch loses the group for good. With the
     // option on, that alert is skipped for group DMs only; leaving a server still asks. Discord asks through
     // alerts.show (5400), so the wrapper looks at what is about to be shown, not at which caller asked.
     const LEAVE_GROUP_KEYS = ["Y6oQ6g", "sLwS9U", "u4a0S6", "rNv2Xz", "c1Q3Uf"];
@@ -22170,7 +22280,7 @@
             });
         };
         // Text only, like Accept and No Thanks next to it. An icon component here isn't drawn (Discord's Button takes an asset
-        // source or an element), but its empty slot pushed "Preview" about 20 dp right of center (#145).
+        // source or an element), but its empty slot pushed "Preview" about 20 dp right of center.
         return el(Button, {variant:"secondary", size:props.size || "lg", text:tr("Preview"), accessibilityLabel:tr("Preview servers without joining"),
             onPress:press, loading:busy, disabled:busy});
     }
@@ -22218,7 +22328,7 @@
             footnote("note", "Only servers that allow previews, like Discoverable communities, open this way. You won't show in the member list, and you join to send messages.")];
         return settingsBody(ui, groups);
     }
-    // Silent edit, Silent delete and Local edit (issues #46 and #129, based on the Silent Edit, Silentdeletee and localedit
+    // Silent edit, Silent delete and Local edit (issues and, based on the Silent Edit, Silentdeletee and localedit
     // plugins). Silent edit sends the edited text as a new message and deletes the old one, so nothing says "(edited)";
     // that only makes sense for the newest message in a chat, which is the one the new message lands right under.
     // Silent delete blanks your message first, so a message logger that reads the edit, not the delete, sees nothing.
@@ -22237,7 +22347,7 @@
     }
     function silentNonce() { return String(Math.floor((Date.now() - 1420070400000) * 4194304)); }
     // DMs and group DMs have no message loggers to get past: a friend only sees the edited text either way, and the
-    // resend-and-delete way loses the message's time and reactions. #166 keeps them on the normal edit.
+    // resend-and-delete way loses the message's time and reactions. keeps them on the normal edit.
     function silentDmChannel(channelId) {
         let channel = null;
         try { channel = channelStore && typeof channelStore.getChannel === "function" ? channelStore.getChannel(String(channelId)) : null; } catch (_) { channel = null; }
@@ -22309,7 +22419,7 @@
             if (!React || !tree || typeof tree !== "object") return tree;
             // Nobody adds a row while the option is off, so the sheet is left exactly as Discord drew it. Swapping its
             // component anyway took the element's ref away from Discord's own code, which called a method on nothing
-            // ("undefined is not a function") the moment the menu opened (#210) — with every option off, too.
+            // ("undefined is not a function") the moment the menu opened — with every option off, too.
             if (active && !active()) return tree;
             // Only a tree that came back different is a change; a row helper that returned nothing (a menu shape it
             // didn't expect) used to replace the whole sheet with undefined.
@@ -22481,7 +22591,7 @@
             footnote("note", "Only you see these changes, and only on this phone. Nothing is sent to Discord.")];
         return settingsBody(ui, groups);
     }
-    // HypeSquad, Custom idle, Pause invites, Fast delete channels, Mutual group DMs and Platform spoof (issue #129 and the
+    // HypeSquad, Custom idle, Pause invites, Fast delete channels, Mutual group DMs and Platform spoof (issue and the
     // requests that came with it). HypeSquad and Pause invites are plain API calls; Custom idle swaps Discord's idle time
     // for a live value; Fast delete skips the channel delete alert and adds a row to the channel menu; Mutual group DMs adds
     // a line to profiles; Platform spoof changes the device the gateway sign-in (IDENTIFY) tells Discord about.
@@ -22612,12 +22722,12 @@
         const P = inspectedExport(1087, "Permissions") || inspectedExport(1098, "Permissions"), perms = permissions || inspectedExport(4845, "default");
         try { return !!(P && P.MANAGE_CHANNELS != null && perms && perms.can(P.MANAGE_CHANNELS, channel)); } catch (_) { return false; }
     }
-    // #172: holding a channel or category closed the app with "Cannot read property 'color' of undefined". The row is
+    // holding a channel or category closed the app with "Cannot read property 'color' of undefined". The row is
     // cloned from a neighbouring row's style, and a menu that hadn't drawn finished rows (a gap in its template) or that
     // fails while adding this row now simply goes without it, instead of taking Discord down.
     // Called two ways: as a whole hook body (orig, self, args) and as the row helper sheetInnerHook wants
     // (tree, props). The second shape reached this as orig.apply(...) on an element, so every hold menu with Fast
-    // delete on threw "orig.apply is not a function" (#211) — the guard meant to protect that menu caused the crash.
+    // delete on threw "orig.apply is not a function" — the guard meant to protect that menu caused the crash.
     function sheetSafe(fn) {
         function skip(error) {
             if (settings.debugLog) try { dlog("W", "hooks", "a channel menu row was skipped: " + dlogText(error)); } catch (_) {}
@@ -22660,7 +22770,7 @@
             footnote("note", "Threads and forum posts are always deleted the normal way.")];
         return settingsBody(ui, groups);
     }
-    // View raw data (#141): hold a message, channel, thread, forum post, DM, server or role, or open a person's menu, to read
+    // View raw data: hold a message, channel, thread, forum post, DM, server or role, or open a person's menu, to read
     // what Discord holds about it as formatted JSON and copy it. Everything comes from the stores Discord already filled, so
     // nothing is requested. Records (users, servers, roles) aren't plain objects, so rawValue turns them into JSON that can
     // never throw: Sets and Maps become lists and objects, dates ISO text, BigInts (permissions) text, loops and functions
@@ -22783,7 +22893,7 @@
         const showContent = snap.content !== null && tab === "content", text = showContent ? snap.content : snap.json;
         const shown = text.length > RAW_SHOWN ? text.slice(0, RAW_SHOWN) : text, wrap = !!settings.viewRawWrap;
         // The sheet scrolls through react-native-gesture-handler, which takes every pan from React Native's own ScrollView,
-        // so with wrapping off the lines couldn't be scrolled sideways (#145). Gesture handler's ScrollView takes part.
+        // so with wrapping off the lines couldn't be scrolled sideways. Gesture handler's ScrollView takes part.
         const SideScroll = inspectedExport(6727, "LegacyScrollView") || RN.ScrollView;
         const copy = () => { if (showContent) serverCopy(snap.content, "Raw content copied"); else serverCopy(snap.json, "Raw data copied"); };
         const copyLabel = showContent ? tr("Copy raw content") : tr("Copy raw data"), empty = showContent && !snap.content;
@@ -22822,6 +22932,490 @@
         const key = "JaPatchViewRaw:" + spec.kind + ":" + (spec.id || spec.message && spec.message.id);
         try { ui.showSheet({key, content:el(ViewRawSheet, {spec, sheetKey:key}), stackingBehavior:"stack"}); } catch (_) {}
     }
+    // ------------------------------------------------------------------------------------------------------------
+    // Bookmarks: save a message on this phone, in this account's documents folder, so it survives restarts and app
+    // updates. Discord has no bookmarks on mobile, and nothing here is sent to Discord: the text, the name and the
+    // link are kept locally, in the same folder the deleted-message archive and the activity logs already use.
+    //
+    // Why local and not on the account: a bookmark that lives on Discord would need a server-side store Discord does
+    // not have, and anything that writes one would be pretending to be a feature Discord does not offer. This says
+    // what it is, keeps only what the message already showed, and can be cleared in one tap.
+    const BOOKMARKS_FILE = "japatch-bookmarks.json", BOOKMARK_LIMIT = 2000;
+    const bookmarks = {list:[], loaded:false, loading:false, account:"", revision:0, error:""};
+    function bookmarkId(message) {
+        const channelId = String(message && (message.channel_id || message.channelId) || ""), id = String(message && message.id || "");
+        return /^\d{17,20}$/.test(channelId) && /^\d{17,20}$/.test(id) ? channelId + ":" + id : "";
+    }
+    function bookmarksPath() {
+        try {
+            const constants = files && typeof files.getConstants === "function" ? files.getConstants() : null;
+            if (!constants || typeof constants.DocumentsDirPath !== "string") return "";
+            return constants.DocumentsDirPath.replace(/\/$/, "") + "/" + BOOKMARKS_FILE;
+        } catch (_) { return ""; }
+    }
+    // A bookmark holds what the chat showed: who, when, what, and enough to link back to it.
+    function bookmarkFrom(message) {
+        const place = userNotifPlace(message.channel_id || message.channelId, message.guild_id || message.guildId);
+        const author = message.author || {};
+        const bodies = Array.isArray(message.attachments) ? message.attachments : [];
+        return {
+            id:bookmarkId(message),
+            at:Date.now(),
+            author:author.globalName || author.global_name || author.username || "",
+            authorId:String(author.id || ""),
+            text:typeof message.content === "string" ? message.content.slice(0, 4000) : "",
+            files:bodies.length,
+            channel:place.cName, server:place.gName, dm:!!place.isDm,
+            // A link Discord itself opens: the two ids are all it needs, and it keeps working without our data.
+            link:(message.guild_id || message.guildId) ? "https://discord.com/channels/" + (message.guild_id || message.guildId) + "/" + (message.channel_id || message.channelId) + "/" + message.id : "",
+            sent:message.timestamp || (message.timestamps && message.timestamps.sentAt) || 0
+        };
+    }
+    function bookmarksValid(entry) {
+        return !!entry && typeof entry.id === "string" && /^\d{17,20}:\d{17,20}$/.test(entry.id) && typeof entry.text === "string";
+    }
+    function bookmarksPersist() {
+        const path = bookmarksPath();
+        if (!path || !files || typeof files.writeFile !== "function") return;
+        const body = JSON.stringify({version:1, savedAt:Date.now(), list:bookmarks.list});
+        Promise.resolve().then(() => files.writeFile("documents", BOOKMARKS_FILE, body, "utf8"))
+            .then(() => { bookmarks.error = ""; }, () => { bookmarks.error = "unsaved"; });
+    }
+    function bookmarksLoad() {
+        if (bookmarks.loading || bookmarks.loaded) return;
+        const path = bookmarksPath();
+        bookmarks.loading = true;
+        if (!path || !files || typeof files.readFile !== "function") { bookmarks.loading = false; bookmarks.loaded = true; notify("bookmarks"); return; }
+        Promise.resolve().then(() => files.fileExists(path)).then(exists => exists ? files.readFile(path, "utf8") : null).then(text => {
+            // A damaged file is reported once and then replaced by what is saved from here on: losing a list is
+            // better than a page that throws every time it opens.
+            let list = [];
+            if (text) {
+                const saved = JSON.parse(text);
+                if (!saved || saved.version !== 1 || !Array.isArray(saved.list)) throw new Error("Invalid bookmarks");
+                list = saved.list.filter(bookmarksValid).slice(0, BOOKMARK_LIMIT);
+            }
+            bookmarks.list = list; bookmarks.loaded = true; bookmarks.error = "";
+        }).catch(() => {
+            bookmarks.list = []; bookmarks.loaded = true; bookmarks.error = "unreadable";
+        }).then(() => {
+            bookmarks.loading = false; bookmarks.revision++; notify("bookmarks");
+        });
+    }
+    function bookmarksHas(id) { return bookmarks.list.some(entry => entry.id === id); }
+    function bookmarksToggle(message) {
+        const entry = message ? bookmarkFrom(message) : null;
+        if (!entry || !entry.id) return false;
+        const at = bookmarks.list.findIndex(item => item.id === entry.id);
+        if (at >= 0) bookmarks.list.splice(at, 1);
+        else { bookmarks.list.unshift(entry); if (bookmarks.list.length > BOOKMARK_LIMIT) bookmarks.list.length = BOOKMARK_LIMIT; }
+        bookmarks.revision++; bookmarksPersist(); notify("bookmarks");
+        return at < 0;
+    }
+    function bookmarksRemove(id) {
+        const at = bookmarks.list.findIndex(item => item.id === id);
+        if (at < 0) return;
+        bookmarks.list.splice(at, 1); bookmarks.revision++; bookmarksPersist(); notify("bookmarks");
+    }
+    function bookmarkLine(entry) {
+        const where = entry.dm ? tr("Direct message") : [entry.server, entry.channel].filter(Boolean).join(" \u203a ");
+        return where || "";
+    }
+    // The option page: where the list lives, and a way into it without going through a message.
+    function BookmarkSettings() {
+        useSettings("bookmarks");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("bookmarks");
+        const groups = [
+            on ? null : offCard("status", japatchIcon(13769, "BookmarkOutlineIcon"), "bookmarks"),
+            el(ui.TableRowGroup || RN.View, {key:"open", title:tr("Saved messages")},
+                el(ui.TableRow, {key:"open", label:tr("Open bookmarks"), icon:rowIcon(13769, "BookmarkOutlineIcon"), arrow:true,
+                    subLabel:tr("{n} saved", {n:bookmarks.list.length}), onPress:() => openBookmarks()}),
+                el(ui.TableRow, {key:"add", label:tr("How to save one"), icon:rowIcon(8471, "ChatIcon"),
+                    subLabel:tr("Hold a message in any chat and tap Bookmark.")})),
+            footnote("where", "Bookmarks stay in this phone's files, one list per Discord account. They are not sent to Discord, and clearing them here removes them for good.")];
+        return settingsBody(ui, groups);
+    }
+    function BookmarksSheet(props) {
+        // One subscription: useSettings already re-renders this page whenever notify("bookmarks") runs.
+        useSettings("bookmarks");
+        bookmarksLoad();
+        const ui = reviewUI();
+        // A list on this page: newest first, each row the text it saved and where it came from.
+        const s = useThemed("bookmarks", c => ({card:{backgroundColor:c.CARD_BACKGROUND_DEFAULT, borderRadius:16, paddingHorizontal:16, paddingVertical:12, gap:4},
+            text:{color:c.TEXT_DEFAULT, fontSize:15, lineHeight:20}, where:{color:c.TEXT_MUTED, fontSize:12},
+            empty:{color:c.TEXT_MUTED, fontSize:15, paddingVertical:24, textAlign:"center"}}),
+            {card:{backgroundColor:"#2b2d31", borderRadius:16, paddingHorizontal:16, paddingVertical:12, gap:4},
+             text:{color:"#dbdee1", fontSize:15, lineHeight:20}, where:{color:"#949ba4", fontSize:12},
+             empty:{color:"#949ba4", fontSize:15, paddingVertical:24, textAlign:"center"}});
+        const Press = RN.Pressable || RN.View, Group = ui.TableRowGroup || RN.View, Button = inspectedExport(5479, "Button");
+        const header = ui.Header ? el(ui.Header, {title:tr("Bookmarks"), trailing:ui.Close ? el(ui.Close, {onPress:() => hideReviewSheet(ui, props.sheetKey)}) : undefined}) : undefined;
+        const close = () => hideReviewSheet(ui, props.sheetKey);
+        const open = entry => {
+            // A saved message opens where it lives. Only a handler that is already verified is used; without one the
+            // row still shows the whole message, which is what was saved.
+            try { if (entry.link && typeof global.open === "function") { close(); global.open(entry.link); return; } } catch (_) {}
+        };
+        const clear = () => confirmAction("Clear all bookmarks?", "Every bookmark saved on this phone is removed. This can't be undone.", "Clear", () => {
+            bookmarks.list = []; bookmarks.revision++; bookmarksPersist(); notify("bookmarks");
+        });
+        const rows = bookmarks.list.map(entry => el(Press, {key:entry.id, onPress:() => open(entry), accessibilityRole:"button",
+                accessibilityLabel:entry.text || tr("Saved message"), style:s.card},
+            el(RN.Text, {numberOfLines:3, style:s.text}, entry.text || (entry.files ? tr("{n} attachment", {n:entry.files}) : tr("Saved message"))),
+            el(RN.Text, {numberOfLines:1, style:s.where}, (entry.author ? entry.author + "  \u00b7  " : "") + bookmarkLine(entry))));
+        const body = !bookmarks.loaded ? el(RN.Text, {style:s.empty}, tr("Loading\u2026")) :
+            !bookmarks.list.length ? el(RN.Text, {style:s.empty}, bookmarks.error === "unreadable" ?
+                tr("The saved file could not be read, so the list starts empty. New bookmarks are saved normally.") :
+                tr("Hold a message and choose Bookmark to keep it here.")) : el(Group, {key:"list", title:tr("{n} saved", {n:bookmarks.list.length})}, rows);
+        return el(ui.ActionSheet || RN.View, {header},
+            el(RN.ScrollView, {contentContainerStyle:{paddingHorizontal:12, paddingBottom:24, gap:8}}, body),
+            bookmarks.list.length ? el(RN.View, {style:{paddingHorizontal:12, paddingBottom:24}},
+                Button ? el(Button, {key:"clear", text:tr("Clear all"), size:"md", variant:"secondary", onPress:clear}) : null) : null);
+    }
+    function openBookmarks(ui) {
+        ui = ui || reviewUI();
+        if (!ui.ActionSheet || typeof ui.showSheet !== "function") return;
+        const key = "JaPatchBookmarks";
+        try { ui.showSheet({key, content:el(BookmarksSheet, {sheetKey:key}), stackingBehavior:"stack"}); } catch (_) {}
+    }
+    // The row itself: "Bookmark" or "Remove bookmark", with the icon Discord already uses for it.
+    function bookmarkMenuRow(tree, props) {
+        const message = props && props.message;
+        const id = bookmarkId(message);
+        if (!id) return tree;
+        bookmarksLoad();
+        const saved = bookmarksHas(id), label = saved ? tr("Remove bookmark") : tr("Bookmark");
+        return sheetAddRow(tree, props, "japatch-bookmark", label, japatchIcon(13769, "BookmarkOutlineIcon"), () => {
+            const added = bookmarksToggle(message);
+            reviewToast(reviewUI(), added ? tr("Bookmarked") : tr("Bookmark removed"), japatchIcon(added ? 13769 : 6929, added ? "BookmarkOutlineIcon" : "EyeSlashIcon"));
+        });
+    }
+    function bookmarkMessageSheet(orig, self, args) {
+        const tree = orig.apply(self, args), props = args[0], message = props && props.message;
+        if (!enabled("bookmarks") || !React || !tree || !message || !message.id) return tree;
+        return bookmarkMenuRow(tree, props);
+    }
+
+    // The page: one field to type a name, and everything saved under it, so a wrong name can be put right or cleared
+    // without hunting for the message it came from. The server and person names come from Discord's stores when they
+    // are loaded; the IDs are shown when they are not, which is honest about what is known.
+    function LocalNickSettings() {
+        useSettings("localNick", LOCAL_NICKS_KEY);
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("localNick"), saved = localNickAll() || {};
+        const TextInput = ui.TextInput || RN.TextInput;
+        const Group = ui.TableRowGroup || RN.View, Row = ui.TableRow;
+        const guildId = String(settings.localNickGuild || ""), userId = String(settings.localNickUser || "");
+        // The fields are saved settings (so the page can be opened from the row at all); once the page is up they have
+        // done their job and are cleared, leaving nothing behind but the names themselves.
+        React.useEffect(() => { if (guildId || userId) later(() => { setSetting("localNickGuild", ""); setSetting("localNickUser", ""); }, 0); }, []);
+        const [name, setName] = React.useState("");
+        const rows = [];
+        Object.keys(saved).sort().forEach(serverId => {
+            const server = saved[serverId] || {}, serverName = localNickServerName(serverId);
+            Object.keys(server).sort().forEach(personId => {
+                rows.push(el(Row, {key:"nick-" + serverId + "-" + personId, label:server[personId],
+                    subLabel:tr("{name} in {server}", {name:localNickPersonName(personId), server:serverName}), icon:japatchIcon(15994, "LaptopPhoneIcon"),
+                    arrow:true, disabled:!on, onPress:() => confirmAction(tr("Clear this name?"), tr("{name} in {server} goes back to Discord's own name on this phone.", {name:localNickPersonName(personId), server:serverName}),
+                        tr("Clear"), () => localNickSet(serverId, personId, ""))}));
+            });
+        });
+        const field = on && TextInput && rawId(guildId) && rawId(userId) ? el(RN.View, {key:"field", style:{paddingHorizontal:16, gap:8}},
+            el(RN.Text, {style:{color:"#b5bac1", fontSize:13}}, tr("Name for {name} in {server}", {name:localNickPersonName(userId), server:localNickServerName(guildId)})),
+            TextInput === RN.TextInput ? el(TextInput, {value:name, onChangeText:setName, placeholder:tr("A name for this phone"), placeholderTextColor:"#80848e",
+                maxLength:LOCAL_NICK_MAX, style:{fontSize:16, padding:12, color:"#f2f3f5"}}) :
+                el(TextInput, {value:name, onChange:text => setName(String(text || "")), placeholder:tr("A name for this phone"), maxLength:LOCAL_NICK_MAX}),
+            el(RN.Pressable, {onPress:() => { localNickSet(guildId, userId, name); setName(""); }, accessibilityRole:"button",
+                style:{backgroundColor:"#5865f2", borderRadius:8, paddingVertical:10, alignItems:"center"}},
+                el(RN.Text, {style:{color:"#ffffff", fontWeight:"600"}}, tr("Save this name")))) : null;
+        const groups = [on ? statusCard("status", "Nicknames only on this phone", {leading:el(japatchIcon(15994, "LaptopPhoneIcon"), {size:"md"}),
+                body:tr("Hold a message in a server and pick Nickname to give that person a name of your own. Discord never learns it, and nobody else sees it.")}) : offCard("status", japatchIcon(15994, "LaptopPhoneIcon"), "localNick"),
+            field,
+            rows.length ? el(Group, {key:"list", title:tr("Saved names")}, rows) :
+                footnote("empty", "No names saved yet. Hold a message from someone in a server and pick Nickname, and it shows up here."),
+            footnote("local", "These names live in this phone's settings file. They are not sent to Discord, and only this phone shows them.")];
+        return settingsBody(ui, groups);
+    }
+    function localNickServer(guildId) {
+        try {
+            const guilds = inspectedExport(2090, "default"), guild = guilds && typeof guilds.getGuild === "function" ? guilds.getGuild(guildId) : null;
+            return guild && typeof guild.name === "string" ? guild.name : "";
+        } catch (_) { return ""; }
+    }
+    function localNickServerName(guildId) { return localNickServer(guildId) || tr("Server {id}", {id:guildId}); }
+    function localNickPerson(userId) {
+        try {
+            const users = inspectedExport(1392, "default"), user = users && typeof users.getUser === "function" ? users.getUser(userId) : null;
+            return user && (user.globalName || user.global_name || user.username) || "";
+        } catch (_) { return ""; }
+    }
+    function localNickPersonName(userId) { return localNickPerson(userId) || tr("Person {id}", {id:userId}); }
+    // The message menu's own row: who the row is from and which server it is in are already on that sheet's message.
+    function localNickRow(orig, self, args) {
+        const tree = orig.apply(self, args), props = args[0], message = props && props.message;
+        if (!enabled("localNick") || !React || !tree || !message) return tree;
+        const guildId = String(message.guildId || message.guild_id || ""), userId = String(message.authorId || message.author && message.author.id || "");
+        if (!rawId(guildId) || !rawId(userId) || message.webhookId) return tree;
+        const saved = localNickGet(guildId, userId);
+        return sheetAddRow(tree, props, "japatch-local-nick", tr(saved ? "Change nickname on this phone" : "Nickname on this phone"),
+            japatchIcon(15994, "LaptopPhoneIcon"), () => setSetting("localNickGuild", guildId) && setSetting("localNickUser", userId) && later(() => openLocalNickSheet(guildId, userId), 60));
+    }
+    // A menu row cannot type by itself: Discord's menu this file draws in has no text field, and there is no input
+    // alert to borrow that this repo has verified. The page has a field of its own, so the row says who it is for and
+    // opens there, one tap from typing the name. Nothing is guessed at.
+    function openLocalNickSheet(guildId, userId) {
+        setSetting("localNickGuild", guildId);
+        setSetting("localNickUser", userId);
+        later(() => openSettings("JAPATCH_LOCALNICK"), 60);
+    }
+
+    // ---- Save a profile picture or banner (item: avatar and banner of other people) --------------------------------
+    // A profile picture sits at /avatars/{user}/{hash}.png and a banner at /banners/{user}/{hash}.png on Discord's own
+    // image host, so the address can be built from the user's record alone; nothing else is guessed and nothing is asked
+    // of Discord. The picture is downloaded, written to the cache folder and handed to Android's own "Save to" screen,
+    // which is the same road the log export and the settings backup take.
+    const AVATAR_SLIM = 512, SAVE_IMAGE_MAX = 12 * 1024 * 1024;
+    function saveImageName(kind, userId, hash) {
+        const ext = typeof hash === "string" && /^a_/.test(hash) ? "gif" : "png";
+        return "japatch-" + kind + "-" + userId + "-" + String(Date.now()) + "." + ext;
+    }
+    function saveImageUrl(kind, userId, hash) {
+        if (!rawId(userId) || typeof hash !== "string" || !/^[A-Za-z0-9_]{1,80}$/.test(hash)) return "";
+        const ext = /^a_/.test(hash) ? "gif" : "png";
+        const path = kind === "avatar" ? "/avatars/" + userId + "/" + hash + "." + ext + "?size=" + AVATAR_SLIM : "/banners/" + userId + "/" + hash + "." + ext;
+        return "https://cdn.discordapp.com" + path;
+    }
+    // The pictures a profile is drawn with, as Discord itself is showing them: the profile's own record when the menu
+    // was opened for a user, and the nested user record as the fallback. Nothing here is invented; a profile without a
+    // banner has an empty hash and simply produces no row.
+    function saveImageOf(props) {
+        const user = props && (props.user || props.otherUser && props.otherUser.user) || {};
+        const userId = rawId(String(props && (props.userId || user.id) || ""));
+        const guildMember = props && (props.guildMember || props.member) || null;
+        const profile = props && props.profile || null;
+        const list = [user, profile && profile.user, guildMember && guildMember.user].filter(Boolean);
+        let avatar = "", banner = "";
+        for (const record of list) {
+            if (!avatar && typeof record.avatar === "string" && record.avatar) avatar = record.avatar;
+            if (!banner && typeof record.banner === "string" && record.banner) banner = record.banner;
+        }
+        return {userId, avatar, banner};
+    }
+    function saveImage(kind, info) {
+        if (!info || !rawId(info.userId)) { showProblem("Nothing to save", tr("This profile did not say who it belongs to.")); return; }
+        const url = saveImageUrl(kind, info.userId, kind === "avatar" ? info.avatar : info.banner);
+        if (!url) { showProblem("Nothing to save", tr("This profile does not have one.")); return; }
+        const saveDocuments = inspectedExport(11600, "saveDocuments"), dir = cacheDir();
+        if (!files || typeof saveDocuments !== "function" || !dir || typeof global.fetch !== "function") {
+            showProblem("Couldn't save the picture", tr("Saving files is not available in this Discord build.")); return;
+        }
+        const name = saveImageName(kind, info.userId, kind === "avatar" ? info.avatar : info.banner);
+        const abort = typeof global.AbortController === "function" ? new global.AbortController() : null;
+        let timer;
+        if (global.setTimeout && abort) timer = global.setTimeout(() => { try { abort.abort(); } catch (_) {} }, 20000);
+        const done = () => { if (timer !== undefined && global.clearTimeout) global.clearTimeout(timer); };
+        const run = async () => {
+            const response = await global.fetch(url, Object.assign({credentials:"omit", headers:{accept:"image/*"}}, abort ? {signal:abort.signal} : {}));
+            if (!response || !response.ok) throw new Error("HTTP " + (response && response.status));
+            const bytes = new Uint8Array(await response.arrayBuffer());
+            if (!bytes.length) throw new Error("empty");
+            if (bytes.length > SAVE_IMAGE_MAX) throw new Error("too large");
+            await files.writeFile("cache", name, bytes);
+            const result = await saveDocuments({sourceUris:["file://" + dir + "/" + name], fileName:name, mimeType:/\.gif$/.test(name) ? "image/gif" : "image/png"});
+            const first = Array.isArray(result) ? result[0] : result;
+            if (first && first.error) throw new Error(String(first.error));
+        };
+        Promise.resolve().then(run).then(done, error => { done();
+            if (error && /abort/i.test(String(error.name || error.message))) showProblem("Couldn't save the picture", tr("The picture did not arrive in 20 s. Try again on a better connection."));
+            else showProblem("Couldn't save the picture", tr("The picture could not be downloaded. Try again in a moment."));
+        });
+    }
+    // Two rows in the profile's own long-press menu, both only while there is a picture to save for that row.
+    function saveImageMenu(orig, self, args) {
+        const rendered = orig.apply(self, args), props = args[0];
+        if (!enabled("saveImages") || !React || !rendered || !props) return rendered;
+        const Menu = inspectedExport(9662, "ContextMenu"), info = saveImageOf(props);
+        if (!Menu || !rawId(info.userId)) return rendered;
+        const items = [];
+        if (saveImageUrl("avatar", info.userId, info.avatar)) items.push({label:tr("Save profile picture"), japatchSave:true, action:() => later(() => saveImage("avatar", info), 60)});
+        if (saveImageUrl("banner", info.userId, info.banner)) items.push({label:tr("Save banner"), japatchSave:true, action:() => later(() => saveImage("banner", info), 60)});
+        if (!items.length) return rendered;
+        return cloneTree(rendered, (node, nodeProps) => {
+            if (node.type !== Menu || !Array.isArray(nodeProps.items) || nodeProps.items.some(entry => entry && entry.japatchSave)) return nodeProps;
+            const list = nodeProps.items, last = list[list.length - 1];
+            const danger = Array.isArray(last) && last.some(entry => entry && entry.variant === "destructive");
+            const grouped = list.some(Array.isArray);
+            const next = !grouped ? list.concat(items) : danger ? list.slice(0, -1).concat([items, last]) : list.concat([items]);
+            return Object.assign({}, nodeProps, {items:next});
+        }, 0);
+    }
+    function SaveImageSettings() {
+        useSettings("saveImages");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("saveImages");
+        const groups = [on ? statusCard("status", "Hold a profile for its pictures", {leading:el(japatchIcon(12328, "ImagesIcon"), {size:"md"}),
+                body:tr("The menu gains Save profile picture and Save banner when that profile has the one you hold it for. Each is saved through Android's own Save to screen, so you pick the folder.")}) : offCard("status", japatchIcon(12328, "ImagesIcon"), "saveImages"),
+            footnote("note", "Nothing is fetched until you pick a picture, and a picture you never save is never written to this phone.")];
+        return settingsBody(ui, groups);
+    }
+
+    // ---- The server's clock (item: server time and timezone in chat) ------------------------------------------------
+    // A server stores no timezone, so none is invented here: every server shows the one time picked on its page, and the
+    // zone is only ever shown when the phone's own date data names it. Offsets come from the phone's Intl data; a build
+    // without it shows the clock and leaves the zone out.
+    const CLOCK_TICK_MS = 1000;
+    const serverClock = {tick:"", timer:undefined, waiters:new Set()};
+    function serverClockZone() {
+        const zone = typeof settings.serverClockZone === "string" ? settings.serverClockZone : "auto";
+        if (zone === "auto" || !/^[A-Za-z][A-Za-z0-9_+\-]*(\/[A-Za-z0-9_+\-]+)*$/.test(zone)) return "";
+        try { new Intl.DateTimeFormat("en", {timeZone:zone}); return zone; } catch (_) { return ""; }
+    }
+    function serverClockTime(now) {
+        try {
+            const options = {hour:"2-digit", minute:"2-digit", hour12: !settings.serverClock24};
+            const zone = serverClockZone();
+            if (zone) options.timeZone = zone;
+            return new Intl.DateTimeFormat(undefined, options).format(now || new Date());
+        } catch (_) { return ""; }
+    }
+    function serverClockEnsure() {
+        if (serverClock.timer !== undefined || typeof global.setInterval !== "function") return;
+        serverClock.timer = global.setInterval(() => {
+            const time = serverClockTime(new Date());
+            if (!time || time === serverClock.tick) return;
+            serverClock.tick = time;
+            serverClock.waiters.forEach(fn => { try { fn(time); } catch (_) {} });
+        }, CLOCK_TICK_MS);
+    }
+    function serverClockStop() {
+        if (serverClock.timer !== undefined && global.clearInterval) { try { global.clearInterval(serverClock.timer); } catch (_) {} }
+        serverClock.timer = undefined;
+    }
+    // Only the clock's own Text redraws each second: it subscribes to the app's one ticker and nothing above re-renders.
+    function ServerClock() {
+        useSettings("serverClock");
+        const Text = inspectedExport(5187, "Text");
+        const [time, setTime] = React.useState(serverClock.tick || "");
+        React.useEffect(() => {
+            serverClockEnsure();
+            const set = value => setTime(value);
+            serverClock.waiters.add(set);
+            if (!serverClock.tick) serverClock.tick = serverClockTime(new Date());
+            setTime(serverClock.tick);
+            return () => { serverClock.waiters.delete(set); if (!serverClock.waiters.size) serverClockStop(); };
+        }, []);
+        if (!time) return null;
+        const label = tr("This chat's time") + ": " + time;
+        return el(RN.View, {key:"japatch-clock", accessible:true, accessibilityLabel:label,
+            style:{marginLeft:6, paddingHorizontal:6, paddingVertical:1, borderRadius:6, backgroundColor:"rgba(128,132,142,0.16)"}},
+            Text ? el(Text, {variant:"text-xs/medium", color:"text-muted"}, time) : el(RN.Text, {style:{color:"#b5bac1", fontSize:12}}, time));
+    }
+    // The same tree walk the platform badges use: find the chat's title text, wrap it in a row with the clock after it,
+    // once per render. A React Native Text may not hold a View, so the title itself becomes the row's first child.
+    function placeServerClock(tree) {
+        if (!tree || !React || !RN || !enabled("serverClock")) return tree;
+        let added = false;
+        return cloneTree(tree, (node, p) => {
+            if (added) return p;
+            const children = Array.isArray(p.children) ? p.children : [p.children];
+            const title = children.find(child => child && child.props && (child.type === RN.Text && typeof child.props.children === "string" ||
+                typeof child.props.variant === "string" && /(?:channel-title|heading|semibold)/.test(child.props.variant)));
+            if (!title || node.type === RN.Text) return p;
+            added = true;
+            return Object.assign({}, p, {children:children.map(child => child !== title ? child :
+                el(RN.View, {key:"japatch-clock-row", style:{flexDirection:"row", alignItems:"center", flexShrink:1, minWidth:0}}, child, el(ServerClock, {})))});
+        }, 0, () => added);
+    }
+    // The chat's header (ChatViewWrapper 13788, already hooked for the platform badges): a pure transform, no hooks here.
+    function serverClockHeader(orig, self, args) {
+        if (React) useSettings("serverClock");
+        return placeServerClock(orig.apply(self, args));
+    }
+    function ServerClockSettings() {
+        useSettings("serverClock");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("serverClock");
+        const zone = settings.serverClockZone !== "auto" ? settings.serverClockZone : "";
+        let sample = "";
+        try { sample = new Intl.DateTimeFormat(undefined, {hour:"2-digit", minute:"2-digit", timeZoneName: zone ? "short" : undefined, timeZone: zone || undefined}).format(new Date()); } catch (_) { sample = ""; }
+        const groups = [on ? statusCard("status", "Server time in the header", {leading:el(japatchIcon(5150, "ClockIcon"), {size:"md"}),
+                body:tr("Each of your servers shows its local time next to its name in a chat. A server has no timezone of its own, so every server uses the one picked here.")}) : offCard("status", japatchIcon(5150, "ClockIcon"), "serverClock"),
+            on ? switchRow(inspectedExport(7173, "FormSwitch"), "serverClock24", "24-hour clock", "Show 14:05 instead of 02:05 PM.") : null,
+            on ? footnote("now", sample ? "Right now that reads " + sample + "." : "The phone's date data is not available, so the zone name is left out.") : null,
+            on ? footnote("zone", "A server has no timezone of its own in Discord's data, so this one time is used for every server.") : null];
+        return settingsBody(ui, groups);
+    }
+
+    // ---- A server nickname of your own (item: local server nickname) -------------------------------------------------
+    // Discord keeps one nickname per person per server, and only someone with the permission (or the person) can change
+    // it. This is not Discord's nickname: it is a name for this phone only, like Edit servers locally, and it never
+    // leaves the device. A message row's author is read from the row itself, so the swap happens there and nowhere
+    // else: a record handed out by a store is never modified, and nothing is written back to Discord.
+    const LOCAL_NICKS_KEY = "localServerNicks", LOCAL_NICK_MAX = 64, LOCAL_NICK_COUNT = 1000;
+    // Per server, so the same person can read differently in two servers. A name is trimmed and capped the way Discord
+    // does with a nickname, and an empty one means "use Discord's name again".
+    function localNickClean(raw) {
+        const out = {};
+        if (!raw || typeof raw !== "object" || Array.isArray(raw)) return out;
+        let count = 0;
+        for (const guildId of Object.keys(raw)) {
+            if (count >= LOCAL_NICK_COUNT) break;
+            if (!rawId(guildId) || !raw[guildId] || typeof raw[guildId] !== "object" || Array.isArray(raw[guildId])) continue;
+            const next = {};
+            for (const userId of Object.keys(raw[guildId])) {
+                const value = raw[guildId][userId];
+                if (!rawId(userId) || typeof value !== "string") continue;
+                const name = value.replace(/\s+/g, " ").trim().slice(0, LOCAL_NICK_MAX);
+                if (name) { next[userId] = name; count++; }
+            }
+            if (Object.keys(next).length) out[guildId] = next;
+        }
+        return out;
+    }
+    function localNickAll() {
+        const value = settings[LOCAL_NICKS_KEY];
+        return value && typeof value === "object" && !Array.isArray(value) ? value : null;
+    }
+    function localNickGet(guildId, userId) {
+        if (!enabled("localNick")) return "";
+        const all = localNickAll(), server = all && all[guildId];
+        return server && typeof server === "object" && typeof server[userId] === "string" ? server[userId] : "";
+    }
+    function localNickSet(guildId, userId, name) {
+        if (!rawId(guildId) || !rawId(userId)) return;
+        const all = Object.assign({}, localNickAll() || {}), server = Object.assign({}, all[guildId] || {});
+        const clean = typeof name === "string" ? name.replace(/\s+/g, " ").trim().slice(0, LOCAL_NICK_MAX) : "";
+        if (clean) server[userId] = clean; else delete server[userId];
+        if (Object.keys(server).length) all[guildId] = server; else delete all[guildId];
+        setSetting(LOCAL_NICKS_KEY, localNickClean(all));
+    }
+    // The swap itself, on the row's own copy: a server's message only, and only when a name is saved for that person
+    // there. DMs, group DMs and webhooks have no server to be named in and are left exactly as they were.
+    function localNickMessage(message) {
+        if (!message || typeof message !== "object" || message.webhookId) return message;
+        const guildId = String(message.guildId || message.guild_id || ""), userId = String(message.authorId || message.author && message.author.id || "");
+        if (!rawId(guildId) || !rawId(userId)) return message;
+        const nick = localNickGet(guildId, userId);
+        if (!nick) return message;
+        const author = message.author;
+        if (!author || typeof author !== "object") return message;
+        const descriptors = Object.getOwnPropertyDescriptors(author);
+        let changed = false;
+        for (const field of ["username", "nick", "nickname", "globalName", "global_name"]) {
+            if (descriptors[field] && descriptors[field].get) continue;
+            if (descriptors[field] && descriptors[field].value === nick) continue;
+            descriptors[field] = {value:nick, enumerable:true, configurable:true, writable:true};
+            changed = true;
+        }
+        if (!changed) return message;
+        const nextAuthor = Object.create(Object.getPrototypeOf(author), descriptors);
+        return copyWith(message, "author", nextAuthor);
+    }
+
     // Message menu row.
     function viewRawMessageSheet(orig, self, args) {
         const tree = orig.apply(self, args), props = args[0], message = props && props.message;
@@ -23055,7 +23649,7 @@
         if (ui.alerts && typeof ui.alerts.show === "function") try { ui.alerts.show({title, body, confirmText:tr("Reopen now"), cancelText:tr("Later"), onConfirm:reopen}); return; } catch (_) {}
         if (RN.Alert) RN.Alert.alert(title, body, [{text:tr("Later"), style:"cancel"}, {text:tr("Reopen now"), onPress:reopen}]);
     }
-    // Keep media playing (#134). Discord plays voice messages, audio files and chat videos in its own native player and pauses
+    // Keep media playing. Discord plays voice messages, audio files and chat videos in its own native player and pauses
     // them when it leaves the screen; the native side (extensions/media, BackgroundMedia.kt) keeps the sound going with a media
     // notification and pops a playing video out into Android's picture-in-picture window. It reads the switches from the
     // settings file itself, so the JS side only sends the notification's texts in the user's language, and, when Discord
@@ -23283,7 +23877,7 @@
     // Room kept free above the open bar (the status bar and the channel header), plus a little air under the header.
     const EXPAND_BAR_RESERVE = 128;
     // Threads and forum posts draw a second bar under the channel name (the post's title, Follow and the parent channel),
-    // which covered the top of the open bar and its collapse button (#145), so they keep that much more room free.
+    // which covered the top of the open bar and its collapse button, so they keep that much more room free.
     const EXPAND_BAR_THREAD_EXTRA = 64, EXPAND_BAR_BUTTON_ROOM = 34;
     function expandBarReserve() {
         const id = selectedChannelId();
@@ -23293,7 +23887,7 @@
         return EXPAND_BAR_RESERVE + (type === 10 || type === 11 || type === 12 ? EXPAND_BAR_THREAD_EXTRA : 0) + EXPAND_BAR_BUTTON_ROOM;
     }
     const expandBarHandlers = new WeakMap();
-    // The button gets its own row above the text view instead of a corner of the bar (#177, #201): in the corner it sat on
+    // The button gets its own row above the text view instead of a corner of the bar: in the corner it sat on
     // Send on a one-line message and on the close button while editing or replying. A row can't overlap either, whatever
     // the bar's height is, and it only takes room while the button is shown (the second line or open).
     const EXPAND_BAR_DARK = {row:{flexDirection:"row", justifyContent:"flex-end", alignItems:"center", minHeight:EXPAND_BAR_BUTTON_ROOM},
@@ -23432,7 +24026,7 @@
     function expandBarStyle(style, open) {
         const flat = RN && RN.StyleSheet && typeof RN.StyleSheet.flatten === "function" ? RN.StyleSheet.flatten(style) : style;
         const base = Object.assign({}, flat && typeof flat === "object" ? flat : null);
-        // The button has its own row now (#177, #201), so the text keeps the full width and needs no gutter.
+        // The button has its own row now, so the text keeps the full width and needs no gutter.
         if (open) {
             const live = expandBar.live, min = live && live.textFieldMinHeight && typeof live.textFieldMinHeight.get === "function" ? live.textFieldMinHeight.get() : 0;
             delete base.flex;
@@ -23808,7 +24402,7 @@
         const restores = [], pending = bulkDelete.redrawing;
         // Kept deleted messages are drawn from Keep deleted messages' own copy, not the store's record, so changing the
         // record's text never reached them: Discord saw the same copy, skipped the row, and its circle stayed after the
-        // delete finished or selection was cancelled (#138). They get a fresh copy instead, and one store change redraws them.
+        // delete finished or selection was cancelled. They get a fresh copy instead, and one store change redraws them.
         const bucket = features.noDelete && enabled("noDelete") && deletedByChannel.get(channelId);
         let keptChanged = false;
         for (let i = 0; i < ids.length; i++) {
@@ -24653,6 +25247,8 @@
                 if (features.noDelete) exports = hookComponent(exports, noDeleteSheet);
                 if (features.localEdit) exports = hookComponent(exports, localEditSheet);
                 if (features.viewRaw) exports = hookComponent(exports, viewRawMessageSheet);
+                if (features.bookmarks) exports = hookComponent(exports, bookmarkMessageSheet);
+                if (features.localNick) exports = hookComponent(exports, localNickRow);
                 return features.bulkDelete ? hookComponent(exports, bulkDeleteSheet) : exports;
             case 9561: return features.splitMessages ? maxLengthModule(exports) : exports;
             case 17538: return (features.youBarSettings || features.accountSwitcher) ? hookComponent(exports, youBarButtons) : exports;
@@ -24660,7 +25256,7 @@
             case 1266: if (features.pastelize) pastelHash = typeof exports === "function" ? exports : exports.default; return exports;
             case 2128: if (features.pastelize) guildMembers = exports.default; if (features.timeoutDuration && exports && exports.default) timeoutTag.members = exports.default; return exports;
             case 8013:
-                if ((features.pastelize || features.noDelete || features.translate || features.messageHighlight || features.bulkDelete || features.staffTag || features.timeoutDuration || features.voiceDownload || features.localEdit) && exports.default && exports.default.prototype)
+                if ((features.pastelize || features.noDelete || features.translate || features.messageHighlight || features.bulkDelete || features.staffTag || features.timeoutDuration || features.voiceDownload || features.localEdit || features.localNick) && exports.default && exports.default.prototype)
                     hookExport(exports.default.prototype, "generate", messageRow);
                 return exports;
             case 5207: if (features.platformIndicators || features.userNotif) { presenceStore = exports.default; if (features.userNotif) userNotifSeedStatuses(); } return exports;
@@ -24672,7 +25268,10 @@
                 if (!features.platformIndicators) return exports;
                 exports = hookExport(exports, "DisplayName", platformName);
                 return hookComponent(exports, (orig, self, args) => wrapProfileTree(orig.apply(self, args), displayNameType, platformName, platformWrappers));
-            case 13788: return features.platformIndicators ? hookComponent(exports, platformHeader) : exports;
+            case 13788: {
+                if (features.platformIndicators) exports = hookComponent(exports, platformHeader);
+                return features.serverClock ? hookComponent(exports, serverClockHeader) : exports;
+            }
             case 17165: return features.platformIndicators ? hookComponent(exports, platformDmRow) : exports;
             // User list rows (UserRow, default export) and voice panel rows (FormComponents' named MemberRowItem).
             case 10531: return features.platformIndicators ? hookComponent(exports, platformPlacementHook("piUserList")) : exports;
@@ -24693,7 +25292,7 @@
                 }) : exports;
             // Plain status dot on avatars: avatar Status (design/void/Status,
             // 15185) draws a phone badge when isMobileOnline; show the plain dot instead. Holding a channel, a member or a
-            // profile closed the app with the phone badge still drawn (#182) because a memo or forwardRef component and the
+            // profile closed the app with the phone badge still drawn because a memo or forwardRef component and the
             // StatusWithTyping export went around a plain function hook, so every export is hooked and the props are copied
             // whether or not isMobileOnline arrived (Discord passes it down as undefined until the presence loads).
             case 15185: {
@@ -24766,7 +25365,10 @@
                 return features.viewRaw ? hookComponent(exports, viewRawThreadMenu) : exports;
             }
             case 10780: return features.viewRaw ? hookComponent(exports, viewRawPostMenu) : exports;
-            case 14015: return features.viewRaw ? hookComponent(exports, viewRawProfileMenu) : exports;
+            case 14015: {
+                if (features.saveImages) exports = hookComponent(exports, saveImageMenu);
+                return features.viewRaw ? hookComponent(exports, viewRawProfileMenu) : exports;
+            }
             case 7158: return features.viewRaw ? hookComponent(exports, viewRawRolesCard) : exports;
             case 7167: return features.viewRaw ? hookExport(exports, "showSimpleActionSheet", viewRawSimpleSheet) : exports;
             case 1128: if (features.quickDelete || features.noConfirmPin || features.fastDeleteChannels) locale = exports; return exports;
@@ -24955,7 +25557,18 @@
                 }
                 return exports.default ? replaceValue(exports, "default", capabilities) : capabilities;
             }
-            case 8056: return features.anonFiles ? hookExport(exports, "getUploadPayload", anonPayload) : exports;
+            case 8056: {
+                // The upload object that reaches the payload builder is the one being sent, so this is where the
+                // watcher's clock starts. It is read-only: the payload is returned exactly as Discord made it.
+                if (typeof exports.getUploadPayload === "function") {
+                    const startOnUpload = exports.getUploadPayload;
+                    exports = hookExport(exports, "getUploadPayload", function (orig, self, args) {
+                        try { uploadWatchBegin(args && args[0]); } catch (_) {}
+                        return orig.apply(self, args);
+                    });
+                }
+                return features.anonFiles ? hookExport(exports, "getUploadPayload", anonPayload) : exports;
+            }
             case 8026: return features.anonFiles ? hookExport(exports, "getAttachmentPayload", anonPayload) : exports;
             case 7323:
                 if (!features.freeNitro) return exports;
@@ -24979,6 +25592,8 @@
             typeof data(exports, "writeFile") === "function") initFiles(exports);
         if (features.voice && owns(exports, "CloudUpload")) instrumentCloudUpload(exports.CloudUpload);
         if (features.compressUploads && owns(exports, "CloudUpload")) instrumentCompressUpload(exports.CloudUpload);
+        // Always on. It changes nothing about an upload; it only makes one that stopped say so.
+        if (owns(exports, "CloudUpload")) instrumentUploadWatch(exports.CloudUpload);
         if (features.picker) {
             const patched = pickerComponent(exports);
             if (patched !== exports) return patched;

@@ -38,7 +38,7 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 /**
- * Keep media playing (#134). Discord plays voice messages, audio files and chat videos in its own native player
+ * Keep media playing. Discord plays voice messages, audio files and chat videos in its own native player
  * (com.discord.media_player.MediaPlayer, ExoPlayer underneath) and pauses them the moment Discord leaves the screen:
  * voice messages and audio files through AudioPlayerManager.pauseCurrentPlayer(true) (sent by the JS
  * VoiceMessagesPlaybackManager when the app goes to the background), videos through MediaView's onHostPause.
@@ -258,7 +258,7 @@ object BackgroundMedia {
     /**
      * MediaView.onConfigurationChanged: the window turns the screen "landscape", and Discord's handler then sees a new
      * orientation and releases the view's player, the one playing in the window. That reset the video: play and pause in
-     * the window misbehaved, the position was lost and the chat's player came back broken (#145). While the window is
+     * the window misbehaved, the position was lost and the chat's player came back broken. While the window is
      * up, and just after it closes, Discord's handler is skipped (View's own still runs).
      */
     @JvmStatic
@@ -485,7 +485,7 @@ object BackgroundMedia {
         notification = null
         foreground = false
         // Remove, not detach: Android ignores an app cancelling a notification that's still its foreground service's, so a
-        // detached one outlived the released session and stayed with buttons that did nothing (#145).
+        // detached one outlived the released session and stayed with buttons that did nothing.
         try { MediaService.instance?.stop() } catch (_: Throwable) { }
         try { appContext?.getSystemService(NotificationManager::class.java)?.cancel(NOTIFICATION_ID) } catch (_: Throwable) { }
     }
@@ -683,7 +683,7 @@ object BackgroundMedia {
             ACTION_STOP -> { endAudio(true); return }
         }
         // A skip doesn't change play/pause, so sync() alone never published the new position: the notification's and lock
-        // screen's seek bar stayed where it was (#145). Refresh the playback state after every action.
+        // screen's seek bar stayed where it was. Refresh the playback state after every action.
         main.postDelayed(Runnable { sync(); if (session != null && audioPlayer != null) refreshAudio(false) }, 120)
     }
 

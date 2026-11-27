@@ -126,7 +126,7 @@ internal fun keepVideoPlaying(method: MutableMethod) {
 /**
  * MediaView.onConfigurationChanged(Configuration): while a video plays in JaPatch' picture-in-picture window, the window's
  * landscape configuration made Discord release that video's player (a new orientation means a new player in setMediaData),
- * which reset it in the window and left the chat's player broken (#145). JaPatch answers first; when it says keep, only
+ * which reset it in the window and left the chat's player broken. JaPatch answers first; when it says keep, only
  * View's own onConfigurationChanged runs. 26 registers, so `this` (p0) is v24: it's copied into v0 with move-object/from16,
  * and the super call uses invoke-super/range, which reaches any register.
  */

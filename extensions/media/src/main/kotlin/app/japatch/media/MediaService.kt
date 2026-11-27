@@ -7,7 +7,7 @@ import android.os.Build
 import android.os.IBinder
 
 /**
- * Keeps Discord's process running while a voice message or audio file plays with Discord in the background (#134).
+ * Keeps Discord's process running while a voice message or audio file plays with Discord in the background.
  * Without a foreground service Android freezes a backgrounded app after a few seconds, which stops the sound. It only
  * carries the media notification [BackgroundMedia] builds; all playback stays in Discord's own player.
  */
@@ -33,8 +33,8 @@ class MediaService : Service() {
         instance = this
         // Android needs startForeground soon after startForegroundService, so it always runs; but when the sound already
         // ended before the service got going (Discord came back first), the placeholder is taken down at once instead of
-        // staying as a notification with buttons that do nothing (#145).
-        // #192: started while Discord was in the background, Android can refuse the foreground promotion outright
+        // staying as a notification with buttons that do nothing.
+        // started while Discord was in the background, Android can refuse the foreground promotion outright
         // (ForegroundServiceStartNotAllowedException) and the process closed with "Discord has crashed". The sound goes on
         // without a notification then; the app is never taken down for it.
         try {

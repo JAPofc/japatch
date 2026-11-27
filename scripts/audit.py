@@ -29,6 +29,32 @@ def ok(what):
     notes.append("  ok   " + what)
 
 
+# "#202" is a number nothing can open: no issue, no pull request, no line of code. A colour is #fff, #5865f2 or
+# #17181ccc. Three hex digits cannot be told from a small issue number, so those three are listed rather than matched:
+# "ff0" is a colour one day and a typo the next, and a check that guesses is worse than no check.
+COLOURS = {"#fff", "#000"}
+# A colour also arrives quoted ("#fff"), which is how every style in the runtime writes it.
+QUOTED_COLOUR = re.compile(r"""["'](#[0-9a-fA-F]{3}|#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8})["']""")
+ISSUE_REF = re.compile(r"(?<![\w&])#(\d{1,4}|[0-9a-fA-F]{3})\b(?![0-9a-fA-F])")
+ISSUE_REF_LONG = re.compile(r"(?<![\w&])#(\d{1,4})\b(?![0-9a-fA-F])|(?<![\w&])#([0-9a-fA-F]{6,8})\b")
+
+
+def is_colour(text):
+    return text.lower() in COLOURS or re.fullmatch(r"#[0-9a-fA-F]{6}|#[0-9a-fA-F]{8}", text) is not None
+
+
+def issue_refs(text):
+    found = []
+    for m in QUOTED_COLOUR.finditer(text):
+        COLOURS.add(m.group(1).lower())
+    for m in ISSUE_REF_LONG.finditer(text):
+        if m.group(1) is not None:
+            # A short one is a number someone meant to open unless it is one of the listed colours.
+            if not is_colour(m.group(0)):
+                found.append(m.group(0))
+    return found
+
+
 def main():
     readme = README.read_text(encoding="utf-8")
     source = BOOTSTRAP.read_text(encoding="utf-8")
@@ -134,13 +160,16 @@ def main():
         ok("no release note names an issue number")
     # The same rule outside the notes: the README and every patch description are what a user reads before or after
     # installing, and a bare "#202" reads like an issue or pull request that nothing can open.
-    docs = [ROOT / "README.md"] + sorted((ROOT / "patches/src/main/kotlin").rglob("*.kt"))
+    # Comments in the runtime and the extensions carry them too: a reader who opens the file sees "#145" and has
+    # nothing to open. A colour (#5865f2) is not one of these.
+    runtime = [ROOT / "patches/src/main/resources/japatch/bootstrap.js"]
+    runtime += sorted((ROOT / "patches/src/main/kotlin").rglob("*.kt"))
+    runtime += sorted((ROOT / "extensions").rglob("*.kt"))
+    docs = [ROOT / "README.md"] + runtime
     leaks = []
     for path in docs:
-        for match in re.finditer(r"(?<![\w&])#\d+\b", path.read_text(encoding="utf-8")):
-            if re.fullmatch(r"#[0-9a-fA-F]{3,8}", match.group(0)):
-                continue
-            leaks.append(f"{path.relative_to(ROOT)}: {match.group(0)}")
+        for ref in issue_refs(path.read_text(encoding="utf-8")):
+            leaks.append(f"{path.relative_to(ROOT)}: {ref}")
     if leaks:
         fail(f"a number nothing resolves, outside the notes: {leaks[:6]}")
     else:
