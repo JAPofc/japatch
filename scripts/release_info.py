@@ -32,7 +32,7 @@ RELEASES = r"""
 
 * **Discord - Settings:** **Account and session** is now a page, not a two-line row. It names the account you are signed in as, says how many saved accounts still hold a token, and flags a session that belongs to another account, the state that makes a switch fail with no explanation. Your tokens are never shown, only whether one exists
 * **Discord - Settings:** The page also says where a running Quest is: on which account, or the reason it stopped. "It keeps going after I turned it off" is answerable now
-* **Discord - Settings:** The whole page is translated: 17 new lines in all 29 complete languages, plus the headings for the five that are still being finished
+* **Discord - Settings:** The whole page is translated: every one of the 34 languages names each row, including the five newest, which no longer ship with untranslated rows at all
 
 ### 🐛 Bug Fixes
 
