@@ -26,6 +26,25 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.25] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - Bookmark messages:** Hold a message and pick Bookmark to keep it on this phone, then find it again from Settings. Bookmarks are one list per Discord account, are never sent to Discord, and clearing them says it cannot be undone
+* **Discord - Save profile pictures and banners:** Hold a profile and the menu gains Save profile picture and Save banner when that profile has the one you held it for. The picture goes through Android's own Save to screen, so the folder is yours, and nothing is fetched until you pick one
+* **Discord - Show the time next to the server name:** A clock in the chat header, set to the time you choose for your servers, in 12 or 24 hours. A server has no timezone in Discord's data, so the page says that one time is used for every server instead of guessing one
+* **Discord - Server nicknames for this phone:** Give people in a server a name only you see, from a message's own menu. It is saved in this phone's settings file, swapped into the message row on a copy, and never written back to Discord
+* **Discord - Why something does not work:** One page that answers the questions that are not a patch away: passkeys need Discord's own signature, noise suppression is Discord's native audio, an upload can stall on the network, an icon pack can be missing a picture, and which two features ask Discord to accept something it does not offer
+
+### 🐛 Bug Fixes
+
+* **Discord - Uploads:** Fixed an upload that stops moving sitting on Sending forever. After 60 s without progress the app says so, with the file, its size and the network on screen, and Discord's own Cancel button under the file; nothing is cancelled for you
+* **Discord - Compress big files:** Fixed compression re-encoding a file that already fits the channel's limit, which is left exactly as it is now
+
+### 🔧 Improvements
+
+* **Discord - Reviews, Translations and GIFs:** Every one of those requests now has a time limit and says what went wrong when it hits it, so a slow server reads as slow rather than as nothing happening
+
 ## [1.0.24] (2026-11-27)
 
 ### ✨ New Features
