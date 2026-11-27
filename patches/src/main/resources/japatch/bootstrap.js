@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.19";
+    const revision = "1.0.20";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -1750,8 +1750,13 @@
                 if (!update.newer) { openLink(REPO + "/releases"); return; }
                 try { animateLayout(); openRoute("JAPATCH_WHATS_NEW"); } catch (_) { openLink(update.url || REPO + "/releases"); }
             } };
-        next.JAPATCH_STATUS = { type: "static", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(5145, "CircleInformationIcon", icon),
-            useTitle: () => { useLanguage(); return tr("Status"); }, useDescription: function () { useSettings(); return aboutText(); } };
+        // A page, not a two-line row: the account, its session and the saved accounts with a token each. The row's
+        // one-line summary stays as the description, so nothing is lost by opening it.
+        next.JAPATCH_STATUS = { type: "route", parent: "JAPATCH_GENERAL", withArrow: true,
+            IconComponent: japatchIcon(5145, "CircleInformationIcon", icon),
+            useTitle: () => { useLanguage(); return tr("Account and session"); },
+            useDescription: function () { useSettings(); return aboutText(); },
+            screen: { route: "JAPATCH_STATUS", getComponent: () => AccountStatusSettings } };
         const links = [];
         function link(id, title, hint, url, iconId, iconName) {
             links.push(id);
@@ -2572,6 +2577,67 @@
             el(Group, {key:"more", title:tr("Links")},
                 (ui.TableRow ? el(ui.TableRow, {key:"gh", label:tr("All releases on GitHub"), arrow:true,
                     icon:rowIcon(11733, "SparklesIcon"), onPress:() => openLink(REPO + "/releases")}) : null))]);
+    }
+    // What JaPatch is holding for the account that is signed in, and what a restore would change. Support gets
+    // "I turned it on and it didn't work" with nothing to go on; this page is the answer, and it never shows a
+    // token: only whether one is held, and for which account.
+    function accountStatus() {
+        const me = currentUser();
+        const rows = [];
+        const push = (label, value, state) => rows.push({label, value, state});
+        let saved = [];
+        try {
+            const store = accountSwitcherStore();
+            const state = store && typeof store.getState === "function" ? store.getState() : null;
+            saved = state && Array.isArray(state.users) ? state.users : [];
+        } catch (_) { saved = []; }
+        const tokens = (() => {
+            try {
+                const raw = global.__r && global.__r(1113);
+                const manager = raw && typeof raw.getToken === "function" ? raw : raw && raw.default;
+                return manager && typeof manager.getToken === "function" ? manager : null;
+            } catch (_) { return null; }
+        })();
+        // A saved account is only usable while its token is still held. Counting them apart is the whole point: an
+        // account that sits in the list with no token is the one that fails to switch with no explanation.
+        const held = saved.filter(u => u && u.id && tokens && (() => { try { return !!tokens.getToken(u.id); } catch (_) { return false; } })()).length;
+        push(tr("Signed in as"), me ? (me.globalName || me.global_name || me.username || me.id) : tr("Not signed in"),
+            me ? "ok" : "note");
+        if (saved.length) push(tr("Saved accounts"), tr("{n} saved, {held} with a token", {n:saved.length, held}), held === saved.length ? "ok" : "note");
+        else push(tr("Saved accounts"), tr("Only the signed-in account"), "ok");
+        // Discord's own session id is what the gateway answered with. It is not a token and says nothing about you
+        // beyond which account the connection belongs to; userNotif and quests compare it for the same reason.
+        let session = null;
+        try { const auth = inspectedExport(502, "default"); session = auth && typeof auth.getId === "function" ? auth.getId() : null; } catch (_) {}
+        push(tr("Session"), session ? (me && session === me.id ? tr("Connected as this account") : tr("Connected as another account"))
+            : tr("Not connected"), session ? (me && session === me.id ? "ok" : "note") : "note");
+        push(tr("Settings on this phone"), aboutText().split("\n")[0], status.storage === "ready" || status.storage === "saved" ? "ok" : "note");
+        if (status.archive) push(tr("Kept messages"), tr(status.archive), status.archive === "saved locally" ? "ok" : "note");
+        // The running Quest and its account, which is the state people report as "it keeps going after I stopped it".
+        if (enabled("quests")) {
+            push(tr("Complete Quests"), quest.running ? tr("Running on {account}", {account:quest.user || tr("this account")})
+                : quest.error ? tr("Stopped: {reason}", {reason:quest.error}) : tr("Idle"), quest.error ? "note" : "ok");
+        }
+        return {rows, me, saved: saved.length, held, session};
+    }
+    function AccountStatusSettings() {
+        useSettings();
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const s = useThemed("status", c => ({card:Object.assign({}, ABOUT_DARK.card, {backgroundColor:c.CARD_BACKGROUND_DEFAULT}),
+            dot:{width:8, height:8, borderRadius:4, marginTop:6, backgroundColor:c.TEXT_MUTED}}), ABOUT_DARK);
+        const Text = inspectedExport(5187, "Text"), Group = ui.TableRowGroup || RN.View;
+        const text = (value, variant, color, fallback) => Text ? el(Text, {variant, color}, value) : el(RN.Text, {style:fallback}, value);
+        const info = accountStatus();
+        const groups = [
+            el(Group, {key:"account", title:tr("Account")},
+                info.rows.map((row, i) => el(RN.View, {key:"r" + i, style:[s.card, {flexDirection:"row", alignItems:"flex-start", gap:10, paddingHorizontal:16, paddingVertical:12}], accessible:true},
+                    el(RN.View, {style:[s.dot, {backgroundColor:row.state === "ok" ? STATUS_HEX.online : STATUS_HEX.idle}]}),
+                    el(RN.View, {style:{flex:1, gap:2}},
+                        text(row.label, "text-sm/semibold", "text-strong", {color:"#f2f3f5", fontSize:14, fontWeight:"600"}),
+                        text(row.value, "text-sm/medium", "text-muted", {color:"#b5bac1", fontSize:14}))))),
+            footnote("note", "Nothing here leaves the phone. No token is shown, only whether one is held for each saved account.")];
+        return settingsBody(ui, groups);
     }
     function AboutSettings() {
         useSettings();

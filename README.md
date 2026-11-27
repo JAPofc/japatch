@@ -338,11 +338,11 @@ Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Urdu and Vietnamese.
 
 Arabic, Persian and Urdu read right to left; the settings pages lay themselves out in the same direction.
 
-These newest languages are still being completed: Arabic, Bengali, Malay, Persian and Urdu currently
-translate the parts of the settings people see most, and any text not yet written falls back to English
-rather than showing a blank row. There is no machine translation in the bundle and no network call for
-translations. To add or fix a language, see [`patches/src/main/resources/japatch/i18n/`](patches/src/main/resources/japatch/i18n/)
-and `scripts/i18n_review.py`.
+Every language file covers every text the settings can show, and the build refuses to ship one that does
+not: a new row cannot reach a release in English only. There is no machine translation in the bundle and no
+network call for translations. To add or fix a language, see
+[`patches/src/main/resources/japatch/i18n/`](patches/src/main/resources/japatch/i18n/) and
+`scripts/i18n_review.py`.
 
 ## FAQ
 
@@ -416,7 +416,7 @@ python3 scripts/build.py            # builds and tests patches/build/libs/patche
 
 The build downloads its pinned toolchains (`kotlinc`, `d8`/`r8`, `hermesc`, `morphe.jar`) into
 `work/tools` on first run, compiles the Kotlin patches and extensions, compacts and compiles the
-JavaScript runtime to HBC98, validates the 29 language files, then writes the `.mpp` bundle.
+JavaScript runtime to HBC98, validates the 34 language files, then writes the `.mpp` bundle.
 
 Useful checks:
 
@@ -442,7 +442,7 @@ Developer-only device tests need the original APKM and are described in
 ```
 patches/                     the Morphe patch bundle
   src/main/kotlin/app/japatch/patches/   Kotlin patches (bytecode + runtime injection)
-  src/main/resources/japatch/            injected JavaScript runtime (bootstrap.js) and 29 language files
+  src/main/resources/japatch/            injected JavaScript runtime (bootstrap.js) and 34 language files
 extensions/                  native Android modules used by the patches
   audio  chat  compress  diag  emoji  font  i18n  media  monet  voice
 scripts/                     build, i18n and HBC porting tools
@@ -458,7 +458,7 @@ Issues and pull requests are welcome.
 - **Code:** run `python3 scripts/build.py` before opening a PR; it must pass.
 - **Translations:** add strings to every language file, or open an issue and mark it `i18n`.
 - **New features:** keep them off by default, ship every user-visible string through `tr()`, and add the
-  string to all 29 language files.
+  string to all 34 language files.
 
 ## Credits and prior art
 

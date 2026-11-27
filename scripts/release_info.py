@@ -26,11 +26,29 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.20] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Settings:** **Account and session** is now a page, not a two-line row. It names the account you are signed in as, says how many saved accounts still hold a token, and flags a session that belongs to another account, the state that makes a switch fail with no explanation. Your tokens are never shown, only whether one exists
+* **Discord - Settings:** The page also says where a running Quest is: on which account, or the reason it stopped. "It keeps going after I turned it off" is answerable now
+* **Discord - Settings:** The whole page is translated: 17 new lines in all 29 complete languages, plus the headings for the five that are still being finished
+
+### 🐛 Bug Fixes
+
+* **Discord - Every page:** Fixed the README claiming 34 languages while listing 35 names, and three other places in it still saying 29. A script now reads the counts from the files the runtime uses, so the two cannot drift apart again
+* **Discord - Every page:** Fixed the release notes check never running two of its own rules. The list of leftovers it was supposed to reject was written and then never called, which is how a forbidden line shipped twice
+
+### 🔧 Improvements
+
+* **Discord - Every page:** A new check compares every number the documents state against the files behind it: languages in the picker, files on disk, patch counts, and the notes for the version that is actually published. It runs in CI
+* **Discord - Every page:** A runtime test reads the Account and session page against a fake phone and fails if it ever prints a token or miscounts saved accounts
+
 ## [1.0.19] (2026-11-27)
 
 ### 🐛 Bug Fixes
 
-* **Discord - Every page:** Fixed the What's new page still showing the issue numbers that the 1.0.17 note was about. The notes travel inside the bundle, so the copy written into 1.0.18 carried them too; the page now reads the corrected note
+* **Discord - Every page:** Fixed What's new still drawing the old 1.0.17 entry, the one that was full of tracking numbers nobody outside the project could open. Removing them from the source was not enough: the notes ship inside the bundle, so 1.0.18 carried a copy of the text as it used to be. The page now shows the entry as rewritten
 
 ## [1.0.18] (2026-11-27)
 

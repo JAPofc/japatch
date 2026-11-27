@@ -57,6 +57,9 @@ jobs:
           python3 scripts/bump_version.py --check
           python3 scripts/release_info.py --check
           python3 scripts/i18n_check.py
+          # The counts every document states (languages, patches, releases) read from the same files the
+          # runtime does. Each check here exists because that sentence shipped wrong once.
+          python3 scripts/audit.py --check
 
       - name: Build and test .mpp bundle
         env:
