@@ -91,9 +91,21 @@ jobs:
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
           python3 scripts/release_info.py "$VERSION" > /tmp/notes.md
-          gh release create "$GITHUB_REF_NAME" \
-            "patches/build/libs/patches-${VERSION}.mpp" \
-            "patches/build/libs/SHA256SUMS" \
-            "patches/build/libs/patches-${VERSION}.mpp.pub" \
-            --title "$VERSION" \
-            --notes-file /tmp/notes.md
+          # A tag that already has a release is updated in place. Re-tagging (which happens when history is
+          # rewritten, as it was when the ReviewDB server left the repository) used to fail the whole build here,
+          # on a step that has nothing to do with whether the bundle is good.
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release edit "$GITHUB_REF_NAME" --title "$VERSION" --notes-file /tmp/notes.md
+            gh release upload "$GITHUB_REF_NAME" \
+              "patches/build/libs/patches-${VERSION}.mpp" \
+              "patches/build/libs/SHA256SUMS" \
+              "patches/build/libs/patches-${VERSION}.mpp.pub" \
+              --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" \
+              "patches/build/libs/patches-${VERSION}.mpp" \
+              "patches/build/libs/SHA256SUMS" \
+              "patches/build/libs/patches-${VERSION}.mpp.pub" \
+              --title "$VERSION" \
+              --notes-file /tmp/notes.md
+          fi
