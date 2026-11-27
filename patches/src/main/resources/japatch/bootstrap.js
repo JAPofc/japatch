@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.17";
+    const revision = "1.0.18";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -225,14 +225,15 @@
     }
     // The language of JaPatch settings. English is built in; every other one is a file in the patched APK
     // (assets/japatch/i18n), read once when it's first needed, so none of them slows down Discord's start.
-    const UI_LANGUAGES = [["en","English","English"],["bg","\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438","Bulgarian"],["cs","\u010ce\u0161tina","Czech"],
+    const UI_LANGUAGES = [["en","English","English"],["ar","\u0627\u0644\u0639\u0631\u0628\u064a\u0629","Arabic"],["bg","\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438","Bulgarian"],
+        ["bn","\u09ac\u09be\u0982\u09b2\u09be","Bengali"],["cs","\u010ce\u0161tina","Czech"],
         ["da","Dansk","Danish"],["de","Deutsch","German"],["el","\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac","Greek"],["es","Espa\u00f1ol","Spanish"],
-        ["fi","Suomi","Finnish"],["fr","Fran\u00e7ais","French"],["hi","\u0939\u093f\u0928\u094d\u0926\u0940","Hindi"],["hr","Hrvatski","Croatian"],
+        ["fa","\u0641\u0627\u0631\u0633\u06cc","Persian"],["fi","Suomi","Finnish"],["fr","Fran\u00e7ais","French"],["hi","\u0939\u093f\u0928\u094d\u0926\u0940","Hindi"],["hr","Hrvatski","Croatian"],
         ["hu","Magyar","Hungarian"],["id","Bahasa Indonesia","Indonesian"],["it","Italiano","Italian"],["ja","\u65e5\u672c\u8a9e","Japanese"],
-        ["ko","\ud55c\uad6d\uc5b4","Korean"],["lt","Lietuvi\u0173","Lithuanian"],["nl","Nederlands","Dutch"],["no","Norsk","Norwegian"],
+        ["ko","\ud55c\uad6d\uc5b4","Korean"],["lt","Lietuvi\u0173","Lithuanian"],["ms","Bahasa Melayu","Malay"],["nl","Nederlands","Dutch"],["no","Norsk","Norwegian"],
         ["pl","Polski","Polish"],["pt-BR","Portugu\u00eas do Brasil","Portuguese (Brazil)"],["ro","Rom\u00e2n\u0103","Romanian"],
         ["ru","\u0420\u0443\u0441\u0441\u043a\u0438\u0439","Russian"],["sv","Svenska","Swedish"],["th","\u0e44\u0e17\u0e22","Thai"],
-        ["tr","T\u00fcrk\u00e7e","Turkish"],["uk","\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430","Ukrainian"],
+        ["tr","T\u00fcrk\u00e7e","Turkish"],["uk","\u0423\u043a\u0440\u0430\u0457\u043d\u0441\u044c\u043a\u0430","Ukrainian"],["ur","\u0627\u0631\u062f\u0648","Urdu"],
         ["vi","Ti\u1ebfng Vi\u1ec7t","Vietnamese"],["zh-CN","\u7b80\u4f53\u4e2d\u6587","Chinese (Simplified)"],["zh-TW","\u7e41\u9ad4\u4e2d\u6587","Chinese (Traditional)"]];
     const UI_CODES = new Set(UI_LANGUAGES.map(entry => entry[0]));
     const isLanguage = value => value === "auto" || UI_CODES.has(value);
@@ -250,6 +251,10 @@
         if (base === "nb" || base === "nn") return "no";
         return UI_CODES.has(base) ? base : "en";
     }
+    // Right-to-left languages JaPatch ships. Discord's own layout follows its own locale; JaPatch's pages follow the
+    // language chosen here, so a phone set to English can still read Arabic properly.
+    const RTL_LANGUAGES = new Set(["ar", "fa", "ur"]);
+    function uiRightToLeft() { return RTL_LANGUAGES.has(uiLanguage()); }
     function uiLanguage() {
         const lang = settings.language;
         if (lang !== "auto") return UI_CODES.has(lang) ? lang : "en";
@@ -1290,7 +1295,7 @@
         if (update.state === "checking") return tr("Asking GitHub for the newest version…");
         if (update.error) return tr("Couldn't reach GitHub. Check the connection and open this page again.");
         if (update.state !== "done") return tr("JaPatch {version}.", {version: revision});
-        if (update.newer) return tr("JaPatch {version}. {newer} is out — tap to see it.", {version: revision, newer: update.latest});
+        if (update.newer) return tr("JaPatch {version}. {newer} is out — tap to read what changed.", {version: revision, newer: update.latest});
         return tr("JaPatch {version}, the newest there is.", {version: revision});
     }
     function openLink(url) {
@@ -1644,7 +1649,14 @@
     // Features that can get an account in trouble: their Features row says so with red Risky and Experimental chips
     // under the title, and switching one on asks first in Discord's own dialog. Switching off, restoring a backup and
     // Reset never ask. The switch is controlled, so it stays off until you confirm.
-    const RISKY_FEATURES = {badges:() => tr("This is experimental. It tells Discord you're playing games you aren't, which breaks Discord's Terms of Service and could get your account suspended or banned.")};
+    const RISKY_FEATURES = {
+        badges:() => tr("This is experimental. It tells Discord you're playing games you aren't, which breaks Discord's Terms of Service and could get your account suspended or banned."),
+        // Quests are the other way an account gets into trouble without the user noticing: finishing them from a
+        // phone is not something Discord offers, and a session that keeps asking after Discord refuses is what
+        // gets a sign-in revoked. Saying so before the switch goes on is cheaper than explaining it afterwards.
+        quests:() => tr("Discord may pause or take away Quests on accounts that finish them this way, and repeated requests after Discord refuses can sign you out. Turn it on only if you accept that."),
+        // Claiming to be on a desktop, web or console client is against Discord's Terms of Service by itself.
+        platformSpoof:() => tr("Discord doesn't allow showing a platform you're not on. Accounts have been actioned for this, so turn it on only if you accept the risk.")};
     // Cancelling remounts the switch (riskCancels is in its key), so a native switch that already slid on slides back.
     let riskCancels = 0;
     function turnOnAsking(key, value) {
@@ -1732,7 +1744,12 @@
         next.JAPATCH_UPDATE = { type: "pressable", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(12098, "DownloadIcon", icon),
             withArrow: true, useTitle: function () { useSettings(); return updateText(); },
             useDescription: () => tr("Checked against GitHub when this page opens. Nothing about you is sent."),
-            onPress: () => openLink(update.newer && update.url ? update.url : REPO + "/releases") };
+            onPress: () => {
+                // A newer release is out: show what it changes before sending anyone away. The notes ship with
+                // the bundle, so this works offline; the release page is one tap further if they want the file.
+                if (!update.newer) { openLink(REPO + "/releases"); return; }
+                try { animateLayout(); openRoute("JAPATCH_WHATS_NEW"); } catch (_) { openLink(update.url || REPO + "/releases"); }
+            } };
         next.JAPATCH_STATUS = { type: "static", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(5145, "CircleInformationIcon", icon),
             useTitle: () => { useLanguage(); return tr("Status"); }, useDescription: function () { useSettings(); return aboutText(); } };
         const links = [];
@@ -1748,10 +1765,16 @@
             useValue: function () { useSettings("updateCheck"); return !!settings.updateCheck; },
             onValueChange: value => { settings.updateCheck = !!value; save(); notify("updateCheck");
                 if (value) { update.state = "idle"; updateCheck(); } } };
-        link("JAPATCH_LINK_CHANGES", "What's new", "Changes in each release.", REPO + "/releases", 11733, "SparklesIcon");
+        // Opens inside the app: the notes are in the bundle, so there is nothing to fetch and nothing to leave
+        // Discord for. The GitHub list stays one tap further, at the bottom of that page.
+        next.JAPATCH_WHATS_NEW = { type: "route", parent: "JAPATCH_GENERAL", unsearchable: true, withArrow: true,
+            useTitle: () => { useLanguage(); return tr("What's new"); },
+            useDescription: () => tr("Changes in each release, read here."),
+            IconComponent: japatchIcon(11733, "SparklesIcon", icon),
+            screen: { route: "JAPATCH_WHATS_NEW", getComponent: () => WhatsNewSettings } };
         link("JAPATCH_LINK_ISSUES", "Report a problem", "Opens a new issue on GitHub.", REPO + "/issues/new/choose", 12113, "BugIcon");
         link("JAPATCH_LINK_SOURCE", "Source code", "JaPatch Patches on GitHub. Free and open source (GPL-3.0).", REPO, 7972, "LinkExternalSmallIcon");
-        route("JAPATCH_GENERAL", "About", [section("JaPatch", ["JAPATCH_VERSION", "JAPATCH_UPDATE", "JAPATCH_UPDATE_TOGGLE", "JAPATCH_STATUS"]), section("Links", links)], undefined,
+        route("JAPATCH_GENERAL", "About", [section("JaPatch", ["JAPATCH_VERSION", "JAPATCH_UPDATE", "JAPATCH_UPDATE_TOGGLE", "JAPATCH_STATUS"]), section("Links", ["JAPATCH_WHATS_NEW", ...links])], undefined,
             japatchIcon(5145, "CircleInformationIcon", icon));
         // The nodes above stay for Discord's settings search; the page itself is the designed About page.
         next.JAPATCH_GENERAL.screen.getComponent = () => AboutSettings;
@@ -2511,6 +2534,45 @@
         chip:{flexDirection:"row", alignItems:"center", gap:6, paddingHorizontal:10, paddingVertical:6, borderRadius:14, backgroundColor:"#4e50584d"},
         card:{backgroundColor:"#2b2d31", borderRadius:16, paddingHorizontal:16, paddingVertical:14, gap:10}};
     // About: who you're running, how much of it is on, whether it's healthy, and where to go next.
+    // Opens one of JaPatch's own settings routes by id, the same way a row with an arrow does it
+    // (15736 onRouteSettingOnPress), falling back to the plain navigate call. Used by rows that are drawn by
+    // hand rather than by Discord's table, so they cannot rely on Discord attaching a navigator to them.
+    function openRoute(routeId) {
+        try {
+            const node = next[routeId];
+            const router = global.__r(15736);
+            const navigation = router && router.getNavigation && router.getNavigation();
+            if (node && navigation && node.screen) { router.onRouteSettingOnPress({navigation, screen: node.screen}); return; }
+        } catch (_) {}
+        try { const navigation = global.__r(15736).getNavigation(); if (navigation && next[routeId]) navigation.navigate(next[routeId].screen.route); } catch (__) { dlog("W", "nav", "could not open " + routeId); }
+    }
+    // What's new (#releases): the release notes, read from inside the app. The build writes them in as data
+    // (scripts/release_info.py --runtime), so opening this page costs no network and reads the same text the
+    // GitHub release page shows. Only the newest few releases are inside the bundle.
+    // The build replaces the string below with JSON.parse(<the release notes>). A string, not a comment: the
+    // minifier strips comments, and this has to survive to the compacted runtime.
+    const RELEASE_NOTES = JSON.parse("__JAPATCH_RELEASE_NOTES__");
+    function WhatsNewSettings() {
+        useSettings("whatsNew");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const s = useThemed("about", c => ({card:Object.assign({}, ABOUT_DARK.card, {backgroundColor:c.CARD_BACKGROUND_DEFAULT})}), ABOUT_DARK);
+        const Text = inspectedExport(5187, "Text"), Group = ui.TableRowGroup || RN.View;
+        const text = (value, variant, color, fallback) => Text ? el(Text, {variant, color}, value) : el(RN.Text, {style:fallback}, value);
+        const releases = RELEASE_NOTES && Array.isArray(RELEASE_NOTES.releases) ? RELEASE_NOTES.releases : [];
+        const groups = releases.length ? releases.map((release, index) => el(Group, {key:"r" + release.version, title:"JaPatch " + release.version},
+            el(RN.View, {style:s.card},
+                (release.lines || []).map((line, i) => el(RN.View, {key:"l" + i, style:{gap:2, paddingVertical:6}},
+                    text(line.name || line.section || "", "text-sm/semibold", "text-strong", {color:"#f2f3f5", fontSize:14, fontWeight:"600"}),
+                    text(line.text || "", "text-sm/medium", "text-muted", {color:"#b5bac1", fontSize:14})))))) :
+            [footnote("note", "This build carries no release notes.")];
+        return settingsBody(ui, [
+            footnote("head", "Changes in each release, newest first. The same text is on the GitHub release page."),
+            ...groups,
+            el(Group, {key:"more", title:tr("Links")},
+                (ui.TableRow ? el(ui.TableRow, {key:"gh", label:tr("All releases on GitHub"), arrow:true,
+                    icon:rowIcon(11733, "SparklesIcon"), onPress:() => openLink(REPO + "/releases")}) : null))]);
+    }
     function AboutSettings() {
         useSettings();
         React.useEffect(() => { diagLoadLast(); }, []);
@@ -2555,7 +2617,9 @@
                         "text-md/semibold", "text-strong", {color:"#f2f3f5", fontSize:16, fontWeight:"600"}),
                     text(aboutText(), "text-sm/medium", "text-muted", {color:"#949ba4", fontSize:14}))),
             el(Group, {key:"links", title:tr("Links")},
-                linkRow("changes", "What's new", "Changes in each release.", REPO + "/releases", 11733, "SparklesIcon"),
+                // Opens the page in the app. The GitHub list is one tap further, at the bottom of that page.
+                (ui.TableRow ? el(ui.TableRow, {key:"changes", label:tr("What's new"), subLabel:tr("Changes in each release, read here."),
+                    icon:rowIcon(11733, "SparklesIcon"), arrow:true, onPress:() => { animateLayout(); openRoute("JAPATCH_WHATS_NEW"); }}) : null),
                 linkRow("issues", "Report a problem", "Opens a new issue on GitHub.", REPO + "/issues/new/choose", 12113, "BugIcon"),
                 linkRow("source", "Source code", "JaPatch Patches on GitHub. Free and open source (GPL-3.0).", REPO, 7972, "LinkExternalSmallIcon")),
             troubleshootingGroup(ui),
@@ -2713,6 +2777,21 @@
         if (features.systemFont && (settings.systemFont !== fontWas || settings.systemFont && settings.systemFontSource !== fontSourceWas)) later(() => askRestart("font"), 0);
         else if (features.systemEmoji && (settings.systemEmoji !== emojiWas || settings.systemEmoji && settings.systemEmojiSource !== emojiSourceWas)) later(() => askRestart("emoji"), 0);
     }
+    // The feature switches a backup would flip, by their plain names. Ordered on then off, and read from the
+    // same table the Features list uses, so the words match what the user saw when they set it up.
+    function backupChanges(parsed) {
+        const on = [], off = [];
+        Object.keys(FEATURE_ICONS).forEach(key => {
+            if (!features[key]) return;
+            const wanted = owns(parsed.values, key) ? parsed.values[key] === true : false;
+            if (wanted === !!settings[key]) return;
+            // featureSearch.rows already holds the title each row shows, so the names here are the same words.
+            const row = (featureSearch.rows || []).find(entry => entry.key === key);
+            const label = row && row.title ? row.title : key;
+            (wanted ? on : off).push(label);
+        });
+        return on.sort().concat(off.sort().map(label => "-" + label));
+    }
     function backupConfirm(text) {
         let parsed;
         try { parsed = backupParse(text); }
@@ -2720,7 +2799,13 @@
         const on = Object.keys(FEATURE_ICONS).filter(key => features[key] && parsed.values[key] === true).length;
         const from = parsed.created ? (parsed.version ? tr("Made with JaPatch {version} on {date}.", {version:parsed.version, date:backupDate(parsed.created)}) :
             tr("Made on {date}.", {date:backupDate(parsed.created)})) + " " : "";
-        confirmAction("Restore this backup?", from + pl(on, "{n} feature will be on.", "{n} features will be on.") + " " + tr("Your current JaPatch settings will be replaced."),
+        // What actually changes, by name, before anything is replaced. A count alone made people restore blind:
+        // "12 features will be on" says nothing about the two they had switched on themselves. Only the
+        // differences are listed, so a backup that changes nothing reads as one line.
+        const changes = backupChanges(parsed);
+        const detail = changes.length ? " " + tr("Changing: {list}", {list:changes.slice(0, 12).join(", ")}) +
+            (changes.length > 12 ? " " + tr("and {n} more.", {n:changes.length - 12}) : "") : "";
+        confirmAction("Restore this backup?", from + pl(on, "{n} feature will be on.", "{n} features will be on.") + detail + " " + tr("Your current JaPatch settings will be replaced."),
             "Restore", () => backupApply(parsed));
     }
     // A short alert that something didn't work, with the reason.
@@ -7527,8 +7612,11 @@
     function settingsBody(ui,groups,scroll) {
         const shown=groups.filter(group => group && !emptyGroup(group)).map((group,i) => typeof group==="object" ?
             el(JaPatchReveal,{key:group.key != null ? group.key : group.props && group.props.key != null ? group.props.key : "group"+i,index:i},group) : group);
-        const body=ui.Stack ? el(ui.Stack,{style:{paddingVertical:24,paddingHorizontal:12},spacing:24},shown) :
-            el(RN.View,{style:{paddingVertical:24,paddingHorizontal:12,gap:24}},shown);
+        // One direction for every JaPatch page. Written as flexDirection so it survives any Discord update, and
+        // only when the chosen language reads right to left: left-to-right languages are untouched.
+        const direction = uiRightToLeft() ? {direction:"rtl", flexDirection:"row-reverse"} : null;
+        const body=ui.Stack ? el(ui.Stack,{style:Object.assign({paddingVertical:24,paddingHorizontal:12},direction),spacing:24},shown) :
+            el(RN.View,{style:Object.assign({paddingVertical:24,paddingHorizontal:12,gap:24},direction)},shown);
         return RN.ScrollView ? el(RN.ScrollView,scroll || null,body) : body;
     }
     // Greyed out while the main switch is off, like the options on the Settings list.

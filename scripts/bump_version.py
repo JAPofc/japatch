@@ -145,6 +145,10 @@ def bump(version):
         path.write_text(json.dumps(data, indent=2) + "\n")
 
     check()
+    # The README's feature table is generated from patches-list.json, which the build rewrites. Refreshing it
+    # here means a release never ships a table that describes the previous one; --check in CI keeps it honest
+    # either way.
+    subprocess.run([sys.executable, ROOT / "scripts" / "readme_features.py"], cwd=ROOT, check=True)
     print(f"{current} -> {version}")
     print("next: python3 scripts/build.py   (writes patches-list.json and patches-bundle.json)")
 

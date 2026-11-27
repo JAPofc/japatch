@@ -285,7 +285,7 @@ internal val diagnostics = bytecodePatch {
 @Suppress("unused")
 val japatchSettings = bytecodePatch(
     name = "JaPatch settings",
-    description = "Adds JaPatch to Discord's settings: search, per-feature pages, 29 languages, backup and restore, debug logs and a crash screen. Nothing it adds is on until you turn it on, and nothing is sent anywhere. Needed by every feature."
+    description = "Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, debug logs and a crash screen. Nothing it adds is on until you turn it on, and nothing is sent anywhere. Needed by every feature."
 ) {
     compatibleWith(discord)
     section(PLUGINS)

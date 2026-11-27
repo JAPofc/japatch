@@ -23,6 +23,28 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.18] (2026-11-27)
+
+### 🚀 Updated App Support
+
+* **Discord - Every page:** Five more languages: Arabic, Bengali, Malay, Persian and Urdu. Arabic, Persian and Urdu read right to left, and JaPatch's own pages now lay themselves out that way instead of forcing a left-to-right flow on right-to-left text. The newest languages are still being completed, so a line that is not written yet falls back to English rather than showing a blank row
+
+### ✨ New Features
+
+* **Discord - About:** **What's new** opens inside the app. The release notes ship in the bundle, so the page works offline, lists the newest eight releases and needs no network or browser; the GitHub list is one tap further
+* **Discord - About:** The update row now opens what changed before sending anyone to GitHub, so a newer version is explained where it is noticed
+* **Discord - Backup and restore:** A restore says which features it flips, by name, before anything is replaced. "12 features will be on" said nothing about the two that were set up by hand
+
+### 🐛 Bug Fixes
+
+* **Discord - Complete Quests:** Fixed the feature switching on with no warning. It is now marked risky like Complete badges, because Discord can pause Quests on accounts that finish them from a phone, and repeated requests after a refusal are what get a sign-in revoked
+* **Discord - Platform spoof:** Fixed the same gap: it turns on only after a confirmation that says Discord does not allow it and accounts have been actioned for it
+* **Discord - Every page:** Fixed the README's feature table drifting from the patch list, and the version, release notes and translations being unchecked. All four checks now run in CI, so a release cannot ship a table, a note or a language file that no longer matches the code
+
+### 🔧 Improvements
+
+* **Discord - Every page:** A runtime test now fails when the settings runtime outgrows its line budget or one function swallows the file, so the single-file runtime cannot quietly rot
+
 ## [1.0.17] (2026-11-27)
 
 ### 🔧 Improvements
@@ -299,10 +321,45 @@ def notes(version):
     raise SystemExit(f"release_info.py has no {version}")
 
 
+def runtime_notes(limit=8):
+    """The newest releases as plain data for the in-app "What's new" page.
+
+    Each release becomes a title and a list of lines, one per bullet, already stripped of the markdown the
+    GitHub release page uses. Keeping it as data (not markdown) means the settings page needs no parser and
+    no network: the notes ship inside the bundle.
+    """
+    import json
+    import re
+    out = []
+    for version, body in entries()[:limit]:
+        section = None
+        lines = []
+        for line in body.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            if line.startswith("#"):
+                section = line.lstrip("#").strip()
+                continue
+            match = BULLET.match(line)
+            if not match:
+                continue
+            # The bullet carries the patch name between the two asterisk pairs: "**Discord - Server info:** ..."
+            names = re.findall(r"\*\*(.+?)\*\*", line)
+            name = names[0] if names else ""
+            desc = re.sub(r"[`*]", "", match.group("desc"))
+            lines.append({"section": re.sub(r"^[^\w]+", "", section or ""), "name": name, "text": desc})
+        if lines:
+            out.append({"version": version, "lines": lines})
+    return json.dumps({"releases": out}, ensure_ascii=False, separators=(",", ":"))
+
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         raise SystemExit(__doc__)
     if sys.argv[1] == "--check":
         check()
+    elif sys.argv[1] == "--runtime":
+        sys.stdout.write(runtime_notes())
     else:
         sys.stdout.write(notes(sys.argv[1]))

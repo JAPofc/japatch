@@ -1,9 +1,12 @@
+ar
 bg
+bn
 cs
 da
 de
 el
 es
+fa
 fi
 fr
 hi
@@ -14,6 +17,7 @@ it
 ja
 ko
 lt
+ms
 nl
 no
 pl
@@ -24,6 +28,7 @@ sv
 th
 tr
 uk
+ur
 vi
 zh-CN
 zh-TW

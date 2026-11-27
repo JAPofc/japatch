@@ -98,7 +98,14 @@ def compact_runtime():
     script = r"""
 const fs = require('node:fs'), vm = require('node:vm'), context = {};
 vm.runInNewContext(fs.readFileSync(process.argv[1], 'utf8'), context);
-const source = fs.readFileSync(process.argv[2], 'utf8').replace('/*__FEATURES__*/', '__JAPATCH_FEATURES__');
+// The release notes are handed in as JSON text and spliced in here, before any printing: the minifier then
+// escapes the literal itself, so the layers (JS string, then this chunk's own JSON) always come out right.
+const notes = fs.readFileSync(process.argv[4], 'utf8');
+let raw = fs.readFileSync(process.argv[2], 'utf8');
+const stub = 'JSON.parse("__JAPATCH_RELEASE_NOTES__")';
+if (raw.split(stub).length !== 2) throw new Error('release notes placeholder missing');
+raw = raw.replace(stub, 'JSON.parse(' + JSON.stringify(notes) + ')');
+const source = raw.replace('/*__FEATURES__*/', '__JAPATCH_FEATURES__');
 context.Terser.minify(source, {compress:false, mangle:false,
     format:{comments:false, ascii_only:true}}).then(result => compactLazyChunks(lazyCoreRuntime(lazySettingsUi(jsonLiterals(result.code))))).then(code => {
     process.stdout.write(code.replace('__JAPATCH_FEATURES__', '/*__FEATURES__*/'));
@@ -606,8 +613,14 @@ function jsonLiterals(code) {
 }
 """
     source = ROOT / "patches/src/main/resources/japatch/bootstrap.js"
-    result = subprocess.run(["node", "-e", script, str(TOOLS / "terser.js"), str(source), str(TOOLS / "acorn.js")],
-                            cwd=ROOT, check=True, capture_output=True, text=True)
+    # The in-app "What's new" page reads these, so the notes ship inside the bundle and the page needs no network.
+    notes_json = subprocess.run([sys.executable, ROOT / "scripts" / "release_info.py", "--runtime"],
+                                cwd=ROOT, check=True, capture_output=True, text=True).stdout
+    BUILD.mkdir(parents=True, exist_ok=True)
+    notes_file = BUILD / "release-notes.json"
+    notes_file.write_text(notes_json, encoding="utf-8")
+    result = subprocess.run(["node", "-e", script, str(TOOLS / "terser.js"), str(source), str(TOOLS / "acorn.js"),
+                             str(notes_file)], cwd=ROOT, check=True, capture_output=True, text=True)
     content = result.stdout
     # The About page reads this, so it must match the release. 1.5.1 still said 1.5.0.
     import re
@@ -617,7 +630,8 @@ function jsonLiterals(code) {
     # No size budget: the injector stores the runtime as bytecode, not in a size-limited slot.
     if content.count("/*__FEATURES__*/") != 1:
         raise SystemExit("Invalid compact runtime")
-    BUILD.mkdir(parents=True, exist_ok=True)
+    if "__JAPATCH_RELEASE_NOTES__" in content:
+        raise SystemExit("release notes placeholder survived the minifier")
     output = BUILD / "bootstrap.js"
     output.write_text(content)
     # Precompile/verify the compacted JaPatch runtime against Hermes HBC98 (250829098.0.19).

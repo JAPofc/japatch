@@ -237,7 +237,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Show owner and mod tags | Shows an Owner, Admin, Manager or Mod tag next to people's names in chat. Based on StaffTag by mwittrien |
 | Show timeout duration | A tag next to timed-out people says how long until they can talk again. Based on ShowTimeoutDuration by Ven |
 | User activity notifications | Shows a notice when chosen friends or users change status, start typing or send a message. Based on UserNotif by cywrx and coder.gg |
-| User and server reviews | Read and write reviews on profiles and servers, with 👍/👎 on other people's — through the server at `japatch-reviewdb.fly.dev`, or any ReviewDB-compatible one you type in |
+| User and server reviews | Read and write reviews on profiles and servers, with a thumb up or down on other people's |
 
 ### Servers
 
@@ -279,6 +279,17 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Unlock Discord experiments | Adds Dev Tools to Settings, to try features Discord is still testing. Only on this phone. Based on Experiments by maisy |
 | Voice channel options | Choose the volume, audio output and sounds for voice channels |
 
+### Setup
+
+| Feature | What it does |
+| --- | --- |
+| Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
+| JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, debug logs and a crash screen |
+
+**77 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
+
+<!-- features:end -->
+
 ### Reviews, and the server behind it
 
 Reviews is one text field: **JaPatch → Features → Reviews → Server**. The address written there is the
@@ -300,17 +311,6 @@ including one you run yourself. The server JaPatch runs is not published: it is 
 the field is the only thing that ever talks to it. Changing the address signs you out of the old one; it
 is one field, not a list of accounts.
 
-### Setup
-
-| Feature | What it does |
-| --- | --- |
-| Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
-| JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 29 languages, backup and restore, debug logs and a crash screen |
-
-**77 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
-
-<!-- features:end -->
-
 ## Privacy options
 
 Enabled by default in Morphe — nothing to turn on. Patch again to change them.
@@ -331,12 +331,16 @@ separate app with its own sign-in and settings; keep the same package name so up
 
 ## Languages
 
-29 languages ship with the bundle: Bulgarian, Chinese (Simplified and Traditional), Croatian, Czech,
-Danish, Dutch, English, Finnish, French, German, Greek, Hindi, Hungarian, Indonesian, Italian, Japanese,
-Korean, Lithuanian, Norwegian, Polish, Portuguese (Brazil), Romanian, Russian, Spanish, Swedish, Thai,
-Turkish, Ukrainian and Vietnamese.
+34 languages ship with the bundle: Arabic, Bengali, Bulgarian, Chinese (Simplified and Traditional),
+Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Greek, Hindi, Hungarian, Indonesian,
+Italian, Japanese, Korean, Lithuanian, Malay, Norwegian, Persian, Polish, Portuguese (Brazil), Romanian,
+Russian, Spanish, Swedish, Thai, Turkish, Ukrainian, Urdu and Vietnamese.
 
-Every string is hand-reviewed. There is no machine translation in the bundle and no network call for
+Arabic, Persian and Urdu read right to left; the settings pages lay themselves out in the same direction.
+
+These newest languages are still being completed: Arabic, Bengali, Malay, Persian and Urdu currently
+translate the parts of the settings people see most, and any text not yet written falls back to English
+rather than showing a blank row. There is no machine translation in the bundle and no network call for
 translations. To add or fix a language, see [`patches/src/main/resources/japatch/i18n/`](patches/src/main/resources/japatch/i18n/)
 and `scripts/i18n_review.py`.
 
@@ -418,7 +422,7 @@ Useful checks:
 
 ```bash
 sh tests/runtime/run.sh              # hooks, menus, text replace, chat export (runs in CI)
-python3 scripts/i18n_check.py        # every tr() text exists in all 29 languages (runs in CI)
+python3 scripts/i18n_check.py        # every tr() text exists in all 34 languages (runs in CI)
 python3 scripts/readme_features.py --check   # this README's feature table matches the build (CI)
 python3 scripts/release_info.py --check      # release notes are in Morphe's section format
 python3 scripts/bump_version.py --check      # the version agrees in all six places
