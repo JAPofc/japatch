@@ -32,8 +32,9 @@ function riskyKeys() {
 
 check("every feature that can get an account actioned asks first", () => {
     // badges: fake playtime. quests: finishing Quests from a phone, and the sign-in risk when Discord refuses.
-    // platformSpoof: claiming a platform the account isn't on.
-    assert.deepStrictEqual([...riskyKeys().keys].sort(), ["badges", "platformSpoof", "quests"]);
+    // platformSpoof: claiming a platform the account isn't on. streamBadge: a report Discord does not expect from a
+    // phone, sent against a live session, and accounts have been actioned for automating badge progress.
+    assert.deepStrictEqual([...riskyKeys().keys].sort(), ["badges", "platformSpoof", "quests", "streamBadge"]);
 });
 
 check("each warning says what could happen, in one sentence", () => {

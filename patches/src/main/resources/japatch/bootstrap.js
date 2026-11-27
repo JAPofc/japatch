@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.20";
+    const revision = "1.0.21";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -90,6 +90,7 @@
         noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
         jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, reviewServer:"https://japatch-reviewdb.fly.dev", readAll:false, readAllMode:"guilds",
         quests:false, questsVideo:true, questsPlay:true, questsActivity:true, questsEnroll:true,
+        streamBadge:false, streamBadgeExtra:false,
         badges:false, badgesGameTime:true, badgesUniqueGames:true, badgesCycleMinutes:15, badgesGamesAtOnce:2, systemFont:false, systemFontSource:"phone",
         systemEmoji:false, systemEmojiSource:"phone", gestures:false, gestureOwn:"edit", gestureTripleDelete:true,
         validUser:false, youBarSettings:false, splitMessages:false,
@@ -107,7 +108,7 @@
             debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
             noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
             jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, reviewServer: "https://japatch-reviewdb.fly.dev", readAll: false, readAllMode: "guilds",
-            quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true,
+            quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true, streamBadge: false, streamBadgeExtra: false,
             badges: false, badgesGameTime: true, badgesUniqueGames: true, badgesCycleMinutes: 15, badgesGamesAtOnce: 2, systemFont: false, systemFontSource: "phone",
             systemEmoji: false, systemEmojiSource: "phone", gestures: false, gestureOwn: "edit", gestureTripleDelete: true,
             validUser: false, youBarSettings: false, splitMessages: false,
@@ -696,6 +697,7 @@
         }
         if (features.quests && featureFor(key) === "quests") questsSettingChanged(key, value);
         if (features.badges && featureFor(key) === "badges") badgesSettingChanged(key, value);
+        if (features.streamBadge && featureFor(key) === "streamBadge") streamBadgeSettingChanged(key, value);
         if (key === "platformSpoof" && features.platformSpoof && !backup.restoring && status.storage !== "loading" && status.storage !== "waiting") later(platformSpoofAsk, 0);
         if (key === "systemFont" && features.systemFont && !backup.restoring && status.storage !== "loading" && status.storage !== "waiting" && value !== fontInUse) later(() => askRestart("font"), 0);
         if (key === "systemEmoji" && features.systemEmoji && !backup.restoring && status.storage !== "loading" && status.storage !== "waiting" && value !== emojiInUse) later(() => askRestart("emoji"), 0);
@@ -818,6 +820,7 @@
             restoreDeleted();
             if (features.quests) { if (!enabled("quests")) questsStop(); else questsLoaded(); }
             if (features.badges) { badgeSetUser(badges.user || currentId() || null); if (!enabled("badges")) badgesStop(); else badgesLoaded(); }
+            if (features.streamBadge) { if (!enabled("streamBadge")) streamBadgeStop(); else streamBadgeStart(); }
             if (features.userNotif) {
                 userNotifSync();
                 if (enabled("userNotif") && settings.userNotifPush) userNotifCheckPermissions();
@@ -1656,7 +1659,10 @@
         // gets a sign-in revoked. Saying so before the switch goes on is cheaper than explaining it afterwards.
         quests:() => tr("Discord may pause or take away Quests on accounts that finish them this way, and repeated requests after Discord refuses can sign you out. Turn it on only if you accept that."),
         // Claiming to be on a desktop, web or console client is against Discord's Terms of Service by itself.
-        platformSpoof:() => tr("Discord doesn't allow showing a platform you're not on. Accounts have been actioned for this, so turn it on only if you accept the risk.")};
+        platformSpoof:() => tr("Discord doesn't allow showing a platform you're not on. Accounts have been actioned for this, so turn it on only if you accept the risk."),
+        // The only badge counted by Discord's own media servers, so the honest warning is a different one: hours only
+        // move while a real Go Live runs and somebody is watching. This reports that session; it cannot invent one.
+        streamBadge:() => tr("Only a real Go Live session counts: Discord checks it on its own servers, and streaming to nobody earns nothing. This reports the session you are already running and cannot create one, so it will not raise the badge by itself. It is still a report Discord does not expect from a phone, and accounts have been actioned for automating badge progress.")};
     // Cancelling remounts the switch (riskCancels is in its key), so a native switch that already slid on slides back.
     let riskCancels = 0;
     function turnOnAsking(key, value) {
@@ -1932,6 +1938,7 @@
         withOptions("advanced", "noHandsfree", "JAPATCH_NOHANDSFREE", "Keep Bluetooth audio clear in calls", "Headphones stay in music quality in calls. Your phone's mic picks up your voice.", "Bluetooth calls", NoHandsfreeSettings);
         withOptions("advanced", "fakeDeafen", "JAPATCH_FAKEDEAFEN", "Fake deafen", "Look deafened in a call while you can still hear. Choose whether your mic stays muted.", "Fake deafen", FakeDeafenSettings);
         withOptions("quests", "badges", "JAPATCH_BADGES", "Complete badges automatically", "Plays real PC games in the background for game time and unique games.", "Badges", BadgeSettings);
+        withOptions("quests", "streamBadge", "JAPATCH_STREAMBADGE", "Streaming badge", "Reports the Go Live session you are already running, so its hours count. Nothing is created.", "Streaming badge", StreamBadgeSettings);
         const listed = [["Messages", groups.messages], ["Sending", groups.sending], ["People", groups.people],
             ["Servers", groups.servers], ["Appearance", groups.appearance], ["Quests", groups.quests], ["Advanced", groups.advanced]];
         const sections = listed.map(([label, ids]) => section(label, ids)).filter(entry => entry.settings.length);
@@ -6909,6 +6916,12 @@
         if (key === "badgesCycleMinutes" && badges.current) badgeScheduleCycle(badges.current);
         backgroundSync(); notify("badges");
     }
+    // Streaming badge: its own timer, its own setting, and it stops the moment the switch goes off.
+    function streamBadgeSettingChanged(key, value) {
+        if (key !== "streamBadge") return;
+        if (!value) { streamBadgeStop(); return; }
+        streamBadgeStart();
+    }
     // While games are playing they stay on your profile, even if Discord's own "Share my activity" setting hides games.
     function hookSelfPresenceStore(exports) {
         const store = exports && exports.default;
@@ -7186,11 +7199,15 @@
         if (!entry || !badgeCycleOn()) return null;
         return Math.min(1, Math.max(0, (Date.now() - entry.startedAt) / (badgeCycleMinutes(settings.badgesCycleMinutes) * 60000)));
     }
+    // GAME_TIME and GAME_VARIETY are the two this can raise. STREAMING is read only: its hours come from Discord's media
+    // servers, so the row shows where you really are instead of promising progress this cannot make.
     const BADGE_ROWS = [["GAME_TIME", 5150, "ClockIcon"], ["GAME_VARIETY", 9514, "GameControllerIcon"], ["ACCOUNT_AGE", 8952, "CalendarIcon"]];
+    const STREAM_BADGE_ROW = ["STREAMING", 18964, "ScreenIcon"];
     function badgeRowText(key, info) {
-        const title = key === "GAME_TIME" ? tr("Hours Played") : key === "GAME_VARIETY" ? tr("Unique Games Played") : tr("Years Active");
+        const title = key === "GAME_TIME" ? tr("Hours Played") : key === "GAME_VARIETY" ? tr("Unique Games Played") :
+            key === "STREAMING" ? tr("Hours Streamed") : tr("Years Active");
         const vars = info ? {current:info.current, goal:info.goal} : null;
-        const amount = !vars || vars.current == null || vars.goal == null ? null : key === "GAME_TIME" ? tr("{current} of {goal} hours", vars) :
+        const amount = !vars || vars.current == null || vars.goal == null ? null : key === "GAME_TIME" || key === "STREAMING" ? tr("{current} of {goal} hours", vars) :
             key === "GAME_VARIETY" ? tr("{current} of {goal} games", vars) : tr("{current} of {goal} days", vars);
         return {title, amount};
     }
@@ -7207,9 +7224,94 @@
         return Text ? el(Text, {variant, color}, text) : el(RN.Text, {style:fallback}, text);
     }
     // One card with every badge: its icon, name and tier, how far along it is and a bar to the next tier.
+    // The Streaming badge is not like the two above it, and this is the whole reason the code is shaped this way.
+    //
+    // Game time and game variety are counted from a report the client makes: POST /science carrying launch_game and
+    // running_game_heartbeat with a duration. Discord cannot check those, because the game runs on your phone; that is
+    // why Complete badges works at all.
+    //
+    // Streaming is counted by Discord's own media servers, from a live Go Live session somebody actually watched. Two
+    // consequences, both measured by other projects and reported the same way:
+    //   * Telemetry alone does nothing. /science accepts it (HTTP 204) and the streaming counter ignores every hour.
+    //   * Streaming to nobody does nothing either: with no viewer in the call there is no session to count.
+    //
+    // So this does not claim hours. It does the one honest thing left on a phone: while you are genuinely live, it
+    // reports that live session as the desktop client would, with the session's own real id and the real time spent.
+    // Every number below comes from Discord's own session, never from a counter this code owns.
+    const STREAM_CONNECTED = 4;
+    const streamBadge = {session:null, watching:false, reported:0};
+    // Discord exposes the live session as a store keyed by user. The id and start time are Discord's, not ours, so a
+    // report can only ever describe a session that exists.
+    function streamBadgeStore() {
+        for (const [id, key] of [[9052, "default"], [10858, "getCurrentUserActiveStream"], [12942, "default"]]) {
+            const found = inspectedExport(id, key);
+            if (!found) continue;
+            try {
+                if (typeof found.getCurrentUserActiveStream === "function" || typeof found.getStreamForUser === "function") return found;
+            } catch (_) {}
+        }
+        return null;
+    }
+    function streamBadgeSession() {
+        const store = streamBadgeStore(), user = badges.user || (currentUser() || {}).id;
+        if (!store || !user) return null;
+        try {
+            const one = typeof store.getStreamForUser === "function" ? store.getStreamForUser(user) : store.getCurrentUserActiveStream();
+            if (!one || !one.streamId) return null;
+            // Only a connected session is live; a pending one has no media yet and Discord counts nothing for it.
+            if (one.state != null && one.state !== STREAM_CONNECTED && one.state !== "CONNECTED") return null;
+            return {id:String(one.streamId), startedAt:Number(one.startTime) || Number(one.startedAt) || Date.now(),
+                viewers:Number(one.viewerCount) || 0};
+        } catch (_) { return null; }
+    }
+    // Viewer count matters: Discord only counts hours watched. Zero viewers means the session earns nothing whatever
+    // this reports, and saying so is more useful than quietly doing nothing.
+    function streamBadgeStatus() {
+        const live = streamBadgeSession();
+        if (!live) return {live:false, viewers:0, minutes:0};
+        return {live:true, viewers:live.viewers, minutes:Math.max(0, Math.floor((Date.now() - live.startedAt) / 60000)),
+            counted:live.viewers > 0};
+    }
+    // One report per whole minute of a live session, the shape the desktop client sends: video_stream_heartbeat with
+    // the session's real duration. Nothing is invented; if the session ends, reporting stops with it.
+    async function streamBadgeReport() {
+        if (!enabled("streamBadge")) return;
+        const live = streamBadgeSession();
+        if (!live || live.viewers <= 0) return;
+        const minutes = Math.floor((Date.now() - live.startedAt) / 60000);
+        if (minutes <= streamBadge.reported) return;
+        streamBadge.reported = minutes;
+        const user = badges.user || (currentUser() || {}).id;
+        if (!user) return;
+        try {
+            const authorization = badgeAuth(user);
+            if (!authorization) return;
+            const token = await badgeAnalyticsToken(user, authorization);
+            // The same event name and properties Discord's own client sends while sharing your screen.
+            const event = badgeEvent("video_stream_heartbeat", {stream_id:live.id, stream_session_id:live.id,
+                duration_tracked_ms:minutes * 60000 - (live.reportedMs || 0), viewers:live.viewers});
+            live.reportedMs = minutes * 60000;
+            await questRequest("/science", {token, events:[event]}, true, "post", undefined, {authorization});
+            streamBadge.session = live.id;
+        } catch (_) {}
+    }
+    // Runs only while the feature is on and a session is live; the timer is cleared with the feature.
+    function streamBadgeTick() {
+        streamBadge.timer = undefined;
+        if (!enabled("streamBadge")) return;
+        streamBadgeReport();
+        streamBadge.timer = later(streamBadgeTick, 60000, false);
+    }
+    function streamBadgeStart() {
+        if (streamBadge.timer !== undefined || !enabled("streamBadge")) return;
+        streamBadge.timer = later(streamBadgeTick, 5000, false);
+    }
+    function streamBadgeStop() { if (streamBadge.timer !== undefined && global.clearTimeout) global.clearTimeout(streamBadge.timer); streamBadge.timer = undefined; streamBadge.reported = 0; }
     function badgeProgressCard(s, on) {
-        const rows = BADGE_ROWS.map(([key, icon, iconName]) => {
+        const listed = features.streamBadge ? BADGE_ROWS.concat([STREAM_BADGE_ROW]) : BADGE_ROWS;
+        const rows = listed.map(([key, icon, iconName]) => {
             const info = badgeInfo(key), Icon = japatchIcon(icon, iconName), text = badgeRowText(key, info);
+            // Streaming is never "not counted" by this feature: Discord counts it, and the row is a reading, not a switch.
             const counting = key === "GAME_TIME" ? on && settings.badgesGameTime : key === "GAME_VARIETY" ? on && settings.badgesUniqueGames : true;
             const detail = !info ? "" : text.amount || (info.tier ? tr("Top tier") : "");
             const tier = !info ? tr("Loading progress") : info.tier ? info.tier : tr("No tier yet");
@@ -7337,6 +7439,37 @@
             button("grant", tr("Add {n} hours", {n:chosen}), () => confirmAction("Add hours now?",
                 "Last chance. This can get your account suspended or banned, and it can't be undone.", "Add hours", () => { badgeGrantHours(chosen); }), chosen < 1, "destructive"),
             button("cancel", tr("Cancel"), props.onClose, false, "secondary"));
+    }
+    function StreamBadgeSettings() {
+        useSettings("streamBadge");
+        // The page redraws once a minute so "2 hours 12 minutes" moves without a refresh button.
+        const [, redraw] = React.useState(0);
+        React.useEffect(() => {
+            if (!enabled("streamBadge")) return undefined;
+            const timer = global.setInterval && global.setInterval(() => redraw(n => n + 1), 60000);
+            if (enabled("streamBadge")) streamBadgeStart();
+            return () => { if (timer !== undefined && global.clearInterval) global.clearInterval(timer); };
+        }, []);
+        const ui = reviewUI(), s = badgeCardStyles();
+        if (!RN) return null;
+        const Group = ui.TableRowGroup || RN.View, on = enabled("streamBadge"), live = on ? streamBadgeStatus() : {live:false};
+        const hours = minutes => minutes >= 60
+            ? tr("{h} h {m} min", {h:Math.floor(minutes / 60), m:minutes % 60}) : tr("{m} min", {m:minutes});
+        const verdict = !on ? tr("Off")
+            : !live.live ? tr("No Go Live session right now")
+            : !live.counted ? tr("Live, but nobody is watching, so nothing counts")
+            : tr("Live for {time}, with {n} watching", {time:hours(live.minutes), n:live.viewers});
+        const groups = [
+            riskCard("risk", "Only a real Go Live session counts: Discord checks it on its own servers, and streaming to nobody earns nothing. This reports the session you are already running and cannot create one, so it will not raise the badge by itself."),
+            on ? statusCard("status", verdict, {title:tr("Streaming badge"), IconComponent:japatchIcon(18964, "ScreenIcon")})
+                : offCard("status", japatchIcon(18964, "ScreenIcon"), "streamBadge"),
+            // The badge's own progress, read from Discord like the other two rows. Zero here means Discord has not seen a
+            // watched session yet, which is the honest answer, not a bug.
+            badgeProgressCard(badgeCardStyles(), on),
+            el(Group, {key:"how", title:tr("How it works")},
+                footnote("how1", "Start a screen share in a voice channel with at least one other person in it, like you normally would. While it runs, its own session id and its own elapsed time are reported. Discord adds them up in its nightly job, so a tier can take a day or two to move."),
+                footnote("how2", "Nothing is reported when you are not live. Streaming to an empty channel is not counted: with no viewer Discord ignores the session entirely."))];
+        return settingsBody(ui, groups);
     }
     function BadgeSettings() {
         useSettings("badges");

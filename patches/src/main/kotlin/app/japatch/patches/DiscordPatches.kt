@@ -1123,6 +1123,19 @@ val questCompleter = bytecodePatch(
 }
 
 @Suppress("unused")
+val streamBadge = bytecodePatch(
+    name = "Streaming badge",
+    description = "Reports the Go Live session you are already running, so its hours count toward your Streaming badge. Nothing is created, and a session nobody is watching earns nothing."
+) {
+    compatibleWith(discord)
+    section(PLUGINS)
+    dependsOn(japatchSettings)
+    execute {
+        additionalSelections += "streamBadge"
+    }
+}
+
+@Suppress("unused")
 val badgeCompleter = bytecodePatch(
     name = "Complete badges automatically",
     description = "Plays real PC games in the background, up to 3 at once, toward your Hours Played and Unique Games Played badges."

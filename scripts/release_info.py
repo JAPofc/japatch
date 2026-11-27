@@ -26,6 +26,22 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.21] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Streaming badge:** A new feature that reports the Go Live session you are already running, so its hours count toward the Streaming badge. It reads the session, its id and its elapsed time from Discord itself, and reports nothing when you are not live
+* **Discord - Streaming badge:** The page says what is actually happening right now: not live, live with nobody watching, or live with the time and how many people are watching. Streaming to an empty channel earns nothing, and the page says so instead of pretending otherwise
+* **Discord - Complete badges automatically:** The badge card now shows your Streaming tier and how far the next one is, read from Discord like the other two rows
+
+### 🐛 Bug Fixes
+
+* **Discord - Streaming badge:** Fixed the feature being able to claim progress it cannot make. Discord counts stream hours on its own servers, so a report alone never adds a minute: the feature is marked risky, and its warning says plainly that it cannot create a session
+
+### 🔧 Improvements
+
+* **Discord - Every page:** A runtime test holds that promise: no report leaves the app without a live session, without a viewer, and never twice for the same minute
+
 ## [1.0.20] (2026-11-27)
 
 ### ✨ New Features
@@ -312,7 +328,13 @@ def entries():
 
 
 def check():
+    seen = set()
     for version, body in entries():
+        # A version may appear once. A note added by hand above an older one is how 1.0.20 lost its heading and had
+        # its body read twice; nothing here noticed, because the body was still valid on its own.
+        if version in seen:
+            raise SystemExit(f"release_info.py: {version} appears more than once")
+        seen.add(version)
         order, section, bullets = [], None, 0
         for line in body.splitlines():
             if not line.strip():
