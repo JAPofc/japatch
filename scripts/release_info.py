@@ -26,6 +26,25 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.23] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Complete Quests automatically:** The Quests page now says how many rewards are waiting, counted from the Quests Discord itself has marked finished. A row next to it takes them for you, one at a time, and leaves the reward alone if Discord asks for a captcha instead of trying again
+* **Discord - Complete Quests automatically:** A second switch takes those rewards by itself once a Quest finishes. It is off until you turn it on, and turning it on means reading three points, ticking each one, and typing a word
+
+### 🐛 Bug Fixes
+
+* **Discord - Complete Quests automatically:** Fixed the Quests page still saying you claim rewards yourself. The line is gone, and the feature's own description says a Quest can now be paid out, so the README and the app cannot disagree about it
+
+### 🔧 Improvements
+
+* **Discord - Complete Quests automatically:** There is a Faster heartbeat option, and the page says plainly what it does and does not do: a Quest still takes the same time, because Discord counts the minutes on its own clock. It only asks Discord more often, three times as often as Discord's own app does, and the page says so before you turn it on
+
+### ⚡ Performance Improvements
+
+* **Discord - Complete Quests automatically:** A reward Discord already marked finished is claimed once. A refused claim is remembered for six hours rather than asked again on every scan, so a captcha cannot turn into a loop
+
 ## [1.0.22] (2026-11-27)
 
 ### ✨ New Features
