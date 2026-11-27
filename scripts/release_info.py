@@ -23,6 +23,17 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.15] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Settings:** The About page now checks which release is newest and says so, with one tap to open it. It asks GitHub once when the page opens, never at launch and never on a timer, and it sends nothing about you; there is a **Check for updates** switch right under it for anyone who would rather it did not ask at all
+
+### 🐛 Bug Fixes
+
+* **Discord - User and server reviews:** Fixed the server address being saved exactly as typed, however wrong: a missing `https://`, a typo in it, a trailing note or a stray `@` became the address, and Reviews then stayed empty with nothing to act on. Saving now refuses it and says what to change, in a line under the field
+* **Discord - User and server reviews:** Fixed plain `http://` being accepted for a server on the internet. Sign-in cannot come back to a plain address and a sign-in token over it can be read on the way, so it is now allowed for a server on your own network only
+
 ## [1.0.14] (2026-11-27)
 
 ### ✨ New Features

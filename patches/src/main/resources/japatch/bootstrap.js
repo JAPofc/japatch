@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.14";
+    const revision = "1.0.15";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -96,7 +96,7 @@
         translate:false, translateTarget:"discord", translateLanguage:"en", translateMode:"auto", translateAsk:"both", translateNote:true, translateOriginal:false, translateSkip:"",
         userNotif:false, userNotifFriends:true, userNotifStatus:true, userNotifMessages:true, userNotifTyping:true, userNotifPush:false, userNotifLogStatus:true, userNotifLogMessages:true, userNotifLogTyping:false,
         accountSwitcher:false, accountSwitcherYouBar:true, accountSwitcherShare:false, accountSwitcherNotify:true, appIcons:false, nitroThemes:false, customThemes:false, customThemesBackground:true, materialYou:false, materialYouColor:"wallpaper", materialYouTint:"balanced",
-        iconPacks:false, iconPacksTheme:true,
+        iconPacks:false, iconPacksTheme:true, updateCheck:true,
         messageHighlight:false, messageHighlightThickness:2, messageHighlightBrightness:50, messageHighlightPingColor:"default", serverInfo:false, serverInfoFriends:true, serverEdit:false,
         fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
         hypeSquad:false, customIdle:false, customIdleMinutes:10, pauseInvites:false, fastDeleteChannels:false, fastDeleteChannelsConfirm:true, fastDeleteChannelsMenu:true, mutualGroupDMs:false, platformSpoof:false, platformSpoofDevice:"desktop" };
@@ -114,7 +114,7 @@
             translate: false, translateTarget: "discord", translateLanguage: "en", translateMode: "auto", translateAsk: "both", translateNote: true, translateOriginal: false, translateSkip: "",
             userNotif: false, userNotifFriends: true, userNotifStatus: true, userNotifMessages: true, userNotifTyping: true, userNotifPush: false, userNotifLogStatus: true, userNotifLogMessages: true, userNotifLogTyping: false,
             accountSwitcher: false, accountSwitcherYouBar: true, accountSwitcherShare: false, accountSwitcherNotify: true, appIcons: false, nitroThemes: false, customThemes: false, customThemesBackground: true, materialYou: false, materialYouColor: "wallpaper", materialYouTint: "balanced",
-            iconPacks: false, iconPacksTheme: true,
+            iconPacks: false, iconPacksTheme: true, updateCheck: true,
             messageHighlight: false, messageHighlightThickness: 2, messageHighlightBrightness: 50, messageHighlightPingColor: "default", serverInfo: false, serverInfoFriends: true, serverEdit: false,
             fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
@@ -1239,6 +1239,49 @@
         return JaPatchIcon;
     }
     const REPO = "https://github.com/JAPofc/japatch";
+    // The newest release, asked once when the About page is opened and not before. This is the only request JaPatch
+    // makes on its own: one GET to GitHub for a version number, with nothing sent about you or the phone. It is
+    // deliberately not on a timer, not at launch, and not retried — opening About again asks again, and that is all.
+    const update = {state:"idle", latest:"", url:"", error:"", asked:0, newer:false};
+    function compareVersions(a, b) {
+        const one = String(a || "").replace(/^v/i, "").split("."), two = String(b || "").replace(/^v/i, "").split(".");
+        for (let i = 0; i < Math.max(one.length, two.length); i++) {
+            const x = parseInt(one[i], 10) || 0, y = parseInt(two[i], 10) || 0;
+            if (x !== y) return x < y ? -1 : 1;
+        }
+        return 0;
+    }
+    // A release can be newer without being installable here: a build made for another Discord version is refused by
+    // Morphe, so the tag is read from the release title and shown as-is rather than guessed at.
+    function updateCheck() {
+        if (!settings.updateCheck) { update.state = "off"; return; }
+        if (update.state === "checking" || typeof global.fetch !== "function") return;
+        // Once a day is enough for a page people open twice a year, and it keeps the request count honest.
+        if (update.state === "done" && Date.now() - update.asked < 24 * 60 * 60 * 1000) return;
+        update.state = "checking"; update.error = ""; update.asked = Date.now();
+        Promise.resolve().then(() => global.fetch(REPO.replace("https://github.com", "https://api.github.com/repos") + "/releases/latest",
+            {method:"GET", headers:{accept:"application/vnd.github+json"}}))
+            .then(res => { if (!res || !res.ok) throw new Error("HTTP " + (res && res.status)); return res.json(); })
+            .then(json => {
+                const tag = json && typeof json.tag_name === "string" ? json.tag_name : "";
+                if (!tag) throw new Error("no tag");
+                update.latest = tag.replace(/^v/i, "");
+                update.url = typeof json.html_url === "string" && /^https:\/\//.test(json.html_url) ? json.html_url : REPO + "/releases";
+                update.newer = compareVersions(revision, update.latest) < 0;
+                try { dlog("I", "update", revision + " -> " + update.latest + (update.newer ? " (newer available)" : " (current)")); } catch (_) {}
+                update.state = "done";
+            })
+            .catch(error => { update.state = "done"; update.error = String(error && error.message || error); })
+            .then(() => { try { notify("about"); } catch (_) {} });
+    }
+    function updateText() {
+        if (!settings.updateCheck) return tr("JaPatch {version}. Update checks are off in Settings → JaPatch → About.", {version: revision});
+        if (update.state === "checking") return tr("Asking GitHub for the newest version…");
+        if (update.error) return tr("Couldn't reach GitHub. Check the connection and open this page again.");
+        if (update.state !== "done") return tr("JaPatch {version}.", {version: revision});
+        if (update.newer) return tr("JaPatch {version}. {newer} is out — tap to see it.", {version: revision, newer: update.latest});
+        return tr("JaPatch {version}, the newest there is.", {version: revision});
+    }
     function openLink(url) {
         try { if (RN && RN.Linking && typeof RN.Linking.openURL === "function") RN.Linking.openURL(url).catch(() => {}); } catch (_) {}
     }
@@ -1671,6 +1714,11 @@
         // About: the version and how many features are on, whether settings are saved, and where to get help.
         next.JAPATCH_VERSION = { type: "static", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(9365, "TagIcon", icon),
             useTitle: () => "JaPatch Patches " + revision, useDescription: function () { useSettings(); return featureSummary(); } };
+        // The version row itself, which is also the update check. One tap when there is something newer opens it.
+        next.JAPATCH_UPDATE = { type: "pressable", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(12098, "DownloadIcon", icon),
+            withArrow: true, useTitle: function () { useSettings(); return updateText(); },
+            useDescription: () => tr("Checked against GitHub when this page opens. Nothing about you is sent."),
+            onPress: () => openLink(update.newer && update.url ? update.url : REPO + "/releases") };
         next.JAPATCH_STATUS = { type: "static", parent: "JAPATCH_GENERAL", IconComponent: japatchIcon(5145, "CircleInformationIcon", icon),
             useTitle: () => { useLanguage(); return tr("Status"); }, useDescription: function () { useSettings(); return aboutText(); } };
         const links = [];
@@ -1679,10 +1727,17 @@
             next[id] = { type: "pressable", parent: "JAPATCH_GENERAL", unsearchable: true, withArrow: true, useTitle: () => { useLanguage(); return tr(title); },
                 useDescription: () => tr(hint), onPress: () => openLink(url), IconComponent: japatchIcon(iconId, iconName, icon) };
         }
+        // One request's worth of privacy deserves a switch, not a sentence in a document.
+        next.JAPATCH_UPDATE_TOGGLE = { type: "toggle", parent: "JAPATCH_GENERAL", unsearchable: true,
+            useTitle: () => { useLanguage(); return tr("Check for updates"); },
+            useDescription: () => tr("Asks GitHub for the newest version when this page opens, and nothing else."),
+            useValue: function () { useSettings("updateCheck"); return !!settings.updateCheck; },
+            onValueChange: value => { settings.updateCheck = !!value; save(); notify("updateCheck");
+                if (value) { update.state = "idle"; updateCheck(); } } };
         link("JAPATCH_LINK_CHANGES", "What's new", "Changes in each release.", REPO + "/releases", 11733, "SparklesIcon");
         link("JAPATCH_LINK_ISSUES", "Report a problem", "Opens a new issue on GitHub.", REPO + "/issues/new/choose", 12113, "BugIcon");
         link("JAPATCH_LINK_SOURCE", "Source code", "JaPatch Patches on GitHub. Free and open source (GPL-3.0).", REPO, 7972, "LinkExternalSmallIcon");
-        route("JAPATCH_GENERAL", "About", [section("JaPatch", ["JAPATCH_VERSION", "JAPATCH_STATUS"]), section("Links", links)], undefined,
+        route("JAPATCH_GENERAL", "About", [section("JaPatch", ["JAPATCH_VERSION", "JAPATCH_UPDATE", "JAPATCH_UPDATE_TOGGLE", "JAPATCH_STATUS"]), section("Links", links)], undefined,
             japatchIcon(5145, "CircleInformationIcon", icon));
         // The nodes above stay for Discord's settings search; the page itself is the designed About page.
         next.JAPATCH_GENERAL.screen.getComponent = () => AboutSettings;
@@ -2445,6 +2500,10 @@
     function AboutSettings() {
         useSettings();
         React.useEffect(() => { diagLoadLast(); }, []);
+        // The only request JaPatch makes without being asked: one GET to GitHub, when this page is opened. It is here
+        // rather than at launch because a version check is the sort of thing a person goes looking for, never something
+        // an app should do to them.
+        React.useEffect(() => { try { updateCheck(); } catch (_) {} }, []);
         const ui = reviewUI();
         if (!React || !RN) return null;
         const s = useThemed("about", c => ({hero:Object.assign({}, ABOUT_DARK.hero, {backgroundColor:c.CARD_BACKGROUND_DEFAULT}),
@@ -4656,6 +4715,31 @@
         const at = raw.indexOf("@"), base = (at > 0 ? raw.slice(at + 1).trim() : raw) || REVIEW_API_DEFAULT;
         if (!base) return "";
         return base.replace(/\/+$/, "");
+    }
+    // What a typed address is worth. Nothing here trusts the text: a server address is used in a fetch and in the
+    // browser that completes sign-in, so a typo ("hhtps://", a space, a trailing note) used to be saved as-is and
+    // then fail later with a message nobody could act on. Reported from the device: "Reviews stays empty after
+    // saving the address, and nothing says why".
+    const REVIEW_HOST_RE = /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,63}$/i;
+    function reviewAddressCheck(value) {
+        const text = String(value == null ? "" : value).trim();
+        if (!text) return {ok:true, value:"", off:true};
+        // A space inside is the usual sign of something pasted with a note around it.
+        if (/\s/.test(text)) return {ok:false, why:"An address has no spaces. Remove anything that is not part of it."};
+        const match = /^([a-z][a-z0-9+.-]*):\/\/([^/?#]+)([^?#]*)$/i.exec(text);
+        if (!match) return {ok:false, why:"Start with https://, then the server's name."};
+        const scheme = match[1].toLowerCase(), authority = match[2];
+        if (scheme !== "https" && scheme !== "http") return {ok:false, why:"Only http:// and https:// addresses work."};
+        // A host may carry a port (":8080") and nothing else: no user, no "@", which would be an injection into the URL.
+        const host = authority.replace(/:\d{1,5}$/, "");
+        if (authority.indexOf("@") >= 0) return {ok:false, why:"An address has no @ in it."};
+        const local = host === "localhost" || /^\d{1,3}(?:\.\d{1,3}){3}$/.test(host);
+        if (!local && !REVIEW_HOST_RE.test(host)) return {ok:false, why:"That does not look like a server name."};
+        // http is allowed for a server on your own network, but never for the public internet: Discord's sign-in
+        // will not redirect to it, and a review token over plain http is readable on the way.
+        if (scheme === "http" && !local) return {ok:false, why:"Use https:// for a server on the internet. http:// only works for a server on your own network."};
+        const path = match[3].replace(/\/+$/, "");
+        return {ok:true, value:scheme + "://" + authority.toLowerCase() + path};
     }
     // One cache per tone (saturation, lightness), keyed by the seed: building "0.75:0.6:<id>" on every lookup cost
     // 5.9x more than the lookup itself on Hermes (number-to-string).
@@ -9145,7 +9229,9 @@
     // for a server nobody signed in to (reported on the device: an address that does not answer still showed a name).
     function reviewServerChanged(next) {
         const before = reviewBase();
-        settings.reviewServer = String(next == null ? "" : String(next));
+        // A backup restored from another phone, or the fallback prompt, must not slip past what the field enforces.
+        const check = reviewAddressCheck(next);
+        settings.reviewServer = check.ok ? check.value : String(next == null ? "" : String(next)).trim();
         const changed = reviewBase() !== before;
         // Only a different address is a different server. Saving the same one (with or without a trailing slash) must
         // keep the sign-in: it was made against exactly that address.
@@ -9252,30 +9338,38 @@
         if (!ui.ActionSheet || typeof ui.showSheet !== "function") { openReviewServerPrompt(ui); return; }
         const key = "JaPatchReviewServer";
         const close = () => hideReviewSheet(ui, key);
-        const apply = (draft, hostClose) => {
-            const next = String(draft || "").trim();
-            reviewServerChanged(next); close();
+        const apply = (draft, hostClose, setError) => {
+            const check = reviewAddressCheck(draft);
+            if (!check.ok) {
+                if (typeof setError === "function") setError(check.why);
+                else reviewToast(ui, check.why, japatchIcon(7148, "CircleWarningIcon"));
+                return false;
+            }
+            reviewServerChanged(check.value); close();
             if (typeof hostClose === "function") try { hostClose(); } catch (_) {}
-            reviewToast(ui, next ? tr("Reviews now uses {host}", {host: reviewHost(next)}) : tr("Reviews is off"), japatchIcon(7144, "CircleCheckIcon"));
+            reviewToast(ui, check.value ? tr("Reviews now uses {host}", {host: reviewHost(check.value)}) : tr("Reviews is off"), japatchIcon(7144, "CircleCheckIcon"));
+            return true;
         };
         // Discord's sheet host passes its own onClose to the content it is given; using it is what makes the
         // top-to-bottom swipe and the header's X actually close this sheet (reported on the device: the form
         // stayed put, only the swipe worked on other sheets that pass it).
         function ReviewServerSheet(props) {
             const [draft, setDraft] = React.useState(settings.reviewServer || "");
+            const [problem, setProblem] = React.useState("");
             const done = () => { close(); if (props && typeof props.onClose === "function") try { props.onClose(); } catch (_) {} };
             return el(ui.ActionSheet, {header: ui.Header && ui.Close ?
                     el(ui.Header, {title: tr("ReviewDB server"), trailing: el(ui.Close, {onPress: done})}) : undefined},
                 el(RN.View, {key: "body", style: {padding:16, gap:12}},
                     el(RN.Text, {key: "hint", style: {fontSize:14, opacity:0.8}},
                         tr("JaPatch runs one at https://japatch-reviewdb.fly.dev. Any ReviewDB-compatible server goes here; empty turns Reviews off.")),
+                    problem ? el(RN.Text, {key: "problem", style: {fontSize: 13, color: "#f23f43", marginTop: 2}}, problem) : null,
                     el(RN.View, {key: "field", style: {marginTop:8}},
-                        ui.TextInput ? el(ui.TextInput, {value:draft, onChange:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none"}) :
-                            el(RN.TextInput, {value:draft, onChangeText:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none", autoCorrect:false, keyboardType:"url", style:{fontSize:16, padding:12}})),
+                        ui.TextInput ? el(ui.TextInput, {value:draft, onChange:value => { setDraft(value); if (problem) setProblem(""); }, placeholder:"https://…/api/reviewdb", autoCapitalize:"none"}) :
+                            el(RN.TextInput, {value:draft, onChangeText:value => { setDraft(value); if (problem) setProblem(""); }, placeholder:"https://…/api/reviewdb", autoCapitalize:"none", autoCorrect:false, keyboardType:"url", style:{fontSize:16, padding:12}})),
                     el(RN.View, {key: "actions", style: {flexDirection:"row", justifyContent:"flex-end", gap:8, marginTop:4}},
                         el(RN.Pressable, {onPress:done, accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center"}},
                             el(RN.Text, {style:{fontWeight:"600"}}, tr("Cancel"))),
-                        el(RN.Pressable, {onPress:() => apply(draft, props && props.onClose), accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center", backgroundColor:"#5865f2"}},
+                        el(RN.Pressable, {onPress:() => apply(draft, props && props.onClose, setProblem), accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center", backgroundColor:"#5865f2"}},
                             el(RN.Text, {style:{color:"#ffffff", fontWeight:"600"}}, tr("Save"))))));
         }
         try { ui.showSheet({key, content: el(ReviewServerSheet), stackingBehavior: "stack"}); } catch (_) { openReviewServerPrompt(ui); }

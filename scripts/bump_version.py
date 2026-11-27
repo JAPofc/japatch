@@ -11,6 +11,7 @@ Four places carry the version, and a release is wrong when any of them disagrees
     gradle.properties                                 version, releaseTag, releaseAsset
     patches-list.json                                 "version": ""   (build.py writes it)
     patches-bundle.json                               "version": ""   (build.py writes it)
+    docs/badges/release.svg                           the version on the README badge
 
 The last two are generated, so --bump rewrites them too when they exist (including the
 download address in patches-bundle.json, which is what Morphe Manager actually installs).
@@ -26,6 +27,7 @@ PROPERTIES = ROOT / "gradle.properties"
 BOOTSTRAP = ROOT / "patches/src/main/resources/japatch/bootstrap.js"
 LIST = ROOT / "patches-list.json"
 BUNDLE = ROOT / "patches-bundle.json"
+BADGE = ROOT / "docs" / "badges" / "release.svg"
 VERSION = re.compile(r"^\d+\.\d+\.\d+$")
 
 
@@ -64,6 +66,9 @@ def found_versions():
     }
     for name, version in generated_versions().items():
         versions[name] = version
+    if BADGE.exists():
+        found = re.search(r"release: v(\d+\.\d+\.\d+)", BADGE.read_text(encoding="utf-8"))
+        versions["docs/badges/release.svg"] = found.group(1) if found else None
     return versions
 
 
@@ -116,6 +121,14 @@ def bump(version):
             line = f"releaseAsset = patches-{version}.mpp"
         out.append(line)
     PROPERTIES.write_text("\n".join(out) + "\n")
+
+    if BADGE.exists():
+        # The badge is an SVG in this repository, so nothing updates it the way GitHub updates a shields.io one:
+        # it is written here, or it quietly keeps saying the old version.
+        badge = BADGE.read_text(encoding="utf-8")
+        badge = re.sub(r"(release: )v?\d+\.\d+\.\d+", rf"\g<1>v{version}", badge)
+        badge = re.sub(r"(<text[^>]*>)v?\d+\.\d+\.\d+(</text>)", rf"\g<1>v{version}\g<2>", badge)
+        BADGE.write_text(badge, encoding="utf-8")
 
     for path in (LIST, BUNDLE):
         if not path.exists():

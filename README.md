@@ -36,7 +36,8 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 </tr>
 </table>
 
-*Offline by default. No tracking, no telemetry, no remote config.*
+*No tracking, no telemetry, no remote config. The one thing JaPatch asks the internet for on its own is
+the newest release number, when you open its About page — and that has a switch.*
 
 </div>
 

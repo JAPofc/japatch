@@ -42,9 +42,10 @@ Every one of these is a feature you switch on yourself, and each is listed with 
 | Listen along (**off** by default) | `api.spotify.com` | The track request Discord itself makes |
 | Fix link previews (on by default) | an embed service such as `api.fxtwitter.com` | The address of the link you sent |
 | Complete Quests / badges (off by default) | Discord only | Whatever Discord's own app sends; nothing anywhere else |
+| Check for updates (**on** by default, one switch) | `api.github.com` | A plain GET for the newest release number, made when the About page is opened — no more than once a day. Nothing about you, your account or the phone is in it |
 | Install attribution disabled | nothing — AppsFlyer is blocked | — |
 
-Three of these deserve a sentence:
+Four of these deserve a sentence:
 
 - **Translate sends text to Google.** If that is not acceptable, leave it off; nothing else in JaPatch
   touches a translation service.
@@ -54,6 +55,10 @@ Three of these deserve a sentence:
   in the setting, and you can change it to any ReviewDB-compatible server, including your own.
 - **Fix link previews** rewrites the link so Discord can draw the post. Only the address of the post
   goes to the embed service.
+- **Check for updates** is the one request JaPatch makes without being asked to do something: opening
+  Settings → JaPatch → About asks GitHub which release is newest. It is not on a timer, not at launch,
+  sends nothing about you, and has its own switch on that page — turning it off means no request is
+  made at all.
 
 ## 3. What stays on the phone
 
