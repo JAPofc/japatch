@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.13";
+    const revision = "1.0.14";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -88,7 +88,7 @@
     // their own defaults, so turning a feature on does what it says straight away.
     const settings = { debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
         noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
-        jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, reviewServer:"", readAll:false, readAllMode:"guilds",
+        jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, reviewServer:"https://japatch-reviewdb.fly.dev", readAll:false, readAllMode:"guilds",
         quests:false, questsVideo:true, questsPlay:true, questsActivity:true, questsEnroll:true,
         badges:false, badgesGameTime:true, badgesUniqueGames:true, badgesCycleMinutes:15, badgesGamesAtOnce:2, systemFont:false, systemFontSource:"phone",
         systemEmoji:false, systemEmojiSource:"phone", gestures:false, gestureOwn:"edit", gestureTripleDelete:true,
@@ -106,7 +106,7 @@
         return DEFAULT_SETTINGS || (DEFAULT_SETTINGS = Object.freeze({
             debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
             noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
-            jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, reviewServer: "", readAll: false, readAllMode: "guilds",
+            jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, reviewServer: "https://japatch-reviewdb.fly.dev", readAll: false, readAllMode: "guilds",
             quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true,
             badges: false, badgesGameTime: true, badgesUniqueGames: true, badgesCycleMinutes: 15, badgesGamesAtOnce: 2, systemFont: false, systemFontSource: "phone",
             systemEmoji: false, systemEmojiSource: "phone", gestures: false, gestureOwn: "edit", gestureTripleDelete: true,
@@ -5875,8 +5875,24 @@
         dispatcher.subscribe("LOGOUT", () => { questsReset(); quest.user = null; });
         // AppStateStore (2001): coming back to Discord lets a waiting accept or a paused video go on.
         dispatcher.subscribe("APP_STATE_UPDATE", event => {
-            if (event && event.state === "active" && quest.user && enabled("quests")) { questsSchedule(2000 + Math.floor(Math.random() * 3000)); badgesKickIfIdle(); }
+            const state = event && event.state;
+            // Leaving Discord stops Quests at once. Before, a request already in flight went out after the app was
+            // hidden and Android cancelled it ("Request has been terminated"), which Discord then showed as an error
+            // on its Quest page and as a notification that never cleared. Nothing is lost: the progress is saved and
+            // the Quest resumes from it on the next APP_STATE_UPDATE to "active".
+            if (state && state !== "active") { questsPause(); return; }
+            if (state === "active" && quest.user && enabled("quests")) { questsSchedule(2000 + Math.floor(Math.random() * 3000)); badgesKickIfIdle(); }
         });
+    }
+    // Discord left the screen: stop every timer, and leave the running Quest as it is so the next launch resumes from
+    // the last report. No terminal heartbeat here: that one tells Discord the Quest was given up.
+    function questsPause() {
+        if (global.clearTimeout) {
+            if (quest.scanTimer !== undefined) global.clearTimeout(quest.scanTimer);
+            if (quest.refetchTimer !== undefined) global.clearTimeout(quest.refetchTimer);
+        }
+        quest.scanTimer = undefined; quest.refetchTimer = undefined;
+        if (quest.running) quest.running.paused = true;
     }
     // Discord can connect before the saved settings finish loading. Quest Completer was still off at that
     // moment, so it never started until the next reconnect. Start it now if Discord is already connected.
@@ -9252,7 +9268,7 @@
                     el(ui.Header, {title: tr("ReviewDB server"), trailing: el(ui.Close, {onPress: done})}) : undefined},
                 el(RN.View, {key: "body", style: {padding:16, gap:12}},
                     el(RN.Text, {key: "hint", style: {fontSize:14, opacity:0.8}},
-                        tr("Example: https://your-server.example/api/reviewdb. Empty turns Reviews off.")),
+                        tr("JaPatch runs one at https://japatch-reviewdb.fly.dev. Any ReviewDB-compatible server goes here; empty turns Reviews off.")),
                     el(RN.View, {key: "field", style: {marginTop:8}},
                         ui.TextInput ? el(ui.TextInput, {value:draft, onChange:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none"}) :
                             el(RN.TextInput, {value:draft, onChangeText:setDraft, placeholder:"https://…/api/reviewdb", autoCapitalize:"none", autoCorrect:false, keyboardType:"url", style:{fontSize:16, padding:12}})),
@@ -15483,6 +15499,9 @@
     const LATIN_LETTERS = {en:"", de:"\u00e4\u00f6\u00fc\u00df", fr:"\u00e0\u00e2\u00e6\u00e7\u00e9\u00e8\u00ea\u00eb\u00ee\u00ef\u00f4\u0153\u00f9\u00fb\u00fc\u00ff",
         es:"\u00e1\u00e9\u00ed\u00f1\u00f3\u00fa\u00fc", it:"\u00e0\u00e8\u00e9\u00ec\u00ed\u00f2\u00f3\u00f9\u00fa", pt:"\u00e0\u00e1\u00e2\u00e3\u00e7\u00e9\u00ea\u00ed\u00f3\u00f4\u00f5\u00fa",
         nl:"\u00e9\u00eb\u00ef\u00f6", sv:"\u00e5\u00e4\u00f6", no:"\u00e5\u00e6\u00f8", da:"\u00e5\u00e6\u00f8", fi:"\u00e4\u00f6\u00e5",
+        // Indonesian (and Malay, which shares the letters) was missing here, so a reader whose language is Indonesian
+        // never had a plan at all and the bar never showed, in any chat (reported on the device).
+        id:"", ms:"",
         pl:"\u0105\u0107\u0119\u0142\u0144\u00f3\u015b\u017a\u017c", cs:"\u00e1\u010d\u010f\u00e9\u011b\u00ed\u0148\u00f3\u0159\u0161\u0165\u00fa\u016f\u00fd\u017e",
         sk:"\u00e1\u00e4\u010d\u010f\u00e9\u00ed\u013a\u013e\u0148\u00f3\u00f4\u0155\u0161\u0165\u00fa\u00fd\u017e", hu:"\u00e1\u00e9\u00ed\u00f3\u00f6\u0151\u00fa\u00fc\u0171",
         ro:"\u0103\u00e2\u00ee\u0219\u021b\u015f\u0163", tr:"\u00e7\u011f\u0131\u00f6\u015f\u00fc", hr:"\u010d\u0107\u0111\u0161\u017e", sl:"\u010d\u0161\u017e",
@@ -15492,7 +15511,13 @@
         sq:"\u00e7\u00eb", eo:"\u0109\u011d\u0125\u0135\u015d\u016d", gl:"\u00e1\u00e9\u00ed\u00f1\u00f3\u00fa"};
     // Everyday words that are only one language's (none of them an English word), to tell Latin languages apart.
     const LATIN_WORDS = {
-        en:["the", "and", "you", "what", "with", "this", "that", "have", "just", "about", "from", "your", "they", "would", "there", "their", "don't", "can't", "it's", "that's"],
+        en:["the", "and", "you", "what", "with", "this", "that", "have", "just", "about", "from", "your", "they", "would", "there", "their", "don't", "can't", "it's", "that's",
+            "good", "morning", "evening", "everyone", "someone", "anyone", "how", "are", "was", "were", "is", "not", "for", "but", "all", "any", "can", "will", "should",
+            "could", "where", "when", "why", "who", "because", "very", "much", "more", "most", "some", "than", "then", "now", "here", "our", "his", "her", "its", "him",
+            "she", "been", "being", "does", "did", "doing", "done", "get", "got", "make", "made", "think", "know", "want", "need", "like", "look", "see", "saw", "say",
+            "said", "tell", "told", "hey", "hello", "thanks", "thank", "please", "sorry", "yes", "yeah", "okay", "ok", "well", "never", "always", "again", "still",
+            "only", "also", "even", "too", "off", "out", "up", "down", "over", "before", "after", "today", "tomorrow", "yesterday", "tonight", "time", "day", "week",
+            "people", "thing", "things", "something", "nothing", "everything", "let", "lets", "go", "going", "come", "came", "back", "way", "one", "two", "first", "last", "next"],
         es:["que", "qu\u00e9", "los", "las", "del", "una", "uno", "por", "para", "con", "sin", "pero", "como", "c\u00f3mo", "m\u00e1s", "muy", "todo", "toda", "todos", "todas", "nada", "algo", "aqu\u00ed", "ah\u00ed", "all\u00ed", "este", "esta", "esto", "estos", "estas", "ese", "esa", "eso", "est\u00e1", "est\u00e1s", "est\u00e1n", "estoy", "eres", "somos", "tengo", "tienes", "tiene", "puede", "puedo", "hacer", "hace", "decir", "dice", "dijo", "cuando", "donde", "d\u00f3nde", "quien", "qui\u00e9n", "porque", "porqu\u00e9", "tambi\u00e9n", "siempre", "nunca", "ahora", "antes", "despu\u00e9s", "bueno", "buena", "buenos", "buenas", "bien", "mal", "hola", "ola", "gracias", "usted", "nosotros", "ellos", "ellas", "mis", "tus", "sus", "nuestro", "claro", "claramente", "verdad", "hermano", "amigo", "brochachon", "tradujiste", "traducir", "noche"],
         de:["und", "nicht", "ich", "ist", "auch", "aber", "wir", "das", "noch", "schon", "danke", "ein", "eine", "einen", "einem", "mit", "auf", "f\u00fcr", "von", "sich", "sie", "dem", "den", "des", "dass", "wenn", "oder", "nur", "wie", "kann", "sind", "haben", "wird", "wurde", "werden", "jetzt", "immer", "alles", "etwas", "nichts", "warum", "hall\u00f6chen", "guten", "bitte", "gerne", "heute", "morgen", "wirklich"],
         fr:["les", "des", "est", "pas", "avec", "pour", "dans", "plus", "mais", "sur", "sont", "cette", "tout", "tous", "toute", "faire", "fait", "comme", "\u00eatre", "avoir", "nous", "vous", "ils", "elles", "leur", "leurs", "m\u00eame", "aussi", "tr\u00e8s", "bien", "peut", "suis", "sais", "veux", "quand", "comment", "pourquoi", "bonjour", "salut", "merci", "oui", "alors", "donc", "rien", "quelque", "toujours", "jamais", "aujourd'hui", "c'est", "qu'il", "j'ai", "n'est"],
@@ -15589,12 +15614,22 @@
         const wordSet = new Set(words);
         wordSet.forEach(word => { if (plan.foreign.has(word)) other++; });
         if (other >= 2 || other >= 1 && words.length <= 6) return true;
-        if (base === "en") {
-            for (const word of LATIN_WORDS.en) if (wordSet.has(word)) english++;
-            // Longer Latin sentence with zero common English words and typical Romance/Germanic morphology.
-            if (!english && words.length >= 3 && words.some(w => /(?:mente|ci\u00f3n|si\u00f3n|ando|iendo|aste|iste|aron|ieron|ch\u00f6n|ung|keit|heit|lich|isch|aux|eux|oir|aient|zione|ggi|nho|lho|zinho|\u00e3o|\u00f5es)$/.test(w))) return true;
+        // The last net: a long Latin sentence with none of the reader's own words and the shapes of another family.
+        // This used to run only when the reader's language was English, which is why a chat in Spanish or French
+        // never raised the bar for an Indonesian reader (reported on the device: "the bar never appears anywhere").
+        for (const word of LATIN_WORDS[base] || []) if (wordSet.has(word)) return false;
+        if (words.length >= 3 && words.some(w => /(?:mente|ci\u00f3n|si\u00f3n|ando|iendo|aste|iste|aron|ieron|ch\u00f6n|ung|keit|heit|lich|isch|aux|eux|oir|aient|zione|ggi|nho|lho|zinho|\u00e3o|\u00f5es|\u00e9s|\u00f3n|\u00e1n|\u00edan)$/.test(w))) return true;
+        // Words of the languages in LATIN_WORDS that the reader's own list never has: two of them, or one in a
+        // five-word line, is another language being spoken.
+        let counted = 0;
+        for (const word of wordSet) {
+            if (plan.foreign.has(word)) continue;
+            for (const code in LATIN_WORDS) {
+                if (code === base) continue;
+                if (LATIN_WORDS[code].indexOf(word) >= 0 && (LATIN_WORDS[base] || []).indexOf(word) < 0) { counted++; continue; }
+            }
         }
-        return false;
+        return counted >= 2 || counted >= 1 && words.length <= 5;
     }
     // A row in "Only when you ask" that the bar could translate: remembered per chat, and the bar shows from then on.
     function translateNoticeForeign(channelId, text) {
@@ -15987,7 +16022,7 @@
         if (!enabled("translate") || !React || !tree || !message || !message.id || !contentSource || typeof contentSource.content !== "string" || !contentSource.content.trim()) return tree;
         const shownNow = translateShownFor(message);
         // "Top bar" only: the menu is for showing one message's original in a chat you translated, not for asking.
-        if (settings.translateMode === "manual" && settings.translateAsk === "bar" && !shownNow && !translateChatOn(message.channel_id || message.channelId)) return tree;
+        if (settings.translateAsk === "bar" && !shownNow && !translateChatOn(message.channel_id || message.channelId)) return tree;
         const label = shownNow ? tr("Show original") : tr("Translate");
         let added = false;
         const Icon = japatchIcon(9415, "LanguageIcon");
@@ -16349,7 +16384,14 @@
         // pill always sits just under whatever Discord shows there instead of on top of it (#82).
         // Only a header Discord already passes is wrapped: StickyWrapper (10380) fills the chat with its header box on Android,
         // so adding one where there was none could take touches from the messages.
-        return Object.assign({}, props, props.stickyHeader ? {children, stickyHeader:el(TranslateHeaderMeasure, {channelId:props.channelId}, props.stickyHeader)} : {children});
+        if (props.stickyHeader) {
+            return Object.assign({}, props, {children, stickyHeader:el(TranslateHeaderMeasure, {channelId:props.channelId}, props.stickyHeader)});
+        }
+        // No header slot to borrow: float it over the top of the chat instead. It used to be dropped here, which is
+        // why on this build the bar never appeared in some chats at all.
+        const floating = el(RN.View, {key:"japatch-translate-bar-float", pointerEvents:"box-none",
+            style:{position:"absolute", left:0, right:0, top:0, alignItems:"center", zIndex:20}}, bar);
+        return Object.assign({}, props, {children:Array.isArray(props.children) ? props.children.concat([floating]) : [props.children, floating]});
     }
     function translateBarHeader(orig, self, args) {
         const props = args[0];
@@ -16385,8 +16427,8 @@
     // A floating pill, centered, 36 dp: a round brand badge with the language icon, what a tap does, and a cog.
     // Once the chat is translated the badge turns quiet and the label says how to go back.
     const TRANSLATE_BAR_DARK = {bar:{flexDirection:"row", alignItems:"center", height:36, paddingLeft:4, paddingRight:4, borderRadius:18,
-        backgroundColor:"#2b2d31", borderWidth:1, borderColor:"#ffffff14",
-        shadowColor:"#000000", shadowOpacity:0.28, shadowRadius:10, shadowOffset:{width:0, height:4}, elevation:8},
+        backgroundColor:"#1e1f22", borderWidth:1.5, borderColor:"#5865f2",
+        shadowColor:"#000000", shadowOpacity:0.45, shadowRadius:12, shadowOffset:{width:0, height:4}, elevation:10},
         badge:{width:28, height:28, borderRadius:14, alignItems:"center", justifyContent:"center", backgroundColor:"#5865f2"},
         badgeOn:{width:28, height:28, borderRadius:14, alignItems:"center", justifyContent:"center", backgroundColor:"#4e505899"},
         badgeIcon:{color:"#ffffff"}, text:{color:"#f2f3f5"}, muted:{color:"#b5bac1"},
@@ -16394,8 +16436,10 @@
         divider:{width:1, height:16, marginHorizontal:4, backgroundColor:"#ffffff1f"}};
     function useTranslateBarStyles() {
         return useThemed("translateBar", c => ({
-            bar:Object.assign({}, TRANSLATE_BAR_DARK.bar, {backgroundColor:c.BACKGROUND_SURFACE_HIGHEST || c.MOBILE_FLOATING_ACCESSORY_BACKGROUND || c.CARD_BACKGROUND_DEFAULT,
-                borderColor:c.BORDER_SUBTLE}),
+            // One step BELOW the chat header, with the brand border: on the header's own colour the pill was there
+            // but invisible, which is what "the bar never shows" turned out to be.
+            bar:Object.assign({}, TRANSLATE_BAR_DARK.bar, {backgroundColor:c.BACKGROUND_SURFACE_LOWEST || c.BACKGROUND_SURFACE_HIGH || c.CARD_BACKGROUND_DEFAULT || "#1e1f22",
+                borderColor:c.BORDER_BRAND || c.BACKGROUND_BRAND || "#5865f2"}),
             badge:Object.assign({}, TRANSLATE_BAR_DARK.badge, {backgroundColor:c.BACKGROUND_BRAND}),
             badgeOn:Object.assign({}, TRANSLATE_BAR_DARK.badgeOn, {backgroundColor:c.BACKGROUND_MOD_STRONG || c.BACKGROUND_MOD_NORMAL}),
             badgeIcon:{color:c.CONTROL_BRAND_FOREGROUND_NEW || c.WHITE || "#ffffff"}, text:{color:c.TEXT_STRONG}, muted:{color:c.TEXT_MUTED},
@@ -16418,7 +16462,7 @@
                 hitSlop:{top:6, bottom:6, left:4, right:6}}, el(Cog, {size:"xs", color:s.muted.color})));
     }
     function translateBarShown(channelId) {
-        if (!enabled("translate") || settings.translateMode !== "manual" || settings.translateAsk === "menu" || !channelId || hiddenChannel(channelId)) return false;
+        if (!enabled("translate") || settings.translateAsk === "menu" || !channelId || hiddenChannel(channelId)) return false;
         if (translate.channels.has(channelId) || translate.foreign.get(channelId) === true) return true;
         return translateScanChannel(channelId);
     }
@@ -16428,7 +16472,7 @@
         const [, bump] = React.useState(0);
         const channelId = props.channelId, headerHeight = useTranslateHeaderHeight(channelId);
         React.useEffect(() => {
-            if (!channelId || !enabled("translate") || settings.translateMode !== "manual" || settings.translateAsk === "menu") return undefined;
+            if (!channelId || !enabled("translate") || settings.translateAsk === "menu") return undefined;
             if (!msgStore) msgStore = inspectedExport(5532, "default");
             if (!msgStore || typeof msgStore.addChangeListener !== "function" || typeof msgStore.removeChangeListener !== "function") return undefined;
             const check = () => {

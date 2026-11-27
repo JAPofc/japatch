@@ -14,18 +14,19 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 [![Build](https://github.com/JAPofc/japatch/actions/workflows/build.yml/badge.svg)](https://github.com/JAPofc/japatch/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/JAPofc/japatch?label=release)](https://github.com/JAPofc/japatch/releases)
 [![Languages](https://img.shields.io/badge/languages-29-8957E5)](#languages)
-[![Features](https://img.shields.io/badge/features-76-3BA55D)](#features)
+[![Features](https://img.shields.io/badge/features-82-3BA55D)](#features)
 
 [**Add to Morphe**](https://morphe.software/add-source?github=JAPofc/japatch&name=JaPatch) ·
 [Releases](https://github.com/JAPofc/japatch/releases) ·
 [Privacy](PRIVACY.md) ·
+[Terms](TERMS.md) ·
 [Features](#features) ·
 [Report a bug](https://github.com/JAPofc/japatch/issues/new/choose) ·
 [Discussions](https://github.com/JAPofc/japatch/discussions)
 
 <table>
 <tr>
-<td align="center"><b>76</b><br/>features</td>
+<td align="center"><b>82</b><br/>features</td>
 <td align="center"><b>29</b><br/>languages</td>
 <td align="center"><b>0</b><br/>calls home</td>
 <td align="center"><b>5</b><br/>trackers off</td>
@@ -43,8 +44,8 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 
 - [What JaPatch is, and what it isn't](#what-japatch-is-and-what-it-isnt)
 - [Install](#install) · [Update](#update-to-a-newer-japatch) · [Uninstall](#uninstalling)
-- [Features](#features)
-- [Privacy options](#privacy-options) · [Privacy page](PRIVACY.md)
+- [Features](#features) · [Reviews and its server](#reviews-and-the-server-behind-it)
+- [Privacy options](#privacy-options) · [Privacy policy](PRIVACY.md) · [Terms of use](TERMS.md)
 - [Custom branding](#custom-branding) · [Languages](#languages)
 - [Troubleshooting](#troubleshooting)
 - [Building from source](#building-from-source) · [Project layout](#project-layout) · [Contributing](#contributing)
@@ -233,7 +234,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Show owner and mod tags | Shows an Owner, Admin, Manager or Mod tag next to people's names in chat. Based on StaffTag by mwittrien |
 | Show timeout duration | A tag next to timed-out people says how long until they can talk again. Based on ShowTimeoutDuration by Ven |
 | User activity notifications | Shows a notice when chosen friends or users change status, start typing or send a message. Based on UserNotif by cywrx and coder.gg |
-| User and server reviews | Read and write reviews on profiles and servers, through a ReviewDB server you choose |
+| User and server reviews | Read and write reviews on profiles and servers, with 👍/👎 on other people's — through the server at `japatch-reviewdb.fly.dev`, or any ReviewDB-compatible one you type in |
 
 ### Servers
 
@@ -274,6 +275,27 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Keep Bluetooth audio clear in calls | Headphones stay in music quality in calls. Your phone's mic picks up your voice |
 | Unlock Discord experiments | Adds Dev Tools to Settings, to try features Discord is still testing. Only on this phone. Based on Experiments by maisy |
 | Voice channel options | Choose the volume, audio output and sounds for voice channels |
+
+### Reviews, and the server behind it
+
+Reviews is one text field: **JaPatch → Features → Reviews → Server**. The address written there is the
+only ReviewDB server the app ever talks to; while it is empty, no review, sign-in or profile ID leaves
+the phone and the review rows are not drawn at all.
+
+JaPatch runs one for itself:
+
+```
+https://japatch-reviewdb.fly.dev
+```
+
+Set that and Reviews works out of the box: 👍/👎 on any review, up to one review per person per
+profile or server, your own always deletable and an administrator able to delete reported ones. Sign-in
+through Discord asks for `identify` only, so the server knows your name and avatar and nothing else.
+
+Any other [ReviewDB](https://github.com/Vendicated/Vencord)-compatible server goes in the same field,
+including one you run yourself (the source is [in this repository](reviewdb-server/) — Node and one
+SQLite file, `DEPLOY-REVIEWS.md` says how). Changing the address signs you out of the old one; it is one
+field, not a list of accounts.
 
 ### Setup
 
@@ -356,8 +378,18 @@ you switched on needs, each listed in [Privacy](PRIVACY.md) with its destination
 <details>
 <summary><b>Why is Reviews empty?</b></summary>
 
-Because it starts empty by design. Reviews only talk to a ReviewDB server **you** type in under
-**Reviews → Server**; until then the rows aren't drawn at all.
+Because it starts empty by design. Reviews only talk to a ReviewDB server, and the address lives in
+**Reviews → Server**. Type `https://japatch-reviewdb.fly.dev` for the one JaPatch runs, or any other
+ReviewDB-compatible address; until something is there the rows aren't drawn at all.
+</details>
+
+<details>
+<summary><b>Will reviews I write be on the internet?</b></summary>
+
+On the server you set, yes: a review is public to everyone using that server, which is the point of
+a review section. The profile or server ID you opened, the text you wrote, and your Discord name and
+avatar are what the server receives. Nothing else — no email, no friends, no messages. Deleting your
+review deletes it there too.
 </details>
 
 <details>
@@ -433,5 +465,8 @@ projects above. Discord is a trademark of Discord Inc.
 
 ## License
 
-[GPL-3.0](LICENSE). By using JaPatch you accept Discord's Terms of Service; some features (platform
-spoof, automatic quests and badges) may put your account at risk and are off by default for that reason.
+[GPL-3.0](LICENSE) — free to use, study, change and share, with the same licence on anything you publish.
+
+By using JaPatch you accept Discord's Terms of Service; some features (platform spoof, automatic quests
+and badges) may put your account at risk and are off by default for that reason. The full wording of what
+that means is in [Terms of use](TERMS.md), and what leaves the phone is in [Privacy policy](PRIVACY.md).

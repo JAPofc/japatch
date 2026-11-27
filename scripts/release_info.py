@@ -23,6 +23,21 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.14] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Translate messages:** The bar now appears for a reader whose language is Indonesian. It never could before: Indonesian was missing from the list of Latin-script languages the reader's own words are looked up in, so the check gave up before reading a single word — no chat, in any server or DM, could raise it. Malay shares the same missing entry and is fixed with it
+* **Discord - Translate messages:** A chat in Spanish, French, German or English now raises the bar for an Indonesian reader. The last word check only ever ran for readers whose language was English, so a short line in another Latin-script language stayed silent unless it carried a `¿` or an accent
+* **Discord - Translate messages:** English itself is recognised properly. Its word list had 20 entries, so an ordinary English sentence matched none of them and was never offered for translation; it now has its own real list
+* **Discord - User and server reviews:** Reviews arrives pointed at the server JaPatch runs, https://japatch-reviewdb.fly.dev, so there is nothing to fill in before using it. It is still one editable line under Reviews -> Server: any ReviewDB-compatible server goes there instead, and clearing it turns Reviews off
+
+### 🐛 Bug Fixes
+
+* **Discord - Translate messages:** Fixed the bar being drawn in the same colour as the chat header, which made it look like part of the header rather than something to tap. It now sits on the lowest surface with a brand-coloured border, and floats when a chat has no header to sit under
+* **Discord - Translate messages:** Fixed the bar being drawn only in manual mode. With Translate set to automatic, the bar is the only way to reach it, and it was the one the mode did not draw
+* **Discord - Quest completer:** Fixed closing Discord while a quest is running leaving a request in flight to be killed by Android ("Request has been terminated"), which Discord then showed on its quest page as "Something went wrong", with a reminder that never came back. Quests now stop the moment the app leaves the screen and resume from the last report on the next launch
+
 ## [1.0.13] (2026-11-26)
 
 ### ✨ New Features

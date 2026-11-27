@@ -670,7 +670,11 @@ val pastelize = bytecodePatch(
 val platformIndicators = bundledPlugin("platformIndicators", "Show device indicators", "Desktop, mobile, web, console or VR icons next to names, colored by status.")
 
 @Suppress("unused")
-val reviewDB = bundledPlugin("reviewDB", "User and server reviews", "Read and write reviews on profiles and servers, through a ReviewDB server you choose.")
+val reviewDB = bundledPlugin("reviewDB", "User and server reviews",
+    "Read and write reviews on profiles and servers, with a thumb up or down on other people's. " +
+        "It arrives set to the server JaPatch runs itself, https://japatch-reviewdb.fly.dev, so it works " +
+        "with nothing to fill in. Reviews -> Server holds one line: any ReviewDB-compatible server can go " +
+        "there instead, including your own, and clearing it turns Reviews off.")
 
 @Suppress("unused")
 val readAll = bundledPlugin("readAll", "Read all button", "A button under Direct Messages that marks servers, DMs or both as read.")
