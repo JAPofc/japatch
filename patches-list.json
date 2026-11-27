@@ -310,7 +310,7 @@
     },
     {
       "name": "Complete Quests automatically",
-      "description": "Finishes video, Play and Activity Quests in the background. Discord may pause Quests on accounts that do this.",
+      "description": "Finishes video, Play and Activity Quests in the background and can take the rewards. Discord may pause Quests on accounts that do this.",
       "default": true,
       "category": "Features",
       "dependencies": [

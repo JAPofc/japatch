@@ -89,7 +89,7 @@
     const settings = { debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
         noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
         jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, reviewServer:"https://japatch-reviewdb.fly.dev", readAll:false, readAllMode:"guilds",
-        quests:false, questsVideo:true, questsPlay:true, questsActivity:true, questsEnroll:true,
+        quests:false, questsVideo:true, questsPlay:true, questsActivity:true, questsEnroll:true, questAutoClaim:false, questsFastBeat:false,
         streamBadge:false, streamBadgeExtra:false,
         badges:false, badgesGameTime:true, badgesUniqueGames:true, badgesCycleMinutes:15, badgesGamesAtOnce:2, systemFont:false, systemFontSource:"phone",
         systemEmoji:false, systemEmojiSource:"phone", gestures:false, gestureOwn:"edit", gestureTripleDelete:true,
@@ -108,7 +108,7 @@
             debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
             noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
             jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, reviewServer: "https://japatch-reviewdb.fly.dev", readAll: false, readAllMode: "guilds",
-            quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true, streamBadge: false, streamBadgeExtra: false,
+            quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true, questAutoClaim: false, questsFastBeat: false, streamBadge: false, streamBadgeExtra: false,
             badges: false, badgesGameTime: true, badgesUniqueGames: true, badgesCycleMinutes: 15, badgesGamesAtOnce: 2, systemFont: false, systemFontSource: "phone",
             systemEmoji: false, systemEmojiSource: "phone", gestures: false, gestureOwn: "edit", gestureTripleDelete: true,
             validUser: false, youBarSettings: false, splitMessages: false,
@@ -1208,7 +1208,7 @@
     const featureFor = key => {
         const cached = featureTable[key];
         if (cached !== undefined) return cached;
-        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : /^chatExport[A-Z]/.test(key) ? "chatExport" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : key;
+        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : /^chatExport[A-Z]/.test(key) ? "chatExport" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : key === "questAutoClaim" || key === "questsFastBeat" ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : key;
     };
     // Section titles are read whenever Discord draws the list, so they follow the language too. "JaPatch" is a name.
     function section(label, keys) {
@@ -1932,7 +1932,7 @@
         withOptions("appearance", "customThemes", "JAPATCH_CUSTOMTHEMES", "Custom themes", "Install Revenge and Vendetta color themes from a link.", "Custom themes", CustomThemesSettings);
         withOptions("appearance", "iconPacks", "JAPATCH_ICONPACKS", "Icon packs", "Replace Discord's icons with community icon packs or a custom pack.", "Icon packs", IconPacksSettings);
         // Quests
-        withOptions("quests", "quests", "JAPATCH_QUESTS", "Complete Quests automatically", "Finishes video, Play and Activity Quests in the background.", "Quests", QuestSettings);
+        withOptions("quests", "quests", "JAPATCH_QUESTS", "Complete Quests automatically", "Finishes video, Play and Activity Quests in the background and can take the rewards.", "Quests", QuestSettings);
         // Advanced
         toggle("advanced", "experiments", "Unlock Discord experiments", "Adds Dev Tools to Settings, to try features Discord is still testing.");
         withOptions("advanced", "voiceOptions", "JAPATCH_VOICEOPTIONS", "Voice channel options", "Choose the volume, audio output and sounds for voice channels.", "Voice channel options", VoiceOptionsSettings);
@@ -5634,7 +5634,10 @@
     const QUEST_STALLED_BEATS = 5;
     const quest = {store:null, dispatcher:null, generation:0, running:null, enrolling:false, skip:new Map(), enrollBlockedUntil:0,
         scanTimer:undefined, refetchTimer:undefined, user:null, completed:0, last:"", error:"", desktop:null, executables:new Map(), halted:null,
-        videoAt:new Map()};
+        videoAt:new Map(), rewards:[], claimed:new Map(), claiming:false};
+    // Normal is Discord for Windows' own pace. Fast is the same request, sooner. Nothing else about it changes.
+    const QUEST_FAST_MS = 20000;
+    function questBeatMs() { return settings.questsFastBeat ? QUEST_FAST_MS : QUEST_HEARTBEAT_MS; }
     function questSleep(ms) { return new Promise(resolve => { later(resolve, ms); }); }
     function questStore() {
         if (quest.store) return quest.store;
@@ -5909,9 +5912,61 @@
         const expires = questTime(item.config.expiresAt);
         return !(expires <= now + 60000) && !((quest.skip.get(item.id) || 0) > now);
     }
+    // Quests Discord says are finished but whose reward nobody has taken yet. Discord keeps them in the list with a
+    // completion time and no claim time, and the id is what the claim call needs, so this is read straight off the
+    // store rather than counted here.
+    function questRewardsRefresh() {
+        const store = questStore(), out = [];
+        if (!store) { quest.rewards = out; return out; }
+        let all;
+        try { all = store.quests; } catch (_) { return quest.rewards; }
+        if (!all || typeof all.values !== "function") return quest.rewards;
+        for (const item of all.values()) {
+            const status = item && item.userStatus;
+            if (!item || typeof item.id !== "string" || !status || !status.completedAt) continue;
+            // A claim writes a claim time back; until then the reward is still waiting.
+            if (status.claimedAt || status.claimRequestedAt) continue;
+            out.push({id:item.id, name:questName(item)});
+        }
+        quest.rewards = out;
+        return out;
+    }
+    // Takes one reward. The response is Discord's own quest object, so a successful claim shows up as a claim time on
+    // the next refresh, and a captcha leaves the quest exactly where it was: still listed, still unclaimed, still
+    // yours to take in the app. Nothing here retries a refused claim.
+    function questClaim(questId) {
+        const user = quest.user;
+        quest.claiming = true;
+        return questRequest("/quests/" + questId + "/claim-reward", {location:QUEST_HOME_MOBILE}, undefined, undefined,
+            () => quest.user === user).then(response => {
+                quest.claiming = false;
+                const status = response && response.body && response.body.user_status;
+                if (status) questDispatch({type:"QUESTS_SEND_HEARTBEAT_SUCCESS", questId, userStatus:status});
+                quest.claimed.set(questId, Date.now());
+                questRewardsRefresh();
+                questStatus("Took the reward for {name}.", false, {name:questName(questStore() && questStore().getQuest && questStore().getQuest(questId) || {})});
+                return true;
+            }, error => {
+                quest.claiming = false;
+                // A challenge is not a failure of the account, it is Discord asking a human. Leave it alone until it
+                // is picked up by hand, or this becomes a loop against a captcha.
+                const code = Number(error && error.status);
+                if (code === 400 || code === 401 || code === 403 || code === 429) quest.claimed.set(questId, Date.now() + 6 * 3600 * 1000);
+                else quest.claimed.set(questId, Date.now() + 10 * 60 * 1000);
+                questStatus("Couldn't take a reward: {problem}. Claim it in Discord instead.", true, {problem:String(error && error.message || error)});
+                return false;
+            });
+        }
+    // Claims everything waiting, one at a time, only while the feature and the switch are on.
+    function questClaimAll() {
+        if (!enabled("quests") || !settings.questAutoClaim || quest.claiming) return;
+        const now = Date.now(), next = questRewardsRefresh().find(entry => !((quest.claimed.get(entry.id) || 0) > now));
+        if (next) questClaim(next.id);
+    }
     function questsScan() {
         quest.scanTimer = undefined;
         if (!enabled("quests")) return;
+        questRewardsRefresh();
         const store = questStore();
         if (!store) return;
         if (questFlag(store, "isQuestAccessSuspended") === true) { if (!quest.error) questStatus("Discord has paused Quests on this account.", true); return; }
@@ -5999,6 +6054,9 @@
             // The store's own update follows; don't pick the same quest again in the meantime.
             quest.skip.set(entry.id, Date.now() + 10 * 60 * 1000);
             questStatus("Completed {name}.", false, {name:entry.name});
+            // The reward is taken from the same one-at-a-time queue the Quest work runs in, so a claim never
+            // overlaps a heartbeat for another Quest.
+            if (settings.questAutoClaim) questClaimAll();
         }, error => {
             if (entry.generation !== quest.generation) return;
             if (questSessionLost(error)) {
@@ -6149,8 +6207,14 @@
             if (item.userStatus.completedAt) return true;
             // Exactly QuestProgressManager.calculateHeartbeatDurationMs: max(0, left) plus a second when a minute or
             // less is left, else a minute. `left` comes from the store as it is before this beat's answer.
+            //
+            // Fast mode only shortens the gap between beats. It cannot shorten the Quest: Discord adds the time on
+            // its own clock, and the answer to each beat carries the total it has counted, not the number of times
+            // it was asked. Five beats in a minute still move the progress by one minute, so this finishes a Quest
+            // no sooner than the normal pace and asks five times as often while doing it.
+            const beatMs = questBeatMs();
             const sentAt = Date.now(), left = Math.max(0, (target - questProgress(item, type)) * 1000);
-            const wait = left <= QUEST_HEARTBEAT_MS ? left + QUEST_HEARTBEAT_TAIL_MS : QUEST_HEARTBEAT_MS;
+            const wait = left <= beatMs ? left + QUEST_HEARTBEAT_TAIL_MS : beatMs;
             entry.beating = desktop;
             const beat = await questHeartbeat(entry, desktop);
             if (!questActive(entry)) return false;
@@ -6316,13 +6380,21 @@
         return quest.completed ? pl(quest.completed, "{n} Quest done", "{n} Quests done") : tr("Watching for Quests");
     }
     // Settings page: the Quest types, a status card and what to know.
+    function questRiskAsk(feature) { quest.risk = feature; notify("quests"); }
     function QuestSettings() {
         // Every status change (start, finish, error) already notifies "quests"; no 5-second redraw timer.
         useSettings("quests");
-        const ui = reviewUI();
+        const ui = reviewUI(), s = badgeCardStyles();
         if (!RN) return null;
         const Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow, on = enabled("quests");
         const toggle = (key, label, subLabel, icon) => switchRow(Switch, key, label, subLabel, icon);
+        // The warning is a screen of its own on this page, so the switch behind it can only be set from its last step.
+        if (quest.risk) return el(RN.View, {style:{gap:12}},
+            el(RN.View, {key:"riskHead", style:{paddingHorizontal:16}},
+                badgeText(tr("Read this first"), "text-md/bold", "text-feedback-critical", {color:"#f23f43", fontSize:16, fontWeight:"700"})),
+            el(QuestRiskPanel, {key:"risk:" + quest.risk, s, feature:quest.risk, onClose:() => { quest.risk = null; animateLayout(); notify("quests"); }}),
+            el(RN.View, {key:"riskGap", style:{height:8}}));
+        const rewards = on ? questRewardsRefresh() : [];
         const groups = [
             on ? statusCard("status", questStatusText(), {title:questStatusTitle(), IconComponent:japatchIcon(quest.halted || quest.error ? 13123 : quest.running ? 11180 : 13929,
                 quest.halted || quest.error ? "ChatWarningIcon" : quest.running ? "TimerIcon" : "QuestsIcon"),
@@ -6333,7 +6405,19 @@
                 toggle("questsActivity", "Activity Quests", "Activity time counts without starting the Activity.", rowIcon(12158, "MagicWandIcon"))),
             el(Group, {key:"enroll", title:tr("New Quests")},
                 toggle("questsEnroll", "Accept new Quests", "Accepts new Quests for you, one at a time.", rowIcon(7144, "CircleCheckIcon"))),
-            footnote("note", "You still claim rewards yourself. Stream Quests need a real stream, so they're skipped. Discord may pause Quests on accounts that complete them automatically.")];
+            // What is waiting to be taken, read straight off Discord's own list. Nothing here claims by itself while
+            // the switch below is off.
+            on && rewards.length ? statusCard("rewards",
+                pl(rewards.length, "{n} reward is waiting. Claim it in Discord, or turn on Take rewards below.",
+                    "{n} rewards are waiting. Claim them in Discord, or turn on Take rewards below."), {title:tr("Rewards waiting"), IconComponent:japatchIcon(12668, "GiftIcon")}) : null,
+            on ? el(Group, {key:"rewards", title:tr("Rewards")},
+                actionRow(ui, "claimNow", quest.claiming ? "Taking a reward…" : "Take waiting rewards now",
+                    quest.claiming ? null : "One at a time, and a captcha from Discord is left alone.", () => { haptic("SELECTION"); questClaimAll(); }, !rewards.length || quest.claiming, false, rowIcon(12668, "GiftIcon")),
+                // Neither of these turns on from one tap: each opens its own warning, and the warning's last step is
+                // the only thing that sets it. Turning either one off is a single tap.
+                riskRow(ui, "questAutoClaim", "Take rewards automatically", "Discord records every claim. This asks to be sure first.", rowIcon(12668, "GiftIcon")),
+                riskRow(ui, "questsFastBeat", "Faster heartbeat", "Does not finish a Quest sooner. Asks Discord more often than its own app does.", rowIcon(11180, "TimerIcon"))) : null,
+            footnote("note", "Stream Quests need a real stream, so they're skipped. Discord may pause Quests on accounts that complete them automatically.")];
         return settingsBody(ui, groups);
     }
     // Badge Completer: Game Time (hours played), Game Variety (unique games played) and Account Age (years active).
@@ -7531,6 +7615,64 @@
             body(tr("They're dated like real play: spread over your past days at afternoon, evening and weekend hours, with days off and never more than 2 games at once. Each time picks up on older days, so no day is filled twice. They show on your badge within 72 hours.")),
             button("grant", tr("Add {n} hours", {n:chosen}), () => confirmAction("Add hours now?",
                 "Last chance. This can get your account suspended or banned, and it can't be undone.", "Add hours", () => { badgeGrantHours(chosen); }), chosen < 1, "destructive"),
+            button("cancel", tr("Cancel"), props.onClose, false, "secondary"));
+    }
+    // The two Quests options that ask Discord for something it did not expect, and the warning each has to get past.
+    // Same shape as Add hours: three things ticked, the word typed, and only then the switch. Nothing turns on from a
+    // single tap, and turning it off is always one tap.
+    const QUEST_RISK = {
+        questAutoClaim: {word:"CLAIM",
+            lines:["Discord records every reward claim with a time and a network address. Automating one is not something Discord offers, and it is the clearest record there is.",
+                   "If Discord wants a captcha, the claim will fail instead of going through. The reward stays yours and this is left alone for a while, but claiming by hand is what always works.",
+                   "You can turn this off at any time, and a reward that already went through can't be taken back."]},
+        questsFastBeat: {word:"FASTER",
+            lines:["This makes a Quest finish no sooner. Discord counts the time on its own clock, and each answer carries the total it has counted, not the number of times it was asked. Asking five times as often moves the progress the same amount.",
+                   "What it does do is make the requests five times as frequent as Discord's own app ever sends them, which is exactly the pattern an automated client has.",
+                   "The gain is small and the record is clearer. Normal is what Discord's desktop app does."]}};
+    // A switch that will not move on one tap: it opens the warning, and only the end of the warning sets it.
+    function riskRow(ui, feature, label, subLabel, icon) {
+        if (!ui.TableRow) return null;
+        return el(ui.TableRow, {key:feature, label:tr(label), subLabel:tr(subLabel), icon,
+            trailing: el(RN.View, {style:{paddingHorizontal:10, paddingVertical:6, borderRadius:12, backgroundColor:settings[feature] ? "#248046" : "#4e5058"}},
+                el(RN.Text, {style:{color:"#ffffff", fontSize:12, fontWeight:"700"}}, settings[feature] ? tr("On") : tr("Off"))),
+            onPress: () => { haptic("SELECTION"); if (settings[feature]) { setSetting(feature, false); return; } questRiskAsk(feature); }});
+    }
+    function QuestRiskPanel(props) {
+        const spec = QUEST_RISK[props.feature];
+        const [step, setStep] = React.useState(0), [word, setWord] = React.useState(""), [checks, setChecks] = React.useState([false, false, false]);
+        useSettings("quests");
+        const ui = reviewUI(), s = props.s, Button = inspectedExport(5479, "Button"), Press = RN.Pressable || RN.View;
+        const danger = useThemed("badgeDanger", c => ({box:Object.assign({}, BADGE_DANGER_DARK.box, {borderColor:c.BORDER_FEEDBACK_CRITICAL || "#f23f43",
+            backgroundColor:c.BACKGROUND_FEEDBACK_CRITICAL || "#f23f431a"})}), BADGE_DANGER_DARK);
+        const button = (key, text, onPress, disabled, variant) => Button ? el(Button, {key, text, size:"md", variant:variant || "primary", disabled:!!disabled,
+                onPress:() => { haptic("SELECTION"); animateLayout(); onPress(); }}) :
+            el(Press, {key, onPress:disabled ? undefined : onPress, accessibilityRole:"button", accessibilityLabel:text, style:{padding:12, borderRadius:20, alignItems:"center", backgroundColor:variant === "secondary" ? "#4e5058" : "#da373c", opacity:disabled ? 0.5 : 1}},
+                el(RN.Text, {style:{color:"#ffffff", fontWeight:"600"}}, text));
+        const title = text => badgeText(text, "text-md/bold", "text-feedback-critical", {color:"#f23f43", fontSize:16, fontWeight:"700"});
+        const body = text => badgeText(text, "text-sm/medium", "text-default", {color:"#dbdee1", fontSize:14});
+        const check = (i, text) => el(Press, {key:"c" + i, accessibilityRole:"checkbox", accessibilityLabel:text, accessibilityState:{checked:checks[i]},
+                style:{flexDirection:"row", gap:12, alignItems:"center", paddingVertical:4},
+                onPress:() => { haptic("SELECTION"); const next = checks.slice(); next[i] = !next[i]; setChecks(next); }},
+            el(RN.View, {style:{width:22, height:22, borderRadius:6, borderWidth:2, borderColor:checks[i] ? "#da373c" : "#80848e", backgroundColor:checks[i] ? "#da373c" : "transparent", alignItems:"center", justifyContent:"center"}},
+                checks[i] ? el(RN.Text, {style:{color:"#ffffff", fontSize:13, fontWeight:"800", lineHeight:15}}, "\u2713") : null),
+            el(RN.View, {style:{flex:1}}, body(text)));
+        const finish = () => { setSetting(props.feature, true); props.onClose(); };
+        if (step === 0) return el(RN.View, {style:danger.box},
+            title(tr("Read this first")),
+            spec.lines.map((line, i) => el(RN.View, {key:"l" + i}, body(tr(line)))),
+            check(0, tr("I have read the three points above.")),
+            check(1, tr("I understand this is not something Discord offers.")),
+            check(2, tr("I understand my account carries the result, not JaPatch.")),
+            button("next", tr("Continue"), () => setStep(1), !checks.every(Boolean), "destructive"),
+            button("cancel", tr("Cancel"), props.onClose, false, "secondary"));
+        const fold = text => String(text || "").trim().toUpperCase().replace(/[\u0130\u0131]/g, "I");
+        const typed = fold(word) === fold(tr(spec.word));
+        return el(RN.View, {style:danger.box},
+            title(tr("Type {word} to continue", {word:tr(spec.word)})),
+            body(tr("This makes sure you read the warning.")),
+            ui.TextInput ? el(ui.TextInput, {value:word, onChange:text => setWord(String(text || "")), autoCapitalize:"characters", autoCorrect:false, placeholder:tr(spec.word), maxLength:20}) :
+                el(RN.TextInput, {value:word, onChangeText:setWord, autoCapitalize:"characters", autoCorrect:false, placeholder:tr(spec.word), maxLength:20, style:{fontSize:16, padding:12, color:"#f2f3f5"}}),
+            button("on", tr("Turn it on"), finish, !typed, "destructive"),
             button("cancel", tr("Cancel"), props.onClose, false, "secondary"));
     }
     function StreamBadgeSettings() {

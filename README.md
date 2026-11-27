@@ -272,7 +272,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 
 | Feature | What it does |
 | --- | --- |
-| Complete Quests automatically | Finishes video, Play and Activity Quests in the background. Discord may pause Quests on accounts that do this |
+| Complete Quests automatically | Finishes video, Play and Activity Quests in the background and can take the rewards. Discord may pause Quests on accounts that do this |
 | Complete badges automatically | Plays real PC games in the background, up to 3 at once, toward your Hours Played and Unique Games Played badges |
 | Fake deafen | Look deafened in a call while you can still hear. Choose whether your mic stays muted |
 | Keep Bluetooth audio clear in calls | Headphones stay in music quality in calls. Your phone's mic picks up your voice |

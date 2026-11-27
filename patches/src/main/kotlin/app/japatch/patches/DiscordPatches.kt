@@ -1102,7 +1102,7 @@ internal fun keepDesktopQuestAgent(method: app.morphe.patcher.util.proxy.mutable
 @Suppress("unused")
 val questCompleter = bytecodePatch(
     name = "Complete Quests automatically",
-    description = "Finishes video, Play and Activity Quests in the background. Discord may pause Quests on accounts that do this."
+    description = "Finishes video, Play and Activity Quests in the background and can take the rewards. Discord may pause Quests on accounts that do this."
 ) {
     compatibleWith(discord)
     section(PLUGINS)
