@@ -67,3 +67,12 @@ Custom branding renames the package, its permission and its providers the same w
 Bring back Tenor GIFs is based on the idea of Livie's BringBackTenor Vendetta plugin (lvwmwm/vendettian-plugins). Its
 code is written for this project against Discord 351.11's own GIF picker. It asks Tenor's public v1 API
 (g.tenor.com) for GIFs only while it's on. JaPatch isn't affiliated with or endorsed by Tenor or Google.
+
+Who wrote this
+==============
+
+Every commit in this repository is by JAPofc. Earlier history also carried two commits under a
+"JaPatch Bot" name and one under a shortened "JAP" name, all made from the same account; the
+history was rewritten so that every commit names the same author, and the releases were rebuilt
+from the rewritten tags. The bundle is unchanged: the same version builds the same file, byte for
+byte, from either tag.
