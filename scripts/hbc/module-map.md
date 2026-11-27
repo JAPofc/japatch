@@ -151,6 +151,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 7101 | `design/components/Icon/native/redesign/generated/CheckmarkSmallIcon.tsx` | CheckmarkSmallIcon | CheckmarkSmallIcon |
 | 7117 | `design/components/Sheet/native/BottomSheetTitleHeader.native.tsx` | BottomSheetTitleHeader | BottomSheetTitleHeader |
 | 7144 | `design/components/Icon/native/redesign/generated/CircleCheckIcon.tsx` | CircleCheckIcon | CircleCheckIcon |
+| 7148 | `design/components/Icon/native/redesign/generated/CircleWarningIcon.tsx` | CircleWarningIcon | CircleWarningIcon (Reviews check) |
 | 7158 | `modules/user_profile/native/UserProfileRolesCard.tsx` | default | UserProfileRolesCard (Remove anything: Roles) |
 | 7165 | - | Clipboard, Platform, addListener | Clipboard |
 | 7167 | `modules/action_sheet/native/showSimpleActionSheet.tsx` | showSimpleActionSheet | SimpleActionSheet |
@@ -270,6 +271,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 9978 | `modules/messages/native/long_press/LongPressMessageActionSheet.tsx` | default | LongPressMessageActionSheet |
 | 9988 | `modules/messages/native/long_press/LongPressMessageActionSheetUtils.tsx` | getContextBarCancelReason, handleEdit, handleCreateThread | LongPressMessageActionSheetUtils |
 | 9990 | `modules/replies/PendingReplyActionCreators.tsx` | createPendingReply, createShallowPendingReply | PendingReplyActionCreators (Reply without pinging) |
+| 9995 | `modules/forums/native/composer/ForumComposer.tsx` | default | ForumComposer (Send long messages keeps the real limit) |
 | 10002 | `modules/foreground_service/mobile/ForegroundServiceManager.android.tsx` | default | ForegroundServiceManager |
 | 10006 | `lib/uploader/native/getPreCompressionFileSize.tsx` | getPreCompressionFileSize | getPreCompressionFileSize (Compress big files: size gate) |
 | 10023 | `design/components/Icon/native/redesign/generated/PencilIcon.tsx` | PencilIcon | PencilIcon |
@@ -342,6 +344,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 12000 | `modules/chat_input/native/accessories/ChatInputExpressionButton.tsx` | default | ChatInputExpressionButton (Remove anything: emoji button) |
 | 12003 | `design/components/Icon/native/redesign/generated/FileIcon.tsx` | FileIcon | FileIcon (View raw data) |
 | 12093 | `design/components/Icon/native/redesign/generated/UndoIcon.tsx` | UndoIcon | UndoIcon (Remove anything: bring everything back) |
+| 12098 | `design/components/Icon/native/redesign/generated/DownloadIcon.tsx` | DownloadIcon | DownloadIcon (unverified id used by the About row) |
 | 12113 | `design/components/Icon/native/redesign/generated/BugIcon.tsx` | BugIcon | BugIcon |
 | 12158 | `design/components/Icon/native/redesign/generated/MagicWandIcon.tsx` | MagicWandIcon | MagicWandIcon |
 | 12274 | `design/components/Icon/native/redesign/generated/ArrowAngleLeftUpIcon.tsx` | ArrowAngleLeftUpIcon | ArrowAngleLeftUpIcon |
@@ -393,6 +396,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 13769 | `design/components/Icon/native/redesign/generated/BookmarkOutlineIcon.tsx` | BookmarkOutlineIcon | BookmarkOutlineIcon (Remove anything: Bookmark Message) |
 | 13780 | `modules/main_tabs_v2/native/channel/header/PrivateChannelButtons.tsx` | default | PrivateChannelButtons (Remove anything: DM call / video / search) |
 | 13788 | `modules/main_tabs_v2/native/channel/header/PrivateChannelHeader.tsx` | default | PrivateChannelHeader |
+| 13811 | `modules/scheduled_messages/native/ScheduledMessageEditContentModal.tsx` | default | ScheduledMessageEditContentModal (Send long messages keeps the real limit) |
 | 13827 | `design/components/Icon/native/redesign/generated/ChatSmileIcon.tsx` | ChatSmileIcon | ChatSmileIcon |
 | 13836 | `design/components/Icon/native/redesign/generated/EmbedIcon.tsx` | EmbedIcon | EmbedIcon (Fix link previews) |
 | 13929 | `design/components/Icon/native/redesign/generated/QuestsIcon.tsx` | QuestsIcon | QuestsIcon |
@@ -489,3 +493,4 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 18678 | `modules/guild_settings/native/GuildSettingsModalLanding.tsx` | default | GuildSettingsModalLanding (Edit servers locally: imports the real GuildStore) |
 | 18679 | `design/components/Icon/native/redesign/generated/ChannelListIcon.tsx` | ChannelListIcon | ChannelListIcon (Fast delete channels) |
 | 18747 | `design/components/Icon/native/redesign/generated/HomeIcon.tsx` | HomeIcon | HomeIcon (HypeSquad) |
+| 18964 | `design/components/Icon/native/redesign/generated/ScreenIcon.tsx` | ScreenIcon | ScreenIcon (Streaming badge) |

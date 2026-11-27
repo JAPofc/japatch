@@ -83,6 +83,10 @@ BOOTSTRAP_MODULES = [
     (5139, 'design/components/Icon/native/redesign/generated/SendMessageIcon.tsx', ['SendMessageIcon'], 'SendMessageIcon (preview message bar)'),
     (5141, 'design/components/Icon/native/redesign/generated/CopyIcon.tsx', ['CopyIcon'], 'CopyIcon'),
     (5143, 'design/components/Icon/native/redesign/generated/DownloadIcon.tsx', ['DownloadIcon'], 'DownloadIcon'),
+    # bootstrap.js draws its update row with 12098. Same icon, a second module: Discord registers an asset per
+    # module, so two of them can carry the same picture.
+    (12098, 'design/components/Icon/native/redesign/generated/DownloadIcon.tsx', ['DownloadIcon'], 'DownloadIcon (unverified id used by the About row)'),
+    (7148, 'design/components/Icon/native/redesign/generated/CircleWarningIcon.tsx', ['CircleWarningIcon'], 'CircleWarningIcon (Reviews check)'),
     (5148, 'design/components/Icon/native/redesign/generated/TrashIcon.tsx', ['TrashIcon'], 'TrashIcon'),
     (5155, 'modules/action_sheet/native/ActionSheetActionCreators.tsx', ['default', 'ACTION_SHEET_HEIGHT_HALF', 'ACTION_SHEET_HEIGHT_EXPANDED'], 'ActionSheetActionCreators'),
     (5156, 'modules/haptics/HapticUtils.native.tsx', ['HapticFeedbackTypes', 'triggerHapticFeedback'], 'HapticUtils'),
@@ -190,6 +194,7 @@ BOOTSTRAP_MODULES = [
     (9621, 'design/components/Icon/native/redesign/generated/PhoneCallIcon.tsx', ['PhoneCallIcon'], 'PhoneCallIcon'),
     (9641, 'design/components/Icon/native/redesign/generated/PaperIcon.tsx', ['PaperIcon'], 'PaperIcon'),
     (9658, 'design/components/Icon/native/redesign/generated/ThumbsUpIcon.tsx', ['ThumbsUpIcon'], 'ThumbsUpIcon'),
+    (18964, 'design/components/Icon/native/redesign/generated/ScreenIcon.tsx', ['ScreenIcon'], 'ScreenIcon (Streaming badge)'),
     (9543, 'design/components/Icon/native/redesign/generated/MoreHorizontalIcon.tsx', ['MoreHorizontalIcon'], 'MoreHorizontalIcon (preview server header)'),
     (8013, 'modules/messages/native/renderer/RowGenerator.tsx', ['default'], 'RowGenerator'),
     (8254, 'modules/double_tap_to_react/native/DoubleTapToReactUtils.tsx', ['getFallbackDoubleTapDisambiguatedEmoji', 'reactionEmojiFromSettingsValue', 'disambiguatedEmojiFromSettingsValue'], 'DoubleTapToReactUtils'),

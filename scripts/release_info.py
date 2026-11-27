@@ -38,6 +38,7 @@ RELEASES = r"""
 
 * **Discord - Streaming badge:** Fixed the feature 1.0.21 announced never actually being in the app. The patch asked for its key, but the list the build turns into the features table never carried it, so the row and its settings page were dropped without an error. It is in the table now, and the list is checked against every key the patches ask for, so the same thing cannot happen quietly again
 * **Discord - Documentation:** Fixed the header claiming 29 languages while 34 ship, and 82 features while the manifest listed 83 patches. Both badge files and the table are read by the audit now, so they cannot drift again
+* **Discord - Reviews:** Fixed both vote buttons on a review drawing a thumbs up. Discord has no thumbs down icon, and its icon modules export one picture each, so the No button asked a module for an icon that does not exist and fell back to the same thumb. It is the same thumb turned over now, and a new check matches every icon the runtime asks for against the module map, so a wrong one cannot sit there looking like a design choice
 
 ### 🔧 Improvements
 

@@ -10408,13 +10408,20 @@
                 el(japatchIcon(9658,"ThumbsUpIcon"),{size:"xs",color:styles.muted.color})),
             el(RN.Pressable,{accessibilityRole:"button",accessibilityLabel:tr("No"),onPress:() => props.onVote(review,false),
                 style:{padding:4,borderRadius:12,opacity:review.userVote === 0 || review.userVote === false ? 1 : 0.55}},
-                el(japatchIcon(10004,"ThumbsDownIcon",japatchIcon(9658,"ThumbsUpIcon")),{size:"xs",color:styles.muted.color})));
+                // Discord draws an icon per module: 156 of its 156 icon modules export exactly one, and there is no
+                // ThumbsDownIcon anywhere in the pinned bundle. Asking module 10004 for one always came back empty, and
+                // the fallback made the No button a second thumbs up. Discord has no thumbs down, so this is the same
+                // thumb reflected, the way Jump to top reflects its arrow.
+                el(RN.View,{style:REVIEW_VOTE_DOWN_STYLE},el(japatchIcon(9658,"ThumbsUpIcon"),{size:"xs",color:styles.muted.color}))));
         return el(ui.FormRow,{label,
             subLabel:el(RN.View,null,el(ui.FormSubLabel,{text:review.comment,style:styles.text}),votes),
             leading:reviewImage(sender.profilePhoto) ? el(RN.Image,{style:{height:36,width:36,borderRadius:18},source:{uri:sender.profilePhoto}}) :
                 avatarBubble({id:String(sender.discordID || sender.username || "?"),username:String(sender.username || "?")},36),
             onLongPress:() => reviewActions(review,props.owner,ui,props.refetch)});
     }
+    // A thumbs up turned over: Discord ships no down vote icon, so this is the same glyph flipped vertically, the
+    // same way Jump to top flips its arrow (JUMP_FLIP_STYLE). Rotating it would mirror it left to right as well.
+    const REVIEW_VOTE_DOWN_STYLE = {transform:[{scaleY:-1}]};
     let reviewThemeHook, reviewThemeTried=false;
     function ReviewInput(props) {
         const ui=props.ui, styles=props.styles;
