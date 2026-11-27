@@ -104,7 +104,7 @@ internal object HbcPrivacy {
         else -> resolvedPromise
     }
     // Hermes shares one body between functions with identical bytecode. Every target here owns its body:
-    // trackAppUIViewed2 shared createThread_'s (forum posts, #93), trackHeartbeat shared poll-vote and
+    // trackAppUIViewed2 shared createThread_'s (forum posts), trackHeartbeat shared poll-vote and
     // stage-join code, and the module-2 Set.add and Date.now() closures shared other modules' helpers.
     val analytics = listOf(
         Target(36109, "increment", 30380377, 96, "4cfa230000c0000000000020", "cbaaeb31a5a672bcf5bee80f12fcc92029428a3d533697366f924fa424e9e069", false, "8633832d55700dbc59c2a2bc49c0009d87beef107bc3582d5b10caed2637b5b3"),

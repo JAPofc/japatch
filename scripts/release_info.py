@@ -23,6 +23,12 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.17] (2026-11-27)
+
+### 🔧 Improvements
+
+* **Discord - Every page:** The release notes and the code comments used to point at issue numbers (`#139`, `#164`, `#186` and so on). Those issues were never public: the numbers came from a private list, so for anyone reading the repository they pointed at nothing. They are gone, and each note now says what it means in words instead. Nothing in the app behaves differently
+
 ## [1.0.16] (2026-11-27)
 
 ### ✨ New Features
@@ -32,7 +38,7 @@ RELEASES = r"""
 
 ### 🐛 Bug Fixes
 
-* **Discord - Quest completer:** Fixed the feature retrying for hours after Discord answered 401 or 403 to a Quest request. That answer means the session is no longer allowed to act, and asking again is what turns one refusal into a revoked sign-in (#164, #188: logged out after leaving Complete Quests on). It now stops completely, says so on the Quests page, and stays stopped until Complete Quests is turned off and on again
+* **Discord - Quest completer:** Fixed the feature retrying for hours after Discord answered 401 or 403 to a Quest request. That answer means the session is no longer allowed to act, and asking again is what turns one refusal into a revoked sign-in. It now stops completely, says so on the Quests page, and stays stopped until Complete Quests is turned off and on again
 
 ## [1.0.15] (2026-11-27)
 

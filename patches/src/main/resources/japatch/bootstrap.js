@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.16";
+    const revision = "1.0.17";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -120,19 +120,19 @@
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
         }));
     }
-    // Backup and restore (#68): when you last saved a backup, and whether a restore is being applied right now.
+    // Backup and restore: when you last saved a backup, and whether a restore is being applied right now.
     const backup = {last:0, busy:"", restoring:false};
     // First-run setup on the Features list: done once any feature has been on, or after Not now. justOn is this session's
     // one-tap result (the keys it switched on), so Undo can put exactly those back.
     const starter = {done:false, justOn:null};
-    // What you typed in the Features list's search bar (#68).
+    // What you typed in the Features list's search bar.
     const featureSearch = {query:"", rows:[], listeners:new Set(), cache:null};
     // Editing the Features list: edit shows every feature with an eye to hide or show it; open is whether the Hidden
     // features row at the bottom is expanded. Both reset when you leave the page. Which features are hidden is the
     // hiddenFeatures setting (comma-separated keys), so it's saved and backed up like any other choice.
     const featureList = {edit:false, open:false};
     const status = { picker: false, attachment: false, request: false, menu: false, conversion: false, audioError: "", storage: "waiting" };
-    // A saved "don't keep this" list (#143): people, servers and channels whose deleted messages are not kept. Ids
+    // A saved "don't keep this" list: people, servers and channels whose deleted messages are not kept. Ids
     // only, so it lives here with the other small sets rather than beside the feature that reads it.
     const NO_DELETE_SKIP_MAX = 200;
     const noDeleteSkip = new Set();
@@ -160,16 +160,16 @@
     const SPOOF_DEVICES = ["desktop", "web", "console"], CUSTOM_IDLE_DEFAULT = 10;
     // What double-tapping your own message does: edit it, or reply like anyone else's.
     const GESTURE_OWN_MODES = ["edit", "reply"];
-    // Which language Translate messages translates into: Discord's own language, the phone's, or one you pick (#79).
+    // Which language Translate messages translates into: Discord's own language, the phone's, or one you pick.
     const TRANSLATE_TARGETS = ["discord", "phone", "custom"];
     // Fix link previews: how a site's posts look (the full post, only its media, only its text, or the file itself).
     const FIX_STYLES = ["full", "gallery", "text", "media"];
-    // The languages you can pick for "Another language", as Google Translate codes (#79). Chinese comes in both scripts.
+    // The languages you can pick for "Another language", as Google Translate codes. Chinese comes in both scripts.
     const TRANSLATE_LANGUAGES = ["af", "ar", "bg", "bn", "ca", "cs", "cy", "da", "de", "el", "en", "eo", "es", "et", "fa", "fi", "fil", "fr",
         "ga", "gl", "gu", "he", "hi", "hr", "hu", "hy", "id", "is", "it", "ja", "jv", "ka", "kk", "km", "ko", "la", "lt", "lv", "mk", "ml", "mn",
         "mr", "ms", "my", "ne", "nl", "no", "pa", "pl", "pt", "ro", "ru", "sk", "sl", "sq", "sr", "sv", "sw", "ta", "te", "th", "tr", "uk", "ur",
         "uz", "vi", "zh-CN", "zh-TW"];
-    // Each language in its own words, like the Language page lists JaPatch's languages (#82): you find yours whatever
+    // Each language in its own words, like the Language page lists JaPatch's languages: you find yours whatever
     // language JaPatch is shown in. The name in JaPatch's language goes under it.
     const TRANSLATE_NATIVE = {
         af:"Afrikaans", ar:"\u0627\u0644\u0639\u0631\u0628\u064a\u0629", bg:"\u0411\u044a\u043b\u0433\u0430\u0440\u0441\u043a\u0438",
@@ -191,14 +191,14 @@
         vi:"Ti\u1ebfng Vi\u1ec7t", "zh-CN":"\u7b80\u4f53\u4e2d\u6587", "zh-TW":"\u7e41\u9ad4\u4e2d\u6587"};
     // When Translate messages translates: everything on screen, or only messages you pick from the hold menu.
     const TRANSLATE_MODES = ["auto", "manual"];
-    // How you ask in "Only when you ask" (#82): the bar at the top of a chat, Translate in a message's menu, or both.
+    // How you ask in "Only when you ask": the bar at the top of a chat, Translate in a message's menu, or both.
     // One choice instead of two switches, so there's always a way to translate.
     const TRANSLATE_ASKS = ["both", "bar", "menu"];
     // Where the GIF picker's GIFs come from with Bring back Tenor GIFs on: Tenor first with Discord's own mixed in, or only Tenor.
     const TENOR_SOURCES = ["both", "tenor"];
     // Where Use your phone's font / emojis get their look: the phone's own, or a font file you imported.
     const FONT_SOURCES = ["phone", "file"];
-    // Left bar thickness multiplier (1x = 2dp default, 2x = 4dp, 3x = 6dp, 4x = 8dp) and highlight color presets (#60).
+    // Left bar thickness multiplier (1x = 2dp default, 2x = 4dp, 3x = 6dp, 4x = 8dp) and highlight color presets.
     const HIGHLIGHT_THICKNESSES = [1, 2, 3, 4];
     // How strongly a highlighted row is tinted behind its text, 0 to 100 %. 50 is Discord's own tint (alpha 1a, about
     // 10%); 0 leaves only the bar and 100 is about 40%, still light enough to read on. The pills are these steps.
@@ -615,7 +615,7 @@
             return true;
         }
         // Keep media playing's skip length is a number: without its own branch it fell through to the switches below and
-        // was saved as true, so no pill showed as chosen and a restart went back to 10 s (#145).
+        // was saved as true, so no pill showed as chosen and a restart went back to 10 s.
         if (key === "backgroundMediaSkip") {
             if (![5, 10, 15, 30].includes(value)) return false;
             if (settings.backgroundMediaSkip === value && status.storage !== "loading" && status.storage !== "waiting") return true;
@@ -907,7 +907,7 @@
     }
     // React subscribes only after the first commit, so a change between rendering and subscribing was lost. On a cold
     // start Discord reopens the last chat while the saved theme is still being read, and its "loaded" notify landed in
-    // that gap: chat stayed without the theme background until something else redrew it (#84).
+    // that gap: chat stayed without the theme background until something else redrew it.
     function useSettings(key) {
         const [, update] = React.useState(0);
         const seen = notifyCount;
@@ -1090,7 +1090,7 @@
         stopFirst("delete", true); stopFirst("handleComplete", false); stopFirst("handleError", false);
         status.conversion = true;
     }
-    // Anonymous file names (#100, based on Anonymous File Names by k1ng_op): every file you send gets a random name,
+    // Anonymous file names (based on Anonymous File Names by k1ng_op): every file you send gets a random name,
     // so the name on your phone ("IMG_20261027_142233.jpg", "Bank statement March.pdf") never reaches Discord.
     // The name is swapped in the two payloads that carry it: the upload request (CloudUploaderUtils.getUploadPayload,
     // 8056, which names the CDN file) and the message's attachment list (UploadUtils.getAttachmentPayload, 8026), so the
@@ -1309,7 +1309,7 @@
             return React && List ? el(List, { node }) : null;
         };
     }
-    // Features list search (#68): every row is found by its title, its description, its page's title, its group and the
+    // Features list search: every row is found by its title, its description, its page's title, its group and the
     // names of the options on its page, in the language JaPatch is shown in and in English, ignoring case and accents.
     const FEATURE_KEYWORDS = {hideAnything:["Removal mode", "Message menu", "Quick reactions", "Voice message button", "Video call button", "Message requests", "Add Friends button", "New message button", "Quests banner", "Attach menu", "Polls", "Photos"], systemFont:["Import a font", "Font file"], systemEmoji:["Import an emoji font", "Emoji font"], noDelete:["Show edit history", "Keep after restarting", "Color", "Brightness", "Keep up to", "No limit", "Message log", "What to log", "Dismiss message", "Remove edit history"], translate:["Show the original language", "Show the original text", "Another language", "How you ask", "Top bar", "Message menu", "Don't translate"],
         freeNitro:["Emojis", "Stickers", "Short links"], pastelize:["Replace role colors", "Color message text"],
@@ -1641,7 +1641,7 @@
     // A main-list row with its own switch and a small arrow to its page. Tapping anywhere else on the row opens the page too,
     // so the arrow only has to say "there's more": no divider and no filled circle, which used to take a third of the row
     // and squeeze the title and description into a narrow column.
-    // Features that can get an account in trouble (#81): their Features row says so with red Risky and Experimental chips
+    // Features that can get an account in trouble: their Features row says so with red Risky and Experimental chips
     // under the title, and switching one on asks first in Discord's own dialog. Switching off, restoring a backup and
     // Reset never ask. The switch is controlled, so it stays off until you confirm.
     const RISKY_FEATURES = {badges:() => tr("This is experimental. It tells Discord you're playing games you aren't, which breaks Discord's Terms of Service and could get your account suspended or banned.")};
@@ -1940,7 +1940,7 @@
         route("JAPATCH_LANGUAGE", "Language", [], undefined, japatchIcon(9415, "LanguageIcon", icon));
         next.JAPATCH_LANGUAGE.screen.getComponent = () => LanguageSettings;
         next.JAPATCH_LANGUAGE.useDescription = function () { useLanguage(); return languageLabel(settings.language); };
-        // Backup and restore (#68): save every JaPatch setting to a file or the clipboard and bring it back after patching again.
+        // Backup and restore: save every JaPatch setting to a file or the clipboard and bring it back after patching again.
         route("JAPATCH_BACKUP", "Backup and restore", [], undefined, japatchIcon(11977, "ArrowsUpDownIcon", icon));
         next.JAPATCH_BACKUP.screen.getComponent = () => BackupSettings;
         next.JAPATCH_BACKUP.useDescription = function () { useSettings(); return backup.last ? backupAgo() : tr("Save your settings or bring them back."); };
@@ -2578,7 +2578,7 @@
             footnote("note", i18n.loading.has(uiLanguage()) ? "Loading the language…" : "Only JaPatch's own settings and messages change. Discord's language is set in Discord's Language settings.")];
         return settingsBody(ui, groups);
     }
-    // Backup and restore (#68): every JaPatch setting in one small JSON file, so patching again or a new phone doesn't
+    // Backup and restore: every JaPatch setting in one small JSON file, so patching again or a new phone doesn't
     // mean setting everything up again. Never includes the ReviewDB sign-in, saved accounts or kept deleted messages.
     const BACKUP_APP = "JaPatch Patches", BACKUP_FORMAT = 1, BACKUP_MAX_BYTES = 1024 * 1024;
     function backupDate(ms) {
@@ -2886,7 +2886,7 @@
     // GUILD_TEXT (0), GUILD_ANNOUNCEMENT (5), GUILD_STORE (6), GUILD_DIRECTORY (14), GUILD_FORUM (15), GUILD_MEDIA (16), GUILD_APP (21).
     const DASHLESS_TYPES = new Set([0, 5, 6, 14, 15, 16, 21]);
     const FALSE_FN = () => false;
-    // Clean channel names (#95): channel and category names lose the emoji, dividers and fancy fonts servers decorate
+    // Clean channel names: channel and category names lose the emoji, dividers and fancy fonts servers decorate
     // them with ("🎫┃quick-help" -> "quick-help", "🛠️ | SUPPORT & RESOURCE | 🛠️" -> "SUPPORT & RESOURCE",
     // "𝓰𝓮𝓷𝓮𝓻𝓪𝓵" -> "general"). Only what Discord draws changes: the channel record, links, mentions you send and search
     // all keep the real name. A name made only of emoji or symbols is left as it is, so no channel ever goes blank.
@@ -3725,7 +3725,7 @@
             timestamp:message.timestamp && typeof message.timestamp.toISOString === "function" ? message.timestamp.toISOString() : message.timestamp,
             type:message.type || 0,flags:message.flags || 0,attachments:message.attachments || [],embeds:message.embeds || [],
             mentions:message.mentions || [],mention_roles:message.mentionRoles || [],referenced_message:null};
-        // Stickers too (#145): without them a kept sticker message came back empty after a restart. MessageRecord reads
+        // Stickers too: without them a kept sticker message came back empty after a restart. MessageRecord reads
         // sticker_items ({id, name, format_type}) back, and stickers for the full objects it may already have.
         const items = message.stickerItems || message.sticker_items;
         if (Array.isArray(items) && items.length) raw.sticker_items = items.filter(Boolean).map(item =>
@@ -3931,7 +3931,7 @@
     // Earlier versions sit above the message in one quote bar, each as small grey struck-through text: Discord's
     // own native block quote, subtext and strikethrough nodes, so it follows the theme and font like any message.
     // Plain text only, so an old version can never ping anyone or open a link.
-    // Its last line is a small "Remove edit history" link that removes it on the spot (#130).
+    // Its last line is a small "Remove edit history" link that removes it on the spot.
     function editHistoryNodes(entry) {
         if (entry.view) return entry.view;
         const lines = [];
@@ -4154,7 +4154,7 @@
         logAdd(logs.messages, entry);
     }
     // A kept message's hold menu (LongPressMessageActionSheet 9978): Dismiss for a deleted message, Remove edit history
-    // for an edited one, first in the menu, besides the links in the chat (#130).
+    // for an edited one, first in the menu, besides the links in the chat.
     function noDeleteSheet(orig, self, args) {
         const tree = orig.apply(self, args), props = args[0], message = props && props.message;
         if (!enabled("noDelete") || !React || !tree || !message || !message.id) return tree;
@@ -4524,7 +4524,7 @@
     // Message fetches are never a tap. A channel row preloads its messages on press-in (ChannelActionCreators.preload
     // 7290 -> CHANNEL_PRELOAD -> MessageManager 9312 -> fetchMessages isPreload), which fires as soon as a finger
     // touches the row, even when it then scrolls. Discord also fetches the restored channel on its own at startup.
-    // Asking here showed the locked-channel details while scrolling or opening the app (#62). Taps go through
+    // Asking here showed the locked-channel details while scrolling or opening the app. Taps go through
     // navigation (hiddenNavigation), which asks; this guard only keeps locked channels from loading, silently.
     function hiddenFetch(orig, self, args) {
         const channelId = typeof args[0] === "string" ? args[0] : args[0] && args[0].channelId;
@@ -4896,7 +4896,7 @@
         return next || content;
     }
     // Discord sends a bot's application-command reply (and its follow-ups) through the interaction webhook, so those
-    // rows carry a webhookId even though the author is a server member with a role color (#144). Only a webhook
+    // rows carry a webhookId even though the author is a server member with a role color. Only a webhook
     // that isn't a member of the server is a real one; its color comes from its name.
     function pastelWebhook(message, source) {
         if (!source || !source.webhookId) return false;
@@ -4932,7 +4932,7 @@
         return copy;
     }
     // The replied-to message above a reply. Discord's reply preview never read textColor, so "Color message text"
-    // didn't reach replies (#45); the Pastelize patch now has it paint the reply text with it. Discord gives every
+    // didn't reach replies; the Pastelize patch now has it paint the reply text with it. Discord gives every
     // message a textColor, so the reply's own is dropped unless Pastelize colored it: otherwise the preview keeps
     // Discord's usual reply color, exactly as before, also while Pastelize is switched off.
     function pastelReply(reply) {
@@ -5127,9 +5127,9 @@
         React.useEffect(() => {
             if (!settings.debugLog || readAllTrace.mounts >= 30) return undefined;
             const n = ++readAllTrace.mounts;
-            dlog("I", "readAll", "pill mounted (#" + n + ") with " + (styles === READ_ALL_FALLBACK_STYLES ? "fallback" : "theme") + " colors: pill " +
+            dlog("I", "readAll", "pill mounted, with " + (styles === READ_ALL_FALLBACK_STYLES ? "fallback" : "theme") + " colors: pill " +
                 readAllColor(styles.pill && styles.pill.backgroundColor) + ", text " + readAllColor(styles.text && styles.text.color));
-            return () => { if (settings.debugLog) dlog("I", "readAll", "pill unmounted (#" + n + ")"); };
+            return () => { if (settings.debugLog) dlog("I", "readAll", "pill unmounted"); };
         }, []);
         const trace = settings.debugLog;
         // collapsable:false: Fabric may flatten a plain View into its parent and bring it back later. In the recycled server bar
@@ -5498,7 +5498,7 @@
         quest.scanTimer = global.setTimeout(questsScan, ms);
     }
     // Whether Quest Completer has something to do: a Quest running or being accepted, or one that can be accepted or
-    // finished as soon as it looks again (Badge Completer waits for it, #185). Reading the store is what the scan does.
+    // finished as soon as it looks again (Badge Completer waits for it). Reading the store is what the scan does.
     function questsWorkReady() {
         try {
             if (!enabled("quests") || !quest.user) return false;
@@ -5666,7 +5666,7 @@
         try { return body && typeof convert === "function" ? convert(body) : null; } catch (_) { return null; }
     }
     // A 401 or 403 from a Quest call is not "this Quest was refused": it is Discord saying this session is no longer
-    // allowed to act. Retrying the same request is what turns one refusal into a revoked session (#164, #188: people
+    // allowed to act. Retrying the same request is what turns one refusal into a revoked session: people
     // logged out after leaving Complete Quests on). It stops the whole feature instead, and says so once.
     function questSessionLost(error) {
         const status = error && Number(error.status);
@@ -6177,7 +6177,7 @@
             footnote("note", "You still claim rewards yourself. Stream Quests need a real stream, so they're skipped. Discord may pause Quests on accounts that complete them automatically.")];
         return settingsBody(ui, groups);
     }
-    // Badge Completer (#81): Game Time (hours played), Game Variety (unique games played) and Account Age (years active).
+    // Badge Completer: Game Time (hours played), Game Variety (unique games played) and Account Age (years active).
     // Discord counts Game Time and Game Variety only from what its desktop app reports about detected games, so this
     // plays one real, detectable game at a time the way Discord for Windows does when it sees the game running:
     // - the running game goes into RunningGameStore's RUNNING_GAMES_CHANGE and LocalActivityStore (10974), so your
@@ -6400,7 +6400,7 @@
         })();
         return badges.catalogLoading;
     }
-    // #185: with both features on, a started game used to win over Quest Completer every launch, so new Quests waited
+    // With both features on, a started game used to win over Quest Completer every launch, so new Quests waited
     // until the badge was switched off. While a Quest is ready to run (accepted, or waiting for you to be in the app to
     // accept it), the game cycle holds off; it starts as soon as the Quests are done.
     let questWorkReady = null;
@@ -6410,7 +6410,7 @@
             return questWorkReady();
         } catch (_) { return false; }
     }
-    // #189: the rotation used to land on adult (NSFW / +18) games, and a played game stays on the profile, so they are
+    // The rotation used to land on adult (NSFW / +18) games, and a played game stays on the profile, so they are
     // skipped for good. Discord's catalog marks them ("nsfw", "age_restricted", an 18+ content rating, or the +18 tags);
     // a name that says so covers a catalog that doesn't mark them at all.
     const BADGE_ADULT_NAME = /\bnsfw\b|\b18\s*\+|\+\s*18\b|\badult\b|hentai|ecchi|lewd|nude|naked|porn|xxx|sex\b|erotic|\br18\b/i;
@@ -6663,7 +6663,7 @@
         const generation = ++badges.generation;
         badges.extra.forEach(entry => { entry.generation = generation; });
         if (!badgeNeedsGame() || !badges.user) return;
-        // A Quest comes first (#185); Quest Completer asks for a game start when it's done.
+        // A Quest comes first; Quest Completer asks for a game start when it's done.
         if (badgeQuestsBusy()) return;
         const catalog = await badgeCatalog();
         if (generation !== badges.generation || !badgeNeedsGame() || !badges.user || badges.current) return;
@@ -7748,7 +7748,7 @@
                 style:{paddingHorizontal:16,height:40,borderRadius:20,justifyContent:"center",backgroundColor:"#5865f2",opacity:disabled ? 0.5 : 1}},
                 el(RN.Text,{style:{color:"#ffffff",fontWeight:"600"}},tr(buttonText)));
         // With a label above the field the button lines up with the field's bottom edge; without one it's centered on the
-        // field. Bottom-aligned, it sat low next to Discord's field, which keeps room under its box (#145, Preview servers).
+        // field. Bottom-aligned, it sat low next to Discord's field, which keeps room under its box (Preview servers).
         return el(RN.View,{key,style:{flexDirection:"row",alignItems:inputProps && inputProps.label ? "flex-end" : "center",gap:8}},el(RN.View,{style:{flex:1}},input),button);
     }
     function hexInt(hex) { const m=/^#?([0-9a-f]{6})$/i.exec(String(hex || "").trim()); return m ? parseInt(m[1],16) : null; }
@@ -9580,7 +9580,7 @@
                         el(RN.Text,{style:[s.muted,{flexShrink:1}]},tr("This message was deleted")+" \u2022 ",el(RN.Text,{style:s.link},tr("Dismiss message")))))))],
             {header:previewHeader(k,{title:"general"}),footer:previewInput(k,s,{placeholder:tr("Message {channel}",{channel:"#general"})})}));
     }
-    // "Don't keep these" (#143): one box, and anything with an id in it works — a profile, a server or a channel link
+    // "Don't keep these": one box, and anything with an id in it works — a profile, a server or a channel link
     // all contain the same 17-20 digits, so a pasted link needs no explaining.
     function NoDeleteSkipRow(props) {
         useSettings("noDelete");
@@ -10171,7 +10171,7 @@
         next[0]=Object.assign({},props,{menu:Object.assign({},menu,{items:menu.items.concat([{label:tr("Reviews"),action:() => openReviewSheet(id)}])})});
         return orig.apply(self,next);
     }
-    // Server info (#77, based on ServerInfo by fshin): hold a server icon in the server list and its menu
+    // Server info (based on ServerInfo by fshin): hold a server icon in the server list and its menu
     // (getGuildsBarGuildMenuItems 17433) gets a Server info row. It opens a sheet that reads everything from Discord's own
     // stores and redraws live: who's online, channels, roles, emojis, stickers, events, boost level with how far the next
     // one is, which friends are there (with their status), the owner, when you joined and copyable details.
@@ -10488,7 +10488,7 @@
         if (!enabled("serverInfo") || !Array.isArray(items) || !guildId || !/^\d{17,20}$/.test(guildId)) return items;
         return items.concat([{IconComponent:japatchIcon(5145, "CircleInformationIcon"), label:tr("Server info"), action:() => openServerInfo(guildId)}]);
     }
-    // Edit servers locally (#114, based on EditServers by mwittrien): your own name and icon for any server, only on this
+    // Edit servers locally (based on EditServers by mwittrien): your own name and icon for any server, only on this
     // phone. GuildStore (2090) hands out a copy of the server's record with the name and icon swapped, so everywhere Discord
     // draws a server (the server list, headers, menus, Server info) shows them. The icon becomes a token that
     // AvatarUtils.getGuildIconURL (1417) turns into your picture. Discord's own server settings (8910, 8911, 18678) are given
@@ -13461,7 +13461,7 @@
     function openSettings(target) {
         // Ensure SettingsRendererConfig (15602) and SettingListRenderer (15733) are initialized before
         // opening SettingsNavigator so JAPATCH_PLUGINS is registered even on first tap after app restart
-        // and SettingsList is non-null so the page never renders a blank black screen (#58).
+        // and SettingsList is non-null so the page never renders a blank black screen.
         if (!status.menu) inspectedExport(15602, "SETTING_RENDERER_CONFIG");
         if (!SettingsList) SettingsList = inspectedExport(15733, "SettingsList");
         const screen = status.menu ? (typeof target === "string" ? target : "JAPATCH_PLUGINS") : undefined;
@@ -13469,7 +13469,7 @@
         try { if (typeof open === "function") { open(screen ? {screen} : undefined); return; } } catch (_) {}
         try { const ref = inspectedExport(5073, "getRootNavigationRef"); const nav = ref && ref(); if (nav) nav.navigate("settings", screen ? {screen} : undefined); } catch (_) {}
     }
-    // Which of JaPatch's own bar buttons are drawn right now. #199: with the account switcher off (its button hidden,
+    // Which of JaPatch's own bar buttons are drawn right now. With the account switcher off (its button hidden,
     // or its feature missing), Settings was the only one left and kept its small pill beside an empty bar; it now gets
     // the whole width instead of floating in the middle of it.
     function youBarOwnButtons() {
@@ -13560,11 +13560,11 @@
         const store = accountSwitcherStore();
         // MultiAccountStore is a PersistedStore: initializeIfNeeded() reads the saved list once and then never again.
         // Calling it (or initialize + asyncPersist) before Discord loaded its storage and signed in, as happens on a
-        // cold start, read an empty list and saved it over every account (#63). Only Discord initializes the store;
+        // cold start, read an empty list and saved it over every account. Only Discord initializes the store;
         // JaPatch adds the signed-in account afterwards, and only when it is missing.
         // A PersistedStore saves itself on every change (its constructor adds a change listener that calls
         // asyncPersist), whether or not it has read its saved state yet. Before that, getState() is the empty list
-        // the module starts with, so even a bare emitChange() on a cold start saved [] over every account (#69).
+        // the module starts with, so even a bare emitChange() on a cold start saved [] over every account.
         // Nothing here touches the store until Discord has loaded its storage and initialized the store itself.
         const storeReady = !!store && store._isInitialized === true && accountSwitcherStorageReady();
         const me = enabled("accountSwitcher") && storeReady ? currentUser() : null;
@@ -13649,7 +13649,7 @@
         if (enabled("accountSwitcher")) accountSwitcherSync();
         return out;
     }
-    // Notifications from every account (#126). Discord already has multi-account push: with
+    // Notifications from every account. Discord already has multi-account push: with
     // canUseMultiAccountNotifications (MultiAccountStore 13074, true once Account switcher unlocks multi-account),
     // NotificationTokenManager (15471) registers the phone through PushNotificationActionCreators.syncDevice (13073),
     // a PUT /users/@me/devices/sync carrying a push_sync_token for each saved account (getValidUsers, current first).
@@ -13663,7 +13663,7 @@
     }
     // Switching sends the account's saved token to Discord's gateway. When it has stopped working since it was last
     // checked (changed password, signed out elsewhere, an old export), the gateway closes with 4004 and
-    // AuthenticationStore (502) signs you out of everything, not just that account (#137). Every switch (JaPatch
+    // AuthenticationStore (502) signs you out of everything, not just that account. Every switch (JaPatch
     // settings, Discord's own account sheet, a notification from another account) goes through
     // MultiAccountActionCreators.switchAccount (13078), so the token is checked there first, the way
     // validateMultiAccountTokens does: GET /users/@me with it, and the same account has to answer. A token Discord
@@ -13783,7 +13783,7 @@
         const loginRoute = screens && screens.LOGIN || "login";
         openManageAccounts(loginRoute);
     }
-    // Create a new account (#86): Discord's Add account screen (Login 6900 with isMultiAccount) only signs in, and
+    // Create a new account: Discord's Add account screen (Login 6900 with isMultiAccount) only signs in, and
     // ManageAccountsModal (17520) only registers four screens (MANAGE_ACCOUNTS, LOGIN, MFA,
     // ACCOUNT_DISABLED_OR_DELETION_SCHEDULED). The Add account screen gets a "Create a new account" link drawn with
     // Discord's own LinkButton, next to "Forgot your password?", so the screen keeps Discord's look. The modal also
@@ -14018,7 +14018,7 @@
             accessibilityLabel:tr("Switch accounts"), onPress:openAccountSwitcherSheet, onLongPress:() => openManageAccounts(),
             icon:el(accountSwitcher.youBarParts.Icon, {size:"custom", style:accountSwitcher.youBarParts.style, color:nameplate ? "white" : undefined})});
     }
-    // Export and import accounts (#111): the saved accounts and their sign-ins (TokenManager 1113) go to a file, so another
+    // Export and import accounts: the saved accounts and their sign-ins (TokenManager 1113) go to a file, so another
     // phone or a fresh install gets them back without signing in again. Kept out of Backup and restore on purpose: the file
     // signs in to every account in it, so it is only made after a warning. Importing follows the MultiAccountStore rules
     // above: nothing is written until Discord has loaded its storage and initialized the store, accounts already saved are
@@ -14084,7 +14084,7 @@
         // saving the per-account copy), and saves it. Importing used to leave the last imported account's token as the
         // active one: requests went out as that account, and the next reconnect (coming back after Discord was in the
         // background or closed) sent it to the gateway. An old export's token is often expired, so Discord answered
-        // 4004 and signed you out (#137). Keep the signed-in account's own token active after every save.
+        // 4004 and signed you out. Keep the signed-in account's own token active after every save.
         let active = null;
         try { active = tokens.getToken(); } catch (_) {}
         if (typeof active !== "string" || !active || !me) return {error:tr("Try again in a moment.")};
@@ -14598,7 +14598,7 @@
                  ["bskye", "bskye", {"bsky.app":"bskye.app"}]], {group:"social"}],
             ["threads", "Threads", "#101010", "@", ["threads.net", "threads.com"], /^\/@[\w.]+\/post\/[\w-]+/,
                 [FIXEMBED, ["fixthreads", "FixThreads", {"threads.net":"fixthreads.seria.moe", "threads.com":"fixthreads.seria.moe"}]], {group:"social"}],
-            // Tumblr (#87): fxtumblr shows the whole post, drawn as a picture, and can draw it dark.
+            // Tumblr: fxtumblr shows the whole post, drawn as a picture, and can draw it dark.
             ["tumblr", "Tumblr", "#001935", "t", ["tumblr.com"], {"tumblr.com":/^\/[\w-]+\/\d+/, "*.tumblr.com":/^\/post\/\d+/},
                 [["fxtumblr", "fxtumblr", {"tumblr.com":"tpmblr.com", "*.tumblr.com":"*.tpmblr.com"}, {dark:"dark"}], FIXEMBED], {group:"social", sub:true}],
             ["facebook", "Facebook", "#0866ff", [8406, "FacebookNeutralIcon"], ["facebook.com"],
@@ -14827,7 +14827,7 @@
             if (service.at && service.at.test(path)) noHash = (service.lang === "pixiv" ? path.replace(/^\/(?:[a-z]{2}(?:_[a-z]{2})?\/)?/, "/" + language + "/") :
                 path.replace(/\/$/, "") + "/" + language) + query;
         }
-        // Dark posts (#87): fxtumblr draws the post on a dark background.
+        // Dark posts: fxtumblr draws the post on a dark background.
         if (service.dark && options.dark && !new RegExp("[?&]" + service.dark + "(?:[=&]|$)").test(noHash))
             noHash += (noHash.indexOf("?") < 0 ? "?" : "&") + service.dark;
         address = noHash + fragment;
@@ -14870,7 +14870,7 @@
         const user = currentUser();
         return content.length <= (user && user.premiumType === 2 ? 4000 : 2000);
     }
-    // Chat export (#197, JSON first): a channel's or DM's messages, as Discord already has them on this phone, saved
+    // Chat export (JSON first): a channel's or DM's messages, as Discord already has them on this phone, saved
     // to a file you pick. No network is involved and nothing is uploaded. Discord only keeps the pages it has loaded,
     // so the file says how far back it goes instead of pretending to be the whole conversation. The notes say the same
     // thing the export contains, and the author's own messages are never exported with the token.
@@ -15076,7 +15076,7 @@
             footnote("note", "Old messages Discord never loaded on this phone can't be in the file. Scroll up in the chat first to load more.")];
         return settingsBody(ui, groups);
     }
-    // Show your name your way (#191, ShowMeYourName by the Equicord authors). Phones have no hover, so the name
+    // Show your name your way (ShowMeYourName by the Equicord authors). Phones have no hover, so the name
     // is replaced in place rather than shown on top: pick which of the four names a person has wins, and what
     // goes in brackets after it. Only text is rewritten, so nothing else about the row moves.
     const NAME_KINDS = ["username", "display", "nickname", "serverNickname"];
@@ -15219,7 +15219,7 @@
             footnote("note2", "On Discord a nickname only exists inside a server, so Nickname and Server nickname are the same name. Most people only ever see a difference between @username and Display name.")];
         return settingsBody(ui, groups);
     }
-    // Text replace (#191, TextReplace by Equicord's authors): rules like "brb => be right back", applied to what you
+    // Text replace (TextReplace by Equicord's authors): rules like "brb => be right back", applied to what you
     // send. Only outgoing text is touched: messages you read stay as they are. Rules are one per line in the setting,
     // "from => to"; whole words only when the left side starts and ends with a letter or digit, so "brb" doesn't rewrite
     // "brb2" and "a.b" only matches itself. An empty right side deletes the word, the way a logger-proofing rule would.
@@ -15564,7 +15564,7 @@
         return Scroll ? el(ui.ActionSheet || RN.View, {header, scrollable:true}, el(Scroll, scrollProps, body)) :
             el(ui.ActionSheet || RN.View, {header}, RN.ScrollView ? el(RN.ScrollView, scrollProps, body) : body);
     }
-    // Bring back Tenor GIFs (#83): Discord's GIF picker asks Discord's API for /gifs/search, /gifs/trending and the rest
+    // Bring back Tenor GIFs: Discord's GIF picker asks Discord's API for /gifs/search, /gifs/trending and the rest
     // (GIFPickerActionCreators 10035 through HTTP.get, 1297), and since Tenor's API closed to Discord those answers come from
     // Klipy. JaPatch answers the same requests from Tenor's public v1 API, in the exact shape the picker's store (9731) reads,
     // so Tenor GIFs show in Discord's own picker: no new tab or button. "Tenor and Discord's GIFs" puts Tenor first and
@@ -15727,7 +15727,7 @@
         // Your choice for single messages from the hold menu: true translates it, false keeps the original.
         // With "Only when you ask", only messages set to true are translated.
         choice:new Map(), asked:new Set(),
-        // Chats translated as a whole from the translate bar (#82), in "Only when you ask". A message's own choice still wins.
+        // Chats translated as a whole from the translate bar, in "Only when you ask". A message's own choice still wins.
         // Like Telegram: kept while Discord is open, so leaving and coming back still translates. Never saved, so after
         // Discord restarts every chat asks again.
         channels:new Set(),
@@ -15740,7 +15740,7 @@
     // leaves chats translated with no bar to turn them back.
     function translateChatOn(channelId) { return settings.translateAsk !== "menu" && translate.channels.has(channelId); }
     // Whether a message is likely not in the language you translate into, decided on the phone without sending it
-    // anywhere (#82): it only decides whether the translate bar shows. The writing system tells most languages apart
+    // anywhere: it only decides whether the translate bar shows. The writing system tells most languages apart
     // (Cyrillic, Arabic, Hangul...). For Latin text against a Latin language, it takes letters that language doesn't
     // use, or at least two everyday words of another one, so a stray accent or a word like "die" never shows the bar.
     const TRANSLATE_SCRIPTS = [["cyrl", /[\u0400-\u04ff]/], ["arab", /[\u0600-\u06ff]/], ["hebr", /[\u0590-\u05ff]/], ["deva", /[\u0900-\u097f]/],
@@ -16005,7 +16005,7 @@
         return value.replace("_", "-");
     }
     function translateTarget() {
-        // Another language (#79): already a Google code, whatever Discord's or the phone's language is.
+        // Another language: already a Google code, whatever Discord's or the phone's language is.
         if (settings.translateTarget === "custom" && TRANSLATE_LANGUAGES.includes(settings.translateLanguage)) return settings.translateLanguage;
         const mode = settings.translateTarget === "phone" ? "phone" : "discord";
         let raw = null;
@@ -16026,7 +16026,7 @@
     }
     // Language names in the language JaPatch is shown in.
     const languageNames = new Map();
-    // The language Translate messages writes in, by name: Discord's, the phone's or the one you picked (#79).
+    // The language Translate messages writes in, by name: Discord's, the phone's or the one you picked.
     function translateTargetName() {
         return settings.translateTarget === "custom" ? translateLanguageName(translateTarget()) : languageName(localeCode(settings.translateTarget === "phone" ? "phone" : "discord"));
     }
@@ -16207,7 +16207,7 @@
         later(() => reviewToast(reviewUI(), "This message is already in your language", japatchIcon(9415,"LanguageIcon")), 0);
     }
     // The message a reply quotes, above the reply. It was always shown as written, even when that message was
-    // shown translated in chat (#51). It now gets the same translation, without the note or the original, since
+    // shown translated in chat. It now gets the same translation, without the note or the original, since
     // the preview is one short line. Translations are kept by text, so this never costs a second request.
     function translateReply(message, source, channelId, id) {
         const quoted = message.referencedMessage && message.referencedMessage.message;
@@ -16410,7 +16410,7 @@
         return unescapeTranslate(text.replace(TRANSLATE_TAG_ANY, " ")).replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").toLowerCase()
             .replace(/[\s!-\/:-@\[-`{-~\u00a1\u00bf\u2018-\u201f\u2026\u3001\u3002\uff01\uff0c\uff1f]+/g, "").replace(/(.)\1+/g, "$1");
     }
-    // A one-word Latin message that the phone doesn't see as another language (#82's check): Google's guess for those is
+    // A one-word Latin message that the phone doesn't see as another language (the check): Google's guess for those is
     // often wrong ("copium" from Latin, "bruh" from Indonesian), so it stays as written unless you translate it from its
     // menu. Words the check knows ("hola", "obrigado"), longer messages and other scripts still translate.
     function translateUnsure(entry) {
@@ -16569,7 +16569,7 @@
         const s = useChatPreviewStyles(), k = usePreviewChrome(), barStyles = useTranslateBarStyles(), on = !!props.on;
         const blank = {shown:true, done:false, busy:false, menu:false, held:false, pulse:null};
         const [state, setState] = React.useState(blank), watching = on, manual = settings.translateMode === "manual";
-        // The translate bar (#82) is shown, and is how Watch asks, whenever "How you ask" includes it.
+        // The translate bar is shown, and is how Watch asks, whenever "How you ask" includes it.
         const barAsk = manual && settings.translateAsk !== "menu";
         const update = change => setState(st => Object.assign({}, st, typeof change === "function" ? change(st) : change));
         const target = translateTargetName();
@@ -16611,7 +16611,7 @@
                 ["translate", Lang, actionLabel, null]], state.pulse))) : null;
         return el(RN.View, {key:"preview"},
             previewScreen(s, "preview", "Translation preview",
-                // Steady while you watch or tap (#82), but taller when the original is quoted under the translation, so the quote never
+                // Steady while you watch or tap, but taller when the original is quoted under the translation, so the quote never
                 // pushes the message bar out of the stage.
                 [el(RN.View, {key:"stage", style:{height:settings.translateOriginal ? 256 : 228, justifyContent:"space-between", overflow:"hidden"}},
                     el(RN.View, {key:"chat", style:{paddingTop:4}}, bar, message),
@@ -16620,7 +16620,7 @@
                 {header:previewHeader(k, {title:"general"}),
                  footer:watching ? storyStrip(k, s, story) : null}));
     }
-    // The translate bar (#82), like Telegram's: in "Only when you ask", a slim bar appears at the top of a chat once a
+    // The translate bar, like Telegram's: in "Only when you ask", a slim bar appears at the top of a chat once a
     // message in it is in another language. Tap it to translate the chat, and every message you see in it; the bar
     // stays, so one more tap shows it as written. The chat stays translated when you leave and come back, until
     // Discord restarts. Single messages still have Translate and Show original in their menu. The cog opens these settings.
@@ -16633,7 +16633,7 @@
         const bar = el(TranslateBar, {key:"japatch-translate-bar", channelId:props.channelId});
         const children = Array.isArray(props.children) ? props.children.concat([bar]) : [props.children, bar];
         // Discord's own sticky header (the blue "25+ new messages" bar, thread and safety banners) is measured, so the
-        // pill always sits just under whatever Discord shows there instead of on top of it (#82).
+        // pill always sits just under whatever Discord shows there instead of on top of it.
         // Only a header Discord already passes is wrapped: StickyWrapper (10380) fills the chat with its header box on Android,
         // so adding one where there was none could take touches from the messages.
         if (props.stickyHeader) {
@@ -16740,7 +16740,7 @@
         const label = on ? tr("Show original") : tr("Translate to {language}", {language:translateTargetName()});
         const tap = () => { haptic("SELECTION"); animateLayout(); translateChannel(channelId, !on); };
         // A plain view placed with layout (top), never a native-driven transform or popIn wrapper: on Android those draw the
-        // pill where it belongs but leave its touch area behind, so taps did nothing (#82). Only the pill takes touches.
+        // pill where it belongs but leave its touch area behind, so taps did nothing. Only the pill takes touches.
         return el(RN.View, {pointerEvents:"box-none", style:{position:"absolute", top:headerHeight, left:0, right:0, alignItems:"center", paddingHorizontal:12, paddingTop:8,
                 zIndex:100, elevation:8}},
             translatePill(s, on, label, tap, openTranslateSettings, Press));
@@ -16755,8 +16755,8 @@
     }
     // A language in its own words (TRANSLATE_NATIVE); the list shows JaPatch's name for it under it when that's different.
     function translateNativeName(code) { return TRANSLATE_NATIVE[code] || translateLanguageName(code); }
-    // Another language (#79): one row that says which language, and opens the list only when you want to change it.
-    // Each language is listed in its own words with JaPatch's name for it under it (#82), with Discord's search field.
+    // Another language: one row that says which language, and opens the list only when you want to change it.
+    // Each language is listed in its own words with JaPatch's name for it under it, with Discord's search field.
     // Picking one closes the list again, so the rest of the page is never pushed far down.
     function TranslateLanguagePicker(props) {
         useSettings(props.feature || "translate");
@@ -16810,7 +16810,7 @@
             el(TranslatePreview, {key:"preview", on}),
             radioGroup(ui, "mode", "When to translate", "translateMode", on, [["auto", "Automatically", "Every message on screen in another language.", rowIcon(11733, "SparklesIcon")],
                 ["manual", "Only when you ask", "From the bar at the top of a chat, or a message's menu. Nothing else is sent.", rowIcon(9252, "ReactionIcon")]]),
-            // How you ask (#82): one choice, so there's always a way to translate. Only shown when it matters.
+            // How you ask: one choice, so there's always a way to translate. Only shown when it matters.
             settings.translateMode === "manual" ? el(RN.View, {key:"ask", style:{gap:8}},
                 groupTitle("title", "How you ask"),
                 japatchSegmented({key:"ask:choice", value:settings.translateAsk, disabled:!on, onChange:value => setSetting("translateAsk", value),
@@ -18375,7 +18375,7 @@
         const hue = ((hueDeg % 360) + 360) % 360 / 180 * Math.PI, y = hctYFromTone(tone);
         return hctByJ(hue, chroma, y) || hctRgbFromLinear(hctBisect(y, hue));
     }
-    // Material You colors (#90): Discord in your phone's wallpaper palette, or in one color you pick, the way Android 12+
+    // Material You colors: Discord in your phone's wallpaper palette, or in one color you pick, the way Android 12+
     // colors its own apps. It builds Material 3 tonal palettes (HCT, above) and hands them to Custom themes' compiler, so
     // a change is one table write and turning it off restores Discord exactly:
     // - every gray ramp Discord draws with (NEUTRAL, PRIMARY, PLUM and the translucent grays) is redrawn in the neutral
@@ -18704,7 +18704,7 @@
             footnote("note", "Light or dark follows your Appearance setting in Discord.")];
         return settingsBody(ui, groups);
     }
-    // Icon packs (#61): replaces Discord's icons across the app with community icon packs (Themes+ / Rosiecord / MD3 /
+    // Icon packs: replaces Discord's icons across the app with community icon packs (Themes+ / Rosiecord / MD3 /
     // Solar / Deco / Material Two Tone / Iconsax) or any custom icon pack URL, and applies per-icon tint overrides from
     // the active theme's plus.icons table. Instead of building path strings and scanning manifest arrays on every
     // <Image> render, JaPatch compiles a dense O(1) lookup table indexed by numeric assetId once when the active pack or
@@ -19740,7 +19740,7 @@
         ];
         return settingsBody(ui, groups, {keyboardShouldPersistTaps:"handled"});
     }
-    // Unlock Discord experiments (#96, from Experiments by maisy): Discord shows Dev Tools (and its Experiments screen)
+    // Unlock Discord experiments (from Experiments by maisy): Discord shows Dev Tools (and its Experiments screen)
     // to staff. While on, isStaffEnv (1403) says yes for the signed-in account, so DeveloperExperimentStore (7674)
     // turns isDeveloper on, and ExperimentStore (5112) gets its OVERLAY_INITIALIZE handler again with a copy of you
     // carrying the STAFF flag, which is when it starts honoring overrides. Your real user object is never changed, and
@@ -19799,7 +19799,7 @@
         } catch (_) {}
         if (RN.Alert) RN.Alert.alert(title, body, [{text:tr("Later"), style:"cancel"}, {text:tr("Reopen now"), onPress:reopen}]);
     }
-    // Hide blocked or ignored messages (#91, from Rain): filters hidden messages out of the stream createChannelStream
+    // Hide blocked or ignored messages (from Rain): filters hidden messages out of the stream createChannelStream
     // (12809) walks, before Discord groups messages or builds BLOCKED_GROUP / IGNORED_GROUP rows. MessageStore itself is
     // untouched, adjacent messages around a hidden one join into one group, and toggling an option redraws the open chat.
     const hideBlocked = {relationships:null, references:null, version:0, dispatcher:null};
@@ -22998,7 +22998,7 @@
         ];
         return settingsBody(ui, groups);
     }
-    // Bulk delete messages (#94): hold any message you can delete and tap Select Messages right under Delete Message.
+    // Bulk delete messages: hold any message you can delete and tap Select Messages right under Delete Message.
     // Every deletable message in the chat (your own messages, other people's messages in servers where you have Manage
     // Messages, and cached deleted messages from Keep deleted messages) gets a native circle on its right side; tapping
     // a message fills the circle in Blurple with a white checkmark and updates the floating bottom bar.
@@ -23605,7 +23605,7 @@
     }
     // The selection bar takes the composer's own slot while you select (like Telegram or Discord on desktop): typing is
     // pointless then, and the message list already keeps that space clear for the composer, so no message is ever
-    // covered (#94). The top of the chat stays free for the Translate pill.
+    // covered. The top of the chat stays free for the Translate pill.
     const BULK_BAR_DARK = {
         wrap:{position:"absolute", left:0, right:0, bottom:0, zIndex:100, elevation:12, justifyContent:"center", paddingHorizontal:10,
             backgroundColor:"#1a1a1e"},
@@ -23679,7 +23679,7 @@
             chats > 1 ? pl(chats, "{count} selected in {n} chat", "{count} selected in {n} chats", {count}) : tr("{n} selected", {n:count});
         const height = Math.max(56, Number.isFinite(inputHeight) && inputHeight > 0 ? inputHeight : 0);
         // A plain view placed with layout, never a native-driven transform or popIn wrapper: on Android those draw the bar
-        // where it belongs but leave its touch area behind (#82). The slot takes every touch, so the hidden composer
+        // where it belongs but leave its touch area behind. The slot takes every touch, so the hidden composer
         // underneath can't be tapped by accident.
         return el(RN.View, {collapsable:false, onStartShouldSetResponder:() => true, style:[s.wrap, {height}]},
             el(RN.View, {style:s.bar, collapsable:false, accessible:false, accessibilityRole:"toolbar"},
@@ -23970,7 +23970,7 @@
             case 4926: return (features.customThemes || features.materialYou || features.iconPacks) ? hookCreateThemedContext(exports) : exports;
             case 4934: return (features.customThemes || features.materialYou || features.iconPacks) ? hookComponent(exports, nestedThemeContextProvider, "ThemeContextProvider") : exports;
             case 10692:
-                // ChatViewWrapper {channelId, stickyHeader, children}: the theme background behind chat, and the translate bar (#82)
+                // ChatViewWrapper {channelId, stickyHeader, children}: the theme background behind chat, and the translate bar
                 // in the sticky header slot above the messages, where Discord shows its own New messages bar.
                 if (features.translate) exports = hookComponent(exports, translateBarHeader);
                 if (features.bulkDelete) exports = hookComponent(exports, bulkDeleteChatFooter);

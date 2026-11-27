@@ -9,7 +9,7 @@ const cut = (from, to) => {
     if (a < 0 || b < 0) throw new Error('bootstrap.js moved: ' + from);
     return src.slice(a, b);
 };
-const engine = cut('    // Badge Completer (#81): Game Time', "    // A badge's progress from Discord's Badge Directory");
+const engine = cut('    // Badge Completer: Game Time', "    // A badge's progress from Discord's Badge Directory");
 const limits = cut('    const BADGE_CYCLE_MIN', '    function badgeCycleMinutes') +
     src.slice(src.indexOf('    function badgeCycleMinutes'), src.indexOf('\n', src.indexOf('    function badgeCycleMinutes')) + 1);
 

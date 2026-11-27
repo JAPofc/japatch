@@ -54,7 +54,7 @@ check("the Also show rows are not disabled by their own tick state", () => {
 // ------------------------------------ A4/A5: a tap while the feature is off does not write, and the page says so
 check("turning the feature off greys the rows instead of hiding the page", () => {
     const start = SOURCE.indexOf("    function ShowMeYourNameSettings() {");
-    const end = SOURCE.indexOf("\n    // Text replace (#191", start);
+    const end = SOURCE.indexOf("\n    // Text replace (", start);
     const body = SOURCE.slice(start, end);
     ok(/const on = enabled\("showMeYourName"\)/.test(body), "the feature switch is not read");
     ok(/offCard\("status", Icon, "showMeYourName"\)/.test(body), "there is no card telling you to turn it on");

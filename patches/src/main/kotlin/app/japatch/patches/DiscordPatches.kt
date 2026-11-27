@@ -612,7 +612,7 @@ internal const val PASTEL_REPLY_GUARD_SIZE = 17
 
 /**
  * Discord's reply preview paints the quoted text in one theme color, set once when the view is made, and
- * never reads the message's textColor, so Pastelize's "Color message text" never reached replies (#45).
+ * never reads the message's textColor, so Pastelize's "Color message text" never reached replies.
  * Before the reply text is drawn, this sets it to the replied message's textColor, or Discord's own
  * color when there is none: JaPatch only sends textColor on a reply when it colors it. Recycled previews
  * get their color set each time. 43 registers, 4 of them parameters: v0-v2 are free until Discord's first move.
@@ -986,7 +986,7 @@ internal const val MESSAGE_GUTTER_GUARD_SIZE = 35
  * - Message highlights encodes a width multiplier (2x..8x) in gutterPaintColor's alpha byte (`code = 256 - alpha` in 2..8).
  * - Bulk delete messages encodes a right-side selection circle in gutterPaintColor's alpha byte (`code = 256 - alpha` in 16..40,
  *   where bit 5 is selected vs unselected and `code & 15` is the optional left-bar width multiplier 0..8).
- * Normal 0xFF colors reset gutterWidth to 1x so toggling or changing thickness updates every row live without restarting Discord (#60, #94).
+ * Normal 0xFF colors reset gutterWidth to 1x so toggling or changing thickness updates every row live without restarting Discord, so highlights and bulk delete draw correctly too.
  * 12 registers, 5 of them parameters (p0..p4 = v7..v11): v0-v2 are free until Discord's first const-string.
  */
 internal fun scaleMessageGutterWidth(method: app.morphe.patcher.util.proxy.mutableTypes.MutableMethod) {

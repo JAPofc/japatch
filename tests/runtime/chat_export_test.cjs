@@ -6,7 +6,7 @@ const vm = require("vm");
 const ROOT = path.resolve(__dirname, "..", "..");
 const SOURCE = fs.readFileSync(path.join(ROOT, "patches/src/main/resources/japatch/bootstrap.js"), "utf8");
 
-const start = SOURCE.indexOf("    // Chat export (#197");
+const start = SOURCE.indexOf("    // Chat export (");
 // Stop before the menu row and the settings page: they need React and Discord's menu helpers, which aren't
 // what this file tests. The first "// The row goes in" comment marks that boundary.
 const end = SOURCE.indexOf("    // The row goes in the channel's hold menu");

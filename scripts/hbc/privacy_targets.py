@@ -128,7 +128,7 @@ def main():
         path_to_mid[p] = mid
         path_to_mid[os.path.basename(p)] = mid
 
-    # Hermes deduplicates identical bytecode; a stub on a shared body also replaces the other functions (#93).
+    # Hermes deduplicates identical bytecode; a stub on a shared body also replaces the other functions.
     owners = {}
     for fid in range(h.h['functionCount']):
         owners[h.func(fid)['offset']] = owners.get(h.func(fid)['offset'], 0) + 1

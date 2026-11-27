@@ -125,7 +125,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 6454 | `design/components/TableRow/native/TableCheckboxRow.native.tsx` | TableCheckboxRow | TableCheckboxRow |
 | 6457 | `design/components/TableRow/native/TableRow.native.tsx` | Icon, Arrow, TrailingText | TableRow |
 | 6459 | `design/components/Card/native/Card.native.tsx` | Card, InternalCard | Card |
-| 6462 | `design/void/Pressables/native/Pressables.tsx` | PressableOpacity | PressableOpacity (translate bar, #82) |
+| 6462 | `design/void/Pressables/native/Pressables.tsx` | PressableOpacity | PressableOpacity (translate bar) |
 | 6465 | `design/components/TableRow/native/TableRowIcon.native.tsx` | TableRowIcon | TableRowIcon |
 | 6473 | `design/components/Icon/native/redesign/generated/CheckmarkLargeIcon.tsx` | CheckmarkLargeIcon | CheckmarkLargeIcon |
 | 6478 | `design/components/Navigator/native/NavigatorHeader.native.tsx` | default, HeaderBackImage | NavigatorHeader (Account switcher) |
@@ -346,7 +346,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 12158 | `design/components/Icon/native/redesign/generated/MagicWandIcon.tsx` | MagicWandIcon | MagicWandIcon |
 | 12274 | `design/components/Icon/native/redesign/generated/ArrowAngleLeftUpIcon.tsx` | ArrowAngleLeftUpIcon | ArrowAngleLeftUpIcon |
 | 12328 | `design/components/Icon/native/redesign/generated/ImagesIcon.tsx` | ImagesIcon | ImagesIcon (Bring back Tenor GIFs) |
-| 12331 | `design/components/Icon/native/redesign/generated/FiltersHorizontalIcon.tsx` | FiltersHorizontalIcon | FiltersHorizontalIcon (translate bar, #82) |
+| 12331 | `design/components/Icon/native/redesign/generated/FiltersHorizontalIcon.tsx` | FiltersHorizontalIcon | FiltersHorizontalIcon (translate bar) |
 | 12337 | `modules/chat_input/native/ChatInputNativeComponent.tsx` | displayName, default | ChatInputNativeComponent (Tap mentions to open profiles; Expand the message bar) |
 | 12338 | `modules/chat_input/native/useChatInputMaxHeight.tsx` | getChatInputMaxHeightWorklet, getChatInputHeightAnimationTimingWorklet, getChatInputMaxHeight | useChatInputMaxHeight (Expand the message bar: the height cap) |
 | 12666 | `design/components/Icon/native/redesign/generated/PhoneIcon.tsx` | PhoneIcon | PhoneIcon (Voice channel options) |

@@ -1,9 +1,9 @@
 {
   "created_at": "2026-11-26T06:49:05",
-  "description": "### \u2728 New Features\n\n* **Discord - Keep deleted messages:** A **Don't keep these** list: paste a profile, server or channel link (or the ID on its own) and deleted messages from there are never kept. Before this, the only filters were \"your own\" and \"bots\"; muting one noisy channel meant turning the whole feature off\n* **Discord - Show hidden channels:** A locked channel's details now say who can see it, worked out from the permission overwrites Discord already sent: whether `@everyone` is excluded, which roles are allowed or hidden by name, and how many people have their own exception. Nothing is guessed when Discord sent no overwrites\n\n### \ud83d\udc1b Bug Fixes\n\n* **Discord - Quest completer:** Fixed the feature retrying for hours after Discord answered 401 or 403 to a Quest request. That answer means the session is no longer allowed to act, and asking again is what turns one refusal into a revoked sign-in (#164, #188: logged out after leaving Complete Quests on). It now stops completely, says so on the Quests page, and stays stopped until Complete Quests is turned off and on again\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.16/patches-1.0.16.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.16",
+  "description": "### \ud83d\udd27 Improvements\n\n* **Discord - Every page:** The release notes and the code comments used to point at issue numbers (`#139`, `#164`, `#186` and so on). Those issues were never public: the numbers came from a private list, so for anyone reading the repository they pointed at nothing. They are gone, and each note now says what it means in words instead. Nothing in the app behaves differently\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.17/patches-1.0.17.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.17",
   "signature_download_url": "",
-  "version": "1.0.16",
+  "version": "1.0.17",
   "public_key": "sy/1df6laT60R26P5kJCHPvvHIhSKfgP9sSRSROMrKU="
 }

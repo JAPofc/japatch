@@ -7,7 +7,7 @@ import org.json.JSONObject
 import java.io.File
 
 /**
- * Keep Bluetooth audio clear in calls (#98). Bluetooth headphones have two ways to carry sound: A2DP (music quality,
+ * Keep Bluetooth audio clear in calls. Bluetooth headphones have two ways to carry sound: A2DP (music quality,
  * playback only) and hands-free/SCO (a narrow two-way phone line that sounds muffled). Discord moves them to hands-free
  * whenever you join a call, voice channel or Stage, even when you never talk: it puts the phone in call mode
  * (MODE_IN_COMMUNICATION) and then starts SCO (startBluetoothSco on Android 12 and older, setCommunicationDevice with

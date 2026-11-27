@@ -207,7 +207,7 @@ fun main(args: Array<String>) {
         }
     }
     checkBranches(font, "Font guard"); checkBranches(interceptor, "User-Agent guard")
-    // Pastelize reply text (#45): assembled on Discord's real reply preview text lambda (a detached fixture).
+    // Pastelize reply text: assembled on Discord's real reply preview text lambda (a detached fixture).
     val replyMethod = methods.single { it.definingClass == REPLY_PREVIEW && it.name.startsWith("configureReply\$lambda\$") &&
         it.returnType == "Lkotlin/Unit;" && it.parameterTypes.map { p -> p.toString() } == listOf("Lcom/discord/chat/bridge/structurabletext/StructurableText;", REPLY_PREVIEW, BRIDGE_MESSAGE, "I") }
     val replyOriginal = replyMethod.implementation!!.instructions.map { it.opcode }
@@ -234,7 +234,7 @@ fun main(args: Array<String>) {
     for (field in replyGuard.mapNotNull { (it as? ReferenceInstruction)?.reference as? FieldReference })
         check(dexClasses.any { c -> c.type == field.definingClass && c.fields.any { it.name == field.name && it.type == field.type } }) { "Unresolved reply guard field $field" }
     checkBranches(reply, "Reply guard")
-    // Message highlights (#60) and Bulk delete (#94): assembled on Discord's real HighlightedMessageDrawer.drawHighlight (a detached fixture).
+    // Message highlights and Bulk delete: assembled on Discord's real HighlightedMessageDrawer.drawHighlight (a detached fixture).
     val gutterMethod = methods.single { it.definingClass == HIGHLIGHT_DRAWER && it.name == "drawHighlight" && it.parameterTypes.size == 4 }
     val gutterOriginal = gutterMethod.implementation!!.instructions.map { it.opcode }
     val gutter = MutableMethod(gutterMethod)
@@ -659,7 +659,7 @@ private fun checkHermesSelections(original: ByteArray, groups: List<List<HbcPriv
         if (target.promise) check(original[large + 32].toInt() and 255 >= 2)
     }
     // Hermes deduplicates identical bytecode, so one body can belong to several functions. A stub on a shared
-    // body also replaces the others: trackAppUIViewed2 shared createThread_'s and forum posts stopped (#93).
+    // body also replaces the others: trackAppUIViewed2 shared createThread_'s and forum posts stopped.
     val owners = HashMap<Int, Int>()
     for (id in 0 until header.getInt(40)) {
         val small = 128 + id * 12
