@@ -293,9 +293,9 @@ profile or server, your own always deletable and an administrator able to delete
 through Discord asks for `identify` only, so the server knows your name and avatar and nothing else.
 
 Any other [ReviewDB](https://github.com/Vendicated/Vencord)-compatible server goes in the same field,
-including one you run yourself (the source is [in this repository](reviewdb-server/) — Node and one
-SQLite file, `DEPLOY-REVIEWS.md` says how). Changing the address signs you out of the old one; it is one
-field, not a list of accounts.
+including one you run yourself. The server JaPatch runs is not published: it is one private service, and
+the field is the only thing that ever talks to it. Changing the address signs you out of the old one; it
+is one field, not a list of accounts.
 
 ### Setup
 

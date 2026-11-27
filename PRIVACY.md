@@ -84,11 +84,15 @@ server the app ever contacts.
 - The sign-in token is kept on your phone and belongs to that one address. Changing the address signs
   you out of the old one first.
 
-The server JaPatch runs for itself is `https://japatch-reviewdb.fly.dev`: a small Node service with a
-SQLite file. It stores the reviews written on it, the Discord name and avatar of the people who wrote
-them, and the votes. It has no analytics, and it keeps no access log beyond what Fly.io keeps as the
-host. The source is in [`reviewdb-server/`](reviewdb-server/) in this repository, and
-[reviewdb-server/DEPLOY.md](reviewdb-server/DEPLOY.md) says how to run your own.
+The server JaPatch runs for itself is `https://japatch-reviewdb.fly.dev`, a small service with a SQLite
+file that is not open source: it is one private deployment, and the address above is the only thing in
+JaPatch that ever talks to it. It stores the reviews written on it, the Discord name and avatar of the
+people who wrote them, and the votes — nothing else. It has no analytics, and it keeps no access log
+beyond what Fly.io keeps as the host.
+
+That it is closed does not make it unverifiable: everything it receives is listed above, and the way to
+confirm what leaves your phone is section 6, a packet capture on your own device. If you would rather
+not use it, point the field at a server you run, or empty the field and Reviews is off.
 
 A review you write is public to everyone using that server. Do not write anything there you would not
 put on a postcard.
