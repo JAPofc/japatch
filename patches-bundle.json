@@ -1,9 +1,9 @@
 {
   "created_at": "2026-11-26T06:49:05",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - User and server reviews:** Fixed the page still saying \"Signed in as\" after the server address was changed. The sign-in belonged to the old server, so it showed a name for an address never signed in to; changing the address now signs out of the old one first\n* **Discord - User and server reviews:** Fixed a sign-in made on one server being carried over to the next. A token is only good for the server that issued it, and the next address typed could have been anyone's\n\n### \ud83d\udd27 Improvements\n\n* **Discord - User and server reviews:** The sign-in app row no longer keeps the previous server's app after the address changes, so it asks the new server which app it belongs to\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.12/patches-1.0.12.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.12",
+  "description": "### \u2728 New Features\n\n* **Discord - User and server reviews:** Reviews can be marked helpful or not, with a thumb each way and the count under the text. It is one vote per person per review and tapping the same thumb again takes it back; a server that has no votes simply does not show them\n* **Discord - User and server reviews:** The server menu's Reviews row opens the same sheet a profile's menu opens. It used to expand inside the server sheet, which drew one row and swallowed the rest of the sheet\n\n### \ud83d\udd27 Improvements\n\n* **Discord - User and server reviews:** The review box says \"Tap to edit your review\" once you have written one, because writing again replaces your words rather than adding a second review\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.13/patches-1.0.13.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.13",
   "signature_download_url": "",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "public_key": "sy/1df6laT60R26P5kJCHPvvHIhSKfgP9sSRSROMrKU="
 }

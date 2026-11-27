@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.12";
+    const revision = "1.0.13";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -9109,7 +9109,7 @@
     }
     async function reviewRequest(path, method, body) {
         if (!enabled("reviewDB") || typeof global.fetch !== "function") throw new Error("ReviewDB is disabled or networking is unavailable");
-        if (!/^\/(users(?:\/\d{17,20}\/reviews)?|reports)(?:\?|$)/.test(path)) throw new Error("Invalid ReviewDB request");
+        if (!/^\/(users(?:\/\d{17,20}\/reviews)?|reviews\/\d+\/vote|reports)(?:\?|$)/.test(path)) throw new Error("Invalid ReviewDB request");
         // Credentials go in the Authorization header as ReviewDB's API expects, never in
         // JSON bodies (which proxies and error reporters are more likely to log).
         const token = method && method !== "GET" ? reviewAuth() : "";
@@ -9669,6 +9669,14 @@
         },() => {reviewAdminsLoaded=false;});
     }
     const reviewImage=uri => typeof uri==="string" && /^https:\/\//.test(uri);
+    // Whether the configured server answers POST /reviews/:id/vote. Unknown until a vote is tried: the row draws
+    // the thumbs, and the first refusal that says "not found" turns them off for this address only.
+    const reviewVotes={base:"",ok:true};
+    function reviewVotesOk() {
+        const base=reviewBase();
+        if (reviewVotes.base!==base) {reviewVotes.base=base;reviewVotes.ok=true;}
+        return reviewVotes.ok;
+    }
     function reviewActions(review, owner, ui, refetch) {
         const system=review.type===3, me=currentId(), sender=review.sender || {};
         function confirm(title, content, onConfirm) {
@@ -9712,8 +9720,20 @@
             el(japatchIcon(10733,"ShieldIcon"),{size:"xs",color:styles.muted.color}),
             el(RN.Text,{style:[styles.muted,{flex:1,fontSize:13}]},review.comment));
         // Every review is a row of one card, with the reviewer's picture (or first letter) like Discord's own lists.
+        // The score sits under the text with a thumb each way. ReviewDB has no stars: `type` is the kind of row
+        // (0 review, 3 the notice), and `score` is the count of helpful/not-helpful votes other people gave it.
+        // A server that does not know /vote answers 404, and the row would offer buttons that never work. The
+        // community server is one; ours is not.
+        const votes = !reviewVotesOk() ? null : el(RN.View,{style:{flexDirection:"row",alignItems:"center",gap:6,marginTop:2}},
+            el(ui.FormSubLabel,{text:String(Number(review.score) || 0),style:[styles.muted,{minWidth:12,textAlign:"center"}]}),
+            el(RN.Pressable,{accessibilityRole:"button",accessibilityLabel:tr("Yes"),onPress:() => props.onVote(review,true),
+                style:{padding:4,borderRadius:12,opacity:review.userVote === 1 ? 1 : 0.55}},
+                el(japatchIcon(9658,"ThumbsUpIcon"),{size:"xs",color:styles.muted.color})),
+            el(RN.Pressable,{accessibilityRole:"button",accessibilityLabel:tr("No"),onPress:() => props.onVote(review,false),
+                style:{padding:4,borderRadius:12,opacity:review.userVote === 0 || review.userVote === false ? 1 : 0.55}},
+                el(japatchIcon(10004,"ThumbsDownIcon",japatchIcon(9658,"ThumbsUpIcon")),{size:"xs",color:styles.muted.color})));
         return el(ui.FormRow,{label,
-            subLabel:el(ui.FormSubLabel,{text:review.comment,style:styles.text}),
+            subLabel:el(RN.View,null,el(ui.FormSubLabel,{text:review.comment,style:styles.text}),votes),
             leading:reviewImage(sender.profilePhoto) ? el(RN.Image,{style:{height:36,width:36,borderRadius:18},source:{uri:sender.profilePhoto}}) :
                 avatarBubble({id:String(sender.discordID || sender.username || "?"),username:String(sender.username || "?")},36),
             onLongPress:() => reviewActions(review,props.owner,ui,props.refetch)});
@@ -9740,6 +9760,9 @@
                     style:{height:40,borderRadius:20,alignItems:"center",justifyContent:"center",backgroundColor:"#4e505899"}},
                     el(RN.Text,{style:[styles.text,{fontWeight:"600"}]},label)));
         }
+        // "Your review" told only the first time; after writing, the same box says the text can be changed. It is
+        // one review per person per profile (the server keeps UNIQUE(owner, sender)), so there is never a second
+        // one to fall behind: writing again replaces the words, which the placeholder now says.
         const placeholder=tr(props.shouldEdit ? "Tap to edit your review" : "Tap to add a review");
         function send() {
             if (!canSend || !text.trim()) return;
@@ -9779,6 +9802,32 @@
         const list=reviews || [], me=currentId();
         const shown=settings.reviewWarning ? list : list.filter(review => review.type!==3);
         const refetch=() => {reviewCache.delete(userId);reload(n => n+1);};
+        // Voting: the row is redrawn from local state at once, and the server's list replaces it. A vote the server
+        // refuses puts the old numbers back rather than leaving the row saying something that did not happen.
+        const castVote = (review,isUpvote) => {
+            if (!review || !Number.isFinite(Number(review.id))) return;
+            if (!reviewAuth()) { reviewToast(ui, tr("Sign in to write a review"), japatchIcon(6573,"CircleXIcon")); return; }
+            const before = Number(review.score) || 0, had = review.userVote;
+            const same = had === 1 && isUpvote || had === 0 && !isUpvote;
+            const delta = same ? (isUpvote ? -1 : 1) : (had == null ? (isUpvote ? 1 : -1) : (isUpvote ? 2 : -2));
+            const mine = same ? null : (isUpvote ? 1 : 0);
+            setReviews(list => (list || []).map(item => item.id === review.id ? Object.assign({}, item, {score: before + delta, userVote: mine}) : item));
+            const path = "/reviews/" + review.id + "/vote";
+            const done = () => reviewCache.delete(userId);
+            reviewRequest(path, same ? "DELETE" : "POST", same ? undefined : {isUpvote}).then(result => {
+                done();
+            }, error => {
+                setReviews(list => (list || []).map(item => item.id === review.id ? Object.assign({}, item, {score: before, userVote: had}) : item));
+                const problem = String(error && error.message || error);
+                // "404" or a body that names a missing route: this server has no votes, so stop offering them.
+                if (/\b404\b|not found|Unknown route|Cannot (GET|POST|DELETE)/i.test(problem)) {
+                    reviewVotes.base = reviewBase(); reviewVotes.ok = false; refetch();
+                    reviewToast(ui, tr("ReviewDB server"), japatchIcon(6573,"CircleXIcon"));
+                    return;
+                }
+                reviewToast(ui, problem, japatchIcon(6573,"CircleXIcon"));
+            });
+        };
         const rows=error ? el(RN.View,{style:{gap:8}},
             el(RN.Text,{accessibilityRole:"alert",style:styles.text},tr("Couldn't load reviews: {problem}",{problem:error})),
             reviewRetry(refetch)) :
@@ -9786,7 +9835,7 @@
             !shown.length ? el(RN.Text,{style:[styles.muted,{paddingHorizontal:8,paddingVertical:4}]},tr("No reviews yet.")) :
             el(RN.View,null,shown.map((review,index) => el(React.Fragment,{key:(review.id==null ? "" : String(review.id))+":"+index},
                 index && review.type!==3 && shown[index-1].type!==3 ? el(RN.View,{style:[{height:1,marginLeft:56},styles.divider]}) : null,
-                el(ReviewRow,{review,owner:userId,ui,styles,refetch}))));
+                el(ReviewRow,{review,owner:userId,ui,styles,refetch,onVote:castVote}))));
         return el(RN.View,{style:[styles.card]},
             el(Card,props.standalone ? {accessibilityLabel:tr("Reviews")} : {title:tr("Reviews")},
                 el(RN.View,{style:{gap:8}},rows),
@@ -9826,18 +9875,16 @@
         if (!React || !RN || !features.reviewDB || typeof userId!=="string") return tree;
         return el(React.Fragment,null,tree,el(ReviewSection,{key:"japatch-reviews:"+userId,userId}));
     }
-    // The server sheet already supplies its native scrolling/presentation context
-    // (GuildActionSheet fn60681). Expand content there instead of spawning a second
-    // dialog. No detached dispatcher callback, new portal or nested RN ScrollView.
+    // The server menu's Reviews row opens the same sheet a profile's menu opens. It used to expand in place,
+    // inside the server sheet's own list: tapping it replaced everything with one row, and on the device the row
+    // that only showed the title did nothing at all. A sheet of its own is the one shape that is known to work.
     function ServerReviews(props) {
         useReviews();
-        const [open,setOpen]=React.useState(false), ui=reviewUI();
-        React.useEffect(() => {setOpen(false);},[props.guildId]);
+        const ui=reviewUI();
         if (!enabled("reviewDB") || !RN || !ui.TableRow) return null;
         return el(RN.View,null,
-            el(ui.TableRowGroup || RN.View,null,el(ui.TableRow,{label:tr("Reviews"),icon:rowIcon(9658,"ThumbsUpIcon"),arrow:!open,
-                accessibilityState:{expanded:open},onPress:() => {if (enabled("reviewDB")) setOpen(value => !value);}})),
-            open ? el(ReviewSection,{key:props.guildId,userId:props.guildId,standalone:true}) : null);
+            el(ui.TableRowGroup || RN.View,null,el(ui.TableRow,{label:tr("Reviews"),icon:rowIcon(9658,"ThumbsUpIcon"),arrow:true,
+                onPress:() => openReviewSheet(String(props.guildId))})));
     }
     function reviewGuild(orig,self,args) {
         if (React) { useSettings("reviewDB"); useSettings("hideAnything"); }

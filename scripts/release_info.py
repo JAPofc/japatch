@@ -23,6 +23,17 @@ BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separat
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.13] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - User and server reviews:** Reviews can be marked helpful or not, with a thumb each way and the count under the text. It is one vote per person per review and tapping the same thumb again takes it back; a server that has no votes simply does not show them
+* **Discord - User and server reviews:** The server menu's Reviews row opens the same sheet a profile's menu opens. It used to expand inside the server sheet, which drew one row and swallowed the rest of the sheet
+
+### 🔧 Improvements
+
+* **Discord - User and server reviews:** The review box says "Tap to edit your review" once you have written one, because writing again replaces your words rather than adding a second review
+
 ## [1.0.12] (2026-11-26)
 
 ### 🐛 Bug Fixes
