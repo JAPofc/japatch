@@ -1124,8 +1124,8 @@ val questCompleter = bytecodePatch(
 
 @Suppress("unused")
 val streamBadge = bytecodePatch(
-    name = "Streaming badge",
-    description = "Shows the Go Live session you are already running, its viewers and how far the Streaming badge really is, plus the last seven days. Nothing is created or sent."
+    name = "Streaming hours tracker",
+    description = "Follows the Go Live session you are already running and how far the Streaming badge really is, plus the last seven days. It only reads what Discord reports: nothing is created or sent."
 ) {
     compatibleWith(discord)
     section(PLUGINS)

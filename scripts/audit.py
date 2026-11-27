@@ -132,6 +132,19 @@ def main():
         fail(f"release notes still name numbers nothing resolves: {sorted(set(refs))[:6]}")
     else:
         ok("no release note names an issue number")
+    # The same rule outside the notes: the README and every patch description are what a user reads before or after
+    # installing, and a bare "#202" reads like an issue or pull request that nothing can open.
+    docs = [ROOT / "README.md"] + sorted((ROOT / "patches/src/main/kotlin").rglob("*.kt"))
+    leaks = []
+    for path in docs:
+        for match in re.finditer(r"(?<![\w&])#\d+\b", path.read_text(encoding="utf-8")):
+            if re.fullmatch(r"#[0-9a-fA-F]{3,8}", match.group(0)):
+                continue
+            leaks.append(f"{path.relative_to(ROOT)}: {match.group(0)}")
+    if leaks:
+        fail(f"a number nothing resolves, outside the notes: {leaks[:6]}")
+    else:
+        ok("no README line or patch description names an issue number")
 
     # --- the README's own links ---
     for path in re.findall(r"\]\((?!https?:|#)([^)#]+)", readme):

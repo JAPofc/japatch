@@ -196,7 +196,10 @@ for (let i = 0; i < tokens.length - 1; i++) {
             }
         });
     }
-    out.forEach(value => { if (/[A-Za-z]/.test(value) && value !== 'JaPatch') found.add(value); });
+    out.forEach(value => {
+        if (!/[A-Za-z]/.test(value) || value === 'JaPatch') return;
+        found.add(value);
+    });
 }
 
 // Components that take their texts as object props and pass them through tr() inside:
@@ -224,12 +227,52 @@ for (const table of ['HIGHLIGHT_PING_CHOICES', 'HIGHLIGHT_DELETED_CHOICES', 'MY_
     const match = new RegExp('const ' + table + ' = \\[([\\s\\S]*?)\\];').exec(source);
     if (match) for (const value of match[1].matchAll(/\["\w+", "([^"]+)"/g)) found.add(value[1]);
 }
+// Tables the runtime draws on screen that are plain arrays of strings. A const array is invisible to the call-site
+// walk above, which is exactly how the first Quest risk panel shipped six English sentences under an Indonesian
+// title while this check reported every language complete. Any such table is read here, by name, so adding one
+// means adding it to this list -- and the guard below fails the build when a screen-bound array is missed.
+const SCREEN_TABLES = ['QUEST_RISK'];
+for (const table of SCREEN_TABLES) {
+    const match = new RegExp('const ' + table + ' = \\{([\\s\\S]*?)\\n    \\};').exec(source);
+    if (!match) continue;
+    // The capture is raw source, so a text written as "\u2026" comes back with the escape in it. Unescape it the
+    // way the tokenizer does, or the same sentence ends up in the list twice and one of them looks untranslated.
+    for (const value of match[1].matchAll(/tr\("((?:[^"\\]|\\.){12,})"\)/g)) {
+        try { found.add(JSON.parse('"' + value[1] + '"')); } catch (_) { found.add(value[1]); }
+    }
+}
 const names = /const LANGUAGE_NAMES = \{([\s\S]*?)\};/.exec(source);
 if (names) for (const match of names[1].matchAll(/:"([^"]+)"/g)) found.add(match[1]);
 found.add('another language');
 for (const table of ['PLATFORM_LABELS', 'PLATFORM_STATUS']) {
     const match = new RegExp('const ' + table + ' = \\{([^}]*)\\}').exec(source);
     if (match) for (const value of match[1].matchAll(/:"([^"]+)"/g)) if (value[1] !== 'VR') found.add(value[1]);
+}
+// confirmAction(title, body, confirmText) passes every argument through tr() inside, so a plain string handed to it is
+// text the screen shows. A literal there is not inside a tr() call, so it needs its own read. Only the statement the
+// call starts in is read, and only whole-word sentences are kept: code, setting names and icon names sit in the same
+// lines and are not text anyone reads.
+{
+    const call = /\bconfirmAction\(/g;
+    let match;
+    while ((match = call.exec(source))) {
+        const rest = source.slice(match.index);
+        const end = rest.search(/;\n/);
+        const inner = end >= 0 ? rest.slice(0, end) : rest.slice(0, 600);
+        const lits = /"((?:[^"\\\n]|\\.){8,})"/g;
+        let one;
+        while ((one = lits.exec(inner))) {
+            let value;
+            try { value = JSON.parse('"' + one[1] + '"'); } catch (_) { continue; }
+            // Two or more words, letters only, no call syntax: a sentence, not a setting or an icon name.
+            if (!/[A-Za-z]/.test(value)) continue;
+            if (/[(){};=\[\]<>\\/]/.test(value)) continue;
+            if (!/^[A-Za-z][A-Za-z0-9'\u2019 ,.!?\-]*$/.test(value)) continue;
+            if (value.split(/\s+/).length < 2) continue;
+            found.add(value);
+        }
+        call.lastIndex = match.index + 1;
+    }
 }
 const hidden = /const HIDDEN_CHANNEL = "([^"]+)", HIDDEN_CATEGORY = "([^"]+)"/.exec(source);
 if (hidden) { found.add(hidden[1]); found.add(hidden[2]); }
@@ -239,3 +282,29 @@ if (require.main === module) {
     process.stdout.write(JSON.stringify(Array.from(found).sort(), null, 1) + '\n');
 }
 module.exports = {tokenize, splitArgs, stringsInExpr, found};
+
+// Guard: a sentence-length string sitting in a const table, written in a way that reads like a sentence, that nothing
+// above picked up, is almost always text the screen shows and the language files never got. Fail loudly instead of
+// shipping English in one language.
+//
+// Narrow on purpose: technical tables (user agents, module ids, file names) are full of long strings that no reader
+// ever sees, and a guard that cries about those gets switched off. A sentence here means two or more words separated
+// by spaces and ending in a full stop.
+if (require.main === module) {
+    const SENTENCE = /^[A-Z][^"]{30,}\.$/;
+    const TECHNICAL = /^(Mozilla|https?:|\/|[A-Za-z0-9_.-]+\/[0-9])/;
+    const loose = [];
+    for (const match of source.matchAll(/const [A-Z][A-Z0-9_]* = \{([\s\S]*?)\n    \};?/g)) {
+        for (const value of match[1].matchAll(/"((?:[^"\\]|\\.){30,}?)"/g)) {
+            const text = value[1];
+            if (found.has(text) || !SENTENCE.test(text) || TECHNICAL.test(text)) continue;
+            if (text.split(' ').length < 3) continue;
+            loose.push(text);
+        }
+    }
+    if (loose.length) {
+        process.stderr.write('i18n_strings: these look like on-screen texts no language file can reach:\n' +
+            loose.map(t => '  ' + JSON.stringify(t.slice(0, 90))).join('\n') + '\n');
+        process.exit(1);
+    }
+}

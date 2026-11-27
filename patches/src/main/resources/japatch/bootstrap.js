@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.23";
+    const revision = "1.0.24";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -1936,10 +1936,13 @@
         // Advanced
         toggle("advanced", "experiments", "Unlock Discord experiments", "Adds Dev Tools to Settings, to try features Discord is still testing.");
         withOptions("advanced", "voiceOptions", "JAPATCH_VOICEOPTIONS", "Voice channel options", "Choose the volume, audio output and sounds for voice channels.", "Voice channel options", VoiceOptionsSettings);
-        withOptions("advanced", "noHandsfree", "JAPATCH_NOHANDSFREE", "Keep Bluetooth audio clear in calls", "Headphones stay in music quality in calls. Your phone's mic picks up your voice.", "Bluetooth calls", NoHandsfreeSettings);
+        withOptions("advanced", "noHandsfree", "JAPATCH_NOHANDSFREE", "Keep Bluetooth audio clear in calls", "Headphones stay in music quality in calls. Your phone's mic picks up your voice, which can sound muffled to others.", "Bluetooth calls", NoHandsfreeSettings);
         withOptions("advanced", "fakeDeafen", "JAPATCH_FAKEDEAFEN", "Fake deafen", "Look deafened in a call while you can still hear. Choose whether your mic stays muted.", "Fake deafen", FakeDeafenSettings);
         withOptions("quests", "badges", "JAPATCH_BADGES", "Complete badges automatically", "Plays real PC games in the background for game time and unique games.", "Badges", BadgeSettings);
-        withOptions("quests", "streamBadge", "JAPATCH_STREAMBADGE", "Streaming badge", "Shows the Go Live session you are already running and how far the Streaming badge really is. Nothing is created or sent.", "Streaming badge", StreamBadgeSettings);
+        // The name says what it does: follows the session you already run. "Streaming badge" read like a switch that
+        // makes one, which it has never done, so the feature row and its page carry the tracker's name while the card
+        // inside still names Discord's own badge.
+        withOptions("quests", "streamBadge", "JAPATCH_STREAMBADGE", "Streaming hours tracker", "Follows the Go Live session you are already running and how far the Streaming badge really is. Nothing is created or sent.", "Streaming hours tracker", StreamBadgeSettings);
         const listed = [["Messages", groups.messages], ["Sending", groups.sending], ["People", groups.people],
             ["Servers", groups.servers], ["Appearance", groups.appearance], ["Quests", groups.quests], ["Advanced", groups.advanced]];
         const sections = listed.map(([label, ids]) => section(label, ids)).filter(entry => entry.settings.length);
@@ -6389,11 +6392,9 @@
         const Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow, on = enabled("quests");
         const toggle = (key, label, subLabel, icon) => switchRow(Switch, key, label, subLabel, icon);
         // The warning is a screen of its own on this page, so the switch behind it can only be set from its last step.
+        // The panel draws its own title; a heading above it only said "Read this first" twice.
         if (quest.risk) return el(RN.View, {style:{gap:12}},
-            el(RN.View, {key:"riskHead", style:{paddingHorizontal:16}},
-                badgeText(tr("Read this first"), "text-md/bold", "text-feedback-critical", {color:"#f23f43", fontSize:16, fontWeight:"700"})),
-            el(QuestRiskPanel, {key:"risk:" + quest.risk, s, feature:quest.risk, onClose:() => { quest.risk = null; animateLayout(); notify("quests"); }}),
-            el(RN.View, {key:"riskGap", style:{height:8}}));
+            el(QuestRiskPanel, {key:"risk:" + quest.risk, s, feature:quest.risk, onClose:() => { quest.risk = null; animateLayout(); notify("quests"); }}));
         const rewards = on ? questRewardsRefresh() : [];
         const groups = [
             on ? statusCard("status", questStatusText(), {title:questStatusTitle(), IconComponent:japatchIcon(quest.halted || quest.error ? 13123 : quest.running ? 11180 : 13929,
@@ -7620,15 +7621,17 @@
     // The two Quests options that ask Discord for something it did not expect, and the warning each has to get past.
     // Same shape as Add hours: three things ticked, the word typed, and only then the switch. Nothing turns on from a
     // single tap, and turning it off is always one tap.
+    // Every line is spelled out as its own tr() call: a plain array of strings is invisible to the language check,
+    // which is how the first version of this panel shipped English under an Indonesian title.
     const QUEST_RISK = {
-        questAutoClaim: {word:"CLAIM",
-            lines:["Discord records every reward claim with a time and a network address. Automating one is not something Discord offers, and it is the clearest record there is.",
-                   "If Discord wants a captcha, the claim will fail instead of going through. The reward stays yours and this is left alone for a while, but claiming by hand is what always works.",
-                   "You can turn this off at any time, and a reward that already went through can't be taken back."]},
-        questsFastBeat: {word:"FASTER",
-            lines:["This makes a Quest finish no sooner. Discord counts the time on its own clock, and each answer carries the total it has counted, not the number of times it was asked. Asking five times as often moves the progress the same amount.",
-                   "What it does do is make the requests five times as frequent as Discord's own app ever sends them, which is exactly the pattern an automated client has.",
-                   "The gain is small and the record is clearer. Normal is what Discord's desktop app does."]}};
+        questAutoClaim: {word:"CLAIM", lines:[
+            tr("Discord records every reward claim with a time and a network address. Automating one is not something Discord offers, and it is the clearest record there is."),
+            tr("If Discord wants a captcha, the claim will fail instead of going through. The reward stays yours and this is left alone for a while, but claiming by hand is what always works."),
+            tr("You can turn this off at any time, and a reward that already went through can't be taken back.")]},
+        questsFastBeat: {word:"FASTER", lines:[
+            tr("This makes a Quest finish no sooner. Discord counts the time on its own clock, and each answer carries the total it has counted, not the number of times it was asked. Asking five times as often moves the progress the same amount."),
+            tr("What it does do is make the requests five times as frequent as Discord's own app ever sends them, which is exactly the pattern an automated client has."),
+            tr("The gain is small and the record is clearer. Normal is what Discord's desktop app does.")]}};
     // A switch that will not move on one tap: it opens the warning, and only the end of the warning sets it.
     function riskRow(ui, feature, label, subLabel, icon) {
         if (!ui.TableRow) return null;
@@ -7659,7 +7662,7 @@
         const finish = () => { setSetting(props.feature, true); props.onClose(); };
         if (step === 0) return el(RN.View, {style:danger.box},
             title(tr("Read this first")),
-            spec.lines.map((line, i) => el(RN.View, {key:"l" + i}, body(tr(line)))),
+            spec.lines.map((line, i) => el(RN.View, {key:"l" + i}, body(line))),
             check(0, tr("I have read the three points above.")),
             check(1, tr("I understand this is not something Discord offers.")),
             check(2, tr("I understand my account carries the result, not JaPatch.")),
@@ -9225,9 +9228,9 @@
         const groups = [
             on ? null : offCard("status", japatchIcon(13214, "HeadphonesIcon"), "noHandsfree"),
             el(Group, {key:"opts", title:tr("In calls")},
-                switchRow(Switch, "noHandsfreeMic", "Use the headset microphone", "When others can't hear you, turn this on: the headset's own microphone is used, and the headphones go back to call quality.",
+                switchRow(Switch, "noHandsfreeMic", "Use the headset microphone", "Fixes sounding muffled. The headset's own microphone is used, and the headphones go back to call quality, so music-quality sound stops.",
                     rowIcon(13214, "HeadphonesIcon"))),
-            footnote("note", "Left off, the headphones stay in music quality and your phone's microphone picks up your voice. Turn this on if others can't hear you.")];
+            footnote("note", "Left off, the headphones stay in music quality and your phone's microphone picks up your voice. That is why you can sound muffled or distant to others: your headset's own microphone is not used, even though it is right next to your mouth. Turn Use the headset microphone on if anyone says you sound muffled.")];
         return settingsBody(ui, groups);
     }
     function FakeDeafenSettings() {
@@ -9877,8 +9880,15 @@
         const task = Promise.resolve().then(async () => {
             const response = await global.fetch(url,Object.assign({credentials:"omit",headers:{accept:"application/json","content-type":"application/json"}},options,controller ? {signal:controller.signal} : {}));
             let result;
-            try {result = await response.json();} catch (_) {throw new Error("ReviewDB returned an unreadable response (HTTP "+response.status+")");}
-            if (!response.ok || !result || result.success === false) throw new Error(result && result.message || "ReviewDB HTTP "+response.status);
+            try {result = await response.json();} catch (_) {
+                const bad = new Error("ReviewDB returned an unreadable response (HTTP "+response.status+")");
+                bad.status = response.status; throw bad;
+            }
+            if (!response.ok || !result || result.success === false) {
+                const failed = new Error(result && result.message || "ReviewDB HTTP "+response.status);
+                // The status is what tells a 404 (this server has no such route) apart from an auth refusal.
+                failed.status = response.status; throw failed;
+            }
             return result;
         });
         // Abort alone is insufficient on Android versions without AbortController,
@@ -9899,6 +9909,45 @@
         const base = reviewBase();
         if (!base) return Promise.reject(new Error("No ReviewDB server is set"));
         return reviewJson(base+path,{method:method || "GET",headers,...(body ? {body:JSON.stringify(body)} : {})});
+    }
+    // What the address actually answers. Reviews stayed empty for a user while everything looked signed in, and the
+    // only way to find out why was to guess: the app threw away the HTTP status, so "this server has no /users route"
+    // read the same as "nobody has reviewed this profile". This gives the page something to say.
+    const reviewHealth = {base:"", state:"idle", note:"", clientId:"", at:0};
+    function reviewHealthAsk(force) {
+        const base = reviewBase();
+        if (!base || typeof global.fetch !== "function") return;
+        if (!force && reviewHealth.base === base && reviewHealth.state !== "idle") return;
+        if (reviewHealth.base !== base) { reviewHealth.base = base; reviewHealth.state = "idle"; reviewHealth.note = ""; }
+        if (reviewHealth.state === "asking") return;
+        reviewHealth.state = "asking";
+        global.fetch(base + "/health", {credentials:"omit", headers:{accept:"application/json"}})
+            .then(response => response.ok ? response.json() : Promise.reject(Object.assign(new Error("HTTP " + response.status), {status: response.status})))
+            .then(info => {
+                if (reviewBase() !== base) return;
+                reviewHealth.state = "ok";
+                reviewHealth.clientId = info && typeof info.clientId === "string" ? info.clientId : "";
+                reviewHealth.at = Date.now();
+            })
+            .catch(error => {
+                if (reviewBase() !== base) return;
+                reviewHealth.state = "bad";
+                const code = Number(error && error.status);
+                reviewHealth.note = code === 404 ? "This address has no ReviewDB health route." : String(error && error.message || error);
+            })
+            .then(() => notify("reviewDB"));
+    }
+    function reviewHealthText() {
+        if (reviewHealth.state === "asking") return tr("Checking the server…");
+        if (reviewHealth.state === "bad") return tr("The server did not answer: {why}", {why:reviewHealth.note});
+        if (reviewHealth.state !== "ok") return "";
+        const expected = reviewClientId();
+        // The sign-in went to the address, and the address names the Discord app it belongs to. Two different ids
+        // mean tokens handed out here were never the ones that address will accept.
+        if (reviewHealth.clientId && expected && reviewHealth.clientId !== expected) {
+            return tr("The server belongs to a different Discord app ({theirs}) than the one this build signs in with ({ours}). Sign-in tokens will not be accepted until the two match.", {theirs:reviewHealth.clientId, ours:expected});
+        }
+        return tr("The server answered.");
     }
     function clearReviewAuth() {
         // Every Discord logout lands here: only rewrite preferences when a sign-in was saved.
@@ -10082,6 +10131,9 @@
         const ui=reviewUI();
         if (!React || !RN || !ui.TableRow) return null;
         const authenticated=!!reviewAuth(), pending=reviewAuthState==="exchanging", on=enabled("reviewDB");
+        // Checking is a plain GET to the address the user already chose; it runs once when the page opens so the
+        // answer is there before anyone wonders why the list is empty.
+        if (on) React.useEffect(() => { reviewHealthAsk(false); }, [settings.reviewServer]);
         const Group=ui.TableRowGroup || RN.View, Switch=ui.TableSwitchRow;
         const me=currentUser(), myName=me && (me.globalName || me.global_name || me.username);
         const groups=[
@@ -10099,6 +10151,14 @@
             el(Group,{key:"server",title:tr("Server")},
                 el(ui.TableRow,{key:"server",label:tr("ReviewDB server"),icon:rowIcon(8062,"GlobeEarthIcon"),arrow:true,
                     subLabel:reviewBase() || tr("None set, Reviews is off"),onPress:openReviewServer}),
+                // What the address answers, in its own words. A server that answers /health but has no review route
+                // reads as "empty" everywhere else; this is the only place the difference shows.
+                on ? statusCard("health", reviewHealthText() || tr("Tap to check the server."),
+                    {title:reviewHealth.state === "bad" ? tr("Server problem") : tr("Server check"),
+                     IconComponent:japatchIcon(reviewHealth.state === "bad" ? 7148 : 7144, reviewHealth.state === "bad" ? "CircleWarningIcon" : "CircleCheckIcon"),
+                     trailing:reviewHealth.state === "asking" ? null : el(ui.TableRow ? RN.Pressable || RN.View : RN.View,
+                        {onPress:() => { haptic("SELECTION"); reviewHealthAsk(true); }},
+                        japatchIcon(reviewHealth.state === "bad" ? 11630 : 11630, "RefreshIcon"))}) : null,
                 !reviewBase() ? null : el(ui.TableRow,{key:"client",label:tr("Sign-in app"),icon:rowIcon(6917,"KeyIcon"),disabled:true,
                     subLabel:reviewClientId() === REVIEW_CLIENT_DEFAULT ? tr("{id} (JaPatch's own)",{id:REVIEW_CLIENT_DEFAULT}) : tr("{id} (this server's own)",{id:reviewClientId()})}),
                 footnote("serverNote",tr("Reviews sends that profile's or server's ID to this address and nothing else. Leave it empty to keep Reviews off. A server of your own needs its own Discord app: clientId@https://your-server/api/reviewdb."))),
@@ -13453,18 +13513,38 @@
     // Top-level channelId/messageId keys are never read, so pushes used to share one tag and each new
     // one silently replaced the one before it. A unique message_id inside userInfo keeps them all.
     let pushCounter = 0;
-    function japatchPush(title, body) {
+    // Discord's own avatar for a person, at the size a notification wants. Empty when the store has nothing to
+    // build it from, which keeps the notification exactly as it was rather than failing.
+    function pushAvatarUrl(userId) {
+        if (!userId || !/^\d{17,20}$/.test(String(userId))) return "";
+        // The same user store the people list already reads; no new module id to guess at.
+        let user = null;
+        try { if (userStore) user = userStore.getUser(userId); } catch (_) { return ""; }
+        const hash = user && user.avatar;
+        if (typeof hash !== "string" || !hash) return "";
+        return "https://cdn.discordapp.com/avatars/" + userId + "/" + hash + ".png?size=128";
+    }
+    function japatchPush(title, body, iconUrl) {
         const pushMod = inspectedExport(11028, "default");
         if (!pushMod || typeof pushMod.presentLocalNotification !== "function") return false;
         const mid = "japatch-" + Date.now().toString(36) + "-" + (++pushCounter);
+        // A message with no avatar used to come through the same as one with it, so the picture that says who it is
+        // was never sent. The extra fields are read after the two required ones and a module that ignores them shows
+        // the same notification as before.
+        const payload = {alertTitle:title, alertBody:body, userInfo:{message_id:mid}};
+        if (iconUrl) {
+            payload.attachments = [{identifier:"avatar", url:iconUrl, type:"image/png"}];
+            payload.avatarUrl = iconUrl;
+            payload.icon = iconUrl;
+        }
         try {
-            pushMod.presentLocalNotification({alertTitle:title, alertBody:body, userInfo:{message_id:mid}});
+            pushMod.presentLocalNotification(payload);
             return true;
         } catch (_) { return false; }
     }
-    function userNotifPushSend(content, title) {
+    function userNotifPushSend(content, title, userId) {
         if (!settings.userNotifPush || isAppActive()) return;
-        japatchPush(title || tr("Activity notifications"), content);
+        japatchPush(title || tr("Activity notifications"), content, pushAvatarUrl(userId));
     }
     function userNotifFriendIds() {
         const store = userNotif.relationships || (userNotif.relationships = inspectedExport(4855, "default"));
@@ -13598,7 +13678,10 @@
         try {
             showToast(ui, "japatch-user-notif:" + userNotif.shown, content, Icon);
         } catch (_) {}
-        userNotifPushSend(content, vars && typeof vars.name === "string" ? vars.name : "");
+        // `who` is the person the notification is about. It is not a {placeholder}, so it is stripped before the
+        // text is translated: tr() only ever looks up the sentence.
+        const who = vars && typeof vars.who === "string" ? vars.who : "";
+        userNotifPushSend(content, vars && typeof vars.name === "string" ? vars.name : "", who);
         notify("userNotif");
     }
     // Every server that loads at startup used to walk the whole friends list again; now it's done once after them.
@@ -13660,7 +13743,7 @@
         if (!prev || prev === nextStatus) return;
         if (settings.userNotifLogStatus) userNotifLog("s", id, user, null, null, {s:nextStatus, p:prev});
         if (!settings.userNotifStatus || !userNotifAllowed(id, "status:" + nextStatus)) return;
-        userNotifShow("{name} is now {status}", {name:userNotifPersonName(id, user), status:userNotifStatusName(nextStatus)});
+        userNotifShow("{name} is now {status}", {name:userNotifPersonName(id, user), status:userNotifStatusName(nextStatus), who:id});
     }
     function userNotifMessage(event) {
         if (!enabled("userNotif") || !(settings.userNotifMessages || settings.userNotifLogMessages) || !event || event.optimistic) return;
@@ -13676,10 +13759,10 @@
         if (!settings.userNotifMessages || userNotifInView(channelId) || !userNotifAllowed(id, "message")) return;
         const name = userNotifPersonName(id, author);
         const place = userNotifPlace(channelId, message.guild_id || message.guildId || event.guildId);
-        if (place.isDm) userNotifShow("{name} sent you a DM", {name});
-        else if (place.cName && place.gName) userNotifShow("{name} sent a message in #{channel} ({server})", {name, channel:place.cName, server:place.gName});
-        else if (place.cName) userNotifShow("{name} sent a message in #{channel}", {name, channel:place.cName});
-        else userNotifShow("{name} sent a message", {name});
+        if (place.isDm) userNotifShow("{name} sent you a DM", {name, who:id});
+        else if (place.cName && place.gName) userNotifShow("{name} sent a message in #{channel} ({server})", {name, channel:place.cName, server:place.gName, who:id});
+        else if (place.cName) userNotifShow("{name} sent a message in #{channel}", {name, channel:place.cName, who:id});
+        else userNotifShow("{name} sent a message", {name, who:id});
     }
     function userNotifTyping(event) {
         if (!enabled("userNotif") || !(settings.userNotifTyping || settings.userNotifLogTyping) || !event) return;
@@ -13690,10 +13773,10 @@
         if (!settings.userNotifTyping || userNotifInView(channelId) || !userNotifAllowed(id, "typing:" + channelId, USER_NOTIF_TYPING_MS)) return;
         const name = userNotifPersonName(id, event.user);
         const place = userNotifPlace(channelId, event.guildId || event.guild_id);
-        if (place.isDm) userNotifShow("{name} is typing in your DM", {name});
-        else if (place.cName && place.gName) userNotifShow("{name} is typing in #{channel} ({server})", {name, channel:place.cName, server:place.gName});
-        else if (place.cName) userNotifShow("{name} is typing in #{channel}", {name, channel:place.cName});
-        else userNotifShow("{name} is typing", {name});
+        if (place.isDm) userNotifShow("{name} is typing in your DM", {name, who:id});
+        else if (place.cName && place.gName) userNotifShow("{name} is typing in #{channel} ({server})", {name, channel:place.cName, server:place.gName, who:id});
+        else if (place.cName) userNotifShow("{name} is typing in #{channel}", {name, channel:place.cName, who:id});
+        else userNotifShow("{name} is typing", {name, who:id});
     }
     function userNotifEvent(event) {
         if (!event || !enabled("userNotif")) return;

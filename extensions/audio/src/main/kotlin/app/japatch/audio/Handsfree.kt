@@ -25,7 +25,7 @@ object Handsfree {
     private const val PREFS = "japatch-patches.json"
     private const val MAX_PREFS = 4 * 1024 * 1024
     private const val KEY = "noHandsfree"
-    /** #169: when the headset's own microphone is preferred, the hands-free link is let through. */
+    /** When the headset's own microphone is preferred, the hands-free link is let through. */
     private const val KEY_MIC = "noHandsfreeMic"
 
     @Volatile
@@ -46,7 +46,7 @@ object Handsfree {
     /**
      * AudioManager.setMode: call mode is skipped while A2DP headphones are connected and the switch is on.
      *
-     * #169: with the headphones' microphone picked (or no A2DP link any more), the call must go through as usual, or the
+     * With the headphones' microphone picked (or no A2DP link any more), the call must go through as usual, or the
      * mic stays silent. Since the phone is never put in call mode in that case, a mode left over from an earlier drop is
      * cleared here so capture starts from a clean state.
      */
@@ -76,7 +76,7 @@ object Handsfree {
      * refused while it applies, which leaves the sound on A2DP. Any other choice (speaker, earpiece, a wired headset) is
      * passed on, so picking an output in Discord still works.
      *
-     * #169: on Bluetooth Classic both the music (A2DP) and the call (hands-free) side are one headset, so when Discord
+     * On Bluetooth Classic both the music (A2DP) and the call (hands-free) side are one headset, so when Discord
      * picks the hands-free device to make the microphone work, refusing it left the mic dead. Whatever the switch's
      * stored state says, a request for the call's microphone now goes through, and the audio keeps flowing over A2DP only
      * when Discord asks for sound alone.

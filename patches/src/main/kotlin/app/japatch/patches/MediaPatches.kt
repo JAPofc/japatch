@@ -22,7 +22,7 @@ private const val MEDIA_PLAYBACK_PERMISSION = "android.permission.FOREGROUND_SER
 
 /**
  * The service that keeps Discord running while sound plays in the background, and the permission Android 14 asks of a
- * media playback service. A root mount (#121) keeps the stock manifest: there the service is missing, so the notification
+ * media playback service. A root mount keeps the stock manifest: there the service is missing, so the notification
  * still shows but Android may pause Discord a while after you leave it.
  */
 private val mediaServiceManifest = resourcePatch {

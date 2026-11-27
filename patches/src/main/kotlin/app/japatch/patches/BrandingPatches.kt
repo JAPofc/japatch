@@ -101,7 +101,7 @@ val customBranding = resourcePatch(
 ) {
     compatibleWith(discord)
     section(PLUGINS)
-    // A root mount (#121) lays the patched APK over the installed Discord, and Android keeps reading that Discord's own
+    // A root mount (installing the patched APK over the installed Discord) keeps reading that Discord's own
     // manifest: a new package name can't be mounted over com.discord, and a new name or icon would never show. Morphe's
     // own Custom branding patches are left out of mounts for the same reason.
     // DISABLED means offered but unticked. This rule replaces Morphe's own, which turns `default` into ENABLED/DISABLED,

@@ -26,6 +26,23 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.24] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Reviews:** The Reviews page now checks the server address it is pointed at and says what came back. A server that answers but has no review route reads as "nothing stored" everywhere else, which is how reviews that are on the server looked empty; the page now says the server did not answer, or that it belongs to a different Discord app than the one this build signs in with
+* **Discord - User notifications:** A notification now carries the picture of the person it is about, taken from the user Discord already has on the phone. It is sent as an extra field after the required ones, so a build that ignores it shows the same notification as before
+
+### 🐛 Bug Fixes
+
+* **Discord - Warning screens:** Fixed a title drawn twice at the top of the two warning screens, and the three warning lines under it, which were written as one block of text so every language showed them in English
+* **Discord - Translations:** Fixed the language check missing whole screens: it now reads the strings that warning screens, confirmation dialogs and preset lists carry, not only the ones written inside a tr() call, and everything it finds is translated in all 34 languages, so a screen cannot ship half in English again
+
+### 🔧 Improvements
+
+* **Discord - Streaming hours tracker:** The feature is named for what it tracks. It follows the Go Live session you are already running and how far the Streaming badge really is; it never starts a stream or sends anything
+* **Discord - Keep Bluetooth audio clear in calls:** The page and the feature's own description now say what people actually hit: with the headphones in music quality, calls use your phone's microphone, so you can sound muffled or distant. The switch that uses the headset's microphone instead is named right there, so the fix is one tap away
+
 ## [1.0.23] (2026-11-27)
 
 ### ✨ New Features
