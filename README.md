@@ -9,12 +9,14 @@
 A feature and privacy patch set for Discord on Android, built for [Morphe](https://morphe.software).
 No root, no second app, no Xposed, no remote code — just Discord, patched at install time.
 
-[![Discord](https://img.shields.io/badge/Discord-351.11%20Stable-5865F2?logo=discord&logoColor=white)](#compatibility)
-[![License](https://img.shields.io/badge/license-GPL--3.0-green)](LICENSE)
+<!-- Badges are drawn in this repository (docs/badges) rather than fetched from shields.io: that host is
+     blocked or unreachable for many readers, and a broken badge is the first thing anyone sees. -->
+[![Discord](docs/badges/discord.svg)](#compatibility)
+[![License](docs/badges/license.svg)](LICENSE)
 [![Build](https://github.com/JAPofc/japatch/actions/workflows/build.yml/badge.svg)](https://github.com/JAPofc/japatch/actions/workflows/build.yml)
-[![Release](https://img.shields.io/github/v/release/JAPofc/japatch?label=release)](https://github.com/JAPofc/japatch/releases)
-[![Languages](https://img.shields.io/badge/languages-29-8957E5)](#languages)
-[![Features](https://img.shields.io/badge/features-82-3BA55D)](#features)
+[![Release](docs/badges/release.svg)](https://github.com/JAPofc/japatch/releases)
+[![Languages](docs/badges/languages.svg)](#languages)
+[![Features](docs/badges/features.svg)](#features)
 
 [**Add to Morphe**](https://morphe.software/add-source?github=JAPofc/japatch&name=JaPatch) ·
 [Releases](https://github.com/JAPofc/japatch/releases) ·
