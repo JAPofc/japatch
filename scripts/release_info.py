@@ -20,9 +20,18 @@ HEADING = re.compile(r"^## \[(?P<version>[^\]\s]+)\] \((?P<date>\d{4}-\d{2}-\d{2
 BULLET = re.compile(r"^\* \*\*Discord(?: - [^*:]+)?:\*\* (?P<desc>\S.*[^.])$")
 # Release-page leftovers that don't belong in notes.
 BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separately|checked by patching", re.I | re.M)
+# "#139" reads like an issue or pull request, and every one of these ever written pointed at nothing: the numbers came
+# from a private list. Vague again ("issue numbers") is fine; a bare number is not.
+ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.19] (2026-11-27)
+
+### 🐛 Bug Fixes
+
+* **Discord - Every page:** Fixed the What's new page still showing the issue numbers that the 1.0.17 note was about. The notes travel inside the bundle, so the copy written into 1.0.18 carried them too; the page now reads the corrected note
+
 ## [1.0.18] (2026-11-27)
 
 ### 🚀 Updated App Support
@@ -49,7 +58,7 @@ RELEASES = r"""
 
 ### 🔧 Improvements
 
-* **Discord - Every page:** The release notes and the code comments used to point at issue numbers (`#139`, `#164`, `#186` and so on). Those issues were never public: the numbers came from a private list, so for anyone reading the repository they pointed at nothing. They are gone, and each note now says what it means in words instead. Nothing in the app behaves differently
+* **Discord - Every page:** The release notes and the code comments used to point at issue numbers. Those issues were never public: the numbers came from a private list, so for anyone reading the repository they pointed at nothing. They are gone, and each note now says what it means in words instead. Nothing in the app behaves differently
 
 ## [1.0.16] (2026-11-27)
 
@@ -308,6 +317,12 @@ def check():
                                  f"on one line, without a full stop: {line}")
             if section == "### 🐛 Bug Fixes" and not match.group("desc").startswith("Fixed "):
                 raise SystemExit(f"release_info.py {version}: every bug fix must start with 'Fixed ': {line}")
+            # Both rules were only written down before, never run: release-page leftovers slipped into a note and the
+            # #139-style numbers stayed in 1.0.17 long after every other copy of them was gone.
+            if BANNED.search(line):
+                raise SystemExit(f"release_info.py {version}: release-page leftover in a note: {line}")
+            if ISSUE_REF.search(line):
+                raise SystemExit(f"release_info.py {version}: no issue numbers, nothing there is public; say it in words: {line}")
             bullets += 1
         if not bullets:
             raise SystemExit(f"release_info.py {version}: no changes listed")
