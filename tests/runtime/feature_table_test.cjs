@@ -88,5 +88,26 @@ check("every page with a switch subscribes to settings", () => {
     eq(silent.join(","), "", "switch pages with no useSettings():");
 });
 
+// --- a key the patches ask to switch on must actually reach the runtime -------------------------------
+check("every key a patch switches on is in the runtime list (streamBadge was not)", () => {
+    // 1.0.21 shipped a Streaming badge that did not exist inside the app: the patch asked for its key, the Kotlin
+    // list that becomes the features map never carried it, and withOptions() drops a row whose key is missing.
+    // Nothing checked the direction "asked for, never emitted", which is exactly how it got through.
+    const kt = fs.readFileSync(path.join(ROOT, "patches/src/main/kotlin/app/japatch/patches/DiscordPatches.kt"), "utf8");
+    const asked = new Set([
+        ...Array.from(kt.matchAll(/additionalSelections \+= "([A-Za-z0-9_]+)"/g)).map(m => m[1]),
+        ...Array.from(kt.matchAll(/selectRuntimeFeature\("([A-Za-z0-9_]+)"\)/g)).map(m => m[1]),
+    ]);
+    const emitted = new Set(kotlinFeatureKeys());
+    const lost = Array.from(asked).filter(key => !emitted.has(key)).sort();
+    eq(lost.join(", "), "", "patches ask for keys the build never emits:");
+});
+
+check("every key the runtime emits has an icon, or the counter skips it", () => {
+    const icons = featureIconsKeys(), patched = kotlinFeatureKeys();
+    const missing = patched.filter(key => !icons.includes(key));
+    eq(missing.join(", "), "", "runtime features with no icon:");
+});
+
 if (failures) { console.log(failures + " failing"); process.exit(1); }
 console.log("all passed");

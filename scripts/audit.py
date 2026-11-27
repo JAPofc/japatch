@@ -83,6 +83,27 @@ def main():
         fail(f"README says {total.group(1)} patches, the manifest has {len(patches)}")
     ok(f"manifest: {len(patches)} patches = " + " + ".join(f"{v} {k}" for k, v in sorted(by_cat.items())))
 
+    # --- the badge SVGs and the README table, which drifted by themselves for several releases ---
+    # Nothing read these files, so docs/badges/languages.svg still said 29 while 34 languages shipped, and the table
+    # under the header said 82 features while the manifest had 83 patches. They are drawn in the repository, so a
+    # check here is the only thing that can keep them honest.
+    for name, expected in (("languages", len(index)), ("features", len(patches))):
+        svg = (ROOT / f"docs/badges/{name}.svg").read_text(encoding="utf-8")
+        found = re.search(r'aria-label="' + name + r': (\d+)"', svg)
+        if not found:
+            fail(f"docs/badges/{name}.svg has no readable number")
+        elif int(found.group(1)) != expected:
+            fail(f"docs/badges/{name}.svg says {found.group(1)}, the real number is {expected}")
+        else:
+            ok(f"{name} badge shows {expected}")
+    table = re.search(r'<td align="center"><b>(\d+)</b><br/>patches</td>\s*<td align="center"><b>(\d+)</b><br/>languages</td>', readme)
+    if not table:
+        fail("the README table no longer has the patches and languages cells")
+    elif (int(table.group(1)), int(table.group(2))) != (len(patches), len(index)):
+        fail(f"README table says {table.group(1)} patches and {table.group(2)} languages, real: {len(patches)} and {len(index)}")
+    else:
+        ok(f"README table agrees: {len(patches)} patches, {len(index)} languages")
+
     # --- the runtime's feature switch table has a key for every patch that has one ---
     for p in patches:
         key = p.get("settings_key") or p.get("key")

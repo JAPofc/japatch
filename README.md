@@ -28,8 +28,8 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 
 <table>
 <tr>
-<td align="center"><b>82</b><br/>features</td>
-<td align="center"><b>29</b><br/>languages</td>
+<td align="center"><b>83</b><br/>patches</td>
+<td align="center"><b>34</b><br/>languages</td>
 <td align="center"><b>0</b><br/>calls home</td>
 <td align="center"><b>5</b><br/>trackers off</td>
 <td align="center"><b>1</b><br/>file to update</td>
@@ -285,7 +285,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | --- | --- |
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
 | JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, an account and session page, debug logs and a crash screen |
-| Streaming badge | Reports the Go Live session you are already running, so its hours count toward your Streaming badge |
+| Streaming badge | Shows the Go Live session you are already running, its viewers and how far the Streaming badge really is, plus the last seven days |
 
 **78 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
@@ -478,3 +478,7 @@ projects above. Discord is a trademark of Discord Inc.
 By using JaPatch you accept Discord's Terms of Service; some features (platform spoof, automatic quests
 and badges) may put your account at risk and are off by default for that reason. The full wording of what
 that means is in [Terms of use](TERMS.md), and what leaves the phone is in [Privacy policy](PRIVACY.md).
+
+**Experimental:** the Streaming badge is a reading of what Discord reports about your own Go Live session.
+It sends nothing, but it depends on event names Discord can change, so it may stop working on a future
+Discord version, and its numbers are only as right as Discord's. It is not a guarantee that a badge moves.

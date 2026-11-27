@@ -77,7 +77,7 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.21";
+    const revision = "1.0.22";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -1244,7 +1244,8 @@
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
         compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"],
-        hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"]};
+        hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"],
+        streamBadge:[18964, "ScreenIcon"]};
     const japatchIcons = new Map();
     function japatchIcon(id, name, fallback) {
         const slot = id + ":" + name;
@@ -1662,7 +1663,7 @@
         platformSpoof:() => tr("Discord doesn't allow showing a platform you're not on. Accounts have been actioned for this, so turn it on only if you accept the risk."),
         // The only badge counted by Discord's own media servers, so the honest warning is a different one: hours only
         // move while a real Go Live runs and somebody is watching. This reports that session; it cannot invent one.
-        streamBadge:() => tr("Only a real Go Live session counts: Discord checks it on its own servers, and streaming to nobody earns nothing. This reports the session you are already running and cannot create one, so it will not raise the badge by itself. It is still a report Discord does not expect from a phone, and accounts have been actioned for automating badge progress.")};
+        streamBadge:() => tr("This is experimental and may stop working when Discord changes how it reports a stream. It only reads the session you are already running and cannot start one, and streaming to nobody earns nothing, so turn it on only if you accept the risk that the numbers may be wrong.")};
     // Cancelling remounts the switch (riskCancels is in its key), so a native switch that already slid on slides back.
     let riskCancels = 0;
     function turnOnAsking(key, value) {
@@ -1938,7 +1939,7 @@
         withOptions("advanced", "noHandsfree", "JAPATCH_NOHANDSFREE", "Keep Bluetooth audio clear in calls", "Headphones stay in music quality in calls. Your phone's mic picks up your voice.", "Bluetooth calls", NoHandsfreeSettings);
         withOptions("advanced", "fakeDeafen", "JAPATCH_FAKEDEAFEN", "Fake deafen", "Look deafened in a call while you can still hear. Choose whether your mic stays muted.", "Fake deafen", FakeDeafenSettings);
         withOptions("quests", "badges", "JAPATCH_BADGES", "Complete badges automatically", "Plays real PC games in the background for game time and unique games.", "Badges", BadgeSettings);
-        withOptions("quests", "streamBadge", "JAPATCH_STREAMBADGE", "Streaming badge", "Reports the Go Live session you are already running, so its hours count. Nothing is created.", "Streaming badge", StreamBadgeSettings);
+        withOptions("quests", "streamBadge", "JAPATCH_STREAMBADGE", "Streaming badge", "Shows the Go Live session you are already running and how far the Streaming badge really is. Nothing is created or sent.", "Streaming badge", StreamBadgeSettings);
         const listed = [["Messages", groups.messages], ["Sending", groups.sending], ["People", groups.people],
             ["Servers", groups.servers], ["Appearance", groups.appearance], ["Quests", groups.quests], ["Advanced", groups.advanced]];
         const sections = listed.map(([label, ids]) => section(label, ids)).filter(entry => entry.settings.length);
@@ -7230,83 +7231,175 @@
     // running_game_heartbeat with a duration. Discord cannot check those, because the game runs on your phone; that is
     // why Complete badges works at all.
     //
-    // Streaming is counted by Discord's own media servers, from a live Go Live session somebody actually watched. Two
-    // consequences, both measured by other projects and reported the same way:
-    //   * Telemetry alone does nothing. /science accepts it (HTTP 204) and the streaming counter ignores every hour.
-    //   * Streaming to nobody does nothing either: with no viewer in the call there is no session to count.
+    // Streaming is the one badge Discord counts itself, on its own media servers, from a Go Live session that somebody
+    // actually watched. Nothing this file sends can add an hour to it: the fake-playtime path used for game time and
+    // game variety does not exist here, because the hours are not reported by the client at all.
     //
-    // So this does not claim hours. It does the one honest thing left on a phone: while you are genuinely live, it
-    // reports that live session as the desktop client would, with the session's own real id and the real time spent.
-    // Every number below comes from Discord's own session, never from a counter this code owns.
-    const STREAM_CONNECTED = 4;
-    const streamBadge = {session:null, watching:false, reported:0};
-    // Discord exposes the live session as a store keyed by user. The id and start time are Discord's, not ours, so a
-    // report can only ever describe a session that exists.
-    function streamBadgeStore() {
-        for (const [id, key] of [[9052, "default"], [10858, "getCurrentUserActiveStream"], [12942, "default"]]) {
-            const found = inspectedExport(id, key);
-            if (!found) continue;
-            try {
-                if (typeof found.getCurrentUserActiveStream === "function" || typeof found.getStreamForUser === "function") return found;
-            } catch (_) {}
+    // So the feature is a reader. Discord broadcasts the whole life of a stream on its Flux dispatcher, which is a
+    // module this file already listens to in a dozen places, so nothing about the session has to be guessed:
+    //   STREAM_CREATE / STREAM_UPDATE   the session and its viewers, keyed "call:<channelId>:<userId>"
+    //   STREAM_SET_PAUSED               the stream was paused or resumed
+    //   STREAM_STOP / STREAM_DELETE     it ended
+    // The key names the account that owns the stream, so somebody else's stream in the same call is never adopted.
+    //
+    // Everything shown comes from Discord: the viewer count is viewerIds.length from its own event, the elapsed time
+    // starts when its own event arrives, and the tier and the hours streamed are read from BadgeStore like the rows
+    // above. The only thing kept here is how long each day ran, so the page can estimate when the next tier lands.
+    const STREAM_BADGE_DAYS = 7, STREAM_HISTORY_MAX_DAYS = 30, STREAM_HISTORY_FILE = "japatch-stream-history.json";
+    const streamBadge = {session:null, dispatcher:null, attached:false, user:null, history:null, restoring:false, saving:false, saveTimer:undefined};
+    // One minute of a stream, attributed to the day it happened on. Nothing else is stored: no channel, no stream key,
+    // no id, nothing that could identify who was watched or where.
+    function streamDayId(at) {
+        const date = new Date(at);
+        return date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+    }
+    function streamHistoryLoad() {
+        if (streamBadge.history) return streamBadge.history;
+        streamBadge.history = {};
+        if (!files) return streamBadge.history;
+        if (!streamBadge.restoring) {
+            streamBadge.restoring = true;
+            Promise.resolve().then(() => {
+                const constants = typeof files.getConstants === "function" ? files.getConstants() : files;
+                const directory = constants && constants.DocumentsDirPath;
+                if (typeof directory !== "string") return null;
+                const path = directory.replace(/\/$/, "") + "/" + STREAM_HISTORY_FILE;
+                return Promise.resolve().then(() => files.fileExists(path)).then(exists => exists ? files.readFile(path, "utf8") : null);
+            }).then(text => {
+                if (!text || text.length > 64 * 1024) return;
+                const saved = JSON.parse(text);
+                if (!saved || saved.version !== 1 || !saved.days || typeof saved.days !== "object") return;
+                Object.keys(saved.days).forEach(day => {
+                    const minutes = Number(saved.days[day]);
+                    if (/^\d{4}-\d{2}-\d{2}$/.test(day) && Number.isFinite(minutes) && minutes > 0 && minutes < 24 * 60) streamBadge.history[day] = minutes;
+                });
+                notify("streamBadge");
+            }).catch(() => {});
         }
-        return null;
+        return streamBadge.history;
     }
-    function streamBadgeSession() {
-        const store = streamBadgeStore(), user = badges.user || (currentUser() || {}).id;
-        if (!store || !user) return null;
-        try {
-            const one = typeof store.getStreamForUser === "function" ? store.getStreamForUser(user) : store.getCurrentUserActiveStream();
-            if (!one || !one.streamId) return null;
-            // Only a connected session is live; a pending one has no media yet and Discord counts nothing for it.
-            if (one.state != null && one.state !== STREAM_CONNECTED && one.state !== "CONNECTED") return null;
-            return {id:String(one.streamId), startedAt:Number(one.startTime) || Number(one.startedAt) || Date.now(),
-                viewers:Number(one.viewerCount) || 0};
-        } catch (_) { return null; }
+    function streamHistorySave() {
+        if (!files || streamBadge.saveTimer !== undefined) return;
+        streamBadge.saveTimer = later(() => {
+            streamBadge.saveTimer = undefined;
+            const days = {}, keep = Object.keys(streamBadge.history).sort().slice(-STREAM_HISTORY_MAX_DAYS);
+            keep.forEach(day => { days[day] = streamBadge.history[day]; });
+            streamBadge.history = days;
+            Promise.resolve().then(() => files.writeFile("documents", STREAM_HISTORY_FILE, JSON.stringify({version:1, days}), "utf8")).catch(() => {});
+        }, 2000);
     }
-    // Viewer count matters: Discord only counts hours watched. Zero viewers means the session earns nothing whatever
-    // this reports, and saying so is more useful than quietly doing nothing.
-    function streamBadgeStatus() {
-        const live = streamBadgeSession();
-        if (!live) return {live:false, viewers:0, minutes:0};
-        return {live:true, viewers:live.viewers, minutes:Math.max(0, Math.floor((Date.now() - live.startedAt) / 60000)),
-            counted:live.viewers > 0};
+    // The account a "call:<channelId>:<userId>" key belongs to, or null when the key is not one we can read. A key we
+    // cannot read means the session is not adopted at all: better to show nothing than to count somebody else's stream.
+    function streamOwner(key) {
+        if (typeof key !== "string") return null;
+        const parts = key.split(":");
+        if (parts.length !== 3 || parts[0] !== "call") return null;
+        if (!/^\d{5,25}$/.test(parts[1]) || !/^\d{5,25}$/.test(parts[2])) return null;
+        return parts[2];
     }
-    // One report per whole minute of a live session, the shape the desktop client sends: video_stream_heartbeat with
-    // the session's real duration. Nothing is invented; if the session ends, reporting stops with it.
-    async function streamBadgeReport() {
-        if (!enabled("streamBadge")) return;
-        const live = streamBadgeSession();
-        if (!live || live.viewers <= 0) return;
+    function streamBadgeUser() {
+        return badges.user || (currentUser() || {}).id || null;
+    }
+    // Picks up whatever the event says about a session. Only create/update/pause carry a whole session; stop and delete
+    // end it. Anything that is not this account's stream is ignored, and never overwrites a live one.
+    function streamBadgeEvent(event) {
+        if (!event || typeof event.type !== "string" || !enabled("streamBadge")) return;
+        const type = event.type;
+        if (type === "STREAM_CREATE" || type === "STREAM_UPDATE" || type === "STREAM_SET_PAUSED") {
+            const key = event.streamKey || (event.stream && event.stream.streamKey);
+            const owner = streamOwner(key);
+            const user = streamBadgeUser();
+            if (!owner || !user || owner !== user) return;
+            const live = streamBadge.session;
+            // A different session of the same account replaces the old one; the old one ended without a stop event.
+            const startedAt = live && live.key === key ? live.startedAt : Date.now();
+            const viewers = Array.isArray(event.viewerIds) ? event.viewerIds.length
+                : live && live.key === key ? live.viewers : 0;
+            streamBadge.session = {key, startedAt, viewers, paused:!!event.paused || !!(event.stream && event.stream.paused),
+                server:live && live.key === key ? live.server : false, countedAt:Date.now(), user};
+            notify("streamBadge");
+            return;
+        }
+        if (type === "STREAM_SERVER_UPDATE") {
+            const key = event.streamKey, live = streamBadge.session;
+            if (live && (!key || live.key === key)) { live.server = true; notify("streamBadge"); }
+            return;
+        }
+        if (type === "STREAM_STOP" || type === "STREAM_DELETE") {
+            // Another account's stream ending in the same call must not close this one: a stop names the channel, and
+            // only the session in that channel is ours to end. A stop with nothing to match on is ignored as well,
+            // because ending a live session on a guess would lose the minutes it just earned.
+            const live = streamBadge.session;
+            if (!live) return;
+            const key = event.streamKey, channel = event.channelId;
+            const mine = key ? key === live.key : channel ? live.key === "call:" + channel + ":" + streamOwner(live.key) : false;
+            if (!mine) return;
+            streamBadgeEnd();
+            return;
+        }
+        if (type === "LOGOUT") streamBadgeReset();
+    }
+    // Closes the session and adds the minutes it ran to today's total. Called on stop and on a replaced session.
+    function streamBadgeEnd() {
+        const live = streamBadge.session;
+        streamBadge.session = null;
+        if (!live) { notify("streamBadge"); return; }
         const minutes = Math.floor((Date.now() - live.startedAt) / 60000);
-        if (minutes <= streamBadge.reported) return;
-        streamBadge.reported = minutes;
-        const user = badges.user || (currentUser() || {}).id;
-        if (!user) return;
-        try {
-            const authorization = badgeAuth(user);
-            if (!authorization) return;
-            const token = await badgeAnalyticsToken(user, authorization);
-            // The same event name and properties Discord's own client sends while sharing your screen.
-            const event = badgeEvent("video_stream_heartbeat", {stream_id:live.id, stream_session_id:live.id,
-                duration_tracked_ms:minutes * 60000 - (live.reportedMs || 0), viewers:live.viewers});
-            live.reportedMs = minutes * 60000;
-            await questRequest("/science", {token, events:[event]}, true, "post", undefined, {authorization});
-            streamBadge.session = live.id;
-        } catch (_) {}
+        if (minutes > 0) {
+            const history = streamHistoryLoad(), day = streamDayId(live.startedAt);
+            history[day] = Math.min(24 * 60, (history[day] || 0) + minutes);
+            streamHistorySave();
+        }
+        notify("streamBadge");
     }
-    // Runs only while the feature is on and a session is live; the timer is cleared with the feature.
-    function streamBadgeTick() {
-        streamBadge.timer = undefined;
-        if (!enabled("streamBadge")) return;
-        streamBadgeReport();
-        streamBadge.timer = later(streamBadgeTick, 60000, false);
+    function streamBadgeReset() {
+        streamBadge.session = null;
+        if (streamBadge.saveTimer !== undefined && global.clearTimeout) global.clearTimeout(streamBadge.saveTimer);
+        streamBadge.saveTimer = undefined;
+        notify("streamBadge");
+    }
+    // What the page shows. Every number is either Discord's or a plain subtraction of two clock readings.
+    function streamBadgeStatus() {
+        const live = streamBadge.session, now = Date.now();
+        const history = streamHistoryLoad();
+        const days = [], start = new Date(now);
+        start.setHours(0, 0, 0, 0);
+        for (let i = STREAM_BADGE_DAYS - 1; i >= 0; i--) {
+            const at = new Date(start.getTime() - i * 86400000), day = streamDayId(at.getTime());
+            const minutes = (history[day] || 0) + (live && streamDayId(live.startedAt) === day ? Math.floor((now - live.startedAt) / 60000) : 0);
+            days.push({day, minutes});
+        }
+        const total = days.reduce((sum, entry) => sum + entry.minutes, 0);
+        const active = days.filter(entry => entry.minutes > 0).length;
+        return {live:!!live, viewers:live ? live.viewers : 0, paused:live ? live.paused : false,
+            minutes:live ? Math.max(0, Math.floor((now - live.startedAt) / 60000)) : 0,
+            counted:!!live && !live.paused && live.server && live.viewers > 0,
+            days, week:total, average:active ? Math.round(total / active) : 0};
+    }
+    // "The next tier is about 2 days away at the pace of the last week." Null when there is nothing honest to say.
+    function streamBadgeEstimate(status) {
+        const info = badgeInfo("STREAMING");
+        if (!info || info.current == null || info.goal == null || info.goal <= info.current) return null;
+        const left = info.goal - info.current;
+        if (!status.average) return {left, days:null};
+        return {left, days:Math.max(1, Math.ceil(left * 60 / status.average))};
     }
     function streamBadgeStart() {
-        if (streamBadge.timer !== undefined || !enabled("streamBadge")) return;
-        streamBadge.timer = later(streamBadgeTick, 5000, false);
+        if (!enabled("streamBadge")) return;
+        streamHistoryLoad();
+        streamBadge.user = streamBadgeUser();
     }
-    function streamBadgeStop() { if (streamBadge.timer !== undefined && global.clearTimeout) global.clearTimeout(streamBadge.timer); streamBadge.timer = undefined; streamBadge.reported = 0; }
+    function streamBadgeStop() {
+        streamBadgeEnd();
+        streamBadge.user = null;
+    }
+    function streamBadgeInit(dispatcher) {
+        if (streamBadge.attached || !dispatcher || typeof dispatcher.subscribe !== "function") return;
+        streamBadge.attached = true;
+        streamBadge.dispatcher = dispatcher;
+        ["STREAM_CREATE", "STREAM_UPDATE", "STREAM_SERVER_UPDATE", "STREAM_SET_PAUSED", "STREAM_STOP", "STREAM_DELETE", "LOGOUT"]
+            .forEach(type => { try { dispatcher.subscribe(type, streamBadgeEvent); } catch (_) {} });
+    }
     function badgeProgressCard(s, on) {
         const listed = features.streamBadge ? BADGE_ROWS.concat([STREAM_BADGE_ROW]) : BADGE_ROWS;
         const rows = listed.map(([key, icon, iconName]) => {
@@ -7442,33 +7535,62 @@
     }
     function StreamBadgeSettings() {
         useSettings("streamBadge");
-        // The page redraws once a minute so "2 hours 12 minutes" moves without a refresh button.
+        // The page redraws once a minute so "2 hours 12 minutes" moves without a refresh button, and the flux
+        // subscription redraws it the moment Discord reports a new viewer.
         const [, redraw] = React.useState(0);
         React.useEffect(() => {
             if (!enabled("streamBadge")) return undefined;
-            const timer = global.setInterval && global.setInterval(() => redraw(n => n + 1), 60000);
-            if (enabled("streamBadge")) streamBadgeStart();
+            streamBadgeStart();
+            if (!global.setInterval) return undefined;
+            const timer = global.setInterval(() => redraw(n => n + 1), 60000);
             return () => { if (timer !== undefined && global.clearInterval) global.clearInterval(timer); };
         }, []);
         const ui = reviewUI(), s = badgeCardStyles();
         if (!RN) return null;
-        const Group = ui.TableRowGroup || RN.View, on = enabled("streamBadge"), live = on ? streamBadgeStatus() : {live:false};
+        const Group = ui.TableRowGroup || RN.View, on = enabled("streamBadge"), status = streamBadgeStatus();
         const hours = minutes => minutes >= 60
             ? tr("{h} h {m} min", {h:Math.floor(minutes / 60), m:minutes % 60}) : tr("{m} min", {m:minutes});
         const verdict = !on ? tr("Off")
-            : !live.live ? tr("No Go Live session right now")
-            : !live.counted ? tr("Live, but nobody is watching, so nothing counts")
-            : tr("Live for {time}, with {n} watching", {time:hours(live.minutes), n:live.viewers});
+            : !status.live ? tr("No Go Live session right now")
+            : status.paused ? tr("Paused, so the time stops")
+            : !status.viewers ? tr("Live, but nobody is watching, so nothing counts")
+            : tr("Live for {time}, with {n} watching", {time:hours(status.minutes), n:status.viewers});
+        // The week, then what it means for the next tier. An estimate is only drawn when a day of streaming
+        // actually happened: with no history there is nothing to extrapolate from.
+        const estimate = on ? streamBadgeEstimate(status) : null;
+        const weekDays = on && status.week > 0 ? status.days.filter(entry => entry.minutes > 0) : [];
+        const dayName = day => {
+            const date = new Date(day + "T12:00:00");
+            return ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()];
+        };
         const groups = [
-            riskCard("risk", "Only a real Go Live session counts: Discord checks it on its own servers, and streaming to nobody earns nothing. This reports the session you are already running and cannot create one, so it will not raise the badge by itself."),
+            riskCard("risk", "Nothing here sends anything to Discord: the page only reads the Go Live session Discord already reports. Streaming to nobody earns nothing, so a session with no viewer changes no number."),
             on ? statusCard("status", verdict, {title:tr("Streaming badge"), IconComponent:japatchIcon(18964, "ScreenIcon")})
                 : offCard("status", japatchIcon(18964, "ScreenIcon"), "streamBadge"),
             // The badge's own progress, read from Discord like the other two rows. Zero here means Discord has not seen a
             // watched session yet, which is the honest answer, not a bug.
             badgeProgressCard(badgeCardStyles(), on),
+            on ? el(RN.View, {key:"week", style:{gap:10}},
+                groupTitle("weekTitle", "Last 7 days"),
+                el(RN.View, {style:s.card},
+                    weekDays.length
+                        ? el(RN.View, {style:{gap:10}},
+                            el(RN.View, {style:{gap:8}}, weekDays.map(entry => el(RN.View, {key:entry.day, style:{gap:4}},
+                                el(RN.View, {style:{flexDirection:"row", justifyContent:"space-between"}},
+                                    badgeText(dayName(entry.day), "text-sm/medium", "text-muted", {color:"#949ba4", fontSize:13}),
+                                    badgeText(hours(entry.minutes), "text-sm/semibold", "text-strong", {color:"#f2f3f5", fontSize:13, fontWeight:"600"})),
+                                el(JaPatchProgress, {key:"bar:" + entry.day, value:Math.min(1, entry.minutes / (6 * 60))})))),
+                          badgeText(tr("Average {time} a day you were live.", {time:hours(status.average)}), "text-sm/medium", "text-muted", {color:"#949ba4", fontSize:13}))
+                        : badgeText(tr("Nothing recorded yet. Start a screen share and the days you stream fill in here."), "text-sm/medium", "text-muted", {color:"#949ba4", fontSize:13}),
+                    estimate && estimate.left
+                        ? badgeText(estimate.days
+                            ? tr("{time} to the next tier at this pace.", {time:pl(estimate.days, "{n} day", "{n} days")})
+                            : tr("{time} to the next tier. A week of streaming gives an estimate in days.", {time:tr("{h} h", {h:Math.round(estimate.left)})}),
+                            "text-sm/semibold", "text-strong", {color:"#f2f3f5", fontSize:13, fontWeight:"600"})
+                        : null)) : null,
             el(Group, {key:"how", title:tr("How it works")},
-                footnote("how1", "Start a screen share in a voice channel with at least one other person in it, like you normally would. While it runs, its own session id and its own elapsed time are reported. Discord adds them up in its nightly job, so a tier can take a day or two to move."),
-                footnote("how2", "Nothing is reported when you are not live. Streaming to an empty channel is not counted: with no viewer Discord ignores the session entirely."))];
+                footnote("how1", "Share your screen in a voice channel with somebody in it, like you normally would. Discord counts the hours on its own servers, so this page only reads what it reports: the same session, the same viewers, the same time. A tier can take a day or two to move."),
+                footnote("how2", "Nothing leaves the phone from this page. The only thing kept is how many minutes each day was live, so the estimate has a real average to work from."))];
         return settingsBody(ui, groups);
     }
     function BadgeSettings() {
@@ -24467,6 +24589,7 @@
                 if (features.validUser && exports && exports.default) validInit(exports.default);
                 if (features.quests) questsInit(exports.default);
                 if (features.badges && exports && exports.default) badgesInit(exports.default);
+                if (features.streamBadge && exports && exports.default) streamBadgeInit(exports.default);
                 if ((features.nitroThemes || features.accountSwitcher) && exports && exports.default) nitroThemeAttach(exports.default);
                 if (features.bulkDelete && exports && exports.default) bulkDeleteInit(exports.default);
                 if (features.expandBar && exports && exports.default) expandBarInit(exports.default);

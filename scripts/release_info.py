@@ -26,6 +26,23 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.22] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Streaming badge:** Rewritten to read where Discord actually reports a stream instead of guessing a Discord module number. It listens for the Go Live events Discord already sends, and takes the session and the number of people watching from them, so a stream that is not yours is never counted and a paused stream stops
+* **Discord - Streaming badge:** The page now shows the week: how long each of the last seven days ran, the average, and roughly how many days the next tier needs at that pace. It also says when a stream is paused, and when it is live with nobody watching
+* **Discord - Streaming badge:** It sends nothing at all. The hours are counted by Discord's own media servers, so a report from the phone could not add to them; the page only reads what Discord already reports. The only thing saved on the phone is how many minutes each day was live
+
+### 🐛 Bug Fixes
+
+* **Discord - Streaming badge:** Fixed the feature 1.0.21 announced never actually being in the app. The patch asked for its key, but the list the build turns into the features table never carried it, so the row and its settings page were dropped without an error. It is in the table now, and the list is checked against every key the patches ask for, so the same thing cannot happen quietly again
+* **Discord - Documentation:** Fixed the header claiming 29 languages while 34 ship, and 82 features while the manifest listed 83 patches. Both badge files and the table are read by the audit now, so they cannot drift again
+
+### 🔧 Improvements
+
+* **Discord - Streaming badge:** Live time is kept per day, so the estimate is built from what actually happened rather than a fixed guess
+
 ## [1.0.21] (2026-11-27)
 
 ### ✨ New Features
