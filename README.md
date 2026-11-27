@@ -285,7 +285,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | --- | --- |
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
 | JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, an account and session page, debug logs and a crash screen |
-| Streaming badge | Shows the Go Live session you are already running, its viewers and how far the Streaming badge really is, plus the last seven days |
+| Streaming hours tracker | Follows the Go Live session you are already running and how far the Streaming badge really is, plus the last seven days |
 
 **78 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
