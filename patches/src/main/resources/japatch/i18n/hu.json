@@ -2150,6 +2150,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Ez is {link} formájában megy el, és mindenki látja a matricát",
   "Polls": "Szavazások",
   "{n} h": "{n} ó",
-  "Add from link": "Hozzáadás linkről"
+  "Add from link": "Hozzáadás linkről",
+  "Stay in calls when you are alone": "Maradj a hívásokban, ha egyedül vagy",
+  "Stay in calls": "Maradj a hívásban",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "A Discord három perc egyedüllét után magától elhagyja a hangcsatornát. Ez ott tart, amíg meg nem nyomod a Kijelentkezés gombot.",
+  "In a call": "Hívásban",
+  "Leave the server's AFK channel": "Lépés ki a szerver AFK-csatornájából",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Az, hogy ott egyedül vagy, azt jelenti, hogy nincs senki a közelben, így a Discord saját AFK-ba lépése ott továbbra is megtörténik.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "A Discord három perc egyedüllét után bontja a kapcsolatot. Ez leállítja ezt a hívást, és soha nem küld semmit a Discordnak.",
+  "To leave, press Disconnect in the call as usual.": "A kilépéshez nyomd meg a hívásban a Kijelentkezés gombot, ahogy szoktad."
  }
 }

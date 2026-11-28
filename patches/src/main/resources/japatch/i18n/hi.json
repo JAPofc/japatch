@@ -2150,6 +2150,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "यह भी {link} के रूप में भेजा जाता है, और सभी को स्टिकर दिखता है",
   "Polls": "पोल",
   "{n} h": "{n} घं.",
-  "Add from link": "लिंक से जोड़ें"
+  "Add from link": "लिंक से जोड़ें",
+  "Stay in calls when you are alone": "अकेले होने पर कॉल में बने रहें",
+  "Stay in calls": "कॉल में बने रहें",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord अकेले तीन मिनट रहने के बाद वॉइस चैनल खुद छोड़ देता है। यह आपको तब तक वहीं रखता है जब तक आप डिसकनेक्ट न दबाएँ।",
+  "In a call": "कॉल में",
+  "Leave the server's AFK channel": "सर्वर के AFK चैनल को छोड़ें",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "वहाँ अकेले होने का मतलब है कि आसपास कोई नहीं है, इसलिए Discord का अपना AFK पर जाना वहाँ अब भी होता है।",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord अकेले तीन मिनट बाद डिसकनेक्ट भेजता है। यह उस कॉल को रोकता है, Discord को कभी कुछ नहीं भेजता।",
+  "To leave, press Disconnect in the call as usual.": "जाने के लिए, हमेशा की तरह कॉल में डिसकनेक्ट दबाएँ।"
  }
 }

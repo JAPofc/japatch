@@ -44,6 +44,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 2014 | `stores/MediaEngineStore.tsx` | default | MediaEngineStore (Badge Completer) |
 | 2040 | `stores/DetectableGameStore.tsx` | default | DetectableGameStore (Badge Completer) |
 | 2049 | `modules/user_settings/UserSettingsProtoActionCreators.tsx` | PreloadedUserSettingsActionCreators | UserSettingsProtoActionCreators (Unlock Nitro themes) |
+| 2063 | `../discord_common/js/packages/timers/Timers.tsx` | Timeout, DelayedCall, Interval | Timers (Stay in calls: the idle timeout class) |
 | 2068 | `stores/ChannelStore.tsx` | Basic, Full, default | ChannelStore |
 | 2090 | `stores/GuildStore.tsx` | default | GuildStore |
 | 2119 | `stores/SelectedChannelStore.tsx` | default, findFirstVoiceChannelId, handleConnectionOpen | SelectedChannelStore (Hidden channels never opens a locked channel by itself) |
@@ -490,6 +491,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 18079 | `modules/app_icons/native/AppIconsCoachmark.tsx` | default | AppIconsCoachmark |
 | 18341 | `modules/voice_panel/native/controls/VoicePanelVoiceControlsButtons.tsx` | DeafenSwitch | VoicePanelVoiceControlsButtons (Fake deafen) |
 | 18444 | `modules/app_icons/native/AppIconPremiumManager.tsx` | default | AppIconPremiumManager |
+| 18456 | `modules/voice_calls/CallIdleManager.tsx` | default | CallIdleManager (Stay in calls: the three minutes alone timeout) |
 | 18678 | `modules/guild_settings/native/GuildSettingsModalLanding.tsx` | default | GuildSettingsModalLanding (Edit servers locally: imports the real GuildStore) |
 | 18679 | `design/components/Icon/native/redesign/generated/ChannelListIcon.tsx` | ChannelListIcon | ChannelListIcon (Fast delete channels) |
 | 18747 | `design/components/Icon/native/redesign/generated/HomeIcon.tsx` | HomeIcon | HomeIcon (HypeSquad) |

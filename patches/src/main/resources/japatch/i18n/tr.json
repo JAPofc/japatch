@@ -2129,6 +2129,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "O da {link} olarak gönderilir ve herkes çıkartmayı görür",
   "Polls": "Anketler",
   "{n} h": "{n} sa",
-  "Add from link": "Bağlantıdan ekle"
+  "Add from link": "Bağlantıdan ekle",
+  "Stay in calls when you are alone": "Yalnızken aramalarda kal",
+  "Stay in calls": "Aramalarda kal",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord, üç dakika yalnız kaldığında ses kanalından kendiliğinden çıkar. Bu, sen Bağlantıyı Kes'e basana kadar seni orada tutar.",
+  "In a call": "Aramada",
+  "Leave the server's AFK channel": "Sunucunun AFK kanalından çık",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Orada yalnız olmak, çevrede kimsenin olmadığı anlamına gelir; bu yüzden Discord'un kendi AFK'ya taşıma davranışı orada hâlâ gerçekleşir.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord, üç dakika yalnız kaldığında bir bağlantı kesme gönderir. Bu yalnızca o çağrıyı durdurur, Discord'a asla bir şey göndermez.",
+  "To leave, press Disconnect in the call as usual.": "Çıkmak için her zamanki gibi aramada Bağlantıyı Kes'e bas."
  }
 }

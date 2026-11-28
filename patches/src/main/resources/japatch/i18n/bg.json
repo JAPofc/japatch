@@ -2129,6 +2129,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Той също се изпраща като {link} и всички виждат стикера",
   "Polls": "Анкети",
   "{n} h": "{n} ч",
-  "Add from link": "Добавяне от връзка"
+  "Add from link": "Добавяне от връзка",
+  "Stay in calls when you are alone": "Да оставаш в разговорите, когато си сам",
+  "Stay in calls": "Да оставаш в разговори",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord напуска сам гласовия канал след три минути самота. Това те оставя там, докато не натиснеш „Прекъсни“.",
+  "In a call": "В разговор",
+  "Leave the server's AFK channel": "Напускай AFK канала на сървъра",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Да си сам там означава, че няма никой наоколо, затова автоматичното преместване на Discord в AFK там остава както е.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord изпраща прекъсване след три минути самота. Това спира това извикване и никога не изпраща нищо до Discord.",
+  "To leave, press Disconnect in the call as usual.": "За да излезеш, натисни „Прекъсни“ в разговора, както обикновено."
  }
 }

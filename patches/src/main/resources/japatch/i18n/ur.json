@@ -1967,6 +1967,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "It's sent as {link} too, and everyone sees the sticker",
   "Polls": "Polls",
   "{n} h": "{n} h",
-  "Add from link": "Add from link"
+  "Add from link": "Add from link",
+  "Stay in calls when you are alone": "تنہا ہونے پر کالز میں رہیں",
+  "Stay in calls": "کالز میں رہیں",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord تنہا تین منٹ رہنے کے بعد وائس چینل خود چھوڑ دیتا ہے۔ یہ آپ کو تب تک وہیں رکھتا ہے جب تک آپ ڈسکنیکٹ نہ دبائیں۔",
+  "In a call": "کال میں",
+  "Leave the server's AFK channel": "سرور کا AFK چینل چھوڑیں",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "وہاں تنہا ہونے کا مطلب ہے کہ ارد گرد کوئی نہیں، اس لیے Discord کا اپنا AFK پر منتقل ہونا وہاں اب بھی ہوتا ہے۔",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord تنہا تین منٹ بعد ڈسکنیکٹ بھیجتا ہے۔ یہ اُس کال کو روکتا ہے، Discord کو کبھی کچھ نہیں بھیجتا۔",
+  "To leave, press Disconnect in the call as usual.": "جانے کے لیے، حسبِ معمول کال میں ڈسکنیکٹ دبائیں۔"
  }
 }

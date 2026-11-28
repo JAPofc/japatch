@@ -1967,6 +1967,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "It's sent as {link} too, and everyone sees the sticker",
   "Polls": "Polls",
   "{n} h": "{n} h",
-  "Add from link": "Add from link"
+  "Add from link": "Add from link",
+  "Stay in calls when you are alone": "ماندن در تماس‌ها وقتی تنها هستید",
+  "Stay in calls": "ماندن در تماس‌ها",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord پس از سه دقیقه تنهایی، خودش کانال صوتی را ترک می‌کند. این شما را تا زمانی که قطع اتصال را بزنید، همان‌جا نگه می‌دارد.",
+  "In a call": "در یک تماس",
+  "Leave the server's AFK channel": "ترک کانال AFK سرور",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "تنها بودن در آنجا یعنی هیچ‌کس اطراف نیست، پس انتقال خودکار Discord به AFK همان‌جا همچنان انجام می‌شود.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord پس از سه دقیقه تنهایی یک قطع اتصال می‌فرستد. این آن فراخوانی را متوقف می‌کند و هرگز چیزی به Discord نمی‌فرستد.",
+  "To leave, press Disconnect in the call as usual.": "برای رفتن، مثل همیشه در تماس قطع اتصال را بزنید."
  }
 }

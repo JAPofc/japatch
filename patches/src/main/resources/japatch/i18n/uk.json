@@ -2215,6 +2215,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Він теж надсилається як {link}, і всі бачать наліпку",
   "Polls": "Опитування",
   "{n} h": "{n} год",
-  "Add from link": "Додати за посиланням"
+  "Add from link": "Додати за посиланням",
+  "Stay in calls when you are alone": "Залишатися в дзвінках, коли ти один",
+  "Stay in calls": "Залишатися в дзвінку",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord сам виходить із голосового каналу через три хвилини наодинці. Це залишає тебе там, доки ти не натиснеш «Відключитися».",
+  "In a call": "У дзвінку",
+  "Leave the server's AFK channel": "Виходити з AFK-каналу сервера",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Залишатися там наодинці означає, що поруч нікого немає, тож автоматичний перехід Discord в AFK там усе одно відбувається.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord надсилає відключення через три хвилини наодинці. Це зупиняє той виклик і ніколи нічого не надсилає до Discord.",
+  "To leave, press Disconnect in the call as usual.": "Щоб вийти, натисни в дзвінку «Відключитися», як завжди."
  }
 }

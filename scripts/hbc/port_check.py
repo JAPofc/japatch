@@ -51,6 +51,7 @@ BOOTSTRAP_MODULES = [
     (1417, 'utils/AvatarUtils.tsx', ['default'], 'AvatarUtils'),
     (1505, 'design/components/Navigator/native/useNavigation.native.tsx', ['useNavigation', 'useNativeStackNavigation', 'useStackNavigation'], 'useStackNavigation'),
     (2001, 'stores/native/AppStateStore.tsx', ['default'], 'AppStateStore'),
+    (2063, '../discord_common/js/packages/timers/Timers.tsx', ['Timeout', 'DelayedCall', 'Interval'], 'Timers (Stay in calls: the idle timeout class)'),
     (2068, 'stores/ChannelStore.tsx', ['Basic', 'Full', 'default'], 'ChannelStore'),
     (2090, 'stores/GuildStore.tsx', ['default'], 'GuildStore'),
     (2119, 'stores/SelectedChannelStore.tsx', ['default', 'findFirstVoiceChannelId', 'handleConnectionOpen'], 'SelectedChannelStore (Hidden channels never opens a locked channel by itself)'),
@@ -513,6 +514,7 @@ BOOTSTRAP_MODULES = [
     (12003, 'design/components/Icon/native/redesign/generated/FileIcon.tsx', ['FileIcon'], 'FileIcon (View raw data)'),
     (8488, 'design/components/Icon/native/redesign/generated/ForumIcon.tsx', ['ForumIcon'], 'ForumIcon (View raw data)'),
     (13951, 'design/components/Icon/native/redesign/generated/ShieldLockIcon.tsx', ['ShieldLockIcon'], 'ShieldLockIcon (View raw data)'),
+    (18456, 'modules/voice_calls/CallIdleManager.tsx', ['default'], 'CallIdleManager (Stay in calls: the three minutes alone timeout)'),
 ]
 
 

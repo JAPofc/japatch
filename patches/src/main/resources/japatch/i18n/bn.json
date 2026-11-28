@@ -1967,6 +1967,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "It's sent as {link} too, and everyone sees the sticker",
   "Polls": "Polls",
   "{n} h": "{n} h",
-  "Add from link": "Add from link"
+  "Add from link": "Add from link",
+  "Stay in calls when you are alone": "একা থাকলে কলেই থাকুন",
+  "Stay in calls": "কলেই থাকুন",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "একা থাকার তিন মিনিট পর Discord নিজেই ভয়েস চ্যানেল ছেড়ে দেয়। এটি আপনাকে ডিসকানেক্ট চাপার আগ পর্যন্ত সেখানেই রাখে।",
+  "In a call": "কলের মধ্যে",
+  "Leave the server's AFK channel": "সার্ভারের AFK চ্যানেল ছেড়ে দিন",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "সেখানে একা থাকার মানে কেউ আশেপাশে নেই, তাই Discord-এর নিজের AFK-তে যাওয়া সেখানেও আগের মতোই হবে।",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "একা থাকার তিন মিনিট পর Discord একটি ডিসকানেক্ট পাঠায়। এটি সেই কল থামায়, Discord-এ কখনো কিছু পাঠায় না।",
+  "To leave, press Disconnect in the call as usual.": "বেরোতে, আগের মতোই কলের মধ্যে ডিসকানেক্ট চাপুন।"
  }
 }

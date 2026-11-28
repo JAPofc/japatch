@@ -1969,6 +1969,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "同样会以{link}的形式发送，所有人都能看到这张贴纸",
   "Polls": "投票",
   "{n} h": "{n} 小时",
-  "Add from link": "通过链接添加"
+  "Add from link": "通过链接添加",
+  "Stay in calls when you are alone": "独自一人时保持通话",
+  "Stay in calls": "保持通话",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord 在独自待满三分钟后会自动离开语音频道。此功能会让你留在频道里，直到你按下断开连接。",
+  "In a call": "通话中",
+  "Leave the server's AFK channel": "在服务器的 AFK 频道中仍然离开",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "独自待在那里意味着周围没有人，所以 Discord 自动移到 AFK 频道的行为在那里照常进行。",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord 在独自待满三分钟后会发送断开连接。此功能只阻止那次调用，绝不会向 Discord 发送任何内容。",
+  "To leave, press Disconnect in the call as usual.": "要离开时，照常在通话中按下断开连接。"
  }
 }

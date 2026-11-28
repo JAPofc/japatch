@@ -1969,6 +1969,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Nhãn dán cũng được gửi dưới dạng {link} và mọi người đều thấy nhãn dán đó",
   "Polls": "Bình chọn",
   "{n} h": "{n} giờ",
-  "Add from link": "Thêm từ liên kết"
+  "Add from link": "Thêm từ liên kết",
+  "Stay in calls when you are alone": "Ở lại cuộc gọi khi bạn ở một mình",
+  "Stay in calls": "Ở lại cuộc gọi",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord tự rời kênh thoại sau ba phút ở một mình. Tính năng này giữ bạn ở đó cho đến khi bạn nhấn Ngắt kết nối.",
+  "In a call": "Trong cuộc gọi",
+  "Leave the server's AFK channel": "Rời kênh AFK của máy chủ",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Ở một mình tại đó nghĩa là không có ai xung quanh, nên việc Discord tự chuyển sang AFK vẫn diễn ra tại đó.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord gửi lệnh ngắt kết nối sau ba phút ở một mình. Tính năng này dừng lệnh gọi đó và không bao giờ gửi gì đến Discord.",
+  "To leave, press Disconnect in the call as usual.": "Để rời đi, hãy nhấn Ngắt kết nối trong cuộc gọi như bình thường."
  }
 }

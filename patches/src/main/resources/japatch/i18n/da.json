@@ -2132,6 +2132,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Det sendes også som {link}, og alle ser klistermærket",
   "Polls": "Afstemninger",
   "{n} h": "{n} t",
-  "Add from link": "Tilføj fra link"
+  "Add from link": "Tilføj fra link",
+  "Stay in calls when you are alone": "Bliv i opkald, når du er alene",
+  "Stay in calls": "Bliv i opkald",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord forlader selv en tale kanal efter tre minutter alene. Det holder dig der, indtil du trykker på Afbryd.",
+  "In a call": "I et opkald",
+  "Leave the server's AFK channel": "Forlad serverens AFK-kanal",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "At være alene der betyder, at der ikke er nogen i nærheden, så Discords egen flytning til AFK sker stadig der.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord sender en afbrydelse efter tre minutter alene. Det stopper det kald, det sender aldrig noget til Discord.",
+  "To leave, press Disconnect in the call as usual.": "For at gå, tryk på Afbryd i opkaldet som normalt."
  }
 }

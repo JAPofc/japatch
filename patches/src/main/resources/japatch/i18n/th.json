@@ -1969,6 +1969,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "ส่งเป็น{link}เช่นกัน และทุกคนจะเห็นสติกเกอร์",
   "Polls": "โพล",
   "{n} h": "{n} ชม.",
-  "Add from link": "เพิ่มจากลิงก์"
+  "Add from link": "เพิ่มจากลิงก์",
+  "Stay in calls when you are alone": "อยู่ในสายต่อเมื่ออยู่คนเดียว",
+  "Stay in calls": "อยู่ในสาย",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord ออกจากช่องเสียงเองหลังจากอยู่คนเดียวสามนาที สิ่งนี้ทำให้คุณอยู่ในช่องต่อจนกว่าจะกดตัดการเชื่อมต่อ",
+  "In a call": "ในการโทร",
+  "Leave the server's AFK channel": "ออกจากช่อง AFK ของเซิร์ฟเวอร์",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "การอยู่คนเดียวที่นั่นหมายถึงไม่มีใครอยู่รอบ ๆ การย้ายไป AFK ของ Discord เองจึงยังเกิดขึ้นที่นั่นตามปกติ",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord ส่งสัญญาณตัดการเชื่อมต่อหลังจากอยู่คนเดียวสามนาที สิ่งนี้หยุดการเรียกนั้นเท่านั้น ไม่เคยส่งอะไรถึง Discord",
+  "To leave, press Disconnect in the call as usual.": "หากต้องการออก ให้กดตัดการเชื่อมต่อในการโทรตามปกติ"
  }
 }

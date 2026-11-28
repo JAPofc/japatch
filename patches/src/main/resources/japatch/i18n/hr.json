@@ -2211,6 +2211,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "I ona se šalje kao {link} pa svi vide naljepnicu",
   "Polls": "Ankete",
   "{n} h": "{n} h",
-  "Add from link": "Dodaj putem poveznice"
+  "Add from link": "Dodaj putem poveznice",
+  "Stay in calls when you are alone": "Ostati u pozivima kad si sam",
+  "Stay in calls": "Ostati u pozivima",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord sam napušta glasovni kanal nakon tri minute samoće. Ovo te drži tamo dok ne pritisneš Prekini vezu.",
+  "In a call": "U pozivu",
+  "Leave the server's AFK channel": "Napusti AFK kanal poslužitelja",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Biti tamo sam znači da nikoga nema u blizini, pa se Discordov vlastiti prelazak na AFK tamo i dalje događa.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord pošalje prekid veze nakon tri minute samoće. Ovo zaustavlja taj poziv i nikada ne šalje ništa Discordu.",
+  "To leave, press Disconnect in the call as usual.": "Za odlazak pritisni Prekini vezu u pozivu kao i obično."
  }
 }

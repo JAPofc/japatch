@@ -2132,6 +2132,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Ook de sticker wordt als {link} verstuurd, en iedereen ziet de sticker",
   "Polls": "Peilingen",
   "{n} h": "{n} u",
-  "Add from link": "Toevoegen via link"
+  "Add from link": "Toevoegen via link",
+  "Stay in calls when you are alone": "In gesprekken blijven als je alleen bent",
+  "Stay in calls": "In gesprek blijven",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord verlaat na drie minuten alleen vanzelf een spraakkanaal. Dit houdt je daar tot je op Verbinden verbreken tikt.",
+  "In a call": "In een gesprek",
+  "Leave the server's AFK channel": "Het AFK-kanaal van de server verlaten",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Alleen daar zijn betekent dat er niemand in de buurt is, dus Discords eigen verplaatsing naar AFK gebeurt daar nog steeds.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord stuurt na drie minuten alleen een verbreking. Dit stopt die aanroep en stuurt nooit iets naar Discord.",
+  "To leave, press Disconnect in the call as usual.": "Om weg te gaan tik je in het gesprek zoals altijd op Verbinden verbreken."
  }
 }

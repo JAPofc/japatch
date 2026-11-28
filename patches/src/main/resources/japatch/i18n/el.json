@@ -2132,6 +2132,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Στέλνεται κι αυτό ως {link}, και όλοι βλέπουν το αυτοκόλλητο",
   "Polls": "Δημοσκοπήσεις",
   "{n} h": "{n} ώ",
-  "Add from link": "Προσθήκη από σύνδεσμο"
+  "Add from link": "Προσθήκη από σύνδεσμο",
+  "Stay in calls when you are alone": "Παραμονή στις κλήσεις όταν είσαι μόνος",
+  "Stay in calls": "Παραμονή στις κλήσεις",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Το Discord φεύγει μόνο του από ένα κανάλι φωνής μετά από τρία λεπτά μοναξιάς. Αυτό σε κρατά εκεί μέχρι να πατήσεις Αποσύνδεση.",
+  "In a call": "Σε κλήση",
+  "Leave the server's AFK channel": "Αποχώρηση από το κανάλι AFK του διακομιστή",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Το να είσαι μόνος εκεί σημαίνει ότι δεν υπάρχει κανείς τριγύρω, οπότε η δική του μετακίνηση του Discord σε AFK γίνεται ακόμη εκεί.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Το Discord στέλνει αποσύνδεση μετά από τρία λεπτά μοναξιάς. Αυτό σταματά εκείνη την κλήση και δεν στέλνει ποτέ τίποτα στο Discord.",
+  "To leave, press Disconnect in the call as usual.": "Για να φύγεις, πάτησε Αποσύνδεση στην κλήση όπως συνήθως."
  }
 }

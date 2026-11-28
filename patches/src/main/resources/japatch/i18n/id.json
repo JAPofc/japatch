@@ -1969,6 +1969,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Stiker juga dikirim sebagai {link}, dan semua orang melihat stikernya",
   "Polls": "Polling",
   "{n} h": "{n} jam",
-  "Add from link": "Tambahkan dari tautan"
+  "Add from link": "Tambahkan dari tautan",
+  "Stay in calls when you are alone": "Tetap di panggilan saat sendirian",
+  "Stay in calls": "Tetap di panggilan",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord keluar sendiri dari kanal suara setelah tiga menit sendirian. Ini membuat Anda tetap di sana sampai menekan Putuskan.",
+  "In a call": "Dalam panggilan",
+  "Leave the server's AFK channel": "Pergi dari kanal AFK server",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Sendirian di sana berarti tidak ada orang lain di sekitar, jadi Discord tetap memindahkan Anda ke AFK di sana seperti biasa.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord mengirim sinyal putus setelah tiga menit sendirian. Ini menghentikan panggilan itu, dan tidak pernah mengirim apa pun ke Discord.",
+  "To leave, press Disconnect in the call as usual.": "Untuk pergi, tekan Putuskan di panggilan seperti biasa."
  }
 }

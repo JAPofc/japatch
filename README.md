@@ -28,7 +28,7 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 
 <table>
 <tr>
-<td align="center"><b>83</b><br/>patches</td>
+<td align="center"><b>84</b><br/>patches</td>
 <td align="center"><b>34</b><br/>languages</td>
 <td align="center"><b>0</b><br/>calls home</td>
 <td align="center"><b>5</b><br/>trackers off</td>
@@ -285,9 +285,10 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | --- | --- |
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
 | JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, an account and session page, debug logs and a crash screen |
+| Stay in calls when you are alone | Discord leaves a voice channel by itself after three minutes alone. This stops that one timer, so you stay until you press Disconnect |
 | Streaming hours tracker | Follows the Go Live session you are already running and how far the Streaming badge really is, plus the last seven days |
 
-**78 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
+**79 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
 <!-- features:end -->
 
@@ -467,6 +468,10 @@ JaPatch is an independent project. Its patches are written against Discord's own
 features are based on ideas from the community Discord client-mod ecosystem, and some contain ported
 icon assets. The full list is kept in [NOTICE](NOTICE) — including Morphe, nexpid/ThemesPlus,
 fshinz/Revenge-Plugins, mwittrien, Vendetta plugins, ReviewDB, and the icon pack authors.
+
+The developer tools that read and verify Discord's bundle — `scripts/hbc/`, `scripts/verify_apk.sh`,
+`tests/test_all.sh` and a few test helpers — are taken from **[Venus Patches](https://github.com/VenusIsJaded/Venus-Patches)**
+by VenusIsJaded and used as they are, under the same GPL-3.0 licence this repository uses. Thank you.
 
 JaPatch is not affiliated with, endorsed by, or sponsored by Discord Inc., Morphe, or any of the
 projects above. Discord is a trademark of Discord Inc.

@@ -78,7 +78,8 @@
     if (features.experiments) selectModules([584, 1392, 1403]);
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
-    const revision = "1.0.25";
+    if (features.noBandwidthKick) { selectModules([18456, 5212, 2090]); targetModules[2068] = 1; }
+    const revision = "1.0.26";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -100,7 +101,7 @@
         accountSwitcher:false, accountSwitcherYouBar:true, accountSwitcherShare:false, accountSwitcherNotify:true, appIcons:false, nitroThemes:false, customThemes:false, customThemesBackground:true, materialYou:false, materialYouColor:"wallpaper", materialYouTint:"balanced",
         iconPacks:false, iconPacksTheme:true, updateCheck:true,
         messageHighlight:false, messageHighlightThickness:2, messageHighlightBrightness:50, messageHighlightPingColor:"default", serverInfo:false, serverInfoFriends:true, serverEdit:false,
-        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, bookmarks:false, saveImages:false, serverClock:false, serverClockZone:"auto", localNick:false, localNickGuild:"", localNickUser:"", localServerNicks:{}, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, language:"auto", hiddenFeatures:"",
+        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, bookmarks:false, saveImages:false, serverClock:false, serverClockZone:"auto", localNick:false, localNickGuild:"", localNickUser:"", localServerNicks:{}, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, noBandwidthKick:false, noBandwidthKickAfk:false, language:"auto", hiddenFeatures:"",
         hypeSquad:false, customIdle:false, customIdleMinutes:10, pauseInvites:false, fastDeleteChannels:false, fastDeleteChannelsConfirm:true, fastDeleteChannelsMenu:true, mutualGroupDMs:false, platformSpoof:false, platformSpoofDevice:"desktop" };
     // The settings every feature starts from, for Reset to defaults on the Backup page.
     let DEFAULT_SETTINGS = null;
@@ -118,7 +119,7 @@
             accountSwitcher: false, accountSwitcherYouBar: true, accountSwitcherShare: false, accountSwitcherNotify: true, appIcons: false, nitroThemes: false, customThemes: false, customThemesBackground: true, materialYou: false, materialYouColor: "wallpaper", materialYouTint: "balanced",
             iconPacks: false, iconPacksTheme: true, updateCheck: true,
             messageHighlight: false, messageHighlightThickness: 2, messageHighlightBrightness: 50, messageHighlightPingColor: "default", serverInfo: false, serverInfoFriends: true, serverEdit: false,
-            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, bookmarks: false, saveImages: false, serverClock: false, serverClockZone: "auto", localNick: false, localNickGuild: "", localNickUser: "", localServerNicks: {}, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, language: "auto", hiddenFeatures: "",
+            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, bookmarks: false, saveImages: false, serverClock: false, serverClockZone: "auto", localNick: false, localNickGuild: "", localNickUser: "", localServerNicks: {}, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, noBandwidthKick: false, noBandwidthKickAfk: false, language: "auto", hiddenFeatures: "",
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
         }));
     }
@@ -1246,7 +1247,7 @@
         hiddenChannels:[8495, "LockIcon"], systemFont:[16730, "LettersIcon"], systemEmoji:[13827, "ChatSmileIcon"],
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
-        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], localNick:[15994, "LaptopPhoneIcon"],
+        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], localNick:[15994, "LaptopPhoneIcon"], noBandwidthKick:[12666, "PhoneIcon"],
         hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"],
         streamBadge:[18964, "ScreenIcon"]};
     const japatchIcons = new Map();
@@ -1369,7 +1370,8 @@
         voiceOptions:["Soundboard", "Goodbye sound", "Call volume", "Chime volume", "Mute everyone", "Speaker", "Earpiece", "Bluetooth", "Wired headset", "Headphones", "Output", "Join chime", "Leave chime", "Voice channels", "Notification", "Mute"],
         fakeDeafen:["Deafen", "Fake deafen", "Headphones", "Calls", "Voice channels", "Microphone"],
         bulkDelete:["Select Messages", "Select all", "Delete", "Clear kept deleted messages", "Include kept deleted messages", "Ask before deleting"],
-        badges:["Game time", "Unique games", "Switch games every", "Games at once", "Add hours now", "Advanced", "Hours Played", "Unique Games Played", "Years Active", "Personalization"], bookmarks:["Bookmark","Save","Keep","Later","Read later"], saveImages:["Avatar","Banner","Profile picture","Save","Download"], serverClock:["Time","Clock","Timezone","Header","Server time"], localNick:["Nickname","Name","Server","Person","On this phone"]};
+        badges:["Game time", "Unique games", "Switch games every", "Games at once", "Add hours now", "Advanced", "Hours Played", "Unique Games Played", "Years Active", "Personalization"], bookmarks:["Bookmark","Save","Keep","Later","Read later"], saveImages:["Avatar","Banner","Profile picture","Save","Download"], serverClock:["Time","Clock","Timezone","Header","Server time"], localNick:["Nickname","Name","Server","Person","On this phone"],
+        noBandwidthKick:["Call", "Calls", "Voice", "Disconnect", "Kick", "Alone", "Idle", "AFK", "Voice channels", "Stay"]};
     function searchFold(text) {
         let out = String(text || "").toLowerCase();
         // Hermes has normalize only with Intl; without it, accents simply have to match.
@@ -1952,6 +1954,7 @@
         withOptions("advanced", "voiceOptions", "JAPATCH_VOICEOPTIONS", "Voice channel options", "Choose the volume, audio output and sounds for voice channels.", "Voice channel options", VoiceOptionsSettings);
         withOptions("advanced", "noHandsfree", "JAPATCH_NOHANDSFREE", "Keep Bluetooth audio clear in calls", "Headphones stay in music quality in calls. Your phone's mic picks up your voice, which can sound muffled to others.", "Bluetooth calls", NoHandsfreeSettings);
         withOptions("advanced", "fakeDeafen", "JAPATCH_FAKEDEAFEN", "Fake deafen", "Look deafened in a call while you can still hear. Choose whether your mic stays muted.", "Fake deafen", FakeDeafenSettings);
+        withOptions("advanced", "noBandwidthKick", "JAPATCH_NOBANDWIDTHKICK", "Stay in calls when you are alone", "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.", "Stay in calls", NoBandwidthKickSettings);
         withOptions("quests", "badges", "JAPATCH_BADGES", "Complete badges automatically", "Plays real PC games in the background for game time and unique games.", "Badges", BadgeSettings);
         // The name says what it does: follows the session you already run. "Streaming badge" read like a switch that
         // makes one, which it has never done, so the feature row and its page carry the tracker's name while the card
@@ -9268,6 +9271,66 @@
                 switchRow(Switch, "noHandsfreeMic", "Use the headset microphone", "Fixes sounding muffled. The headset's own microphone is used, and the headphones go back to call quality, so music-quality sound stops.",
                     rowIcon(13214, "HeadphonesIcon"))),
             footnote("note", "Left off, the headphones stay in music quality and your phone's microphone picks up your voice. That is why you can sound muffled or distant to others: your headset's own microphone is not used, even though it is right next to your mouth. Turn Use the headset microphone on if anyone says you sound muffled.")];
+        return settingsBody(ui, groups);
+    }
+    // Stay in calls when you're alone. Discord's own CallIdleManager (metro 18456) starts a 180000 ms timer when you are
+    // the last person in a voice channel, and that timer calls the module's own disconnect - Actions.disconnect(), which
+    // is selectVoiceChannel(null). Discord's selectVoiceChannel is left exactly as it is (JaPatch's own leave sound wraps
+    // it); only the timeout's start is replaced, and while the feature is on the timeout is never started at all.
+    // Pressing Disconnect in Discord does not go through this timer, so leaving by hand works as always.
+    // Being alone in a channel is the same situation Discord's own AFK move exists for, so the second switch: a channel
+    // with nobody in it is handed back to Discord's idle timeout instead of holding a dead call open for ever.
+    let callIdleWarned = false;
+    function callIdleAttach(exports) {
+        const manager = exports && exports.default;
+        if (!manager || typeof manager !== "object") return exports;
+        const timer = manager.idleTimeout;
+        if (!timer || typeof timer.start !== "function" || typeof timer.stop !== "function") {
+            if (settings.debugLog && !callIdleWarned) {
+                callIdleWarned = true;
+                dlog("W", "hooks", "couldn't change 18456.idleTimeout: it's " + (timer === undefined ? "missing" : "a " + typeof timer));
+            }
+            return exports;
+        }
+        if (timer.__japatchNoKick) return exports;
+        const start = timer.start;
+        const patched = function () {
+            if (enabled("noBandwidthKick") && !noBandwidthKickAfk()) return;
+            return start.apply(this, arguments);
+        };
+        // Nothing else reads these; they only let a second attach recognise its own work.
+        patched.__japatchNoKick = true;
+        patched.__japatchStart = start;
+        replaceValue(timer, "start", patched);
+        return exports;
+    }
+    // The AFK switch asks one question: is the channel I'm alone in the server's own AFK channel? Discord moves you
+    // there instead of kicking you, and it is the one channel people expect to be left in. VoiceStateStore (5212)
+    // names the channel I am in, GuildStore (2090) the guild's afkChannelId; if either answers nothing, stay.
+    function noBandwidthKickAfk() {
+        if (!settings.noBandwidthKickAfk) return false;
+        let channelId = null, channel = null;
+        try {
+            const voice = inspectedExport(5212, "default");
+            channelId = voice && typeof voice.getCurrentClientVoiceChannelId === "function" ? voice.getCurrentClientVoiceChannelId() : null;
+            const channelStore = inspectedExport(2068, "default");
+            channel = channelId && channelStore && typeof channelStore.getChannel === "function" ? channelStore.getChannel(channelId) : null;
+            const guild = channel && channel.guild_id ? inspectedExport(2090, "default") : null;
+            const record = guild && typeof guild.getGuild === "function" ? guild.getGuild(channel.guild_id) : null;
+            return !!(record && record.afkChannelId && record.afkChannelId === channelId);
+        } catch (_) { return false; }
+    }
+    function NoBandwidthKickSettings() {
+        useSettings("noBandwidthKick");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("noBandwidthKick"), Group = ui.TableRowGroup || RN.View, Switch = ui.TableSwitchRow;
+        const groups = [
+            on ? null : offCard("status", japatchIcon(12666, "PhoneIcon"), "noBandwidthKick"),
+            el(Group, {key:"how", title:tr("In a call")},
+                switchRow(Switch, "noBandwidthKickAfk", "Leave the server's AFK channel", "Being alone there means nobody is around, so Discord's own move to AFK still happens there.", rowIcon(5150, "ClockIcon"))),
+            footnote("note", "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord."),
+            footnote("leave", "To leave, press Disconnect in the call as usual.")];
         return settingsBody(ui, groups);
     }
     function FakeDeafenSettings() {
@@ -25354,7 +25417,7 @@
             case 10035: return features.favouriteAnything ? hookExport(exports, "addFavoriteGIF", favouriteAdd) : exports;
             case 10038: return features.favouriteAnything ? hookExport(exports, "useFavoriteGIFsMobile", favouriteList) : exports;
             case 14197: return features.mutualGroupDMs ? hookComponent(exports, mutualGroupsRow) : exports;
-            case 2068: channelStore = exports.default; return exports;
+            case 2068: if (features.noBandwidthKick) channelStore = exports.default; return exports;
             case 12849: return features.noTyping ? replaceValue(exports, "default", hookExport(hookExport(exports.default, "startTyping", typing), "stopTyping", typing)) : exports;
             case 10596:
                 if (features.fastDeleteChannels) exports = hookComponent(exports, fastDeleteSheet);
@@ -25383,6 +25446,7 @@
             }
             case 5534: if (features.noDelete) { messageRecords = exports; restoreDeleted(); } return exports;
             case 14755: return features.fakeDeafen && exports && exports.default ? fakeDeafAttach(exports) : exports;
+            case 18456: return features.noBandwidthKick ? callIdleAttach(exports) : exports;
             case 18341: return features.fakeDeafen ? hookComponent(exports, fakeDeafSwitch, "DeafenSwitch") : exports;
             case 1392:
                 if (exports && exports.default && (features.validUser || features.splitMessages || features.fixEmbeds || features.translate || features.userNotif || features.removedAlerts || features.accountSwitcher || features.appIcons || features.nitroThemes || features.messageHighlight || features.serverInfo || features.noDelete || features.reviewDB || features.platformIndicators || features.hiddenChannels || features.gestures || features.freeNitro || features.badges || features.bulkDelete || features.experiments || features.quietReplies || features.silentEdit || features.silentDelete || features.localEdit))

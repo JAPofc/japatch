@@ -26,6 +26,13 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.26] (2026-11-27)
+
+### ✨ New Features
+
+* **Discord - Stay in calls when you are alone:** Discord leaves a voice channel by itself three minutes after you become the only person in it. The new switch in Settings stops that one timer, so you stay in the call until you press Disconnect yourself. Pressing Disconnect, closing the channel and the leave chime are untouched, because none of them goes through that timer
+* **Discord - Stay in calls when you are alone:** A second switch hands the one channel people expect to be left in back to Discord: with Leave the server's AFK channel on, being alone in a server's own AFK channel still moves you the way Discord's own timeout does
+
 ## [1.0.25] (2026-11-26)
 
 ### ✨ New Features

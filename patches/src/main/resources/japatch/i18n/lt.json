@@ -2211,6 +2211,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "Jis taip pat išsiunčiamas kaip {link}, ir visi mato lipduką",
   "Polls": "Apklausos",
   "{n} h": "{n} val.",
-  "Add from link": "Pridėti iš nuorodos"
+  "Add from link": "Pridėti iš nuorodos",
+  "Stay in calls when you are alone": "Likti skambučiuose, kai esi vienas",
+  "Stay in calls": "Likti skambučiuose",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord pats palieka balso kanalą po trijų minučių vienumoje. Tai palieka tave ten, kol paspausi Atsijungti.",
+  "In a call": "Skambutyje",
+  "Leave the server's AFK channel": "Palikti serverio AFK kanalą",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "Būti ten vienam reiškia, kad nieko nėra aplink, todėl Discord automatinis perkėlimas į AFK ten vis dar vyksta.",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord atsiunčia atsijungimą po trijų minučių vienumoje. Tai sustabdo tą iškvietimą ir niekada nieko nesiunčia Discord.",
+  "To leave, press Disconnect in the call as usual.": "Norėdamas išeiti, kaip įprasta spausk Atsijungti skambutyje."
  }
 }

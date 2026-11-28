@@ -1969,6 +1969,14 @@
   "It's sent as {link} too, and everyone sees the sticker": "こちらも {link} として送信され、全員にスタンプが表示されます",
   "Polls": "投票",
   "{n} h": "{n} 時間",
-  "Add from link": "リンクから追加"
+  "Add from link": "リンクから追加",
+  "Stay in calls when you are alone": "一人のときも通話に残る",
+  "Stay in calls": "通話に残る",
+  "Discord leaves a voice channel by itself after three minutes alone. This keeps you there until you press Disconnect.": "Discord は一人で3分経つと自動でボイスチャンネルから退出します。これは切断を押すまでそのまま残します。",
+  "In a call": "通話中",
+  "Leave the server's AFK channel": "サーバーのAFKチャンネルからは退出する",
+  "Being alone there means nobody is around, so Discord's own move to AFK still happens there.": "そこに一人でいるということは誰も周りにいないということなので、Discord によるAFKへの自動移動はそこでは今までどおり行われます。",
+  "Discord sends a disconnect after three minutes alone. This stops that call, it never sends anything to Discord.": "Discord は一人で3分経つと切断を送ります。これはその呼び出しを止めるだけで、Discord には何も送りません。",
+  "To leave, press Disconnect in the call as usual.": "退出するときは、いつもどおり通話で切断を押してください。"
  }
 }
