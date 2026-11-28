@@ -433,6 +433,30 @@ val copyBios = rawResourcePatch(
 }
 
 @Suppress("unused")
+val bookmarks = bundledPlugin("bookmarks", "Bookmark messages",
+    "Keep a message on this phone and find it again from Settings. Nothing is sent to Discord.")
+
+@Suppress("unused")
+val saveImages = bundledPlugin("saveImages", "Save profile pictures and banners",
+    "Hold a profile to save its picture or banner through Android's own Save to screen.")
+
+@Suppress("unused")
+val serverClock = bundledPlugin("serverClock", "Show the time next to the server name",
+    "A clock in the chat header, set to the time you pick for your servers.")
+
+@Suppress("unused")
+val localNick = bundledPlugin("localNick", "Nicknames for this phone",
+    "Give people in a server a name only you see. Hold a message and pick Nickname to open this page.")
+
+@Suppress("unused")
+val editHistory = bundledPlugin("editHistory", "Keep message edit history",
+    "Every version of a message you can see is kept on this phone and shown above it, struck through, oldest first.")
+
+@Suppress("unused")
+val copyText = bundledPlugin("copyText", "Copy part of a message",
+    "Long press a message and pick Copy text to select just the part you need.")
+
+@Suppress("unused")
 val cleanChannels = bundledPlugin("cleanChannels", "Clean channel names",
     "Removes emoji and symbols from channel names, and can show spaces instead of dashes.")
 

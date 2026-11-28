@@ -26,6 +26,17 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.30] (2026-11-28)
+
+### 🐛 Bug Fixes
+
+* **Discord - Use the headset microphone:** Fixed the switch turning itself back off. The setting belonged to a name of its own instead of the feature that owns it, so the save was refused after the log line was already written and the page never redrew. Reported by someone using the feature on a headset, and the same fault was hiding four more switches: Leave the server's AFK channel, the two Nicknames fields, Server time's zone and Reply without pinging's prompt
+* **JaPatch - Features that counted less than they should:** Fixed six features being listed and drawn but never switched on - Bookmark messages, Save profile pictures, Server time, Nicknames, Edit history and Copy text. Naming a feature in the build list prints its key; only a patch of its own actually turns it on, and these six had none, so the app kept showing 77 while everything else said 83
+
+### 🔧 Improvements
+
+* **JaPatch - Two tests that would have caught both:** One fails when a feature has a row and an icon but no patch to switch it on, the other when a sub-option belongs to no real feature. Both were run against the unfixed tree first and named exactly the six features and the two switches
+
 ## [1.0.29] (2026-11-28)
 
 ### ✨ New Features

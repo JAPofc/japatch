@@ -14,6 +14,7 @@ const vm = require("vm");
 
 const ROOT = path.resolve(__dirname, "..", "..");
 const KOTLIN = fs.readFileSync(path.join(ROOT, "patches/src/main/kotlin/app/japatch/patches/DiscordPatches.kt"), "utf8");
+const ALL_KOTLIN = fs.readdirSync(path.join(ROOT, "patches/src/main/kotlin/app/japatch/patches")).filter(f => f.endsWith(".kt")).map(f => fs.readFileSync(path.join(ROOT, "patches/src/main/kotlin/app/japatch/patches", f), "utf8")).join("\n");
 const SOURCE = fs.readFileSync(path.join(ROOT, "patches/src/main/resources/japatch/bootstrap.js"), "utf8");
 
 let failures = 0;
@@ -47,6 +48,44 @@ function kotlinFeatureKeys() {
     }
     return Array.from(kt.slice(from, end).matchAll(/"([A-Za-z0-9_]+)"/g)).map(m => m[1]);
 }
+
+
+// --- the two faults behind 1.0.30 ---
+// A key in FEATURE_ICONS is only on when `additionalSelections` holds it, and only a patch's execute
+// fills that set: being named in listOf(...) prints the key, it does not turn it on. Six features were
+// in the list and had no patch, so the app went on counting 77 of 83 while the README and the badge
+// said otherwise.
+function bundledPluginKeys() {
+    return Array.from(KOTLIN.matchAll(/bundledPlugin\(\s*"([A-Za-z0-9_]+)"/g)).map(m => m[1]);
+}
+function selectedInExecute() {
+    // Three shapes turn a feature on: a bundledPlugin, a named patch setting its own XSelected flag, and
+    // selectRuntimeFeature() for the ones that live in another patch file.
+    const direct = Array.from(KOTLIN.matchAll(/additionalSelections\s*\+=\s*"([A-Za-z0-9_]+)"/g)).map(m => m[1]);
+    const flags = Array.from(KOTLIN.matchAll(/\b([A-Za-z0-9_]+)Selected\s*=\s*true/g)).map(m => m[1][0].toLowerCase() + m[1].slice(1));
+    const runtime = Array.from(ALL_KOTLIN.matchAll(/selectRuntimeFeature\(\s*"([A-Za-z0-9_]+)"/g)).map(m => m[1]);
+    return direct.concat(flags, runtime);
+}
+check("every feature key has a patch that actually selects it", () => {
+    const icons = featureIconsKeys();
+    const declared = new Set([...bundledPluginKeys(), ...selectedInExecute()]);
+    const lost = icons.filter(key => !declared.has(key));
+    eq(lost.join(","), "", "features with a row and an icon but no patch to switch them on:");
+});
+
+// A sub-option belongs to its feature: setSetting() refuses any key whose featureFor(key) is not a
+// compiled feature, and notify() only wakes listeners of the same owner. A sub-option with no rule
+// silently refuses to save and its switch snaps back (issue #3: noHandsfreeMic).
+check("every sub-option has an owner that is a real feature", () => {
+    const icons = featureIconsKeys();
+    const from = SOURCE.indexOf("const featureFor = key => {");
+    const block = SOURCE.slice(from, SOURCE.indexOf("\n    };", from) + 7);
+    const featureFor = new Function("featureTable", block + "\nreturn featureFor;")(Object.create(null));
+    const defaults = SOURCE.slice(SOURCE.indexOf("noHandsfree:false"), SOURCE.indexOf('hiddenFeatures:""'));
+    const keys = Array.from(new Set(Array.from(defaults.matchAll(/([a-zA-Z][a-zA-Z0-9]*)\s*:\s*(?:false|true|\d|")/g)).map(m => m[1])));
+    const bad = keys.filter(key => /[A-Z]/.test(key) && featureFor(key) === key && !icons.includes(key));
+    eq(bad.join(","), "", "sub-options with no owning feature:");
+});
 
 check("every feature patched in can be counted and listed (chatExport was missing)", () => {
     const icons = featureIconsKeys(), patched = kotlinFeatureKeys();

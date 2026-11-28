@@ -28,7 +28,7 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 
 <table>
 <tr>
-<td align="center"><b>84</b><br/>patches</td>
+<td align="center"><b>90</b><br/>patches</td>
 <td align="center"><b>34</b><br/>languages</td>
 <td align="center"><b>0</b><br/>calls home</td>
 <td align="center"><b>5</b><br/>trackers off</td>
