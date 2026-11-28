@@ -283,8 +283,14 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 
 | Feature | What it does |
 | --- | --- |
+| Bookmark messages | Keep a message on this phone and find it again from Settings. Nothing is sent to Discord |
+| Copy part of a message | Long press a message and pick Copy text to select just the part you need |
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
 | JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, an account and session page, debug logs and a crash screen |
+| Keep message edit history | Every version of a message you can see is kept on this phone and shown above it, struck through, oldest first |
+| Nicknames for this phone | Give people in a server a name only you see. Hold a message and pick Nickname to open this page |
+| Save profile pictures and banners | Hold a profile to save its picture or banner through Android's own Save to screen |
+| Show the time next to the server name | A clock in the chat header, set to the time you pick for your servers |
 | Stay in calls when you are alone | Discord leaves a voice channel by itself after three minutes alone. This stops that one timer, so you stay until you press Disconnect |
 | Streaming hours tracker | Follows the Go Live session you are already running and how far the Streaming badge really is, plus the last seven days |
 
