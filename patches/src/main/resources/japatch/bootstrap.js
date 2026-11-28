@@ -85,7 +85,7 @@
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
     if (features.noBandwidthKick) { selectModules([18456, 5212, 2090]); targetModules[2068] = 1; }
-    const revision = "1.0.28";
+    const revision = "1.0.29";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -95,7 +95,7 @@
     // Every feature starts off: nothing changes in Discord until you turn it on. Options inside a feature keep
     // their own defaults, so turning a feature on does what it says straight away.
     const settings = { debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
-        noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
+        noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, editHistory: true, copyText: false, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
         jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize:false, pastelAll:false, pastelContent:false, platformIndicators:false, piDmHeader:true, piUserList:true, piProfile:true, piHideMobile:true, reviewDB:false, reviewWarning:true, reviewServer:"https://japatch-reviewdb.fly.dev", readAll:false, readAllMode:"guilds",
         quests:false, questsVideo:true, questsPlay:true, questsActivity:true, questsEnroll:true, questAutoClaim:false, questsFastBeat:false,
         streamBadge:false, streamBadgeExtra:false,
@@ -114,7 +114,7 @@
     function defaultSettings() {
         return DEFAULT_SETTINGS || (DEFAULT_SETTINGS = Object.freeze({
             debugLog: true, crashScreen: true, picker: false, voice: false, copyBios: false, favouriteAnything: false, freeNitro: false, emojis: true, stickers: true, hyperlinks: true,
-            noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
+            noTyping: false, quickDelete: false, noDelete: false, noDeleteSave: false, noDeleteLimit: 0, editHistory: true, copyText: false, noDeleteEdits: true, noDeleteColor: "default", noDeleteBrightness: 50, noDeleteLogDeleted: true, noDeleteLogEdits: true, noDeleteLogOwn: false, noDeleteLogBots: false,
             jumpToTop: false, hiddenChannels: false, hiddenChannelsMenu: true, pastelize: false, pastelAll: false, pastelContent: false, platformIndicators: false, piDmHeader: true, piUserList: true, piProfile: true, piHideMobile: true, reviewDB: false, reviewWarning: true, reviewServer: "https://japatch-reviewdb.fly.dev", readAll: false, readAllMode: "guilds",
             quests: false, questsVideo: true, questsPlay: true, questsActivity: true, questsEnroll: true, questAutoClaim: false, questsFastBeat: false, streamBadge: false, streamBadgeExtra: false,
             badges: false, badgesGameTime: true, badgesUniqueGames: true, badgesCycleMinutes: 15, badgesGamesAtOnce: 2, systemFont: false, systemFontSource: "phone",
@@ -1253,7 +1253,7 @@
         hiddenChannels:[8495, "LockIcon"], systemFont:[16730, "LettersIcon"], systemEmoji:[13827, "ChatSmileIcon"],
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
-        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], localNick:[15994, "LaptopPhoneIcon"], noBandwidthKick:[12666, "PhoneIcon"],
+        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], editHistory:[13745, "PencilSparkleIcon"], copyText:[5141, "CopyIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], localNick:[15994, "LaptopPhoneIcon"], noBandwidthKick:[12666, "PhoneIcon"],
         hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"],
         streamBadge:[18964, "ScreenIcon"]};
     const japatchIcons = new Map();
@@ -1861,6 +1861,8 @@
         };
         // Messages
         withOptions("messages", "noDelete", "JAPATCH_NODELETE", "Keep deleted messages", "Deleted messages stay in chat, and edits keep their history.", "Deleted messages", NoDeleteSettings);
+        toggle("messages", "copyText", "Copy part of a message", "Long press a message and pick Copy text to select just the part you need.");
+        withOptions("messages", "editHistory", "JAPATCH_EDITHISTORY", "Keep message edit history", "Every version of a message you can see is kept on this phone and shown above it, struck through, oldest first. Works without keeping deleted messages.", "Edit history", EditHistorySettings);
         withOptions("messages", "bulkDelete", "JAPATCH_BULKDELETE", "Bulk delete messages", "Select multiple messages in chat and delete them all at once.", "Bulk delete", BulkDeleteSettings);
         withOptions("people", "staffTag", "JAPATCH_STAFFTAG", "Show owner and mod tags", "Shows an Owner, Admin, Manager or Mod tag next to people's names in chat.", "Show owner and mod tags", StaffTagSettings);
         withOptions("messages", "fullImages", "JAPATCH_FULLIMAGES", "Load full-quality images", "Pictures in chat and full screen load as uploaded, not as Discord's smaller, compressed copy.", "Load full-quality images", FullImagesSettings);
@@ -4120,7 +4122,7 @@
         const before = current && current.content;
         if (typeof before !== "string" || before === update.content) return;
         logMessage("e", current, update.channel_id, update.content, before);
-        if (!settings.noDeleteEdits) return;
+        if (!settings.noDeleteEdits && !settings.editHistory) return;
         const key = deletedKey(update.channel_id, update.id);
         let entry = edits.get(key);
         if (entry) edits.delete(key);
@@ -4191,7 +4193,7 @@
         return true;
     }
     function withEditHistory(message, channelId, id) {
-        if (!edits.size || !settings.noDeleteEdits || !message || !Array.isArray(message.content)) return message;
+        if (!edits.size || (!settings.noDeleteEdits && !settings.editHistory) || !message || !Array.isArray(message.content)) return message;
         const entry = edits.get(deletedKey(channelId, id));
         if (!entry || !entry.versions.length) return message;
         // Rows are generated again for every change in the chat; reuse the joined content while neither side changed.
@@ -4363,13 +4365,53 @@
     }
     // A kept message's hold menu (LongPressMessageActionSheet 9978): Dismiss for a deleted message, Remove edit history
     // for an edited one, first in the menu, besides the links in the chat.
+
+    // Copy part of a message. Discord's long press copies the whole thing or nothing, so a phone cannot take a
+    // line out of a patch note, a code block or a quote. This opens the text in a plain box that can be
+    // selected with the phone's own handles, plus a button that always copies all of it.
+    function copyTextPanel(message) {
+        const ui = reviewUI(), key = "japatch-copy-text", sheetKey = "JaPatchCopyText";
+        const text = String(message && message.content || "");
+        if (!text) return;
+        const close = () => {
+            try { if (ui.sheets && typeof ui.sheets.hideActionSheet === "function") ui.sheets.hideActionSheet(sheetKey); } catch (_) {}
+            try { ui.popModal(key); } catch (_) {}
+        };
+        function CopyTextModal(props) {
+            const done = () => { close(); if (props && typeof props.onClose === "function") try { props.onClose(); } catch (_) {} };
+            const copy = () => {
+                try {
+                    (reviewUI().clipboard || RN.Clipboard).setString(text);
+                    reviewToast(reviewUI(), tr("Copied"), japatchIcon(5141, "CopyIcon"));
+                } catch (_) {}
+                done();
+            };
+            return el(ui.ActionSheet || RN.View, {key,
+                header: ui.Header ? el(ui.Header, {title: tr("Copy text"), trailing: ui.Close ? el(ui.Close, {onPress: done}) : undefined}) : undefined},
+                el(RN.View, {key:"body", style:{padding:16, gap:12}},
+                    ui.TextInput ? el(ui.TextInput, {value:text, multiline:true, editable:false, selectTextOnFocus:true})
+                        : el(RN.TextInput, {value:text, multiline:true, editable:false, selectTextOnFocus:true, style:{fontSize:15, padding:12, minHeight:160}}),
+                    el(RN.View, {key:"actions", style:{flexDirection:"row", justifyContent:"flex-end", gap:8}},
+                        el(RN.Pressable, {onPress:done, accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center"}},
+                            el(RN.Text, {style:{fontWeight:"600"}}, tr("Cancel"))),
+                        el(RN.Pressable, {onPress:copy, accessibilityRole:"button", style:{paddingHorizontal:16, height:40, borderRadius:20, justifyContent:"center", backgroundColor:"#5865f2"}},
+                            el(RN.Text, {style:{color:"#ffffff", fontWeight:"600"}}, tr("Copy"))))));
+        }
+        if (ui.ActionSheet && typeof ui.showSheet === "function") try { ui.showSheet({key:sheetKey, content:el(CopyTextModal), stackingBehavior:"stack"}); return; } catch (_) {}
+        try { ui.pushModal({key, modal:{key, modal:CopyTextModal, animation:"slide-up", shouldPersistUnderModals:false, closable:true}}); } catch (_) {}
+    }
+    function copyTextSheet(orig, self, args) {
+        const tree = orig.apply(self, args), props = args[0], message = props && props.message;
+        if (!enabled("copyText") || !React || !tree || !message || typeof message.content !== "string" || !message.content.trim()) return tree;
+        return sheetAddRow(tree, props, "japatch-copy-text-row", tr("Copy text"), japatchIcon(5141, "CopyIcon"), () => copyTextPanel(message));
+    }
     function noDeleteSheet(orig, self, args) {
         const tree = orig.apply(self, args), props = args[0], message = props && props.message;
         if (!enabled("noDelete") || !React || !tree || !message || !message.id) return tree;
         const channelId = String(message.channel_id || message.channelId || props.channel && props.channel.id || "");
         if (!channelId) return tree;
         const key = deletedKey(channelId, String(message.id));
-        const kept = deleted.has(key), history = !kept && !!settings.noDeleteEdits && edits.has(key);
+        const kept = deleted.has(key), history = !kept && !!(settings.noDeleteEdits || settings.editHistory) && edits.has(key);
         if (!kept && !history) return tree;
         const label = kept ? tr("Dismiss deleted message") : tr("Remove edit history"), Icon = japatchIcon(6927, "EyeSlashIcon");
         let added = false;
@@ -9643,7 +9685,7 @@
     messageRow.call1 = (orig, self, row) => { if (features.localEdit) row = localEditRow(row); return messageRowResult(orig.call(self, row), row); };
     function messageRowResult(result, row) {
         if (!result || !row || row.rowType !== 1 || !result.message) return result;
-        const pastelOn = enabled("pastelize"), translateOn = enabled("translate"), noDeleteOn = enabled("noDelete"), highlightOn = enabled("messageHighlight"), bulkOn = features.bulkDelete && bulkDelete.active;
+        const pastelOn = enabled("pastelize"), translateOn = enabled("translate"), noDeleteOn = enabled("noDelete"), editHistoryOn = enabled("editHistory"), highlightOn = enabled("messageHighlight"), bulkOn = features.bulkDelete && bulkDelete.active;
         let message = result.message;
         if (pastelOn) message = pastelMessage(message,row.message);
         if (features.pastelize && message.referencedMessage && message.referencedMessage.message) {
@@ -9666,7 +9708,7 @@
             if (shown.referencedMessage) shown = translateReply(shown, source, channelId, id);
             if (shown !== next.message) next = Object.assign({},next,{message:shown});
         } else if (features.translate) translateSeen(source, channelId, id, null);
-        if (edits.size && noDeleteOn) {
+        if (edits.size && (noDeleteOn || editHistoryOn)) {
             const shown = withEditHistory(next.message, channelId, id);
             if (shown !== next.message) next = Object.assign({},next,{message:shown});
         }
@@ -23169,6 +23211,16 @@
     // The page: one field to type a name, and everything saved under it, so a wrong name can be put right or cleared
     // without hunting for the message it came from. The server and person names come from Discord's stores when they
     // are loaded; the IDs are shown when they are not, which is honest about what is known.
+    // A page of its own so the feature can be turned on without Keep deleted messages: the history it shows
+    // is stored by the same engine, and this used to be reachable only from inside that other feature.
+    function EditHistorySettings() {
+        useSettings("editHistory");
+        const ui = reviewUI();
+        if (!React || !RN) return null;
+        const on = enabled("editHistory"), Switch = ui.TableSwitchRow;
+        return el(Switch, {key:"editHistory", label:tr("Keep message edit history"), subLabel:tr("Older versions sit above the message, struck through."),
+            value:on, onValueChange:value => setSetting("editHistory", value)});
+    }
     function LocalNickSettings() {
         useSettings("localNick", LOCAL_NICKS_KEY);
         const ui = reviewUI();
@@ -25317,6 +25369,7 @@
                 if (features.localEdit) exports = hookComponent(exports, localEditSheet);
                 if (features.viewRaw) exports = hookComponent(exports, viewRawMessageSheet);
                 if (features.bookmarks) exports = hookComponent(exports, bookmarkMessageSheet);
+                if (features.copyText) exports = hookComponent(exports, copyTextSheet);
                 if (features.localNick) exports = hookComponent(exports, localNickRow);
                 return features.bulkDelete ? hookComponent(exports, bulkDeleteSheet) : exports;
             case 9561: return features.splitMessages ? maxLengthModule(exports) : exports;

@@ -26,6 +26,17 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.29] (2026-11-28)
+
+### ✨ New Features
+
+* **Discord - Keep message edit history:** Edit history was already being stored, but only inside Keep deleted messages, so it could not be used by anyone who did not also want deleted messages kept. It is a switch of its own now, on by default, and older versions sit above the message struck through with Discord's own block quote, exactly as before. Turning off Keep deleted messages no longer throws the history away
+* **Discord - Copy part of a message:** Long press a message and pick Copy text to open it in a box you can select with the phone's own handles, with a Copy button for all of it. Discord's own long press copies the whole message or nothing, which makes quoting one line out of a long post impossible on a phone
+
+### 🔧 Improvements
+
+* **JaPatch - The NOTICE no longer names authors that are not there:** The Who wrote this section listed two earlier commit names that the rewritten history does not contain. Every commit and every release in this repository is by JAPofc, and the section now says only that
+
 ## [1.0.28] (2026-11-28)
 
 ### 🐛 Bug Fixes

@@ -115,8 +115,4 @@ nor does it endorse, anything here. If any line above is wrong, open an issue an
 Who wrote this
 ==============
 
-Every commit in this repository is by JAPofc. Earlier history also carried two commits under a
-"JaPatch Bot" name and one under a shortened "JAP" name, all made from the same account; the
-history was rewritten so that every commit names the same author, and the releases were rebuilt
-from the rewritten tags. The bundle is unchanged: the same version builds the same file, byte for
-byte, from either tag.
+Every commit in this repository is by JAPofc, and every release is built from those commits.

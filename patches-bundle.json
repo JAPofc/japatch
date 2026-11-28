@@ -1,9 +1,9 @@
 {
   "created_at": "2026-11-26T06:49:05",
-  "description": "### \ud83d\udc1b Bug Fixes\n\n* **Discord - Four features that were never switched on:** Fixed Bookmark messages, Save profile pictures, Server time and Nicknames had a page, an icon and a hook, and were missing from the one list that marks their module before Discord loads it, so the row was never drawn and the hook never ran. The Features page is what made it invisible - a feature with no row takes its whole section with it, so the Messages section was simply not there. They are counted now: 81 in the app, in the README and on the badge, from one calculation instead of three\n* **JaPatch - Lines that read the same three files:** Fixed the gap where a feature could have a row, an icon and a hook and still never run; a test now fails when a feature has a row and an icon but nothing selects its module, and when a case in the module switch can never be reached. That pair of checks is what would have caught this, and the count in the app, the README and the badge now comes from the same place instead of drifting apart as 77, 79 and 84\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.28/patches-1.0.28.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.28",
+  "description": "### \u2728 New Features\n\n* **Discord - Keep message edit history:** Edit history was already being stored, but only inside Keep deleted messages, so it could not be used by anyone who did not also want deleted messages kept. It is a switch of its own now, on by default, and older versions sit above the message struck through with Discord's own block quote, exactly as before. Turning off Keep deleted messages no longer throws the history away\n* **Discord - Copy part of a message:** Long press a message and pick Copy text to open it in a box you can select with the phone's own handles, with a Copy button for all of it. Discord's own long press copies the whole message or nothing, which makes quoting one line out of a long post impossible on a phone\n\n### \ud83d\udd27 Improvements\n\n* **JaPatch - The NOTICE no longer names authors that are not there:** The Who wrote this section listed two earlier commit names that the rewritten history does not contain. Every commit and every release in this repository is by JAPofc, and the section now says only that\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.29/patches-1.0.29.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.29",
   "signature_download_url": "",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "public_key": "sy/1df6laT60R26P5kJCHPvvHIhSKfgP9sSRSROMrKU="
 }
