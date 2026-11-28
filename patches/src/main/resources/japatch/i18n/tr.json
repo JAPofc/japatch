@@ -2145,6 +2145,15 @@
     "Copy text": "Metni kopyala",
     "Copied": "Kopyalandı",
     "Copy part of a message": "Mesajın bir kısmını kopyala",
-    "Long press a message and pick Copy text to select just the part you need.": "Bir mesaja uzun bas ve yalnızca ihtiyacın olan kısmı seçmek için Metni kopyala'yı seç."
+    "Long press a message and pick Copy text to select just the part you need.": "Bir mesaja uzun bas ve yalnızca ihtiyacın olan kısmı seçmek için Metni kopyala'yı seç.",
+    "Right now that reads {time}.": "Şu anda {time} yazıyor.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Taslaklar bu telefonda, bu hesap için saklanır. Discord'a hiçbir şey gönderilmez.",
+    "Drafts that survive a restart": "Yeniden başlatmaya dayanan taslaklar",
+    "Kept drafts": "Saklanan taslaklar",
+    "Kept drafts is on": "Saklanan taslaklar açık",
+    "No draft is kept right now.": "Şu anda saklanan taslak yok.",
+    "{n} chats have a kept draft right now.": "Şu anda {n} sohbette saklanan taslak var.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Henüz göndermediğin bir mesaj Discord kapanınca, yeniden başlayınca veya çökünce burada kalır ve o sohbeti bir dahaki açışında seni bekler. Göndermek veya çubuğu boşaltmak onu siler.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord, uygulama kapanınca gönderilmemiş her mesajı unutur. Bu, onları bu telefonda tutar ve geri koyar."
   }
 }

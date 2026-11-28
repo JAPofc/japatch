@@ -1985,6 +1985,15 @@
     "Copy text": "テキストをコピー",
     "Copied": "コピーしました",
     "Copy part of a message": "メッセージの一部をコピー",
-    "Long press a message and pick Copy text to select just the part you need.": "メッセージを長押しして「テキストをコピー」を選ぶと、必要な部分だけを選択できます。"
+    "Long press a message and pick Copy text to select just the part you need.": "メッセージを長押しして「テキストをコピー」を選ぶと、必要な部分だけを選択できます。",
+    "Right now that reads {time}.": "現在は {time} と表示されています。",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "下書きはこの端末に、このアカウント用として保存されます。Discord には何も送信されません。",
+    "Drafts that survive a restart": "再起動しても残る下書き",
+    "Kept drafts": "保存した下書き",
+    "Kept drafts is on": "保存した下書きはオンです",
+    "No draft is kept right now.": "現在、保存されている下書きはありません。",
+    "{n} chats have a kept draft right now.": "現在 {n} 件のチャットに下書きが保存されています。",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "まだ送信していないメッセージは、Discord を閉じたり再起動したりクラッシュしてもここに残り、次にそのチャットを開いたときに待っています。送信するか入力欄を空にすると消えます。",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord はアプリを閉じると未送信のメッセージを忘れてしまいます。これはこの端末に残して元に戻します。"
   }
 }

@@ -74,6 +74,7 @@
     // so the case below it was unreachable and the row was never drawn (withOptions returns on an unknown
     // feature). They were in no list, so nothing counted them either: 77 of 81.
     if (features.serverClock) selectModules([13788]);
+    if (features.drafts) selectModules([7510]);
     if (features.saveImages) selectModules([14015, 9662]);
     if (features.localNick) selectModules([9978]);
     if (features.landscapeFull) targetModules[5075] = 1;
@@ -85,7 +86,7 @@
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
     if (features.noBandwidthKick) { selectModules([18456, 5212, 2090]); targetModules[2068] = 1; }
-    const revision = "1.0.30";
+    const revision = "1.0.31";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
@@ -107,7 +108,7 @@
         accountSwitcher:false, accountSwitcherYouBar:true, accountSwitcherShare:false, accountSwitcherNotify:true, appIcons:false, nitroThemes:false, customThemes:false, customThemesBackground:true, materialYou:false, materialYouColor:"wallpaper", materialYouTint:"balanced",
         iconPacks:false, iconPacksTheme:true, updateCheck:true,
         messageHighlight:false, messageHighlightThickness:2, messageHighlightBrightness:50, messageHighlightPingColor:"default", serverInfo:false, serverInfoFriends:true, serverEdit:false,
-        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, bookmarks:false, saveImages:false, serverClock:false, serverClockZone:"auto", localNick:false, localNickGuild:"", localNickUser:"", localServerNicks:{}, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, noBandwidthKick:false, noBandwidthKickAfk:false, language:"auto", hiddenFeatures:"",
+        fixEmbeds:false, fixEmbedsSites:"", fixEmbedsOptions:"", tenorGifs:false, tenorGifsSource:"both", hideBlocked:false, hideBlockedBlocked:true, hideBlockedIgnored:true, hideBlockedReplies:false, hideBlockedCloseDms:false, bulkDelete:false, bulkDeleteConfirm:true, bulkDeleteIncludeCached:true, experiments:false, noHandsfree:false, noHandsfreeMic:false, voiceOptions:false, voiceOptionsVolume:false, voiceOptionsVolumeLevel:50, voiceOptionsOutput:"default", voiceOptionsJoinSound:true, voiceOptionsLeaveSound:true, voiceOptionsSoundVolume:100, voiceOptionsExit:false, voiceOptionsExitSound:"", cleanChannels:false, cleanChannelsEmoji:true, cleanChannelsSymbols:true, cleanChannelsFonts:true, cleanChannelsSpaces:false, anonFiles:false, staffTag:false, staffTagOwner:true, staffTagAdmin:true, staffTagManager:true, staffTagMod:true, staffTagCrown:true, removedAlerts:false, removedAlertsFriends:true, removedAlertsServers:true, removedAlertsClosed:true, removedAlertsPush:false, fullImages:false, fullImagesChat:true, fullImagesViewer:true, fullImagesGifs:false, fullImagesAvatars:true, alwaysTrust:false, alwaysTrustLinks:true, alwaysTrustFiles:true, noConfirmPin:false, clickableMentions:false, expandBar:false, expandBarSending:true, expandBarChats:true, silentLeave:false, silentLeaveSkipPrompt:false, textReplace:false, textReplaceRules:"", chatExport:false, chatExportFormat:"json", showMeYourName:false, showMeYourNameOrder:"nickname,display,username", showMeYourNameExtra:"username", silentEdit:false, silentEditNotice:true, silentDelete:false, localEdit:false, localEditMark:true, bookmarks:false, saveImages:false, serverClock:false, serverClockZone:"auto", serverClock24:false,drafts:false, localNick:false, localNickGuild:"", localNickUser:"", localServerNicks:{}, guildLurk:false, guildLurkIds:"", quietReplies:false, viewRaw:false, viewRawMessages:true, viewRawChannels:true, viewRawServers:true, viewRawPeople:true, viewRawRoles:true, viewRawHideContact:true, viewRawWrap:true, timeoutDuration:false, dndBanners:false, voiceDownload:false, cloneExpressions:false, listenAlong:false, listenAlongOffset:0, backgroundMedia:false, backgroundMediaAudio:true, backgroundMediaVideo:true, backgroundMediaSkip:10, landscapeFull:false, quietRepliesGuilds:true, quietRepliesGroups:true, quietRepliesMentioned:false, compressUploads:false, compressUploadsPhotos:true, compressUploadsVideos:true, compressUploadsAudio:true, hideAnything:false, hideAnythingSpots:"", fakeDeafen:false, fakeDeafenMuteMic:true, noBandwidthKick:false, noBandwidthKickAfk:false, language:"auto", hiddenFeatures:"",
         hypeSquad:false, customIdle:false, customIdleMinutes:10, pauseInvites:false, fastDeleteChannels:false, fastDeleteChannelsConfirm:true, fastDeleteChannelsMenu:true, mutualGroupDMs:false, platformSpoof:false, platformSpoofDevice:"desktop" };
     // The settings every feature starts from, for Reset to defaults on the Backup page.
     let DEFAULT_SETTINGS = null;
@@ -125,7 +126,7 @@
             accountSwitcher: false, accountSwitcherYouBar: true, accountSwitcherShare: false, accountSwitcherNotify: true, appIcons: false, nitroThemes: false, customThemes: false, customThemesBackground: true, materialYou: false, materialYouColor: "wallpaper", materialYouTint: "balanced",
             iconPacks: false, iconPacksTheme: true, updateCheck: true,
             messageHighlight: false, messageHighlightThickness: 2, messageHighlightBrightness: 50, messageHighlightPingColor: "default", serverInfo: false, serverInfoFriends: true, serverEdit: false,
-            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, bookmarks: false, saveImages: false, serverClock: false, serverClockZone: "auto", localNick: false, localNickGuild: "", localNickUser: "", localServerNicks: {}, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, noBandwidthKick: false, noBandwidthKickAfk: false, language: "auto", hiddenFeatures: "",
+            fixEmbeds: false, fixEmbedsSites: "", fixEmbedsOptions: "", tenorGifs: false, tenorGifsSource: "both", hideBlocked: false, hideBlockedBlocked: true, hideBlockedIgnored: true, hideBlockedReplies: false, hideBlockedCloseDms: false, bulkDelete: false, bulkDeleteConfirm: true, bulkDeleteIncludeCached: true, experiments: false, noHandsfree: false, noHandsfreeMic: false, voiceOptions: false, voiceOptionsVolume: false, voiceOptionsVolumeLevel: 50, voiceOptionsOutput: "default", voiceOptionsJoinSound: true, voiceOptionsLeaveSound: true, voiceOptionsSoundVolume: 100, voiceOptionsExit: false, voiceOptionsExitSound: "", cleanChannels: false, cleanChannelsEmoji: true, cleanChannelsSymbols: true, cleanChannelsFonts: true, cleanChannelsSpaces: false, anonFiles: false, staffTag: false, staffTagOwner: true, staffTagAdmin: true, staffTagManager: true, staffTagMod: true, staffTagCrown: true, removedAlerts: false, removedAlertsFriends: true, removedAlertsServers: true, removedAlertsClosed: true, removedAlertsPush: false, fullImages: false, fullImagesChat: true, fullImagesViewer: true, fullImagesGifs: false, fullImagesAvatars: true, alwaysTrust: false, alwaysTrustLinks: true, alwaysTrustFiles: true, noConfirmPin: false, clickableMentions: false, expandBar: false, expandBarSending: true, expandBarChats: true, silentLeave: false, silentLeaveSkipPrompt: false, textReplace: false, textReplaceRules: "", chatExport: false, chatExportFormat: "json", showMeYourName: false, showMeYourNameOrder: "nickname,display,username", showMeYourNameExtra: "username", silentEdit: false, silentEditNotice: true, silentDelete: false, localEdit: false, localEditMark: true, bookmarks: false, saveImages: false, serverClock: false, serverClockZone: "auto", serverClock24: false, drafts: false, localNick: false, localNickGuild: "", localNickUser: "", localServerNicks: {}, guildLurk: false, guildLurkIds: "", quietReplies: false, viewRaw: false, viewRawMessages: true, viewRawChannels: true, viewRawServers: true, viewRawPeople: true, viewRawRoles: true, viewRawHideContact: true, viewRawWrap: true, timeoutDuration: false, dndBanners: false, voiceDownload: false, cloneExpressions: false, listenAlong: false, listenAlongOffset: 0, backgroundMedia: false, backgroundMediaAudio: true, backgroundMediaVideo: true, backgroundMediaSkip: 10, landscapeFull: false, quietRepliesGuilds: true, quietRepliesGroups: true, quietRepliesMentioned: false, compressUploads: false, compressUploadsPhotos: true, compressUploadsVideos: true, compressUploadsAudio: true, hideAnything: false, hideAnythingSpots: "", fakeDeafen: false, fakeDeafenMuteMic: true, noBandwidthKick: false, noBandwidthKickAfk: false, language: "auto", hiddenFeatures: "",
             hypeSquad: false, customIdle: false, customIdleMinutes: 10, pauseInvites: false, fastDeleteChannels: false, fastDeleteChannelsConfirm: true, fastDeleteChannelsMenu: true, mutualGroupDMs: false, platformSpoof: false, platformSpoofDevice: "desktop"
         }));
     }
@@ -1218,7 +1219,7 @@
     const featureFor = key => {
         const cached = featureTable[key];
         if (cached !== undefined) return cached;
-        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : /^chatExport[A-Z]/.test(key) ? "chatExport" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : key === "questAutoClaim" || key === "questsFastBeat" ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : /^noHandsfree[A-Z]/.test(key) ? "noHandsfree" : /^noBandwidthKick[A-Z]/.test(key) ? "noBandwidthKick" : /^localNick[A-Z]/.test(key) ? "localNick" : /^serverClock[A-Z]/.test(key) ? "serverClock" : /^silentLeave[A-Z]/.test(key) ? "silentLeave" : /^textReplace[A-Z]/.test(key) ? "textReplace" : /^noDelete[A-Z]/.test(key) ? "noDelete" : key;
+        return featureTable[key] = /^showMeYourName[A-Z]/.test(key) ? "showMeYourName" : /^chatExport[A-Z]/.test(key) ? "chatExport" : key === "reviewWarning" ? "reviewDB" : key === "emojis" || key === "stickers" || key === "hyperlinks" ? "freeNitro" : /^noDelete[A-Z]/.test(key) ? "noDelete" : /^pi[A-Z]/.test(key) ? "platformIndicators" : key === "pastelAll" || key === "pastelContent" ? "pastelize" : key === "readAllMode" ? "readAll" : /^compressUploads[A-Z]/.test(key) ? "compressUploads" : /^quests[A-Z]/.test(key) ? "quests" : key === "questAutoClaim" || key === "questsFastBeat" ? "quests" : /^badges[A-Z]/.test(key) ? "badges" : /^gesture[A-Z]/.test(key) ? "gestures" : /^translate[A-Z]/.test(key) ? "translate" : /^removedAlerts[A-Z]/.test(key) ? "removedAlerts" : /^userNotif[A-Z]/.test(key) ? "userNotif" : /^accountSwitcher[A-Z]/.test(key) ? "accountSwitcher" : /^hiddenChannels[A-Z]/.test(key) ? "hiddenChannels" : /^customThemes[A-Z]/.test(key) ? "customThemes" : /^materialYou[A-Z]/.test(key) ? "materialYou" : /^iconPacks[A-Z]/.test(key) ? "iconPacks" : /^messageHighlight[A-Z]/.test(key) ? "messageHighlight" : /^serverInfo[A-Z]/.test(key) ? "serverInfo" : /^fixEmbeds[A-Z]/.test(key) ? "fixEmbeds" : /^tenorGifs[A-Z]/.test(key) ? "tenorGifs" : /^hideBlocked[A-Z]/.test(key) ? "hideBlocked" : /^bulkDelete[A-Z]/.test(key) ? "bulkDelete" : /^expandBar[A-Z]/.test(key) ? "expandBar" : key === "systemFontSource" ? "systemFont" : key === "systemEmojiSource" ? "systemEmoji" : /^cleanChannels[A-Z]/.test(key) ? "cleanChannels" : /^voiceOptions[A-Z]/.test(key) ? "voiceOptions" : /^anonFiles[A-Z]/.test(key) ? "anonFiles" : /^staffTag[A-Z]/.test(key) ? "staffTag" : /^fullImages[A-Z]/.test(key) ? "fullImages" : /^alwaysTrust[A-Z]/.test(key) ? "alwaysTrust" : /^quietReplies[A-Z]/.test(key) ? "quietReplies" : /^viewRaw[A-Z]/.test(key) ? "viewRaw" : /^hideAnything[A-Z]/.test(key) ? "hideAnything" : /^guildLurk[A-Z]/.test(key) ? "guildLurk" : /^customIdle[A-Z]/.test(key) ? "customIdle" : /^fastDeleteChannels[A-Z]/.test(key) ? "fastDeleteChannels" : /^platformSpoof[A-Z]/.test(key) ? "platformSpoof" : /^silentEdit[A-Z]/.test(key) ? "silentEdit" : /^localEdit[A-Z]/.test(key) ? "localEdit" : /^listenAlong[A-Z]/.test(key) ? "listenAlong" : /^backgroundMedia[A-Z]/.test(key) ? "backgroundMedia" : /^fakeDeafen[A-Z]/.test(key) ? "fakeDeafen" : /^noHandsfree[A-Z]/.test(key) ? "noHandsfree" : /^noBandwidthKick[A-Z]/.test(key) ? "noBandwidthKick" : /^localNick[A-Z]/.test(key) ? "localNick" : /^serverClock[A-Z0-9]/.test(key) ? "serverClock" : /^silentLeave[A-Z]/.test(key) ? "silentLeave" : /^textReplace[A-Z]/.test(key) ? "textReplace" : /^noDelete[A-Z]/.test(key) ? "noDelete" : key;
     };
     // Section titles are read whenever Discord draws the list, so they follow the language too. "JaPatch" is a name.
     function section(label, keys) {
@@ -1253,7 +1254,7 @@
         hiddenChannels:[8495, "LockIcon"], systemFont:[16730, "LettersIcon"], systemEmoji:[13827, "ChatSmileIcon"],
         youBarSettings:[7368, "SettingsIcon"], quests:[13929, "QuestsIcon"],
         badges:[9211, "TrophyIcon"], userNotif:[9045, "BellIcon"], accountSwitcher:[8489, "GroupIcon"], appIcons:[8506, "AppsIcon"],
-        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], editHistory:[13745, "PencilSparkleIcon"], copyText:[5141, "CopyIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], localNick:[15994, "LaptopPhoneIcon"], noBandwidthKick:[12666, "PhoneIcon"],
+        compressUploads:[11636, "FileUpIcon"], customThemes:[16412, "EyeDropperIcon"], iconPacks:[11449, "ImageSparkleIcon"], messageHighlight:[17627, "PaintbrushThinIcon"], serverInfo:[5145, "CircleInformationIcon"], serverEdit:[10023, "PencilIcon"], fixEmbeds:[13836, "EmbedIcon"], tenorGifs:[10051, "GifIcon"], nitroThemes:[11733, "SparklesIcon"], materialYou:[16320, "PaintPaletteIcon"], hideBlocked:[11619, "ChatShieldIcon"], bulkDelete:[7144, "CircleCheckIcon"], experiments:[16650, "BeakerIcon"], cleanChannels:[12158, "MagicWandIcon"], noHandsfree:[13214, "HeadphonesIcon"], voiceOptions:[8501, "VoiceNormalIcon"], staffTag:[10563, "CrownIcon"], removedAlerts:[5135, "UserMinusIcon"], hideAnything:[10561, "XLargeIcon"], fullImages:[12328, "ImagesIcon"], alwaysTrust:[10733, "ShieldIcon"], noConfirmPin:[10641, "PinIcon"], clickableMentions:[8490, "AtIcon"], expandBar:[16089, "FullscreenEnterIcon"], quietReplies:[10654, "BellSlashIcon"], viewRaw:[12003, "FileIcon"], timeoutDuration:[5150, "ClockIcon"], dndBanners:[13603, "BellZIcon"], voiceDownload:[5143, "DownloadIcon"], cloneExpressions:[11657, "ImagePlusIcon"], listenAlong:[13214, "HeadphonesIcon"], backgroundMedia:[8674, "PlayIcon"], landscapeFull:[16089, "FullscreenEnterIcon"], silentLeave:[11384, "DoorExitIcon"], textReplace:[12158, "MagicWandIcon"], chatExport:[5143, "DownloadIcon"], editHistory:[13745, "PencilSparkleIcon"], copyText:[5141, "CopyIcon"], showMeYourName:[15994, "LaptopPhoneIcon"], guildLurk:[6929, "EyeIcon"], silentEdit:[13745, "PencilSparkleIcon"], silentDelete:[5148, "TrashIcon"], localEdit:[10023, "PencilIcon"], bookmarks:[13769, "BookmarkOutlineIcon"], saveImages:[12328, "ImagesIcon"], serverClock:[5150, "ClockIcon"], drafts:[12367, "SaveIcon"], localNick:[15994, "LaptopPhoneIcon"], noBandwidthKick:[12666, "PhoneIcon"],
         hypeSquad:[18747, "HomeIcon"], customIdle:[14205, "UserClockIcon"], pauseInvites:[8676, "PauseIcon"], fastDeleteChannels:[18679, "ChannelListIcon"], mutualGroupDMs:[8489, "GroupIcon"], platformSpoof:[5133, "UserPlatformIcon"],
         streamBadge:[18964, "ScreenIcon"]};
     const japatchIcons = new Map();
@@ -1939,6 +1940,7 @@
         withOptions("servers", "serverEdit", "JAPATCH_SERVEREDIT", "Edit servers locally", "Give any server your own name and icon. Only you see them.", "Edit servers", ServerEditSettings);
         withOptions("people", "saveImages", "JAPATCH_SAVEIMAGES", "Save profile pictures and banners", "Hold a profile to save its picture or banner through Android's own Save to screen.", "Save pictures", SaveImageSettings);
         withOptions("servers", "serverClock", "JAPATCH_SERVERCLOCK", "Show the time next to the server name", "A clock in the chat header, set to the time you pick for your servers.", "Server time", ServerClockSettings);
+        withOptions("messages", "drafts", "JAPATCH_DRAFTS", "Drafts that survive a restart", "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.", "Kept drafts", DraftsSettings);
         withOptions("servers", "localNick", "JAPATCH_LOCALNICK", "Nicknames for this phone", "Give people in a server a name only you see. Hold a message and pick Nickname to open this page.", "Nicknames", LocalNickSettings);
         withOptions("servers", "cleanChannels", "JAPATCH_CLEANCHANNELS", "Clean channel names", "Removes emoji and symbols from channel names, and can show spaces instead of dashes.", "Clean names", CleanChannelsSettings);
         toggle("servers", "pauseInvites", "Pause invites", "Hold a server's icon to pause or resume its invites. Needs Manage Server.");
@@ -23465,12 +23467,131 @@
         try { sample = new Intl.DateTimeFormat(undefined, {hour:"2-digit", minute:"2-digit", timeZoneName: zone ? "short" : undefined, timeZone: zone || undefined}).format(new Date()); } catch (_) { sample = ""; }
         const groups = [on ? statusCard("status", "Server time in the header", {leading:el(japatchIcon(5150, "ClockIcon"), {size:"md"}),
                 body:tr("Each of your servers shows its local time next to its name in a chat. A server has no timezone of its own, so every server uses the one picked here.")}) : offCard("status", japatchIcon(5150, "ClockIcon"), "serverClock"),
-            on ? switchRow(inspectedExport(7173, "FormSwitch"), "serverClock24", "24-hour clock", "Show 14:05 instead of 02:05 PM.") : null,
-            on ? footnote("now", sample ? "Right now that reads " + sample + "." : "The phone's date data is not available, so the zone name is left out.") : null,
+            on ? switchRow(inspectedExport(7173, "FormSwitch") || ui.TableSwitchRow, "serverClock24", "24-hour clock", "Show 14:05 instead of 02:05 PM.") : null,
+            on ? footnote("now", sample ? tr("Right now that reads {time}.", {time:sample}) : "The phone's date data is not available, so the zone name is left out.") : null,
             on ? footnote("zone", "A server has no timezone of its own in Discord's data, so this one time is used for every server.") : null];
         return settingsBody(ui, groups);
     }
+    function DraftsSettings() {
+        useSettings("drafts");
+        const ui = reviewUI(), on = enabled("drafts");
+        if (!React || !RN) return null;
+        // The count comes from the same store the message bar reads, so it can never disagree with what is kept.
+        const snapshot = drafts.applied ? draftsSnapshot() : null, kept = snapshot ? Object.keys(snapshot).length : 0;
+        const groups = [on ? statusCard("status", "Kept drafts is on", {leading:el(japatchIcon(12367, "SaveIcon"), {size:"md"}),
+                body:tr("A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.")}) : offCard("status", japatchIcon(12367, "SaveIcon"), "drafts"),
+            on ? footnote("count", kept ? tr("{n} chats have a kept draft right now.", {n:kept}) : "No draft is kept right now.") : null,
+            on ? footnote("local", "Drafts are kept on this phone, for this account. Nothing is sent to Discord.") : null];
+        return settingsBody(ui, groups);
+    }
 
+    // ---- Kept drafts (item: drafts that survive a restart) ---------------------------------------------------------
+    // A sent message clears its draft the way Discord clears it today, and the file follows on the next change.
+    // Discord already keeps a draft for every channel in its own DraftStore, and the message bar reads and writes it;
+    // this build never saves that store (nothing calls persist() on it), so every draft dies with the app.
+    // Only the store's state object is touched: the map it builds is written out as it changes and filled back before
+    // the message bar reads it, so no prop, no render and no send path is guessed.
+    //
+    // A bad channel id, a slot that is not text, or a file from a newer version is skipped rather than repaired.
+    const DRAFTS = "japatch-drafts.json", DRAFT_VERSION = 1, DRAFT_MAX = 200, DRAFT_DELAY = 1200, DRAFT_TEXT = 4000;
+    const DRAFT_TYPES = ["ChannelMessage", "ThreadSettings", "FirstThreadMessage", "ApplicationLauncherCommand", "Poll", "SlashCommand", "ForwardContextMessage", "InteractionModal", "ScheduledMessage"];
+    const drafts = {store:null, map:null, saved:null, applied:false, loaded:false, timer:null, silent:false, writes:0, restored:0, skipped:0};
+    function draftShape(value) { return !!value && typeof value === "object" && !Array.isArray(value); }
+    function draftId(id) { return typeof id === "string" && /^\d{5,25}$/.test(id); }   // a Discord snowflake
+    function draftText(text) { return typeof text === "string" && text.length > DRAFT_TEXT ? text.slice(0, DRAFT_TEXT) : text; }
+    // The state object is the map getDraft reads, so holding it is all that is needed to see every draft.
+    function draftsState(store) {
+        if (drafts.map) return drafts.map;
+        try { const state = store.getState(); if (draftShape(state)) drafts.map = state; } catch (_) {}
+        return drafts.map;
+    }
+    function draftStore(exports) { const value = exports && exports.default; return value && typeof value.getState === "function" && typeof value.getDraft === "function" ? value : null; }
+    function draftsApply() {
+        const map = draftsState(drafts.store), saved = drafts.saved && drafts.saved.drafts;
+        drafts.applied = true;
+        if (!draftShape(map) || !draftShape(saved)) return 0;
+        let added = 0;
+        for (const channelId of Object.keys(saved)) {
+            const types = saved[channelId];
+            if (!draftId(channelId) || !draftShape(types)) { drafts.skipped++; continue; }
+            let target = draftShape(map[channelId]) ? map[channelId] : null;
+            for (const type of DRAFT_TYPES) {
+                const entry = types[type];
+                if (!draftShape(entry) || typeof entry.draft !== "string" || !entry.draft) { if (entry) drafts.skipped++; continue; }
+                if (!target) target = map[channelId] = {};
+                const slot = draftShape(target[type]) ? target[type] : (target[type] = {});
+                if (typeof slot.draft === "string" && slot.draft) continue;   // typing in this session always wins
+                slot.draft = draftText(entry.draft);
+                slot.timestamp = Number(entry.timestamp) || Date.now();
+                added++; drafts.restored++;
+            }
+        }
+        return added;
+    }
+    function draftsSnapshot() {
+        const map = drafts.map, out = {};
+        if (!draftShape(map)) return null;
+        let kept = 0;
+        for (const channelId of Object.keys(map)) {
+            if (kept >= DRAFT_MAX) break;
+            if (!draftId(channelId) || !draftShape(map[channelId])) continue;
+            const types = map[channelId], entry = {};
+            for (const type of DRAFT_TYPES) {
+                const slot = types[type];
+                if (draftShape(slot) && typeof slot.draft === "string" && slot.draft) entry[type] = {draft:draftText(slot.draft), timestamp:Number(slot.timestamp) || Date.now()};
+            }
+            if (Object.keys(entry).length) { out[channelId] = entry; kept++; }
+        }
+        return out;
+    }
+    function draftsSave() {
+        if (drafts.timer || !files || typeof files.writeFile !== "function") return;
+        drafts.timer = later(() => {
+            drafts.timer = null;
+            if (!drafts.loaded || !drafts.applied) return;   // never write before the saved file has been read
+            let snapshot;
+            try { snapshot = draftsSnapshot(); } catch (error) { if (settings.debugLog) dlog("W", "drafts", "kept drafts not saved: " + dlogText(error)); return; }
+            if (!snapshot) return;
+            drafts.writes++;
+            Promise.resolve().then(() => files.writeFile("documents", DRAFTS, JSON.stringify({version:DRAFT_VERSION, drafts:snapshot}), "utf8"))
+                .catch(error => { if (settings.debugLog) dlog("E", "drafts", "couldn't save the kept drafts: " + dlogText(error)); });
+        }, DRAFT_DELAY);
+    }
+    function draftsLoad() {
+        if (drafts.loaded || !files || typeof files.readFile !== "function") return;
+        drafts.loaded = true;
+        Promise.resolve().then(() => files.fileExists(DRAFTS))
+            .then(exists => exists ? files.readFile("documents", DRAFTS, "utf8") : null)
+            .then(text => {
+                // Once the read is done, a change may write; a missing or newer file leaves nothing to put back.
+                drafts.applied = true;
+                if (!text) return;                        // nothing saved yet: the first change may write
+                const parsed = JSON.parse(text);
+                if (!draftShape(parsed) || parsed.version !== DRAFT_VERSION) return;
+                drafts.saved = parsed;
+                const added = draftsApply();
+                // Put them back on screen: only the store knows how to tell the message bar.
+                if (added && drafts.store && typeof drafts.store.emitChange === "function") {
+                    drafts.silent = true;
+                    try { drafts.store.emitChange(); } finally { drafts.silent = false; }
+                }
+                if (settings.debugLog) dlog("I", "drafts", added + " kept draft(s) put back");
+            })
+            .catch(error => { drafts.applied = true; if (settings.debugLog) dlog("W", "drafts", "kept drafts not read: " + dlogText(error)); });
+    }
+    // Every draft change ends in emitChange, so that is the one place that writes the file; a restore is silent.
+    function draftsWatch(exports) {
+        const store = draftStore(exports);
+        if (!store || drafts.store === store) return;
+        drafts.store = store; draftsState(store);
+        if (typeof store.emitChange === "function") {
+            const emit = store.emitChange;
+            try {
+                store.emitChange = function () { const out = emit.apply(this, arguments); if (!drafts.silent) draftsSave(); return out; };
+            } catch (error) { if (settings.debugLog) dlog("W", "drafts", "couldn't watch the drafts: " + dlogText(error)); }
+        }
+        draftsLoad();
+    }
     // ---- A server nickname of your own (item: local server nickname) -------------------------------------------------
     // Discord keeps one nickname per person per server, and only someone with the permission (or the person) can change
     // it. This is not Discord's nickname: it is a name for this phone only, like Edit servers locally, and it never
@@ -25394,6 +25515,9 @@
                 if (features.platformIndicators) exports = hookComponent(exports, platformHeader);
                 return features.serverClock ? hookComponent(exports, serverClockHeader) : exports;
             }
+            // Discord's own DraftStore (stores/DraftStore.tsx): the message bar already reads and writes it, it is only
+            // never saved. Hooking it keeps every draft in the one place Discord puts it.
+            case 7510: if (features.drafts) draftsStart(exports); return exports;
             case 17165: return features.platformIndicators ? hookComponent(exports, platformDmRow) : exports;
             // User list rows (UserRow, default export) and voice panel rows (FormComponents' named MemberRowItem).
             case 10531: return features.platformIndicators ? hookComponent(exports, platformPlacementHook("piUserList")) : exports;

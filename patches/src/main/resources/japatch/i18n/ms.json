@@ -1983,6 +1983,15 @@
     "Copy text": "Salin teks",
     "Copied": "Disalin",
     "Copy part of a message": "Salin sebahagian mesej",
-    "Long press a message and pick Copy text to select just the part you need.": "Tekan lama mesej dan pilih Salin teks untuk memilih bahagian yang anda perlukan sahaja."
+    "Long press a message and pick Copy text to select just the part you need.": "Tekan lama mesej dan pilih Salin teks untuk memilih bahagian yang anda perlukan sahaja.",
+    "Right now that reads {time}.": "Sekarang ini tertulis {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Draf disimpan pada telefon ini, untuk akaun ini. Tiada apa dihantar ke Discord.",
+    "Drafts that survive a restart": "Draf yang kekal selepas mula semula",
+    "Kept drafts": "Draf tersimpan",
+    "Kept drafts is on": "Draf tersimpan dihidupkan",
+    "No draft is kept right now.": "Tiada draf disimpan sekarang.",
+    "{n} chats have a kept draft right now.": "{n} sembang mempunyai draf tersimpan sekarang.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Mesej yang belum anda hantar kekal di sini apabila Discord ditutup, dimulakan semula atau ranap, dan menunggu apabila sembang itu dibuka lagi. Menghantarnya atau mengosongkan bar akan memadamnya.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord melupakan setiap mesej yang belum dihantar apabila aplikasi ditutup. Ini menyimpannya pada telefon ini dan mengembalikannya."
   }
 }

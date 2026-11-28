@@ -2166,6 +2166,15 @@
     "Copy text": "Szöveg másolása",
     "Copied": "Másolva",
     "Copy part of a message": "Üzenet egy részének másolása",
-    "Long press a message and pick Copy text to select just the part you need.": "Tartsd lenyomva egy üzenetet, és válaszd a Szöveg másolása lehetőséget, hogy csak a szükséges részt jelöld ki."
+    "Long press a message and pick Copy text to select just the part you need.": "Tartsd lenyomva egy üzenetet, és válaszd a Szöveg másolása lehetőséget, hogy csak a szükséges részt jelöld ki.",
+    "Right now that reads {time}.": "Most ezt mutatja: {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "A piszkozatok ezen a telefonon maradnak, ehhez a fiókhoz. Semmi nem megy a Discordra.",
+    "Drafts that survive a restart": "Újraindítást túlélő piszkozatok",
+    "Kept drafts": "Megőrzött piszkozatok",
+    "Kept drafts is on": "A megőrzött piszkozatok be vannak kapcsolva",
+    "No draft is kept right now.": "Most nincs megőrzött piszkozat.",
+    "{n} chats have a kept draft right now.": "{n} csevegésben van most megőrzött piszkozat.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Az a üzenet, amit még nem küldtél el, itt marad, ha a Discord bezárul, újraindul vagy összeomlik, és a következő beszélgetésnyitáskor vár. Elküldéssel vagy a sáv kiürítésével törlődik.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "A Discord bezáráskor minden el nem küldött üzenetet elfelejt. Ez megtartja őket ezen a telefonon, és visszateszi."
   }
 }

@@ -26,6 +26,18 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.31] (2026-11-26)
+
+### ✨ New Features
+
+* **Discord - Drafts that survive a restart:** An unsent message now stays where you left it when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Discord already keeps a draft per chat but never saves it on this build, so it died with the app; JaPatch writes that same draft down as you type and puts it back, with nothing guessed about the message bar. A draft typed in the session always beats the saved one, sending clears it the usual way, and nothing is sent to Discord
+* **JaPatch - Kept drafts page:** Settings shows how many chats are holding a draft right now, in every language JaPatch ships
+
+### 🐛 Bug Fixes
+
+* **JaPatch - Server time's 24-hour switch:** Fixed the switch doing nothing. It was drawn with a component from a module that does not export it, so the row fell back to a plain one, and the setting itself was missing from the list the runtime accepts, so every flip was refused. Fixed at the source, and the test that should have caught it now reads every switch instead of only the two shapes it knew about
+* **JaPatch - Server time's hint line:** Fixed the sentence under the clock staying English while the rest of the page was translated. It was put together before reaching the translation, so no language could ever match it
+
 ## [1.0.30] (2026-11-28)
 
 ### 🐛 Bug Fixes

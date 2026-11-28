@@ -2227,6 +2227,15 @@
     "Copy text": "Kopírovat text",
     "Copied": "Zkopírováno",
     "Copy part of a message": "Kopírovat část zprávy",
-    "Long press a message and pick Copy text to select just the part you need.": "Podrž zprávu a vyber Kopírovat text, abys označil jen potřebnou část."
+    "Long press a message and pick Copy text to select just the part you need.": "Podrž zprávu a vyber Kopírovat text, abys označil jen potřebnou část.",
+    "Right now that reads {time}.": "Právě teď to ukazuje {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Koncepty zůstávají v tomto telefonu, pro tento účet. Do Discordu se nic neposílá.",
+    "Drafts that survive a restart": "Koncepty, které přežijí restart",
+    "Kept drafts": "Uložené koncepty",
+    "Kept drafts is on": "Uložené koncepty je zapnuto",
+    "No draft is kept right now.": "Právě teď není uložen žádný koncept.",
+    "{n} chats have a kept draft right now.": "{n} chatů má právě teď uložený koncept.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Zpráva, kterou jsi ještě neodeslal, zůstane tady, když se Discord zavře, restartuje nebo spadne, a čeká na příští otevření chatu. Odesláním nebo vymazáním pole zmizí.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord po zavření aplikace zapomene každou neodeslanou zprávu. Tohle je udrží v tomto telefonu a vrátí je."
   }
 }

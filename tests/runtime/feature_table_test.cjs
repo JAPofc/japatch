@@ -142,7 +142,12 @@ check("switchRow() is only given keys the settings table knows", () => {
     // derived value (a computed field) or a page-local state must not be given to switchRow, because the switch
     // reads settings[key] and writes setSetting(key, ...), and neither exists for it.
     const defaults = SOURCE;
-    const used = Array.from(SOURCE.matchAll(/switchRow\(\s*(?:Switch|ui\.TableSwitchRow)\s*,\s*"([A-Za-z0-9_]+)"/g)).map(m => m[1]);
+    // Any component expression, not just Switch/ui.TableSwitchRow: the Server time page passed
+    // inspectedExport(7173, "FormSwitch") and so was never checked, and its key had no default at all.
+    // Any component argument at all, matched by taking everything up to the first quoted key after it.
+    // The Server time page passed inspectedExport(7173, "FormSwitch") and was never checked, which is how
+    // its key shipped with no default at all.
+    const used = Array.from(SOURCE.matchAll(/switchRow\(([^;]{0,120}?),\s*"([A-Za-z0-9_]+)"\s*,/g)).map(m => m[2]);
     const unknown = used.filter(key => !new RegExp("(^|[,{ ])" + key + "\\s*:\\s*(false|true|\\d|\"|'|null)", "m").test(defaults));
     eq(unknown.join(","), "", "switchRow keys missing from the settings table:");
     eq(used.length > 10, true, "found switchRow calls");

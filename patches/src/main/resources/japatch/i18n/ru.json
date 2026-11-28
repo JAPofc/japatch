@@ -2231,6 +2231,15 @@
     "Copy text": "Копировать текст",
     "Copied": "Скопировано",
     "Copy part of a message": "Копировать часть сообщения",
-    "Long press a message and pick Copy text to select just the part you need.": "Зажмите сообщение и выберите «Копировать текст», чтобы выделить только нужную часть."
+    "Long press a message and pick Copy text to select just the part you need.": "Зажмите сообщение и выберите «Копировать текст», чтобы выделить только нужную часть.",
+    "Right now that reads {time}.": "Прямо сейчас там {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Черновики остаются на этом телефоне, для этого аккаунта. В Discord ничего не отправляется.",
+    "Drafts that survive a restart": "Черновики, которые переживают перезапуск",
+    "Kept drafts": "Сохранённые черновики",
+    "Kept drafts is on": "Сохранённые черновики включены",
+    "No draft is kept right now.": "Прямо сейчас нет сохранённых черновиков.",
+    "{n} chats have a kept draft right now.": "Сейчас в {n} чатах есть сохранённый черновик.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Сообщение, которое ты ещё не отправил, остаётся здесь, когда Discord закрывается, перезапускается или падает, и ждёт следующего открытия этого чата. Отправка или очистка поля удаляет его.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord забывает каждое неотправленное сообщение при закрытии приложения. Это сохраняет их на этом телефоне и возвращает."
   }
 }

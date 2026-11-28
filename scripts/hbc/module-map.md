@@ -353,6 +353,7 @@ The supported Discord version and bundle hash live in `DiscordPatches.kt` and `H
 | 12331 | `design/components/Icon/native/redesign/generated/FiltersHorizontalIcon.tsx` | FiltersHorizontalIcon | FiltersHorizontalIcon (translate bar) |
 | 12337 | `modules/chat_input/native/ChatInputNativeComponent.tsx` | displayName, default | ChatInputNativeComponent (Tap mentions to open profiles; Expand the message bar) |
 | 12338 | `modules/chat_input/native/useChatInputMaxHeight.tsx` | getChatInputMaxHeightWorklet, getChatInputHeightAnimationTimingWorklet, getChatInputMaxHeight | useChatInputMaxHeight (Expand the message bar: the height cap) |
+| 12367 | `design/components/Icon/native/redesign/generated/SaveIcon.tsx` | SaveIcon | SaveIcon (Kept drafts) |
 | 12666 | `design/components/Icon/native/redesign/generated/PhoneIcon.tsx` | PhoneIcon | PhoneIcon (Voice channel options) |
 | 12668 | `design/components/Icon/native/redesign/generated/GiftIcon.tsx` | GiftIcon | GiftIcon |
 | 12696 | `design/components/Icon/native/redesign/generated/ArrowAngleRightUpIcon.tsx` | ArrowAngleRightUpIcon | ArrowAngleRightUpIcon (Remove anything: Forward) |

@@ -2231,6 +2231,15 @@
     "Copy text": "Копіювати текст",
     "Copied": "Скопійовано",
     "Copy part of a message": "Копіювати частину повідомлення",
-    "Long press a message and pick Copy text to select just the part you need.": "Утримайте повідомлення й виберіть «Копіювати текст», щоб виділити лише потрібну частину."
+    "Long press a message and pick Copy text to select just the part you need.": "Утримайте повідомлення й виберіть «Копіювати текст», щоб виділити лише потрібну частину.",
+    "Right now that reads {time}.": "Зараз там {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Чернетки залишаються на цьому телефоні, для цього акаунта. У Discord нічого не надсилається.",
+    "Drafts that survive a restart": "Чернетки, що переживають перезапуск",
+    "Kept drafts": "Збережені чернетки",
+    "Kept drafts is on": "Збережені чернетки увімкнено",
+    "No draft is kept right now.": "Зараз немає збережених чернеток.",
+    "{n} chats have a kept draft right now.": "Зараз у {n} чатах є збережена чернетка.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Повідомлення, яке ти ще не надіслав, залишається тут, коли Discord закривається, перезапускається або падає, і чекає наступного відкриття цього чату. Надсилання або очищення поля видаляє його.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord забуває кожне не надіслане повідомлення, коли програма закривається. Це зберігає їх на цьому телефоні та повертає."
   }
 }

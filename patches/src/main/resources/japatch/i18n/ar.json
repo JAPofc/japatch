@@ -1983,6 +1983,15 @@
     "Copy text": "نسخ النص",
     "Copied": "تم النسخ",
     "Copy part of a message": "نسخ جزء من الرسالة",
-    "Long press a message and pick Copy text to select just the part you need.": "اضغط مطولاً على رسالة واختر نسخ النص لتحديد الجزء الذي تحتاجه فقط."
+    "Long press a message and pick Copy text to select just the part you need.": "اضغط مطولاً على رسالة واختر نسخ النص لتحديد الجزء الذي تحتاجه فقط.",
+    "Right now that reads {time}.": "يقرأ الآن {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "تُحفظ المسودات على هذا الهاتف، لهذا الحساب. لا يُرسل شيء إلى Discord.",
+    "Drafts that survive a restart": "مسودات تبقى بعد إعادة التشغيل",
+    "Kept drafts": "مسودات محفوظة",
+    "Kept drafts is on": "مسودات محفوظة مفعّل",
+    "No draft is kept right now.": "لا توجد مسودة محفوظة الآن.",
+    "{n} chats have a kept draft right now.": "{n} محادثة لديها مسودة محفوظة الآن.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "الرسالة التي لم ترسلها بعد تبقى هنا عندما يُغلق Discord أو يُعاد تشغيله أو يتعطل، وتكون في انتظارك عند فتح تلك المحادثة. إرسالها أو إفراغ الشريط يمسحها.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord ينسى كل رسالة لم تُرسل عند إغلاق التطبيق. هذا يبقيها على هذا الهاتف ويعيدها."
   }
 }

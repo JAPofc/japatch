@@ -2148,6 +2148,15 @@
     "Copy text": "Kopier tekst",
     "Copied": "Kopiert",
     "Copy part of a message": "Kopier en del av en melding",
-    "Long press a message and pick Copy text to select just the part you need.": "Hold en melding inne og velg Kopier tekst for å merke bare den delen du trenger."
+    "Long press a message and pick Copy text to select just the part you need.": "Hold en melding inne og velg Kopier tekst for å merke bare den delen du trenger.",
+    "Right now that reads {time}.": "Akkurat nå står det {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Utkast blir liggende på denne telefonen, for denne kontoen. Ingenting sendes til Discord.",
+    "Drafts that survive a restart": "Utkast som overlever en omstart",
+    "Kept drafts": "Lagrede utkast",
+    "Kept drafts is on": "Lagrede utkast er på",
+    "No draft is kept right now.": "Ingen utkast er lagret akkurat nå.",
+    "{n} chats have a kept draft right now.": "{n} samtaler har et lagret utkast akkurat nå.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "En melding du ikke har sendt ennå blir liggende her når Discord lukkes, starter på nytt eller krasjer, og venter neste gang du åpner samtalen. Sender du den, eller tømmer feltet, slettes den.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord glemmer hver usendt melding når appen lukkes. Dette beholder dem på denne telefonen og setter dem tilbake."
   }
 }

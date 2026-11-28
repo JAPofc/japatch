@@ -2227,6 +2227,15 @@
     "Copy text": "Kopiraj tekst",
     "Copied": "Kopirano",
     "Copy part of a message": "Kopiraj dio poruke",
-    "Long press a message and pick Copy text to select just the part you need.": "Dugo pritisni poruku i odaberi Kopiraj tekst da odabereš samo dio koji trebaš."
+    "Long press a message and pick Copy text to select just the part you need.": "Dugo pritisni poruku i odaberi Kopiraj tekst da odabereš samo dio koji trebaš.",
+    "Right now that reads {time}.": "Trenutačno piše {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Skice ostaju na ovom telefonu, za ovaj račun. Ništa se ne šalje Discordu.",
+    "Drafts that survive a restart": "Skice koje prežive ponovno pokretanje",
+    "Kept drafts": "Pohranjene skice",
+    "Kept drafts is on": "Pohranjene skice su uključene",
+    "No draft is kept right now.": "Trenutačno nema pohranjene skice.",
+    "{n} chats have a kept draft right now.": "{n} razgovora trenutačno ima pohranjenu skicu.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Poruka koju još nisi poslao ostaje ovdje kada se Discord zatvori, ponovno pokrene ili sruši, i čeka sljedeći put kad otvoriš taj razgovor. Slanjem ili pražnjenjem polja briše se.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord zaboravi svaku neposlanu poruku kad se aplikacija zatvori. Ovo ih čuva na ovom telefonu i vraća ih."
   }
 }

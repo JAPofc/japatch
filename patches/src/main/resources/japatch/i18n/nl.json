@@ -2148,6 +2148,15 @@
     "Copy text": "Tekst kopiëren",
     "Copied": "Gekopieerd",
     "Copy part of a message": "Deel van een bericht kopiëren",
-    "Long press a message and pick Copy text to select just the part you need.": "Houd een bericht ingedrukt en kies Tekst kopiëren om alleen het deel te selecteren dat je nodig hebt."
+    "Long press a message and pick Copy text to select just the part you need.": "Houd een bericht ingedrukt en kies Tekst kopiëren om alleen het deel te selecteren dat je nodig hebt.",
+    "Right now that reads {time}.": "Op dit moment staat er {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Concepten blijven op deze telefoon, voor dit account. Er wordt niets naar Discord gestuurd.",
+    "Drafts that survive a restart": "Concepten die een herstart overleven",
+    "Kept drafts": "Bewaarde concepten",
+    "Kept drafts is on": "Bewaarde concepten staat aan",
+    "No draft is kept right now.": "Er wordt op dit moment geen concept bewaard.",
+    "{n} chats have a kept draft right now.": "{n} chats hebben nu een bewaard concept.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Een bericht dat je nog niet hebt verzonden blijft hier staan als Discord wordt gesloten, opnieuw wordt gestart of crasht, en wacht de volgende keer dat je die chat opent. Verzenden of het veld leegmaken wist het.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord vergeet elk onverzonden bericht als de app sluit. Dit bewaart ze op deze telefoon en zet ze terug."
   }
 }

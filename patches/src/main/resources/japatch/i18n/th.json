@@ -1985,6 +1985,15 @@
     "Copy text": "คัดลอกข้อความ",
     "Copied": "คัดลอกแล้ว",
     "Copy part of a message": "คัดลอกส่วนหนึ่งของข้อความ",
-    "Long press a message and pick Copy text to select just the part you need.": "กดข้อความค้างไว้แล้วเลือกคัดลอกข้อความเพื่อเลือกเฉพาะส่วนที่ต้องการ"
+    "Long press a message and pick Copy text to select just the part you need.": "กดข้อความค้างไว้แล้วเลือกคัดลอกข้อความเพื่อเลือกเฉพาะส่วนที่ต้องการ",
+    "Right now that reads {time}.": "ตอนนี้แสดงเป็น {time}",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "ฉบับร่างถูกเก็บไว้ในโทรศัพท์เครื่องนี้ สำหรับบัญชีนี้ ไม่มีอะไรถูกส่งไปยัง Discord",
+    "Drafts that survive a restart": "ฉบับร่างที่อยู่ต่อหลังรีสตาร์ต",
+    "Kept drafts": "ฉบับร่างที่เก็บไว้",
+    "Kept drafts is on": "ฉบับร่างที่เก็บไว้เปิดอยู่",
+    "No draft is kept right now.": "ตอนนี้ยังไม่มีฉบับร่างที่เก็บไว้",
+    "{n} chats have a kept draft right now.": "ตอนนี้มี {n} แชตที่เก็บฉบับร่างไว้",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "ข้อความที่คุณยังไม่ได้ส่งจะอยู่ที่นี่เมื่อ Discord ปิด รีสตาร์ต หรือแครช และรออยู่เมื่อคุณเปิดแชตนั้นอีกครั้ง การส่งหรือล้างช่องข้อความจะลบมัน",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord ลืมทุกข้อความที่ยังไม่ได้ส่งเมื่อปิดแอป สิ่งนี้เก็บไว้ในโทรศัพท์เครื่องนี้และใส่กลับให้"
   }
 }

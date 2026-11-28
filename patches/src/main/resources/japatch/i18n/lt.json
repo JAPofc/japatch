@@ -2227,6 +2227,15 @@
     "Copy text": "Kopijuoti tekstą",
     "Copied": "Nukopijuota",
     "Copy part of a message": "Kopijuoti pranešimo dalį",
-    "Long press a message and pick Copy text to select just the part you need.": "Palaikykite pranešimą ir pasirinkite Kopijuoti tekstą, kad pažymėtumėte tik reikiamą dalį."
+    "Long press a message and pick Copy text to select just the part you need.": "Palaikykite pranešimą ir pasirinkite Kopijuoti tekstą, kad pažymėtumėte tik reikiamą dalį.",
+    "Right now that reads {time}.": "Šiuo metu rodoma {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Juodraščiai lieka šiame telefone, šiai paskyrai. Į Discord niekas nesiunčiama.",
+    "Drafts that survive a restart": "Juodraščiai, išliekantys po paleidimo iš naujo",
+    "Kept drafts": "Išsaugoti juodraščiai",
+    "Kept drafts is on": "Išsaugoti juodraščiai įjungta",
+    "No draft is kept right now.": "Šiuo metu išsaugotų juodraščių nėra.",
+    "{n} chats have a kept draft right now.": "{n} pokalbių šiuo metu turi išsaugotą juodraštį.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Dar neišsiųsta žinutė lieka čia, kai Discord uždaromas, paleidžiamas iš naujo arba sugenda, ir laukia, kol kitą kartą atidarysi tą pokalbį. Išsiuntus ją arba išvalius lauką, ji ištrinama.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord pamiršta kiekvieną neišsiųstą žinutę, kai programa uždaroma. Tai jas išsaugo šiame telefone ir grąžina."
   }
 }

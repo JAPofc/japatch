@@ -2166,6 +2166,15 @@
     "Copy text": "Kopioi teksti",
     "Copied": "Kopioitu",
     "Copy part of a message": "Kopioi osa viestistä",
-    "Long press a message and pick Copy text to select just the part you need.": "Pidä viestiä painettuna ja valitse Kopioi teksti valitaksesi vain tarvitsemasi osan."
+    "Long press a message and pick Copy text to select just the part you need.": "Pidä viestiä painettuna ja valitse Kopioi teksti valitaksesi vain tarvitsemasi osan.",
+    "Right now that reads {time}.": "Juuri nyt siinä lukee {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Luonnokset pysyvät tässä puhelimessa, tälle tilille. Discordiin ei lähetetä mitään.",
+    "Drafts that survive a restart": "Uudelleenkäynnistyksen kestävät luonnokset",
+    "Kept drafts": "Tallennetut luonnokset",
+    "Kept drafts is on": "Tallennetut luonnokset on päällä",
+    "No draft is kept right now.": "Juuri nyt ei ole tallennettua luonnosta.",
+    "{n} chats have a kept draft right now.": "{n} keskustelussa on juuri nyt tallennettu luonnos.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Viesti, jota et ole vielä lähettänyt, jää tänne, kun Discord suljetaan, käynnistetään uudelleen tai kaatuu, ja odottaa seuraavaa kertaa, kun avaat keskustelun. Lähettäminen tai kentän tyhjentäminen poistaa sen.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord unohtaa jokaisen lähettämättömän viestin, kun sovellus suljetaan. Tämä pitää ne tässä puhelimessa ja palauttaa ne."
   }
 }

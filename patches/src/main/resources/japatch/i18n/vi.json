@@ -1985,6 +1985,15 @@
     "Copy text": "Sao chép văn bản",
     "Copied": "Đã sao chép",
     "Copy part of a message": "Sao chép một phần tin nhắn",
-    "Long press a message and pick Copy text to select just the part you need.": "Nhấn giữ một tin nhắn và chọn Sao chép văn bản để chỉ chọn phần bạn cần."
+    "Long press a message and pick Copy text to select just the part you need.": "Nhấn giữ một tin nhắn và chọn Sao chép văn bản để chỉ chọn phần bạn cần.",
+    "Right now that reads {time}.": "Ngay bây giờ đang hiển thị {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Bản nháp được giữ trên điện thoại này, cho tài khoản này. Không có gì được gửi đến Discord.",
+    "Drafts that survive a restart": "Bản nháp vẫn còn sau khi khởi động lại",
+    "Kept drafts": "Bản nháp đã giữ",
+    "Kept drafts is on": "Bản nháp đã giữ đang bật",
+    "No draft is kept right now.": "Hiện không có bản nháp nào được giữ.",
+    "{n} chats have a kept draft right now.": "Hiện có {n} cuộc trò chuyện đang giữ bản nháp.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Tin nhắn bạn chưa gửi vẫn ở đây khi Discord đóng, khởi động lại hoặc gặp sự cố, và chờ vào lần tới khi bạn mở cuộc trò chuyện đó. Gửi nó hoặc xoá trống thanh nhập sẽ xoá nó.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord quên mọi tin nhắn chưa gửi khi ứng dụng đóng. Tính năng này giữ chúng trên điện thoại này và đặt lại."
   }
 }

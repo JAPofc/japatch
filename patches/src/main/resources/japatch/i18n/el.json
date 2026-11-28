@@ -2148,6 +2148,15 @@
     "Copy text": "Αντιγραφή κειμένου",
     "Copied": "Αντιγράφηκε",
     "Copy part of a message": "Αντιγραφή μέρους μηνύματος",
-    "Long press a message and pick Copy text to select just the part you need.": "Κρατήστε πατημένο ένα μήνυμα και επιλέξτε Αντιγραφή κειμένου για να επιλέξετε μόνο το μέρος που χρειάζεστε."
+    "Long press a message and pick Copy text to select just the part you need.": "Κρατήστε πατημένο ένα μήνυμα και επιλέξτε Αντιγραφή κειμένου για να επιλέξετε μόνο το μέρος που χρειάζεστε.",
+    "Right now that reads {time}.": "Αυτή τη στιγμή δείχνει {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Τα πρόχειρα μένουν σε αυτό το τηλέφωνο, για αυτόν τον λογαριασμό. Τίποτα δεν στέλνεται στο Discord.",
+    "Drafts that survive a restart": "Πρόχειρα που επιβιώνουν από επανεκκίνηση",
+    "Kept drafts": "Φυλαγμένα πρόχειρα",
+    "Kept drafts is on": "Τα φυλαγμένα πρόχειρα είναι ενεργά",
+    "No draft is kept right now.": "Αυτή τη στιγμή δεν φυλάσσεται κανένα πρόχειρο.",
+    "{n} chats have a kept draft right now.": "{n} συνομιλίες έχουν αυτή τη στιγμή φυλαγμένο πρόχειρο.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Ένα μήνυμα που δεν έχεις στείλει ακόμα μένει εδώ όταν το Discord κλείνει, επανεκκινεί ή καταρρέει, και σε περιμένει την επόμενη φορά που θα ανοίξεις τη συνομιλία. Αν το στείλεις ή αδειάσεις το πεδίο, σβήνεται.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Το Discord ξεχνά κάθε μήνυμα που δεν στάλθηκε όταν κλείνει η εφαρμογή. Αυτό τα κρατά σε αυτό το τηλέφωνο και τα επαναφέρει."
   }
 }

@@ -1983,6 +1983,15 @@
     "Copy text": "টেক্সট কপি করুন",
     "Copied": "কপি হয়েছে",
     "Copy part of a message": "বার্তার অংশ কপি করুন",
-    "Long press a message and pick Copy text to select just the part you need.": "একটি বার্তা চেপে ধরুন এবং শুধু প্রয়োজনীয় অংশ বেছে নিতে টেক্সট কপি করুন বেছে নিন।"
+    "Long press a message and pick Copy text to select just the part you need.": "একটি বার্তা চেপে ধরুন এবং শুধু প্রয়োজনীয় অংশ বেছে নিতে টেক্সট কপি করুন বেছে নিন।",
+    "Right now that reads {time}.": "এই মুহূর্তে এটি দেখাচ্ছে {time}।",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "খসড়াগুলো এই ফোনে, এই অ্যাকাউন্টের জন্য রাখা হয়। Discord-এ কিছুই পাঠানো হয় না।",
+    "Drafts that survive a restart": "রিস্টার্টেও টিকে থাকা খসড়া",
+    "Kept drafts": "সংরক্ষিত খসড়া",
+    "Kept drafts is on": "সংরক্ষিত খসড়া চালু আছে",
+    "No draft is kept right now.": "এই মুহূর্তে কোনো খসড়া সংরক্ষিত নেই।",
+    "{n} chats have a kept draft right now.": "এই মুহূর্তে {n}টি চ্যাটে খসড়া সংরক্ষিত আছে।",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "আপনি যে বার্তা এখনো পাঠাননি সেটি Discord বন্ধ, রিস্টার্ট বা ক্র্যাশ হলেও এখানে থাকে এবং পরেরবার ওই চ্যাট খুললে অপেক্ষা করে। পাঠালে বা বার খালি করলে এটি মুছে যায়।",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "অ্যাপ বন্ধ হলে Discord প্রতিটি না-পাঠানো বার্তা ভুলে যায়। এটি সেগুলো এই ফোনে রাখে এবং ফিরিয়ে আনে।"
   }
 }

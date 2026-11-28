@@ -1983,6 +1983,15 @@
     "Copy text": "کپی متن",
     "Copied": "کپی شد",
     "Copy part of a message": "کپی بخشی از پیام",
-    "Long press a message and pick Copy text to select just the part you need.": "روی یک پیام نگه دارید و «کپی متن» را بزنید تا فقط بخش مورد نیازتان انتخاب شود."
+    "Long press a message and pick Copy text to select just the part you need.": "روی یک پیام نگه دارید و «کپی متن» را بزنید تا فقط بخش مورد نیازتان انتخاب شود.",
+    "Right now that reads {time}.": "همین الان این را نشان می‌دهد: {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "پیش‌نویس‌ها روی همین گوشی، برای همین حساب نگه داشته می‌شوند. چیزی به Discord فرستاده نمی‌شود.",
+    "Drafts that survive a restart": "پیش‌نویس‌هایی که بعد از راه‌اندازی مجدد می‌مانند",
+    "Kept drafts": "پیش‌نویس‌های نگه‌داشته",
+    "Kept drafts is on": "پیش‌نویس‌های نگه‌داشته روشن است",
+    "No draft is kept right now.": "همین الان هیچ پیش‌نویسی نگه داشته نشده است.",
+    "{n} chats have a kept draft right now.": "همین الان {n} گفتگو پیش‌نویس نگه‌داشته دارند.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "پیامی که هنوز نفرستاده‌ای وقتی Discord بسته، راه‌اندازی مجدد یا خراب شود همین‌جا می‌ماند و دفعه بعد که آن گفتگو را باز کنی منتظر است. با فرستادن یا خالی کردن نوار پاک می‌شود.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord با بسته شدن برنامه هر پیام نفرستاده را فراموش می‌کند. این آن‌ها را روی همین گوشی نگه می‌دارد و برمی‌گرداند."
   }
 }

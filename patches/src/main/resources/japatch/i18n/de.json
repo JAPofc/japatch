@@ -2148,6 +2148,15 @@
     "Copy text": "Text kopieren",
     "Copied": "Kopiert",
     "Copy part of a message": "Teil einer Nachricht kopieren",
-    "Long press a message and pick Copy text to select just the part you need.": "Halte eine Nachricht gedrückt und wähle Text kopieren, um nur den Teil zu markieren, den du brauchst."
+    "Long press a message and pick Copy text to select just the part you need.": "Halte eine Nachricht gedrückt und wähle Text kopieren, um nur den Teil zu markieren, den du brauchst.",
+    "Right now that reads {time}.": "Gerade steht dort {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Entwürfe bleiben auf diesem Telefon, für dieses Konto. An Discord wird nichts gesendet.",
+    "Drafts that survive a restart": "Entwürfe, die einen Neustart überstehen",
+    "Kept drafts": "Aufbewahrte Entwürfe",
+    "Kept drafts is on": "Aufbewahrte Entwürfe ist an",
+    "No draft is kept right now.": "Gerade wird kein Entwurf aufbewahrt.",
+    "{n} chats have a kept draft right now.": "{n} Chats haben gerade einen aufbewahrten Entwurf.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Eine Nachricht, die du noch nicht gesendet hast, bleibt hier, wenn Discord geschlossen wird, neu startet oder abstürzt, und wartet beim nächsten Öffnen des Chats. Senden oder Leeren des Feldes löscht sie.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord vergisst jede ungesendete Nachricht, wenn die App geschlossen wird. Das behält sie auf diesem Telefon und setzt sie zurück."
   }
 }

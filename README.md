@@ -28,7 +28,7 @@ No root, no second app, no Xposed, no remote code — just Discord, patched at i
 
 <table>
 <tr>
-<td align="center"><b>90</b><br/>patches</td>
+<td align="center"><b>91</b><br/>patches</td>
 <td align="center"><b>34</b><br/>languages</td>
 <td align="center"><b>0</b><br/>calls home</td>
 <td align="center"><b>5</b><br/>trackers off</td>
@@ -286,6 +286,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Bookmark messages | Keep a message on this phone and find it again from Settings. Nothing is sent to Discord |
 | Copy part of a message | Long press a message and pick Copy text to select just the part you need |
 | Custom branding | Installs JaPatch as its own app next to the normal Discord app, with the name, color and icon you pick |
+| Drafts that survive a restart | Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back |
 | JaPatch settings | Adds JaPatch to Discord's settings: search, per-feature pages, 34 languages, backup and restore, an account and session page, debug logs and a crash screen |
 | Keep message edit history | Every version of a message you can see is kept on this phone and shown above it, struck through, oldest first |
 | Nicknames for this phone | Give people in a server a name only you see. Hold a message and pick Nickname to open this page |
@@ -294,7 +295,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Stay in calls when you are alone | Discord leaves a voice channel by itself after three minutes alone. This stops that one timer, so you stay until you press Disconnect |
 | Streaming hours tracker | Follows the Go Live session you are already running and how far the Streaming badge really is, plus the last seven days |
 
-**83 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
+**84 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
 <!-- features:end -->
 

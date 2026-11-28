@@ -1985,6 +1985,15 @@
     "Copy text": "텍스트 복사",
     "Copied": "복사됨",
     "Copy part of a message": "메시지 일부 복사",
-    "Long press a message and pick Copy text to select just the part you need.": "메시지를 길게 눌러 텍스트 복사를 선택하면 필요한 부분만 선택할 수 있습니다."
+    "Long press a message and pick Copy text to select just the part you need.": "메시지를 길게 눌러 텍스트 복사를 선택하면 필요한 부분만 선택할 수 있습니다.",
+    "Right now that reads {time}.": "지금은 {time}(으)로 표시됩니다.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "임시 저장한 내용은 이 기기에, 이 계정용으로 보관됩니다. Discord로는 아무것도 전송되지 않습니다.",
+    "Drafts that survive a restart": "재시작해도 남는 임시 저장",
+    "Kept drafts": "보관된 임시 저장",
+    "Kept drafts is on": "보관된 임시 저장이 켜져 있습니다",
+    "No draft is kept right now.": "현재 보관된 임시 저장이 없습니다.",
+    "{n} chats have a kept draft right now.": "현재 {n}개 채팅에 임시 저장된 내용이 있습니다.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "아직 보내지 않은 메시지는 Discord를 닫거나 다시 시작하거나 충돌해도 여기에 남아 있고, 다음에 그 채팅을 열 때 기다리고 있습니다. 보내거나 입력창을 비우면 지워집니다.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord는 앱을 닫으면 보내지 않은 메시지를 모두 잊습니다. 이 기능은 그 내용을 이 기기에 남기고 다시 불러옵니다."
   }
 }

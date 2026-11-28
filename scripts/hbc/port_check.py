@@ -28,6 +28,7 @@ BOOTSTRAP_MODULES = [
     (84, None, ['registerAsset', 'getAssetByID'], 'AssetRegistry (Icon packs)'),
     (120, None, ['enableIntersectionObserverByDefault', 'enableMutationObserverByDefault'], 'RN Environment setup'),
     (328, None, ['displayName', 'getSize', 'prefetch', 'resolveAssetSource', 'default'], 'RN.Image (Icon packs)'),
+    (12367, 'design/components/Icon/native/redesign/generated/SaveIcon.tsx', ['SaveIcon'], 'SaveIcon (Kept drafts)'),
     (414, None, ['Pressable', 'android_disableSound'], 'Chat Picker Pressable'),
     (510, '../discord_common/js/packages/storage/Storage.tsx', ['Storage'], 'Storage (hasLoaded gate for Account switcher)'),
     (584, None, ['default', 'DispatchBand', 'STORAGE_KEY_LOG_DISPATCHES'], 'Flux Dispatcher instance (578 is only the class)'),

@@ -2145,6 +2145,15 @@
     "Copy text": "Копирай текста",
     "Copied": "Копирано",
     "Copy part of a message": "Копирай част от съобщение",
-    "Long press a message and pick Copy text to select just the part you need.": "Задръжте съобщение и изберете Копирай текста, за да изберете само частта, която ви трябва."
+    "Long press a message and pick Copy text to select just the part you need.": "Задръжте съобщение и изберете Копирай текста, за да изберете само частта, която ви трябва.",
+    "Right now that reads {time}.": "В момента това показва {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Черновите се пазят на този телефон, за този акаунт. Нищо не се изпраща към Discord.",
+    "Drafts that survive a restart": "Чернови, които оцеляват след рестарт",
+    "Kept drafts": "Запазени чернови",
+    "Kept drafts is on": "Запазените чернови са включени",
+    "No draft is kept right now.": "В момента няма запазен черновик.",
+    "{n} chats have a kept draft right now.": "{n} чата имат запазен черновик в момента.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Съобщение, което още не си изпратил, остава тук, когато Discord се затвори, рестартира или се срине, и те чака следващия път, когато отвориш чата. Изпращането му или изчистването на полето го премахва.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord забравя всяко неизпратено съобщение при затваряне на приложението. Това ги пази на този телефон и ги връща."
   }
 }

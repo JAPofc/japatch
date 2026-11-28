@@ -2227,6 +2227,15 @@
     "Copy text": "Copiază textul",
     "Copied": "Copiat",
     "Copy part of a message": "Copiază o parte dintr-un mesaj",
-    "Long press a message and pick Copy text to select just the part you need.": "Ține apăsat un mesaj și alege Copiază textul pentru a selecta doar partea de care ai nevoie."
+    "Long press a message and pick Copy text to select just the part you need.": "Ține apăsat un mesaj și alege Copiază textul pentru a selecta doar partea de care ai nevoie.",
+    "Right now that reads {time}.": "Chiar acum scrie {time}.",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "Ciornele rămân pe acest telefon, pentru acest cont. Nimic nu este trimis către Discord.",
+    "Drafts that survive a restart": "Ciorne care rezistă la repornire",
+    "Kept drafts": "Ciorne păstrate",
+    "Kept drafts is on": "Ciornele păstrate este pornit",
+    "No draft is kept right now.": "Momentan nu este păstrată nicio ciornă.",
+    "{n} chats have a kept draft right now.": "{n} conversații au acum o ciornă păstrată.",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "Un mesaj pe care nu l-ai trimis încă rămâne aici când Discord se închide, repornește sau se blochează, și te așteaptă data viitoare când deschizi conversația. Trimiterea sau golirea barei îl șterge.",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord uită fiecare mesaj netrimis când aplicația se închide. Asta le păstrează pe acest telefon și le pune la loc."
   }
 }

@@ -1985,6 +1985,15 @@
     "Copy text": "复制文本",
     "Copied": "已复制",
     "Copy part of a message": "复制消息的一部分",
-    "Long press a message and pick Copy text to select just the part you need.": "长按一条消息并选择复制文本，即可只选择你需要的部分。"
+    "Long press a message and pick Copy text to select just the part you need.": "长按一条消息并选择复制文本，即可只选择你需要的部分。",
+    "Right now that reads {time}.": "现在显示的是 {time}。",
+    "Drafts are kept on this phone, for this account. Nothing is sent to Discord.": "草稿保存在这台手机上，仅用于此账号。不会向 Discord 发送任何内容。",
+    "Drafts that survive a restart": "重启后仍在的草稿",
+    "Kept drafts": "保存的草稿",
+    "Kept drafts is on": "保存的草稿已开启",
+    "No draft is kept right now.": "目前没有保存的草稿。",
+    "{n} chats have a kept draft right now.": "目前有 {n} 个聊天保存着草稿。",
+    "A message you have not sent yet stays here when Discord closes, restarts or crashes, and is waiting the next time that chat opens. Sending it, or emptying the bar, clears it.": "你还没有发送的消息会在 Discord 关闭、重启或崩溃后留在这里，并在下次打开该聊天时等待你。发送它或清空输入栏就会清除。",
+    "Discord forgets every unsent message when the app closes. This keeps them on this phone and puts them back.": "Discord 在关闭应用时会忘记每一条未发送的消息。此功能会将它们保存在这台手机上并恢复。"
   }
 }
