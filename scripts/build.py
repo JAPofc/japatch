@@ -1013,7 +1013,7 @@ def check_metadata(metadata):
     if metadata["version"] != VERSION:
         raise SystemExit(f"patches-bundle.json: version {metadata['version']} but the build is {VERSION}")
     # The fallback release notes must split into Morphe's sections.
-    if not re.search(r"^### \S", metadata["description"], re.M) or not re.search(r"^\* \*\*Discord", metadata["description"], re.M):
+    if not re.search(r"^### \S", metadata["description"], re.M) or not re.search(r"^\* \*\*(?:Discord|JaPatch)", metadata["description"], re.M):
         raise SystemExit("patches-bundle.json: description must be the release's sections from scripts/release_info.py")
 
 

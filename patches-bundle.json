@@ -1,9 +1,9 @@
 {
   "created_at": "2026-11-26T06:49:05",
-  "description": "### \u2728 New Features\n\n* **Discord - Stay in calls when you are alone:** Discord leaves a voice channel by itself three minutes after you become the only person in it. The new switch in Settings stops that one timer, so you stay in the call until you press Disconnect yourself. Pressing Disconnect, closing the channel and the leave chime are untouched, because none of them goes through that timer\n* **Discord - Stay in calls when you are alone:** A second switch hands the one channel people expect to be left in back to Discord: with Leave the server's AFK channel on, being alone in a server's own AFK channel still moves you the way Discord's own timeout does\n",
-  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.26/patches-1.0.26.mpp",
-  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.26",
+  "description": "### \ud83d\udd27 Improvements\n\n* **JaPatch - Credits:** JaPatch is a fork of Venus Patches, and NOTICE now says so with the proportions measured file by file - PrivacyPatches and PasskeyPatches unchanged, HbcPrelude, HbcPrivacy and BrandingPatches two lines each, DiscordPatches by 48, the runtime by about a tenth\n* **JaPatch - Credits:** The 1.0.26 notes said the tooling was Venus and stopped there, which read as if the patches were not\n",
+  "download_url": "https://github.com/JAPofc/japatch/releases/download/v1.0.27/patches-1.0.27.mpp",
+  "page_url": "https://github.com/JAPofc/japatch/releases/tag/v1.0.27",
   "signature_download_url": "",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "public_key": "sy/1df6laT60R26P5kJCHPvvHIhSKfgP9sSRSROMrKU="
 }

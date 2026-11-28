@@ -464,14 +464,19 @@ Issues and pull requests are welcome.
 
 ## Credits and prior art
 
-JaPatch is an independent project. Its patches are written against Discord's own modules, but several
-features are based on ideas from the community Discord client-mod ecosystem, and some contain ported
-icon assets. The full list is kept in [NOTICE](NOTICE) — including Morphe, nexpid/ThemesPlus,
-fshinz/Revenge-Plugins, mwittrien, Vendetta plugins, ReviewDB, and the icon pack authors.
+**JaPatch is a fork of [Venus Patches](https://github.com/VenusIsJaded/Venus-Patches) by VenusIsJaded**
+(GPL-3.0). Most of the patch sources, the JavaScript runtime and the language files started as Venus's
+work for Discord 350.8; this project ports them to Discord 351.11 and adds to them. The exact
+proportions, file by file, are in [NOTICE](NOTICE) — along with the developer tools
+(`scripts/hbc/`, `verify_apk.sh`, `test_all.sh` and a few test helpers) that are Venus's too.
 
-The developer tools that read and verify Discord's bundle — `scripts/hbc/`, `scripts/verify_apk.sh`,
-`tests/test_all.sh` and a few test helpers — are taken from **[Venus Patches](https://github.com/VenusIsJaded/Venus-Patches)**
-by VenusIsJaded and used as they are, under the same GPL-3.0 licence this repository uses. Thank you.
+The package rename and the patch names are JaPatch's, because Morphe reads patches by package and
+entry point and the Morphe licence forbids a fork keeping the parent's name. That is a technical
+requirement, not a claim of authorship.
+
+Beyond Venus, several features are based on ideas from the community Discord client-mod ecosystem and
+some contain ported icon assets: Morphe, nexpid/ThemesPlus, fshinz/Revenge-Plugins, mwittrien,
+Vendetta plugins, ReviewDB, and the icon pack authors. The full list is in [NOTICE](NOTICE).
 
 JaPatch is not affiliated with, endorsed by, or sponsored by Discord Inc., Morphe, or any of the
 projects above. Discord is a trademark of Discord Inc.

@@ -68,11 +68,27 @@ Bring back Tenor GIFs is based on the idea of Livie's BringBackTenor Vendetta pl
 code is written for this project against Discord 351.11's own GIF picker. It asks Tenor's public v1 API
 (g.tenor.com) for GIFs only while it's on. JaPatch isn't affiliated with or endorsed by Tenor or Google.
 
-Developer tooling (taken from Venus Patches)
-============================================
+Venus Patches
+=============
 
-The tools that read and verify Discord's bundle are not JaPatch's own work. They come from Venus
-Patches (https://github.com/VenusIsJaded/Venus-Patches, GPL-3.0) and are used as they are:
+JaPatch Patches is a fork of Venus Patches (https://github.com/VenusIsJaded/Venus-Patches) by
+VenusIsJaded, GPL-3.0, ported from Discord 350.8 to Discord 351.11.
+
+Most of this repository started as Venus's, not as JaPatch's own work. Measured line by line, with
+"venus" renamed to "japatch" and nothing else changed:
+
+  patches/.../PrivacyPatches.kt      347 lines   100%   unchanged
+  patches/.../PasskeyPatches.kt       63 lines   100%   unchanged
+  patches/.../HbcPrelude.kt          383 lines   99.7%  2 lines
+  patches/.../HbcPrivacy.kt          291 lines   99.7%  2 lines
+  patches/.../BrandingPatches.kt     208 lines   99.5%  2 lines
+  patches/.../MediaPatches.kt        255 lines   99.2%  4 lines
+  patches/.../DiscordPatches.kt    1,363 lines   97.2%  48 lines
+  patches/.../bootstrap.js        23,279 lines   88.8%  the settings pages and the runtime
+  the 30 language files           1,685 shared texts, 1,684 of them identical
+  the feature list                   78 of the names are Venus's
+
+The developer tools that read and verify Discord's bundle are also Venus's and are used as they are:
 
   scripts/hbc/hbc.py, ops.txt, setup.sh, DexInspect.kt, color_tables.py, hermes_vm.sh
   scripts/verify_apk.sh
@@ -80,13 +96,21 @@ Patches (https://github.com/VenusIsJaded/Venus-Patches, GPL-3.0) and are used as
   tests/ui/sheet.py, tests/themes_fetch.py, tests/bench/load_calls.cjs
   extensions/voice/stubs/com/facebook/react/bridge/Promise.kt
 
-The Gradle scaffold, .editorconfig, .gitattributes, the Gradle wrapper and PatchListGenerator.kt come
-from the Morphe patches template, as the line below already says. Everything else in this repository -
-the patches, the JavaScript runtime, the settings pages and the 34 language files - is written for
-JaPatch against Discord 351.11's own modules.
+What is JaPatch's own: the port from 350.8 to 351.11, the features added after the fork (Bookmarks,
+Export chats, Save profile pictures, Server time, Nicknames for this phone, Stay in calls when you are
+alone, Streaming hours tracker, Replace text, Show names your way, the JaPatch button, and the wider
+Privacy and Reviews pages), 289 new language texts, and this NOTICE.
 
-Venus Patches is GPL-3.0, the same licence as this repository, so the code is used and shared under
-those terms. Venus is not asked about, nor does it endorse, anything here.
+The package rename (app.venus.patches -> app.japatch.patches) and the names of the patches are
+JaPatch's: Morphe reads patches by package and entry point, and a fork that keeps another project's
+name is what the Morphe NOTICE above forbids. The rename is not a claim of authorship - this section
+is where the authorship is stated.
+
+The Gradle scaffold, .editorconfig, .gitattributes, the Gradle wrapper and PatchListGenerator.kt come
+from the Morphe patches template, as the line below already says.
+
+Both projects are GPL-3.0, so the code is shared under those terms. Venus has not been asked about,
+nor does it endorse, anything here. If any line above is wrong, open an issue and it will be corrected.
 
 Who wrote this
 ==============

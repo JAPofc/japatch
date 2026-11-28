@@ -17,7 +17,7 @@ ROOT = __import__("pathlib").Path(__file__).resolve().parents[1]
 SECTIONS = ["### 🚀 Updated App Support", "### ✨ New Features", "### 🐛 Bug Fixes", "### 🔧 Improvements",
             "### ⚡ Performance Improvements"]
 HEADING = re.compile(r"^## \[(?P<version>[^\]\s]+)\] \((?P<date>\d{4}-\d{2}-\d{2})\)$")
-BULLET = re.compile(r"^\* \*\*Discord(?: - [^*:]+)?:\*\* (?P<desc>\S.*[^.])$")
+BULLET = re.compile(r"^\* \*\*(?:Discord|JaPatch)(?: - [^*:]+)?:\*\* (?P<desc>\S.*[^.])$")
 # Release-page leftovers that don't belong in notes.
 BANNED = re.compile(r"good to know|sha-?256|^#+ install|wasn't published separately|checked by patching", re.I | re.M)
 # "#139" reads like an issue or pull request, and every one of these ever written pointed at nothing: the numbers came
@@ -26,6 +26,13 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.27] (2026-11-28)
+
+### 🔧 Improvements
+
+* **JaPatch - Credits:** JaPatch is a fork of Venus Patches, and NOTICE now says so with the proportions measured file by file - PrivacyPatches and PasskeyPatches unchanged, HbcPrelude, HbcPrivacy and BrandingPatches two lines each, DiscordPatches by 48, the runtime by about a tenth
+* **JaPatch - Credits:** The 1.0.26 notes said the tooling was Venus and stopped there, which read as if the patches were not
+
 ## [1.0.26] (2026-11-27)
 
 ### ✨ New Features
