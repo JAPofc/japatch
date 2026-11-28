@@ -99,11 +99,9 @@ def main():
     by_cat = {}
     for p in patches:
         by_cat[p["category"]] = by_cat.get(p["category"], 0) + 1
-    m = re.search(r"\*\*(\d+) features\*\*", readme)
-    if m and int(m.group(1)) != by_cat.get("Features", 0):
-        fail(f"README says {m.group(1)} features, the manifest has {by_cat.get('Features', 0)}")
-    elif m:
-        ok(f"README and the manifest agree on {by_cat.get('Features', 0)} features")
+    # The README sentence is checked against what the app shows (further down), not against the manifest
+    # split: the manifest counts every row, including the ones that are Privacy, and the app counts the
+    # switches a person can actually turn on.
     total = re.search(r"\*\*(\d+) patches\*\*", readme)
     if total and int(total.group(1)) != len(patches):
         fail(f"README says {total.group(1)} patches, the manifest has {len(patches)}")
@@ -113,7 +111,19 @@ def main():
     # Nothing read these files, so docs/badges/languages.svg still said 29 while 34 languages shipped, and the table
     # under the header said 82 features while the manifest had 83 patches. They are drawn in the repository, so a
     # check here is the only thing that can keep them honest.
-    for name, expected in (("languages", len(index)), ("features", len(patches))):
+    # The features badge and the README sentence now follow the app's own count (FEATURE_ICONS keys that the
+    # Kotlin side compiles in), not the manifest's row count: 77, 79 and 84 were all claimed at once.
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+    import readme_features
+    shown = sum(1 for key in readme_features._compiled_features() if key in readme_features._icon_keys())
+    readme_says = re.search(r"\*\*(\d+) features\*\*", readme)
+    if not readme_says:
+        fail("the README no longer says how many features there are")
+    elif int(readme_says.group(1)) != shown:
+        fail(f"the README says {readme_says.group(1)} features, the app shows {shown}")
+    else:
+        ok(f"README and the app agree: {shown} features")
+    for name, expected in (("languages", len(index)), ("features", shown)):
         svg = (ROOT / f"docs/badges/{name}.svg").read_text(encoding="utf-8")
         found = re.search(r'aria-label="' + name + r': (\d+)"', svg)
         if not found:

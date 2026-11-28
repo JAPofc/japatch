@@ -26,6 +26,13 @@ ISSUE_REF = re.compile(r"(?<![\w&])#\d+\b")
 
 # Newest first. One "## [version] (date)" per release; the body is Morphe's section format.
 RELEASES = r"""
+## [1.0.28] (2026-11-28)
+
+### 🐛 Bug Fixes
+
+* **Discord - Four features that were never switched on:** Fixed Bookmark messages, Save profile pictures, Server time and Nicknames had a page, an icon and a hook, and were missing from the one list that marks their module before Discord loads it, so the row was never drawn and the hook never ran. The Features page is what made it invisible - a feature with no row takes its whole section with it, so the Messages section was simply not there. They are counted now: 81 in the app, in the README and on the badge, from one calculation instead of three
+* **JaPatch - Lines that read the same three files:** Fixed the gap where a feature could have a row, an icon and a hook and still never run; a test now fails when a feature has a row and an icon but nothing selects its module, and when a case in the module switch can never be reached. That pair of checks is what would have caught this, and the count in the app, the README and the badge now comes from the same place instead of drifting apart as 77, 79 and 84
+
 ## [1.0.27] (2026-11-28)
 
 ### 🔧 Improvements

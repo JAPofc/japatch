@@ -288,7 +288,7 @@ log. Nothing is left behind: JaPatch keeps no account, no server and no key of i
 | Stay in calls when you are alone | Discord leaves a voice channel by itself after three minutes alone. This stops that one timer, so you stay until you press Disconnect |
 | Streaming hours tracker | Follows the Go Live session you are already running and how far the Streaming badge really is, plus the last seven days |
 
-**79 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
+**81 features**, all off until you turn them on in **Discord Settings → JaPatch → Features**.
 
 <!-- features:end -->
 

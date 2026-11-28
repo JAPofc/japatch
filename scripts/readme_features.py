@@ -42,6 +42,40 @@ GROUPS = [
 ]
 
 
+def _icon_keys():
+    """The keys in FEATURE_ICONS, which is what the app counts."""
+    source = (ROOT / "patches/src/main/resources/japatch/bootstrap.js").read_text(encoding="utf-8")
+    start = source.index("const FEATURE_ICONS = {")
+    depth = 0
+    for i in range(start, len(source)):
+        if source[i] == "{":
+            depth += 1
+        elif source[i] == "}":
+            depth -= 1
+            if depth == 0:
+                block = source[start:i + 1]
+                break
+    return re.findall(r"([A-Za-z0-9_]+)\s*:\s*\[\s*\d+\s*,\s*\"", block)
+
+
+def _compiled_features():
+    """Every feature the Kotlin side compiles in: the listOf(...) entries plus the XSelected flags."""
+    kotlin = (ROOT / "patches/src/main/kotlin/app/japatch/patches/DiscordPatches.kt").read_text(encoding="utf-8")
+    start = kotlin.index('listOf("noTyping"')
+    depth, end = 0, start
+    for i in range(kotlin.index("(", start), len(kotlin)):
+        if kotlin[i] == "(":
+            depth += 1
+        elif kotlin[i] == ")":
+            depth -= 1
+            if depth == 0:
+                end = i
+                break
+    from_list = re.findall(r'"([A-Za-z0-9_]+)"', kotlin[start:end])
+    flags = [m[0].lower() + m[1:] for m in re.findall(r"\b([A-Za-z0-9_]+)Selected\b", kotlin)]
+    return set(from_list) | set(flags)
+
+
 def patches():
     data = json.loads(LIST.read_text(encoding="utf-8"))
     return [p for p in data["patches"] if p.get("category") == "Features"]
@@ -96,7 +130,11 @@ def table():
         for name in sorted(left):
             lines.append(f"| {name} | {by_name[name]} |")
         lines.append("")
-    lines.append(f"**{len(found)} features**, all off until you turn them on in "
+    # The number the app itself shows (featureSummary(): FEATURE_ICONS keys that are actually compiled in),
+    # not the manifest's row count. They were 77, 79 and 84 in three files at once, and every reader had to
+    # guess which one was true. The manifest counts rows; the app counts what a person can switch on.
+    shown = sum(1 for key in _compiled_features() if key in _icon_keys())
+    lines.append(f"**{shown} features**, all off until you turn them on in "
                  f"**Discord Settings → JaPatch → Features**.")
     lines.append("")
     lines.append(END)

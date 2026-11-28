@@ -13,6 +13,7 @@ const path = require("path");
 const vm = require("vm");
 
 const ROOT = path.resolve(__dirname, "..", "..");
+const KOTLIN = fs.readFileSync(path.join(ROOT, "patches/src/main/kotlin/app/japatch/patches/DiscordPatches.kt"), "utf8");
 const SOURCE = fs.readFileSync(path.join(ROOT, "patches/src/main/resources/japatch/bootstrap.js"), "utf8");
 
 let failures = 0;
@@ -51,6 +52,44 @@ check("every feature patched in can be counted and listed (chatExport was missin
     const icons = featureIconsKeys(), patched = kotlinFeatureKeys();
     const missing = patched.filter(key => !icons.includes(key));
     eq(missing.join(","), "", "features in the bundle but not in FEATURE_ICONS:");
+});
+
+// The direction nobody checked until 1.0.27: a feature with a page and an icon that the Kotlin side never
+// selects. withOptions() returns on an unknown feature, so the row is never drawn and the section that held
+// it disappears; selectModules() never marks its module, so the case in switchModule() is unreachable and the
+// hook never runs. Bookmarks, Save pictures, Server time and Nicknames sat like that for several releases and
+// nothing failed: the count said "77 of 81" and no test compared the two lists both ways.
+function uiRowKeys() {
+    return Array.from(SOURCE.matchAll(/(?:toggle|withOptions)\(\s*"[a-z]+"\s*,\s*"([A-Za-z0-9_]+)"/g)).map(m => m[1]);
+}
+check("every feature with a row and an icon is selected in DiscordPatches.kt", () => {
+    // The listOf(...) covers most of them; five older features get their own `XSelected` flag in the same
+    // file, and those flags are just as much a compile-in. Both count.
+    const icons = featureIconsKeys(), patched = kotlinFeatureKeys();
+    const flags = Array.from(new Set(Array.from(KOTLIN.matchAll(/\b([A-Za-z0-9_]+)Selected\b/g)).map(m => m[1][0].toLowerCase() + m[1].slice(1))));
+    const all = new Set([...patched, ...flags]);
+    const lost = icons.filter(key => !all.has(key));
+    eq(lost.join(","), "", "features with a row and an icon but no selection:");
+});
+check("every case in the module switch can actually be reached", () => {
+    // a case runs only when targetModules[id] is 1, and that happens from selectModules([...]) or from a
+    // direct targetModules[id] = 1. A case nobody selects never runs and its feature silently does nothing.
+    const cases = Array.from(SOURCE.matchAll(/^\s+case (\d+):/gm)).map(m => m[1]);
+    const selected = new Set();
+    for (const m of SOURCE.matchAll(/selectModules\(\[([0-9,\s]+)\]\)/g))
+        for (const id of m[1].split(",")) if (id.trim()) selected.add(id.trim());
+    for (const m of SOURCE.matchAll(/targetModules\[(\d+)\]\s*=\s*1/g)) selected.add(m[1]);
+    const unreachable = cases.filter(id => !selected.has(id));
+    eq(unreachable.join(","), "", "cases whose module is never selected:");
+});
+
+check("every selectModules line is gated by a feature that exists", () => {
+    // The other half of the same bug: a line naming a feature key that was renamed or removed selects
+    // nothing, forever, without an error.
+    const icons = featureIconsKeys();
+    const gated = Array.from(SOURCE.matchAll(/if \(features\.([A-Za-z0-9_]+)\)[^{;]*selectModules\(/g)).map(m => m[1]);
+    const unknown = gated.filter(key => !icons.includes(key));
+    eq(unknown.join(","), "", "selectModules lines for keys with no icon:");
 });
 
 check("Export chats is one of them", () => {

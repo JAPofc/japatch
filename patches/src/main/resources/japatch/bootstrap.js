@@ -70,6 +70,12 @@
     if (features.compressUploads) selectModules([8023, 8046, 10006]);
     if (features.timeoutDuration) selectModules([2119, 2128, 8013]);
     if (features.dndBanners) selectModules([6015, 13511, 13523]);
+    // Four features drew their page and their hook and then never selected the module the hook hangs on,
+    // so the case below it was unreachable and the row was never drawn (withOptions returns on an unknown
+    // feature). They were in no list, so nothing counted them either: 77 of 81.
+    if (features.serverClock) selectModules([13788]);
+    if (features.saveImages) selectModules([14015, 9662]);
+    if (features.localNick) selectModules([9978]);
     if (features.landscapeFull) targetModules[5075] = 1;
     if (features.voiceDownload) selectModules([1447, 5532, 8013, 11114]);
     if (features.cloneExpressions) selectModules([9839, 10078]);
@@ -79,7 +85,7 @@
     if (features.hideAnything) selectModules([14015, 15735, 15736, 9419, 10331, 16133, 16225, 12892, 12897, 12901, 12908, 12909, 13780, 14204, 15590, 17157, 15046, 8805, 9052, 10858, 12942, 14988, 14994, 14925, 14998, 11678, 11679, 14197, 10939, 7158, 14182, 14101, 17156, 17263, 13151, 12000, 10838, 17949, 16773, 17265, 17881, 17869, 11164, 9978, 13759, 12696, 10650, 13769, 8494, 9873]);
     if (features.voiceOptions) { targetModules[584] = 1; targetModules[11372] = 1; targetModules[6145] = 1; }
     if (features.noBandwidthKick) { selectModules([18456, 5212, 2090]); targetModules[2068] = 1; }
-    const revision = "1.0.27";
+    const revision = "1.0.28";
     // The Discord build these patches are pinned to (DiscordPatches.kt compatibleWith); shown on the About page.
     const DISCORD_VERSION = "351.11";
     // Module 120 owns setUpDefaltReactNativeEnvironment in this exact asset.
